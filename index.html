@@ -3,114 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xinlo - Apple Premium Reseller</title>
-    <meta name="description" content="Xinlo商城 - 专注Apple产品，为您提供全面的购物体验">
-    <style>
-        /* 黑白风格颜色定义 */
-        :root {
-            --bg-light: #ffffff;
-            --text-light: #000000;
-            --bg-dark: #000000;
-            --text-dark: #ffffff;
-        }
-
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-light);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* 导航栏 */
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px;
-            background-color: var(--bg-light);
-        }
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .nav-links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: var(--text-light);
-        }
-
-        /* 主内容展示 */
-        .hero {
-            text-align: center;
-            padding: 50px 0;
-        }
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        /* 分类页 */
-        .category {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .category-item {
-            background: #f0f0f0;
-            padding: 15px;
-            text-align: center;
-            border-radius: 10px;
-        }
-
-        /* 客服与付款信息 */
-        .footer {
-            padding: 20px;
-            text-align: center;
-            background-color: var(--bg-light);
-            color: var(--text-light);
-        }
-    </style>
+    <title>Xinlo商城 - 高端Apple产品购物体验</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav class="nav">
-        <div class="nav-logo">Xinlo</div>
-        <div class="nav-links">
-            <a href="#">首页</a>
-            <a href="#category">分类</a>
-            <a href="#contact">客服</a>
-        </div>
+    <nav class="navbar">
+        <div class="logo">Xinlo</div>
+        <ul class="nav-links">
+            <li><a href="#">首页</a></li>
+            <li><a href="#category">分类</a></li>
+            <li><a href="#cart">购物车</a></li>
+            <li><a href="#account">我的账号</a></li>
+        </ul>
     </nav>
 
-    <!-- 主页面 -->
+    <!-- 主页横幅 -->
     <header class="hero">
-        <h1>欢迎来到 Xinlo 商城</h1>
-        <p>专注Apple产品，品质保证</p>
+        <h1>发现苹果生活</h1>
+        <p>高端Apple产品，一站式购买体验</p>
+        <a class="btn" href="#category">立刻购物</a>
     </header>
 
-    <!-- 商品分类 -->
-    <section id="category" class="category">
-        <div class="category-item">iPhone</div>
-        <div class="category-item">iPad</div>
-        <div class="category-item">MacBook</div>
-        <div class="category-item">Apple Watch</div>
-        <div class="category-item">AirPods</div>
+    <!-- 分类展示 -->
+    <section id="category" class="categories">
+        <h2>商品分类</h2>
+        <div class="category-grid">
+            <div class="category-item">iPhone</div>
+            <div class="category-item">iPad</div>
+            <div class="category-item">MacBook</div>
+            <div class="category-item">Apple Watch</div>
+            <div class="category-item">AirPods</div>
+        </div>
     </section>
 
-    <!-- 客服信息与支付方式 -->
-    <footer class="footer">
-        <p>客服支持：</p>
-        <ul>
-            <li>WhatsApp: +1 520 348 9531</li>
-            <li>Telegram: <a href="https://t.me/axcch">https://t.me/axcch</a></li>
-            <li>邮箱: axccch@proton.me</li>
-        </ul>
-        <p>支付方式：</p>
-        <ul>
-            <li>PayPal: axccch@proton.me</li>
-            <li>USDT: TRC20 - TP1HgMuwTkYDbiALMeCie9gY2hGBWfrfky</li>
-        </ul>
+    <!-- 底部信息 -->
+    <footer>
+        <p>客服支持：
+            WhatsApp: +1 520 348 9531 | Telegram: <a href="https://t.me/axcch">点击进入</a> | 邮箱: axccch@proton.me
+        </p>
+        <p>支付方式：PayPal & USDT (TRC20: TP1HgMuwTkYDbiALMeCie9gY2hGBWfrfky)</p>
     </footer>
 </body>
 </html>
