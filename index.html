@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,8 @@
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.03);
             --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
             --shadow-xl: 0 20px 45px rgba(0, 0, 0, 0.10);
+            --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-card-hover: 0 16px 32px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.05);
             --radius-sm: 6px;
             --radius: 10px;
             --radius-lg: 16px;
@@ -362,6 +364,7 @@
             justify-content: center;
             min-height: 70vh;
             animation: fadeSlideIn 0.8s ease;
+            background: radial-gradient(ellipse at 50% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 70%);
         }
         .hero-logo {
             font-size: 4.5rem;
@@ -377,7 +380,7 @@
         }
         .hero-logo .logo-icon {
             font-size: 5rem;
-            background: var(--accent);
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d3250 50%, #1a1a2e 100%);
             color: #fff;
             width: 100px;
             height: 100px;
@@ -386,7 +389,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
         .hero-tagline {
             font-size: 1.2rem;
@@ -395,6 +398,38 @@
             max-width: 500px;
             opacity: 0;
             animation: fadeSlideIn 0.8s ease 0.2s forwards;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fef2f2;
+            color: #b91c1c;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 8px 18px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 0.03em;
+            opacity: 0;
+            animation: fadeSlideIn 0.8s ease 0.1s forwards;
+            border: 1px solid #fecaca;
+        }
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #dc2626;
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+            }
         }
         .btn-cta {
             display: inline-block;
@@ -477,13 +512,13 @@
             background: var(--white);
             border-radius: var(--radius);
             padding: 20px 18px;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-card);
             border: 1px solid var(--border-light);
             text-align: center;
             transition: var(--transition-fast);
         }
         .highlight-card:hover {
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-card-hover);
             transform: translateY(-2px);
         }
         .highlight-card .hc-icon {
@@ -509,6 +544,8 @@
             margin-bottom: 28px;
             border-bottom: 2px solid var(--border);
             padding-bottom: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .product-tab-btn {
             padding: 10px 20px;
@@ -525,6 +562,7 @@
             letter-spacing: 0.02em;
             position: relative;
             margin-bottom: -2px;
+            flex-shrink: 0;
         }
         .product-tab-btn:hover {
             color: var(--accent);
@@ -552,7 +590,7 @@
             background: var(--white);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-card);
             transition: var(--transition);
             border: 1px solid var(--border-light);
             display: flex;
@@ -561,7 +599,7 @@
         }
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-card-hover);
             border-color: transparent;
         }
         .product-card .discount-badge {
@@ -577,22 +615,68 @@
             z-index: 2;
             letter-spacing: 0.04em;
             box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+            animation: badgePulse 2.5s ease-in-out infinite;
+        }
+        @keyframes badgePulse {
+            0%,
+            100% {
+                box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+            }
+            50% {
+                box-shadow: 0 4px 16px rgba(220, 38, 38, 0.5);
+            }
+        }
+        .product-card .new-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #1a1a2e;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 9px;
+            border-radius: 10px;
+            z-index: 2;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
         .product-img {
             aspect-ratio: 1/1;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 5rem;
             position: relative;
             overflow: hidden;
+            transition: transform var(--transition);
         }
-        .product-img.iphone-bg{background:linear-gradient(160deg,#1a1a2e 0%,#1e2a3a 50%,#1a2740 100%);}
-        .product-img.iphone-bg-light{background:linear-gradient(160deg,#e8ecf1 0%,#dce3ed 50%,#cfd8e6 100%);}
-        .product-img.mac-bg{background:linear-gradient(160deg,#2c2c2e 0%,#3a3a3c 50%,#1c1c1e 100%);}
-        .product-img.ipad-bg{background:linear-gradient(160deg,#f0f0f5 0%,#e5e5ec 50%,#dcdce5 100%);}
-        .product-img.watch-bg{background:linear-gradient(160deg,#1c1c1e 0%,#2d2d30 50%,#1a1a1d 100%);}
-        .product-img.airpods-bg{background:linear-gradient(160deg,#fafafa 0%,#f0f0f2 50%,#e8e8eb 100%);}
+        .product-card:hover .product-img {
+            transform: scale(1.04);
+        }
+        .product-img.iphone-bg {
+            background: linear-gradient(160deg, #1a1a2e 0%, #1e2a3a 50%, #1a2740 100%);
+        }
+        .product-img.iphone-bg-light {
+            background: linear-gradient(160deg, #e8ecf1 0%, #dce3ed 50%, #cfd8e6 100%);
+        }
+        .product-img.iphone-pro-bg {
+            background: linear-gradient(160deg, #2d2d30 0%, #3a3a3e 50%, #222226 100%);
+        }
+        .product-img.iphone-air-bg {
+            background: linear-gradient(160deg, #f5f0e8 0%, #ede4d5 50%, #e8dcc8 100%);
+        }
+        .product-img.mac-bg {
+            background: linear-gradient(160deg, #2c2c2e 0%, #3a3a3c 50%, #1c1c1e 100%);
+        }
+        .product-img.ipad-bg {
+            background: linear-gradient(160deg, #f0f0f5 0%, #e5e5ec 50%, #dcdce5 100%);
+        }
+        .product-img.watch-bg {
+            background: linear-gradient(160deg, #1c1c1e 0%, #2d2d30 50%, #1a1a1d 100%);
+        }
+        .product-img.airpods-bg {
+            background: linear-gradient(160deg, #fafafa 0%, #f0f0f2 50%, #e8e8eb 100%);
+        }
         .product-body {
             padding: 16px 16px 20px;
             flex: 1;
@@ -616,6 +700,7 @@
             border-radius: 4px;
             font-weight: 500;
             letter-spacing: 0.03em;
+            width: fit-content;
         }
         .storage-options {
             display: flex;
@@ -632,6 +717,11 @@
             letter-spacing: 0.02em;
             white-space: nowrap;
         }
+        .storage-tag.highlight-storage {
+            background: #e8f0fe;
+            color: #1a4a7a;
+            font-weight: 600;
+        }
         .color-options {
             display: flex;
             gap: 5px;
@@ -646,6 +736,7 @@
             flex-shrink: 0;
             cursor: default;
             transition: transform var(--transition-fast);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         .color-dot:hover {
             transform: scale(1.3);
@@ -702,15 +793,15 @@
         }
         .btn-buy-product:hover {
             background: var(--accent-light);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-1px);
         }
 
-        /* ============ CONTACT CHOICE MODAL ============ */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 2000;
             align-items: center;
             justify-content: center;
@@ -725,15 +816,21 @@
             background: var(--white);
             border-radius: var(--radius-lg);
             padding: 32px 28px 28px;
-            max-width: 380px;
+            max-width: 400px;
             width: 90%;
             box-shadow: var(--shadow-xl);
             text-align: center;
             animation: modalPopIn 0.3s ease;
         }
         @keyframes modalPopIn {
-            from{transform:scale(0.9);opacity:0;}
-            to{transform:scale(1);opacity:1;}
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
         .modal-dialog h3 {
             font-size: 1.15rem;
@@ -775,6 +872,7 @@
         .modal-btn.whatsapp:hover {
             background: #1ebc58;
             box-shadow: var(--shadow-lg);
+            transform: translateY(-1px);
         }
         .modal-btn.telegram {
             background: #0088cc;
@@ -782,6 +880,7 @@
         .modal-btn.telegram:hover {
             background: #0077b5;
             box-shadow: var(--shadow-lg);
+            transform: translateY(-1px);
         }
         .modal-btn .btn-icon {
             font-size: 1.3rem;
@@ -814,13 +913,13 @@
             border-radius: var(--radius-lg);
             padding: 30px 22px;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-card);
             border: 1px solid var(--border-light);
             transition: var(--transition);
         }
         .logistics-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-card-hover);
         }
         .logistics-card .lc-icon {
             font-size: 2.6rem;
@@ -934,7 +1033,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--accent-glow);
-            box-shadow: 0 0 0 3px rgba(59,130,246,0.08);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
         }
         .form-group textarea {
             min-height: 100px;
@@ -998,14 +1097,14 @@
         }
         .footer {
             background: var(--accent);
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             text-align: center;
             padding: 22px 24px;
             font-size: 0.82rem;
             letter-spacing: 0.02em;
         }
         .footer span {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         @media (max-width: 1100px) {
@@ -1160,12 +1259,12 @@
                             <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
                             <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
                         </svg>
-                        <span id="currentLangLabel">English</span>
+                        <span id="currentLangLabel">中文</span>
                         <svg class="arrow-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                     <ul class="lang-dropdown" id="langDropdown">
-                        <li><button data-lang="zh">🇨🇳 中文</button></li>
-                        <li><button data-lang="en" class="active-lang">🇺🇸 English</button></li>
+                        <li><button data-lang="zh" class="active-lang">🇨🇳 中文</button></li>
+                        <li><button data-lang="en">🇺🇸 English</button></li>
                         <li><button data-lang="de">🇩🇪 Deutsch</button></li>
                         <li><button data-lang="fr">🇫🇷 Français</button></li>
                         <li><button data-lang="es">🇪🇸 Español</button></li>
@@ -1189,19 +1288,26 @@
 
     <!-- ==================== HERO / HOME ==================== -->
     <section class="section hero-home" id="home">
+        <div class="hero-badge">
+            <span class="pulse-dot"></span> <span data-i18n="heroBadge">比美国市场价低约25%</span>
+        </div>
         <div class="hero-logo">
             <span class="logo-icon">X</span> xinlo
         </div>
-        <p class="hero-tagline" data-i18n="heroTagline">Apple Products · Global Shipping</p>
-        <a href="#products" class="btn-cta" data-i18n="heroCta">Shop Now</a>
+        <p class="hero-tagline" data-i18n="heroTagline">Apple全系列产品 · 全球直邮 · 正品保障</p>
+        <a href="#products" class="btn-cta" data-i18n="heroCta">立即选购</a>
         <div class="stats-row">
             <div class="stat-item">
-                <div class="stat-number">12+</div>
-                <div class="stat-label" data-i18n="statSeries">Apple Lines</div>
+                <div class="stat-number">16+</div>
+                <div class="stat-label" data-i18n="statSeries">Apple产品线</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">50+</div>
-                <div class="stat-label" data-i18n="statCountries">Countries</div>
+                <div class="stat-label" data-i18n="statCountries">覆盖国家</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">~25%</div>
+                <div class="stat-label" data-i18n="statDiscount">平均折扣</div>
             </div>
         </div>
     </section>
@@ -1210,33 +1316,33 @@
     <section class="section section-alt" id="about">
         <div class="section-inner">
             <p class="section-label" data-i18n="aboutLabel">About Us</p>
-            <h2 class="section-title" data-i18n="aboutTitle">Professional Apple Product Trader</h2>
+            <h2 class="section-title" data-i18n="aboutTitle">专业Apple产品贸易商</h2>
             <div class="section-divider"></div>
             <div class="about-grid">
                 <div class="about-text">
-                    <p data-i18n="aboutP1">xinlo is an international trade company focused on the full range of Apple products. We have deep roots in the electronics supply chain and stable partnerships with authorized distributors worldwide, providing wholesale and retail services for iPhone, MacBook, iPad, Apple Watch, AirPods and more.</p>
-                    <p data-i18n="aboutP2">Our team consists of electronics trade specialists, logistics coordinators, and customer service representatives, ensuring every step of each order is handled professionally. All products are genuine and come with full warranty coverage.</p>
+                    <p data-i18n="aboutP1">xinlo是一家专注于Apple全系列产品的国际贸易企业。我们深耕电子产品供应链，与全球多个授权分销渠道建立稳定合作，为客户提供iPhone、MacBook、iPad、Apple Watch、AirPods等全系Apple产品的批发与零售服务。</p>
+                    <p data-i18n="aboutP2">我们的团队由电子产品贸易专家、物流协调员和客户服务代表组成，确保每一笔订单从采购到交付的每个环节都得到专业处理。所有产品均为原装正品，享受完整保修服务。凭借供应链优势，我们的价格通常比美国市场低约25%。</p>
                 </div>
                 <div class="about-highlights">
                     <div class="highlight-card">
                         <div class="hc-icon">✅</div>
-                        <h4 data-i18n="aboutH1">100% Genuine</h4>
-                        <p data-i18n="aboutH1d">All products authentic guaranteed</p>
+                        <h4 data-i18n="aboutH1">100%原装正品</h4>
+                        <p data-i18n="aboutH1d">所有产品正品保障，支持序列号验证</p>
                     </div>
                     <div class="highlight-card">
                         <div class="hc-icon">💰</div>
-                        <h4 data-i18n="aboutH2">Price Advantage</h4>
-                        <p data-i18n="aboutH2d">Best value for your money</p>
+                        <h4 data-i18n="aboutH2">价格优势</h4>
+                        <p data-i18n="aboutH2d">比美国市场价低约25%，物超所值</p>
                     </div>
                     <div class="highlight-card">
                         <div class="hc-icon">🚀</div>
-                        <h4 data-i18n="aboutH3">Global Express</h4>
-                        <p data-i18n="aboutH3d">DHL/FedEx/UPS worldwide</p>
+                        <h4 data-i18n="aboutH3">全球速递</h4>
+                        <p data-i18n="aboutH3d">DHL/FedEx/UPS全球直邮</p>
                     </div>
                     <div class="highlight-card">
                         <div class="hc-icon">🔒</div>
-                        <h4 data-i18n="aboutH4">Secure Transaction</h4>
-                        <p data-i18n="aboutH4d">Multiple payment methods</p>
+                        <h4 data-i18n="aboutH4">安全交易</h4>
+                        <p data-i18n="aboutH4d">多种付款方式，交易有保障</p>
                     </div>
                 </div>
             </div>
@@ -1247,36 +1353,281 @@
     <section class="section" id="products">
         <div class="section-inner">
             <p class="section-label" data-i18n="productsLabel">Products</p>
-            <h2 class="section-title" data-i18n="productsTitle">iPhone 15-17 Series & Apple Products</h2>
-            <p class="section-subtitle" data-i18n="productsSubtitle">Click tabs to switch series. Each model supports multiple storage and color options.</p>
+            <h2 class="section-title" data-i18n="productsTitle">iPhone 15-17 全系列 & Apple产品</h2>
+            <p class="section-subtitle" data-i18n="productsSubtitle">点击下方标签切换系列。每个型号均支持多种存储与颜色选择，价格比美国市场低约25%。</p>
             <div class="section-divider"></div>
             <div class="product-tabs-nav" id="productTabsNav">
-                <button class="product-tab-btn active" data-tab="iphone15">iPhone 15 Series</button>
-                <button class="product-tab-btn" data-tab="iphone16">iPhone 16 Series</button>
-                <button class="product-tab-btn" data-tab="iphone17">iPhone 17 Series</button>
-                <button class="product-tab-btn" data-tab="other">Other Apple Products</button>
+                <button class="product-tab-btn active" data-tab="iphone15">iPhone 15 系列</button>
+                <button class="product-tab-btn" data-tab="iphone16">iPhone 16 系列</button>
+                <button class="product-tab-btn" data-tab="iphone17">iPhone 17 系列</button>
+                <button class="product-tab-btn" data-tab="other">其他Apple产品</button>
             </div>
-            <!-- 产品面板内容保持不变，此处省略以节省篇幅，实际代码中包含完整的产品卡片 -->
-            <!-- iPhone 15 Series -->
+
+            <!-- ===== iPhone 15 系列 ===== -->
             <div class="product-tab-panel active" id="tab-iphone15">
                 <div class="products-grid">
+                    <!-- iPhone 15 -->
                     <div class="product-card">
-                        <span class="discount-badge">-22%</span>
+                        <span class="discount-badge">-24%</span>
                         <div class="product-img iphone-bg-light">📱</div>
                         <div class="product-body">
-                            <span class="product-model-tag">iPhone 15</span>
+                            <span class="product-model-tag">iPhone 15 · 6.1"</span>
                             <div class="product-name">iPhone 15</div>
                             <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span></div>
-                            <div class="color-options"><span class="color-dot" style="background:#f5a0b5;"></span><span class="color-dot" style="background:#f5d76e;"></span><span class="color-dot" style="background:#a8e6cf;"></span><span class="color-dot" style="background:#7eb8da;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">5 colors</span></div>
-                            <div class="price-row"><span class="price-original">$699</span><span class="price-our">$529</span><span class="price-save">Save $170</span></div>
-                            <button class="btn-buy-product" data-i18n="buyNow">Buy Now</button>
+                            <div class="color-options"><span class="color-dot" style="background:#f5a0b5;"></span><span class="color-dot" style="background:#f5d76e;"></span><span class="color-dot" style="background:#a8e6cf;"></span><span class="color-dot" style="background:#7eb8da;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">5色</span></div>
+                            <div class="price-row"><span class="price-original">$699</span><span class="price-our">$529</span><span class="price-save">省$170</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
                         </div>
                     </div>
-                    <!-- 其余产品卡片省略，完整代码包含所有系列 -->
+                    <!-- iPhone 15 Plus -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <div class="product-img iphone-bg-light">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 15 Plus · 6.7"</span>
+                            <div class="product-name">iPhone 15 Plus</div>
+                            <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#f5a0b5;"></span><span class="color-dot" style="background:#f5d76e;"></span><span class="color-dot" style="background:#a8e6cf;"></span><span class="color-dot" style="background:#7eb8da;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">5色</span></div>
+                            <div class="price-row"><span class="price-original">$799</span><span class="price-our">$599</span><span class="price-save">省$200</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPhone 15 Pro -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <div class="product-img iphone-pro-bg">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 15 Pro · 6.1"</span>
+                            <div class="product-name">iPhone 15 Pro</div>
+                            <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span><span class="storage-tag highlight-storage">1TB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#b8b0a0;"></span><span class="color-dot" style="background:#3a4a5c;"></span><span class="color-dot" style="background:#e8e4df;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">4色 钛金属</span></div>
+                            <div class="price-row"><span class="price-original">$999</span><span class="price-our">$749</span><span class="price-save">省$250</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPhone 15 Pro Max -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <div class="product-img iphone-pro-bg">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 15 Pro Max · 6.7"</span>
+                            <div class="product-name">iPhone 15 Pro Max</div>
+                            <div class="storage-options"><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span><span class="storage-tag highlight-storage">1TB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#b8b0a0;"></span><span class="color-dot" style="background:#3a4a5c;"></span><span class="color-dot" style="background:#e8e4df;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">4色 钛金属</span></div>
+                            <div class="price-row"><span class="price-original">$1199</span><span class="price-our">$899</span><span class="price-save">省$300</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- 其他产品面板类似，完整代码包含 iPhone 16/17 和其他 Apple 产品，此处不再重复 -->
-            <!-- 为保持完整性，实际部署请使用之前提供的完整产品列表 -->
+
+            <!-- ===== iPhone 16 系列 ===== -->
+            <div class="product-tab-panel" id="tab-iphone16">
+                <div class="products-grid">
+                    <!-- iPhone 16 -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <span class="new-badge">NEW</span>
+                        <div class="product-img iphone-bg">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 16 · 6.1"</span>
+                            <div class="product-name">iPhone 16</div>
+                            <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#4a5b8c;"></span><span class="color-dot" style="background:#5fa89e;"></span><span class="color-dot" style="background:#f0a0b8;"></span><span class="color-dot" style="background:#fafafa;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">5色</span></div>
+                            <div class="price-row"><span class="price-original">$799</span><span class="price-our">$599</span><span class="price-save">省$200</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPhone 16 Plus -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <span class="new-badge">NEW</span>
+                        <div class="product-img iphone-bg">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 16 Plus · 6.7"</span>
+                            <div class="product-name">iPhone 16 Plus</div>
+                            <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#4a5b8c;"></span><span class="color-dot" style="background:#5fa89e;"></span><span class="color-dot" style="background:#f0a0b8;"></span><span class="color-dot" style="background:#fafafa;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">5色</span></div>
+                            <div class="price-row"><span class="price-original">$899</span><span class="price-our">$679</span><span class="price-save">省$220</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPhone 16 Pro -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <span class="new-badge">NEW</span>
+                        <div class="product-img iphone-pro-bg">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 16 Pro · 6.3"</span>
+                            <div class="product-name">iPhone 16 Pro</div>
+                            <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span><span class="storage-tag highlight-storage">1TB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#c4a87c;"></span><span class="color-dot" style="background:#b8b0a0;"></span><span class="color-dot" style="background:#e8e4df;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">4色 钛金属</span></div>
+                            <div class="price-row"><span class="price-original">$1099</span><span class="price-our">$829</span><span class="price-save">省$270</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPhone 16 Pro Max -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <span class="new-badge">NEW</span>
+                        <div class="product-img iphone-pro-bg">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 16 Pro Max · 6.9"</span>
+                            <div class="product-name">iPhone 16 Pro Max</div>
+                            <div class="storage-options"><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span><span class="storage-tag highlight-storage">1TB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#c4a87c;"></span><span class="color-dot" style="background:#b8b0a0;"></span><span class="color-dot" style="background:#e8e4df;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">4色 钛金属</span></div>
+                            <div class="price-row"><span class="price-original">$1199</span><span class="price-our">$899</span><span class="price-save">省$300</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== iPhone 17 系列 ===== -->
+            <div class="product-tab-panel" id="tab-iphone17">
+                <div class="products-grid">
+                    <!-- iPhone 17 -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <span class="new-badge">预购</span>
+                        <div class="product-img iphone-bg-light">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 17 · 6.1"</span>
+                            <div class="product-name">iPhone 17</div>
+                            <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#1a1a2e;"></span><span class="color-dot" style="background:#e8e4df;"></span><span class="color-dot" style="background:#7eb8da;"></span><span class="color-dot" style="background:#f5a0b5;"></span><span class="color-dot" style="background:#a8e6cf;"></span><span class="color-dot-label">5色</span></div>
+                            <div class="price-row"><span class="price-original">$799</span><span class="price-our">$599</span><span class="price-save">省$200</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPhone 17 Air -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <span class="new-badge">预购</span>
+                        <div class="product-img iphone-air-bg">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 17 Air · 6.6" 超薄</span>
+                            <div class="product-name">iPhone 17 Air</div>
+                            <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#1a1a2e;"></span><span class="color-dot" style="background:#e8e4df;"></span><span class="color-dot" style="background:#c4a87c;"></span><span class="color-dot" style="background:#7eb8da;"></span><span class="color-dot-label">4色</span></div>
+                            <div class="price-row"><span class="price-original">$899</span><span class="price-our">$679</span><span class="price-save">省$220</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPhone 17 Pro -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <span class="new-badge">预购</span>
+                        <div class="product-img iphone-pro-bg">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 17 Pro · 6.3"</span>
+                            <div class="product-name">iPhone 17 Pro</div>
+                            <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span><span class="storage-tag highlight-storage">1TB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#1a1a2e;"></span><span class="color-dot" style="background:#b8b0a0;"></span><span class="color-dot" style="background:#e8e4df;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">4色 钛金属</span></div>
+                            <div class="price-row"><span class="price-original">$1099</span><span class="price-our">$829</span><span class="price-save">省$270</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPhone 17 Pro Max -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <span class="new-badge">预购</span>
+                        <div class="product-img iphone-pro-bg">📱</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPhone 17 Pro Max · 6.9"</span>
+                            <div class="product-name">iPhone 17 Pro Max</div>
+                            <div class="storage-options"><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span><span class="storage-tag highlight-storage">1TB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#1a1a2e;"></span><span class="color-dot" style="background:#b8b0a0;"></span><span class="color-dot" style="background:#e8e4df;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">4色 钛金属</span></div>
+                            <div class="price-row"><span class="price-original">$1199</span><span class="price-our">$899</span><span class="price-save">省$300</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 其他Apple产品 ===== -->
+            <div class="product-tab-panel" id="tab-other">
+                <div class="products-grid">
+                    <!-- MacBook Air 15" -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <div class="product-img mac-bg">💻</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">MacBook Air · 15"</span>
+                            <div class="product-name">MacBook Air 15" M3</div>
+                            <div class="storage-options"><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#2d2d30;"></span><span class="color-dot" style="background:#e8e4df;"></span><span class="color-dot" style="background:#c4a87c;"></span><span class="color-dot-label">3色</span></div>
+                            <div class="price-row"><span class="price-original">$1299</span><span class="price-our">$974</span><span class="price-save">省$325</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- MacBook Pro 14" -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <div class="product-img mac-bg">💻</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">MacBook Pro · 14"</span>
+                            <div class="product-name">MacBook Pro 14" M3 Pro</div>
+                            <div class="storage-options"><span class="storage-tag">512GB</span><span class="storage-tag highlight-storage">1TB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#2d2d30;"></span><span class="color-dot" style="background:#c0c0c4;"></span><span class="color-dot-label">2色</span></div>
+                            <div class="price-row"><span class="price-original">$1599</span><span class="price-our">$1199</span><span class="price-save">省$400</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPad Pro 13" -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <div class="product-img ipad-bg">📋</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPad Pro · 13"</span>
+                            <div class="product-name">iPad Pro 13" M4</div>
+                            <div class="storage-options"><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span><span class="storage-tag highlight-storage">1TB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#2d2d30;"></span><span class="color-dot" style="background:#c0c0c4;"></span><span class="color-dot-label">2色</span></div>
+                            <div class="price-row"><span class="price-original">$1299</span><span class="price-our">$974</span><span class="price-save">省$325</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- Apple Watch Ultra 2 -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <div class="product-img watch-bg">⌚</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">Apple Watch Ultra 2</span>
+                            <div class="product-name">Apple Watch Ultra 2</div>
+                            <div class="storage-options"><span class="storage-tag">49mm</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#b8b0a0;"></span><span class="color-dot" style="background:#2d2d2d;"></span><span class="color-dot-label">2色</span></div>
+                            <div class="price-row"><span class="price-original">$799</span><span class="price-our">$599</span><span class="price-save">省$200</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- AirPods Pro 2 -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <div class="product-img airpods-bg">🎧</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">AirPods Pro 2</span>
+                            <div class="product-name">AirPods Pro 2 (USB-C)</div>
+                            <div class="storage-options"><span class="storage-tag">H2芯片</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#fafafa;"></span><span class="color-dot-label">白色</span></div>
+                            <div class="price-row"><span class="price-original">$249</span><span class="price-our">$187</span><span class="price-save">省$62</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                    <!-- iPad mini -->
+                    <div class="product-card">
+                        <span class="discount-badge">-25%</span>
+                        <div class="product-img ipad-bg">📋</div>
+                        <div class="product-body">
+                            <span class="product-model-tag">iPad mini · 8.3"</span>
+                            <div class="product-name">iPad mini (A17 Pro)</div>
+                            <div class="storage-options"><span class="storage-tag">128GB</span><span class="storage-tag">256GB</span><span class="storage-tag">512GB</span></div>
+                            <div class="color-options"><span class="color-dot" style="background:#c0c0d0;"></span><span class="color-dot" style="background:#e8d5f0;"></span><span class="color-dot" style="background:#f5d76e;"></span><span class="color-dot-label">3色</span></div>
+                            <div class="price-row"><span class="price-original">$499</span><span class="price-our">$374</span><span class="price-save">省$125</span></div>
+                            <button class="btn-buy-product" data-i18n="buyNow">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1284,29 +1635,29 @@
     <section class="section section-alt" id="logistics">
         <div class="section-inner">
             <p class="section-label" data-i18n="logLabel">Logistics & After-Sales</p>
-            <h2 class="section-title" data-i18n="logTitle">Global Logistics, Reliable After-Sales</h2>
+            <h2 class="section-title" data-i18n="logTitle">全球物流，安心售后</h2>
             <div class="section-divider"></div>
             <div class="logistics-grid">
                 <div class="logistics-card">
                     <span class="lc-icon">✈️</span>
-                    <h3 data-i18n="logCard1Title">International Logistics Network</h3>
-                    <p data-i18n="logCard1Desc">Covering major ports and cities worldwide, supporting DHL/FedEx/UPS express delivery.</p>
+                    <h3 data-i18n="logCard1Title">国际物流网络</h3>
+                    <p data-i18n="logCard1Desc">覆盖全球主要港口和城市，支持DHL/FedEx/UPS等国际快递，灵活满足不同需求。</p>
                 </div>
                 <div class="logistics-card">
                     <span class="lc-icon">📋</span>
-                    <h3 data-i18n="logCard2Title">Full-Process Tracking</h3>
-                    <p data-i18n="logCard2Desc">Real-time logistics tracking from dispatch to delivery, keeping you informed at every stage.</p>
+                    <h3 data-i18n="logCard2Title">全流程跟踪</h3>
+                    <p data-i18n="logCard2Desc">提供实时物流追踪服务，从出库到签收，每个节点清晰可查，让您随时掌握货物动态。</p>
                 </div>
                 <div class="logistics-card">
                     <span class="lc-icon">🛡️</span>
-                    <h3 data-i18n="logCard3Title">After-Sales Protection</h3>
-                    <p data-i18n="logCard3Desc">All Apple products enjoy global warranty. Rapid response to issues, returns, exchanges, and repair coordination.</p>
+                    <h3 data-i18n="logCard3Title">售后保障计划</h3>
+                    <p data-i18n="logCard3Desc">所有Apple产品享受全球联保服务，出现任何问题快速响应，提供退换货及维修协调服务。</p>
                 </div>
             </div>
             <div class="warranty-banner">
                 <div class="wb-text">
-                    <h3 data-i18n="warrantyTitle">Authenticity Commitment</h3>
-                    <p data-i18n="warrantyDesc">All products are genuine with Apple global warranty. Serial number verification supported.</p>
+                    <h3 data-i18n="warrantyTitle">正品承诺</h3>
+                    <p data-i18n="warrantyDesc">所有产品均为原装正品，享受Apple全球保修服务，支持序列号验证。</p>
                 </div>
                 <div class="wb-badge">✅</div>
             </div>
@@ -1317,7 +1668,7 @@
     <section class="section" id="privacy">
         <div class="section-inner">
             <p class="section-label" data-i18n="privacyLabel">Privacy Policy</p>
-            <h2 class="section-title" data-i18n="privacyTitle">Privacy Protection Statement</h2>
+            <h2 class="section-title" data-i18n="privacyTitle">隐私保护声明</h2>
             <div class="section-divider"></div>
             <div class="privacy-content" id="privacyContent"></div>
         </div>
@@ -1327,32 +1678,32 @@
     <section class="section section-alt" id="contact">
         <div class="section-inner">
             <p class="section-label" data-i18n="contactLabel">Contact Us</p>
-            <h2 class="section-title" data-i18n="contactTitle">Get in Touch</h2>
+            <h2 class="section-title" data-i18n="contactTitle">立即取得联系</h2>
             <div class="section-divider"></div>
             <div class="contact-grid">
                 <div class="contact-form-wrap">
-                    <h3 data-i18n="formTitle">Send a Message</h3>
+                    <h3 data-i18n="formTitle">发送消息</h3>
                     <form id="contactForm" onsubmit="handleFormSubmit(event)">
                         <div class="form-group">
-                            <label data-i18n="formName">Name</label>
-                            <input type="text" id="formName" required placeholder="Your Name">
+                            <label data-i18n="formName">姓名</label>
+                            <input type="text" id="formName" required placeholder="您的姓名">
                         </div>
                         <div class="form-group">
-                            <label data-i18n="formEmail">Email</label>
+                            <label data-i18n="formEmail">邮箱</label>
                             <input type="email" id="formEmail" required placeholder="your@email.com">
                         </div>
                         <div class="form-group">
-                            <label data-i18n="formMessage">Message</label>
-                            <textarea id="formMessage" required placeholder="Your message..."></textarea>
+                            <label data-i18n="formMessage">消息内容</label>
+                            <textarea id="formMessage" required placeholder="请输入您的消息..."></textarea>
                         </div>
-                        <button type="submit" class="btn-submit" data-i18n="formSubmit">Send Message</button>
+                        <button type="submit" class="btn-submit" data-i18n="formSubmit">发送消息</button>
                     </form>
                 </div>
                 <div class="contact-info-side">
                     <a href="mailto:axccch@proton.me" class="contact-info-card">
                         <span class="cic-icon">📧</span>
                         <div class="cic-detail">
-                            <strong data-i18n="contactEmailLabel">Email</strong>
+                            <strong data-i18n="contactEmailLabel">电子邮箱</strong>
                             <span>axccch@proton.me</span>
                         </div>
                     </a>
@@ -1366,8 +1717,8 @@
                     <div class="contact-info-card" style="cursor:default;">
                         <span class="cic-icon">🕐</span>
                         <div class="cic-detail">
-                            <strong data-i18n="contactHoursLabel">Business Hours</strong>
-                            <span data-i18n="contactHoursValue">Mon-Fri 9:00-18:00 (GMT+8)</span>
+                            <strong data-i18n="contactHoursLabel">工作时间</strong>
+                            <span data-i18n="contactHoursValue">周一至周五 9:00-18:00 (GMT+8)</span>
                         </div>
                     </div>
                 </div>
@@ -1376,130 +1727,305 @@
     </section>
 
     <footer class="footer">
-        <p>&copy; 2024 xinlo. <span data-i18n="footerRights">All rights reserved.</span></p>
+        <p>&copy; 2024 xinlo. <span data-i18n="footerRights">保留所有权利。</span></p>
     </footer>
 
     <script>
         (function() {
             const translations = {
-                en: {
-                    navHome: 'Home', navAbout: 'About Us', navProducts: 'Products', navLogistics: 'Logistics', navPrivacy: 'Privacy',
-                    navContact: 'Contact', heroTagline: 'Apple Products · Global Shipping', heroCta: 'Shop Now',
-                    statSeries: 'Apple Lines', statCountries: 'Countries',
-                    aboutLabel: 'About Us', aboutTitle: 'Professional Apple Product Trader',
-                    aboutP1: 'xinlo is an international trade company focused on the full range of Apple products. We have deep roots in the electronics supply chain and stable partnerships with authorized distributors worldwide, providing wholesale and retail services for iPhone, MacBook, iPad, Apple Watch, AirPods and more.',
-                    aboutP2: 'Our team consists of electronics trade specialists, logistics coordinators, and customer service representatives, ensuring every step of each order is handled professionally. All products are genuine and come with full warranty coverage.',
-                    aboutH1: '100% Genuine', aboutH1d: 'All products authentic guaranteed', aboutH2: 'Price Advantage', aboutH2d: 'Best value for your money',
-                    aboutH3: 'Global Express', aboutH3d: 'DHL/FedEx/UPS worldwide', aboutH4: 'Secure Transaction', aboutH4d: 'Multiple payment methods',
-                    productsLabel: 'Products', productsTitle: 'iPhone 15-17 Series & Apple Products',
-                    productsSubtitle: 'Click tabs to switch series. Each model supports multiple storage and color options.',
-                    buyNow: 'Buy Now',
-                    logLabel: 'Logistics & After-Sales', logTitle: 'Global Logistics, Reliable After-Sales',
-                    logCard1Title: 'International Logistics Network', logCard1Desc: 'Covering major ports and cities worldwide, supporting DHL/FedEx/UPS express delivery.',
-                    logCard2Title: 'Full-Process Tracking', logCard2Desc: 'Real-time logistics tracking from dispatch to delivery, keeping you informed at every stage.',
-                    logCard3Title: 'After-Sales Protection', logCard3Desc: 'All Apple products enjoy global warranty. Rapid response to issues, returns, exchanges, and repair coordination.',
-                    warrantyTitle: 'Authenticity Commitment', warrantyDesc: 'All products are genuine with Apple global warranty. Serial number verification supported.',
-                    privacyLabel: 'Privacy Policy', privacyTitle: 'Privacy Protection Statement',
-                    privacyContent: `<h3>1. Information Collection</h3><p>We may collect personal information such as your name and email address when you use our contact form.</p><h3>2. Information Usage</h3><p>Collected information is used to process inquiries and orders, and improve customer service.</p><h3>3. Data Security</h3><p>We employ industry-standard security measures including SSL encryption.</p><h3>4. Cookie Policy</h3><p>This website may use necessary cookies for proper functionality.</p><h3>5. Your Rights</h3><p>You have the right to access, correct, or delete your personal information.</p><h3>6. Policy Updates</h3><p>We may update this policy from time to time.</p>`,
-                    contactLabel: 'Contact Us', contactTitle: 'Get in Touch', formTitle: 'Send a Message', formName: 'Name', formEmail: 'Email',
-                    formMessage: 'Message', formSubmit: 'Send Message', contactEmailLabel: 'Email', contactWhatsAppLabel: 'WhatsApp',
-                    contactHoursLabel: 'Business Hours', contactHoursValue: 'Mon-Fri 9:00-18:00 (GMT+8)', footerRights: 'All rights reserved.',
-                },
                 zh: {
-                    navHome: '首页', navAbout: '关于我们', navProducts: '产品展示', navLogistics: '物流售后', navPrivacy: '隐私政策',
-                    navContact: '联系我们', heroTagline: 'Apple 全系列产品 · 全球直邮', heroCta: '立即选购',
-                    statSeries: 'Apple产品线', statCountries: '覆盖国家',
-                    aboutLabel: '关于我们', aboutTitle: '专业Apple产品贸易商',
-                    aboutP1: 'xinlo 是一家专注于 Apple 全系列产品的国际贸易企业。我们深耕电子产品供应链，与全球多个授权分销渠道建立稳定合作，为客户提供 iPhone、MacBook、iPad、Apple Watch、AirPods 等全系 Apple 产品的批发与零售服务。',
-                    aboutP2: '我们的团队由电子产品贸易专家、物流协调员和客户服务代表组成，确保每一笔订单从采购到交付的每个环节都得到专业处理。所有产品均为原装正品，享受完整保修服务。',
-                    aboutH1: '原装正品', aboutH1d: '所有产品100%正品保障', aboutH2: '价格优势', aboutH2d: '物超所值',
-                    aboutH3: '全球速递', aboutH3d: 'DHL/FedEx/UPS全球直邮', aboutH4: '安全交易', aboutH4d: '多种付款方式，交易有保障',
-                    productsLabel: '产品展示', productsTitle: 'iPhone 15-17 全系列 & Apple 产品',
-                    productsSubtitle: '点击下方标签切换系列，每个型号均支持多种内存与颜色选择。',
+                    navHome: '首页',
+                    navAbout: '关于我们',
+                    navProducts: '产品展示',
+                    navLogistics: '物流售后',
+                    navPrivacy: '隐私政策',
+                    navContact: '联系我们',
+                    heroBadge: '比美国市场价低约25%',
+                    heroTagline: 'Apple全系列产品 · 全球直邮 · 正品保障',
+                    heroCta: '立即选购',
+                    statSeries: 'Apple产品线',
+                    statCountries: '覆盖国家',
+                    statDiscount: '平均折扣',
+                    aboutLabel: '关于我们',
+                    aboutTitle: '专业Apple产品贸易商',
+                    aboutP1: 'xinlo是一家专注于Apple全系列产品的国际贸易企业。我们深耕电子产品供应链，与全球多个授权分销渠道建立稳定合作，为客户提供iPhone、MacBook、iPad、Apple Watch、AirPods等全系Apple产品的批发与零售服务。',
+                    aboutP2: '我们的团队由电子产品贸易专家、物流协调员和客户服务代表组成，确保每一笔订单从采购到交付的每个环节都得到专业处理。所有产品均为原装正品，享受完整保修服务。凭借供应链优势，我们的价格通常比美国市场低约25%。',
+                    aboutH1: '100%原装正品',
+                    aboutH1d: '所有产品正品保障，支持序列号验证',
+                    aboutH2: '价格优势',
+                    aboutH2d: '比美国市场价低约25%，物超所值',
+                    aboutH3: '全球速递',
+                    aboutH3d: 'DHL/FedEx/UPS全球直邮',
+                    aboutH4: '安全交易',
+                    aboutH4d: '多种付款方式，交易有保障',
+                    productsLabel: '产品展示',
+                    productsTitle: 'iPhone 15-17 全系列 & Apple产品',
+                    productsSubtitle: '点击下方标签切换系列。每个型号均支持多种存储与颜色选择，价格比美国市场低约25%。',
                     buyNow: '立即购买',
-                    logLabel: '物流与售后', logTitle: '全球物流，安心售后',
-                    logCard1Title: '国际物流网络', logCard1Desc: '覆盖全球主要港口和城市，支持DHL/FedEx/UPS等国际快递，灵活满足不同需求。',
-                    logCard2Title: '全流程跟踪', logCard2Desc: '提供实时物流追踪服务，从出库到签收，每个节点清晰可查，让您随时掌握货物动态。',
-                    logCard3Title: '售后保障计划', logCard3Desc: '所有Apple产品享受全球联保服务，出现任何问题快速响应，提供退换货及维修协调服务。',
-                    warrantyTitle: '正品承诺', warrantyDesc: '所有产品均为原装正品，享受Apple全球保修服务，支持序列号验证',
-                    privacyLabel: '隐私政策', privacyTitle: '隐私保护声明',
-                    privacyContent: `<h3>1. 信息收集</h3><p>我们在您使用联系表单时可能收集您的姓名、电子邮箱地址等个人信息。所有信息仅用于提供和改进我们的服务。</p><h3>2. 信息使用</h3><p>收集的信息用于处理您的询价和订单、发送重要通知、改善客户服务体验。我们不会将您的个人信息出售或分享给第三方。</p><h3>3. 数据安全</h3><p>我们采用行业标准的安全措施保护您的个人信息，包括SSL加密传输和访问控制。</p><h3>4. Cookie政策</h3><p>本网站可能使用必要的Cookie以确保网站正常运行。</p><h3>5. 您的权利</h3><p>您有权访问、更正或删除我们持有的您的个人信息。</p><h3>6. 政策更新</h3><p>我们可能会不时更新本隐私政策。继续使用本网站即表示您同意更新后的政策。</p>`,
-                    contactLabel: '联系我们', contactTitle: '立即取得联系', formTitle: '发送消息', formName: '姓名', formEmail: '邮箱',
-                    formMessage: '消息内容', formSubmit: '发送消息', contactEmailLabel: '电子邮箱', contactWhatsAppLabel: 'WhatsApp',
-                    contactHoursLabel: '工作时间', contactHoursValue: '周一至周五 9:00-18:00 (GMT+8)', footerRights: '保留所有权利。',
+                    logLabel: '物流与售后',
+                    logTitle: '全球物流，安心售后',
+                    logCard1Title: '国际物流网络',
+                    logCard1Desc: '覆盖全球主要港口和城市，支持DHL/FedEx/UPS等国际快递，灵活满足不同需求。',
+                    logCard2Title: '全流程跟踪',
+                    logCard2Desc: '提供实时物流追踪服务，从出库到签收，每个节点清晰可查，让您随时掌握货物动态。',
+                    logCard3Title: '售后保障计划',
+                    logCard3Desc: '所有Apple产品享受全球联保服务，出现任何问题快速响应，提供退换货及维修协调服务。',
+                    warrantyTitle: '正品承诺',
+                    warrantyDesc: '所有产品均为原装正品，享受Apple全球保修服务，支持序列号验证。',
+                    privacyLabel: '隐私政策',
+                    privacyTitle: '隐私保护声明',
+                    privacyContent: '<h3>1. 信息收集</h3><p>我们在您使用联系表单时可能收集您的姓名、电子邮箱地址等个人信息。所有信息仅用于提供和改进我们的服务。</p><h3>2. 信息使用</h3><p>收集的信息用于处理您的询价和订单、发送重要通知、改善客户服务体验。我们不会将您的个人信息出售或分享给第三方。</p><h3>3. 数据安全</h3><p>我们采用行业标准的安全措施保护您的个人信息，包括SSL加密传输和访问控制。</p><h3>4. Cookie政策</h3><p>本网站可能使用必要的Cookie以确保网站正常运行。</p><h3>5. 您的权利</h3><p>您有权访问、更正或删除我们持有的您的个人信息。</p><h3>6. 政策更新</h3><p>我们可能会不时更新本隐私政策。继续使用本网站即表示您同意更新后的政策。</p>',
+                    contactLabel: '联系我们',
+                    contactTitle: '立即取得联系',
+                    formTitle: '发送消息',
+                    formName: '姓名',
+                    formEmail: '邮箱',
+                    formMessage: '消息内容',
+                    formSubmit: '发送消息',
+                    contactEmailLabel: '电子邮箱',
+                    contactWhatsAppLabel: 'WhatsApp',
+                    contactHoursLabel: '工作时间',
+                    contactHoursValue: '周一至周五 9:00-18:00 (GMT+8)',
+                    footerRights: '保留所有权利。',
+                    modalTitle: '联系我们选购',
+                    modalSubtitle: '选择您偏好的联系方式',
+                    modalCancel: '取消',
+                },
+                en: {
+                    navHome: 'Home',
+                    navAbout: 'About Us',
+                    navProducts: 'Products',
+                    navLogistics: 'Logistics',
+                    navPrivacy: 'Privacy',
+                    navContact: 'Contact',
+                    heroBadge: '~25% Below US Market Price',
+                    heroTagline: 'Apple Products · Global Shipping · Genuine Guarantee',
+                    heroCta: 'Shop Now',
+                    statSeries: 'Apple Lines',
+                    statCountries: 'Countries',
+                    statDiscount: 'Avg Discount',
+                    aboutLabel: 'About Us',
+                    aboutTitle: 'Professional Apple Product Trader',
+                    aboutP1: 'xinlo is an international trade company focused on the full range of Apple products. We have deep roots in the electronics supply chain and stable partnerships with authorized distributors worldwide, providing wholesale and retail services for iPhone, MacBook, iPad, Apple Watch, AirPods and more.',
+                    aboutP2: 'Our team consists of electronics trade specialists, logistics coordinators, and customer service representatives, ensuring every step of each order is handled professionally. All products are genuine and come with full warranty coverage. Thanks to supply chain advantages, our prices are typically ~25% below US market.',
+                    aboutH1: '100% Genuine',
+                    aboutH1d: 'All products authentic, serial verification supported',
+                    aboutH2: 'Price Advantage',
+                    aboutH2d: '~25% below US market, best value',
+                    aboutH3: 'Global Express',
+                    aboutH3d: 'DHL/FedEx/UPS worldwide shipping',
+                    aboutH4: 'Secure Transaction',
+                    aboutH4d: 'Multiple payment methods accepted',
+                    productsLabel: 'Products',
+                    productsTitle: 'iPhone 15-17 Series & Apple Products',
+                    productsSubtitle: 'Click tabs to switch series. Each model supports multiple storage and color options. Prices ~25% below US market.',
+                    buyNow: 'Buy Now',
+                    logLabel: 'Logistics & After-Sales',
+                    logTitle: 'Global Logistics, Reliable After-Sales',
+                    logCard1Title: 'International Logistics Network',
+                    logCard1Desc: 'Covering major ports and cities worldwide, supporting DHL/FedEx/UPS express delivery.',
+                    logCard2Title: 'Full-Process Tracking',
+                    logCard2Desc: 'Real-time logistics tracking from dispatch to delivery, keeping you informed at every stage.',
+                    logCard3Title: 'After-Sales Protection',
+                    logCard3Desc: 'All Apple products enjoy global warranty. Rapid response to issues, returns, exchanges, and repair coordination.',
+                    warrantyTitle: 'Authenticity Commitment',
+                    warrantyDesc: 'All products are genuine with Apple global warranty. Serial number verification supported.',
+                    privacyLabel: 'Privacy Policy',
+                    privacyTitle: 'Privacy Protection Statement',
+                    privacyContent: '<h3>1. Information Collection</h3><p>We may collect personal information such as your name and email address when you use our contact form.</p><h3>2. Information Usage</h3><p>Collected information is used to process inquiries and orders, and improve customer service.</p><h3>3. Data Security</h3><p>We employ industry-standard security measures including SSL encryption.</p><h3>4. Cookie Policy</h3><p>This website may use necessary cookies for proper functionality.</p><h3>5. Your Rights</h3><p>You have the right to access, correct, or delete your personal information.</p><h3>6. Policy Updates</h3><p>We may update this policy from time to time.</p>',
+                    contactLabel: 'Contact Us',
+                    contactTitle: 'Get in Touch',
+                    formTitle: 'Send a Message',
+                    formName: 'Name',
+                    formEmail: 'Email',
+                    formMessage: 'Message',
+                    formSubmit: 'Send Message',
+                    contactEmailLabel: 'Email',
+                    contactWhatsAppLabel: 'WhatsApp',
+                    contactHoursLabel: 'Business Hours',
+                    contactHoursValue: 'Mon-Fri 9:00-18:00 (GMT+8)',
+                    footerRights: 'All rights reserved.',
+                    modalTitle: 'Contact Us to Purchase',
+                    modalSubtitle: 'Choose your preferred way to reach us',
+                    modalCancel: 'Cancel',
                 },
                 de: {
-                    navHome: 'Startseite', navAbout: 'Über uns', navProducts: 'Produkte', navLogistics: 'Logistik', navPrivacy: 'Datenschutz',
-                    navContact: 'Kontakt', heroTagline: 'Apple Produkte · Weltweiter Versand', heroCta: 'Jetzt einkaufen',
-                    statSeries: 'Apple Linien', statCountries: 'Länder',
-                    aboutLabel: 'Über uns', aboutTitle: 'Professioneller Apple Produkthändler',
+                    navHome: 'Startseite',
+                    navAbout: 'Über uns',
+                    navProducts: 'Produkte',
+                    navLogistics: 'Logistik',
+                    navPrivacy: 'Datenschutz',
+                    navContact: 'Kontakt',
+                    heroBadge: '~25% unter US-Marktpreis',
+                    heroTagline: 'Apple Produkte · Weltweiter Versand · Echtheitsgarantie',
+                    heroCta: 'Jetzt einkaufen',
+                    statSeries: 'Apple Linien',
+                    statCountries: 'Länder',
+                    statDiscount: 'Ø Rabatt',
+                    aboutLabel: 'Über uns',
+                    aboutTitle: 'Professioneller Apple Produkthändler',
                     aboutP1: 'xinlo ist ein auf Apple Produkte spezialisiertes internationales Handelsunternehmen mit stabilen Partnerschaften zu autorisierten Distributoren weltweit.',
-                    aboutP2: 'Unser Team besteht aus Elektronikhandelsexperten, Logistikkoordinatoren und Kundendienstmitarbeitern. Alle Produkte sind original und mit voller Garantie.',
-                    aboutH1: '100% Original', aboutH1d: 'Alle Produkte garantiert echt', aboutH2: 'Preisvorteil', aboutH2d: 'Bester Wert für Ihr Geld',
-                    aboutH3: 'Globaler Express', aboutH3d: 'DHL/FedEx/UPS weltweit', aboutH4: 'Sichere Transaktion', aboutH4d: 'Mehrere Zahlungsmethoden',
-                    productsLabel: 'Produkte', productsTitle: 'iPhone 15-17 Serie & Apple Produkte',
-                    productsSubtitle: 'Klicken Sie auf die Tabs, um die Serien zu wechseln. Jedes Modell unterstützt mehrere Speicher- und Farboptionen.',
+                    aboutP2: 'Unser Team besteht aus Elektronikhandelsexperten, Logistikkoordinatoren und Kundendienstmitarbeitern. Alle Produkte sind original und mit voller Garantie. Dank Lieferkettenvorteilen liegen unsere Preise ~25% unter dem US-Markt.',
+                    aboutH1: '100% Original',
+                    aboutH1d: 'Alle Produkte garantiert echt',
+                    aboutH2: 'Preisvorteil',
+                    aboutH2d: '~25% unter US-Marktpreis',
+                    aboutH3: 'Globaler Express',
+                    aboutH3d: 'DHL/FedEx/UPS weltweit',
+                    aboutH4: 'Sichere Transaktion',
+                    aboutH4d: 'Mehrere Zahlungsmethoden',
+                    productsLabel: 'Produkte',
+                    productsTitle: 'iPhone 15-17 Serie & Apple Produkte',
+                    productsSubtitle: 'Klicken Sie auf die Tabs, um die Serien zu wechseln. Preise ~25% unter US-Markt.',
                     buyNow: 'Kaufen',
-                    logLabel: 'Logistik & Kundendienst', logTitle: 'Globale Logistik, zuverlässiger Service',
-                    logCard1Title: 'Internationales Logistiknetzwerk', logCard1Desc: 'Abdeckung wichtiger Häfen und Städte weltweit mit DHL/FedEx/UPS.',
-                    logCard2Title: 'Sendungsverfolgung', logCard2Desc: 'Echtzeit-Tracking vom Versand bis zur Zustellung.',
-                    logCard3Title: 'Kundendienst-Garantie', logCard3Desc: 'Alle Apple Produkte mit globaler Garantie. Schnelle Reaktion bei Problemen.',
-                    warrantyTitle: 'Echtheitsgarantie', warrantyDesc: 'Alle Produkte sind original mit Apple Weltgarantie.',
-                    privacyLabel: 'Datenschutz', privacyTitle: 'Datenschutzerklärung',
-                    privacyContent: `<h3>1. Datenerhebung</h3><p>Wir erheben personenbezogene Daten wie Name und E-Mail, wenn Sie unser Kontaktformular nutzen.</p><h3>2. Datennutzung</h3><p>Erhobene Daten werden zur Bearbeitung Ihrer Anfragen genutzt.</p><h3>3. Datensicherheit</h3><p>Wir setzen branchenübliche Sicherheitsmaßnahmen ein.</p><h3>4. Cookie-Richtlinie</h3><p>Diese Website verwendet notwendige Cookies.</p><h3>5. Ihre Rechte</h3><p>Sie haben das Recht auf Auskunft, Berichtigung oder Löschung Ihrer Daten.</p><h3>6. Aktualisierungen</h3><p>Wir können diese Erklärung gelegentlich aktualisieren.</p>`,
-                    contactLabel: 'Kontakt', contactTitle: 'Kontaktieren Sie uns', formTitle: 'Nachricht senden', formName: 'Name', formEmail: 'E-Mail',
-                    formMessage: 'Nachricht', formSubmit: 'Senden', contactEmailLabel: 'E-Mail', contactWhatsAppLabel: 'WhatsApp',
-                    contactHoursLabel: 'Geschäftszeiten', contactHoursValue: 'Mo-Fr 9:00-18:00 (GMT+8)', footerRights: 'Alle Rechte vorbehalten.',
+                    logLabel: 'Logistik & Kundendienst',
+                    logTitle: 'Globale Logistik, zuverlässiger Service',
+                    logCard1Title: 'Internationales Logistiknetzwerk',
+                    logCard1Desc: 'Abdeckung wichtiger Häfen und Städte weltweit mit DHL/FedEx/UPS.',
+                    logCard2Title: 'Sendungsverfolgung',
+                    logCard2Desc: 'Echtzeit-Tracking vom Versand bis zur Zustellung.',
+                    logCard3Title: 'Kundendienst-Garantie',
+                    logCard3Desc: 'Alle Apple Produkte mit globaler Garantie.',
+                    warrantyTitle: 'Echtheitsgarantie',
+                    warrantyDesc: 'Alle Produkte sind original mit Apple Weltgarantie.',
+                    privacyLabel: 'Datenschutz',
+                    privacyTitle: 'Datenschutzerklärung',
+                    privacyContent: '<h3>1. Datenerhebung</h3><p>Wir erheben personenbezogene Daten wie Name und E-Mail.</p><h3>2. Datennutzung</h3><p>Erhobene Daten werden zur Bearbeitung Ihrer Anfragen genutzt.</p><h3>3. Datensicherheit</h3><p>Wir setzen branchenübliche Sicherheitsmaßnahmen ein.</p><h3>4. Cookie-Richtlinie</h3><p>Diese Website verwendet notwendige Cookies.</p><h3>5. Ihre Rechte</h3><p>Sie haben das Recht auf Auskunft, Berichtigung oder Löschung.</p><h3>6. Aktualisierungen</h3><p>Wir können diese Erklärung gelegentlich aktualisieren.</p>',
+                    contactLabel: 'Kontakt',
+                    contactTitle: 'Kontaktieren Sie uns',
+                    formTitle: 'Nachricht senden',
+                    formName: 'Name',
+                    formEmail: 'E-Mail',
+                    formMessage: 'Nachricht',
+                    formSubmit: 'Senden',
+                    contactEmailLabel: 'E-Mail',
+                    contactWhatsAppLabel: 'WhatsApp',
+                    contactHoursLabel: 'Geschäftszeiten',
+                    contactHoursValue: 'Mo-Fr 9:00-18:00 (GMT+8)',
+                    footerRights: 'Alle Rechte vorbehalten.',
+                    modalTitle: 'Kontaktieren Sie uns',
+                    modalSubtitle: 'Wählen Sie Ihren bevorzugten Weg',
+                    modalCancel: 'Abbrechen',
                 },
                 fr: {
-                    navHome: 'Accueil', navAbout: 'À propos', navProducts: 'Produits', navLogistics: 'Logistique', navPrivacy: 'Confidentialité',
-                    navContact: 'Contact', heroTagline: 'Produits Apple · Livraison mondiale', heroCta: 'Acheter maintenant',
-                    statSeries: 'Lignes Apple', statCountries: 'Pays',
-                    aboutLabel: 'À propos', aboutTitle: 'Professionnel Produits Apple',
-                    aboutP1: 'xinlo est une entreprise de commerce international spécialisée dans les produits Apple avec des partenariats stables avec des distributeurs agréés dans le monde entier.',
-                    aboutP2: 'Notre équipe est composée de spécialistes en électronique et de coordinateurs logistiques. Tous les produits sont authentiques et bénéficient d\'une garantie complète.',
-                    aboutH1: '100% Authentique', aboutH1d: 'Tous les produits garantis', aboutH2: 'Avantage Prix', aboutH2d: 'Meilleur rapport qualité-prix',
-                    aboutH3: 'Express Mondial', aboutH3d: 'DHL/FedEx/UPS mondial', aboutH4: 'Transaction Sécurisée', aboutH4d: 'Multiples méthodes de paiement',
-                    productsLabel: 'Produits', productsTitle: 'iPhone 15-17 & Produits Apple',
-                    productsSubtitle: 'Cliquez sur les onglets pour changer de série. Chaque modèle propose plusieurs options de stockage et couleurs.',
+                    navHome: 'Accueil',
+                    navAbout: 'À propos',
+                    navProducts: 'Produits',
+                    navLogistics: 'Logistique',
+                    navPrivacy: 'Confidentialité',
+                    navContact: 'Contact',
+                    heroBadge: '~25% sous le prix du marché US',
+                    heroTagline: 'Produits Apple · Livraison mondiale · Garantie authenticité',
+                    heroCta: 'Acheter maintenant',
+                    statSeries: 'Lignes Apple',
+                    statCountries: 'Pays',
+                    statDiscount: 'Remise moy.',
+                    aboutLabel: 'À propos',
+                    aboutTitle: 'Professionnel Produits Apple',
+                    aboutP1: 'xinlo est une entreprise de commerce international spécialisée dans les produits Apple avec des partenariats stables avec des distributeurs agréés.',
+                    aboutP2: 'Notre équipe est composée de spécialistes en électronique et de coordinateurs logistiques. Tous les produits sont authentiques. Grâce à notre chaîne d\'approvisionnement, nos prix sont ~25% sous le marché US.',
+                    aboutH1: '100% Authentique',
+                    aboutH1d: 'Tous les produits garantis',
+                    aboutH2: 'Avantage Prix',
+                    aboutH2d: '~25% sous le marché US',
+                    aboutH3: 'Express Mondial',
+                    aboutH3d: 'DHL/FedEx/UPS mondial',
+                    aboutH4: 'Transaction Sécurisée',
+                    aboutH4d: 'Multiples méthodes de paiement',
+                    productsLabel: 'Produits',
+                    productsTitle: 'iPhone 15-17 & Produits Apple',
+                    productsSubtitle: 'Cliquez sur les onglets pour changer de série. Prix ~25% sous le marché US.',
                     buyNow: 'Acheter',
-                    logLabel: 'Logistique & SAV', logTitle: 'Logistique mondiale, SAV fiable',
-                    logCard1Title: 'Réseau logistique international', logCard1Desc: 'Couverture des principaux ports et villes avec DHL/FedEx/UPS.',
-                    logCard2Title: 'Suivi complet', logCard2Desc: 'Suivi en temps réel de l\'expédition à la livraison.',
-                    logCard3Title: 'Garantie après-vente', logCard3Desc: 'Tous les produits Apple bénéficient de la garantie mondiale.',
-                    warrantyTitle: 'Engagement d\'authenticité', warrantyDesc: 'Tous les produits sont authentiques avec garantie Apple mondiale.',
-                    privacyLabel: 'Confidentialité', privacyTitle: 'Politique de confidentialité',
-                    privacyContent: `<h3>1. Collecte d'informations</h3><p>Nous collectons des informations telles que votre nom et email via notre formulaire de contact.</p><h3>2. Utilisation</h3><p>Les informations sont utilisées pour traiter vos demandes.</p><h3>3. Sécurité</h3><p>Nous utilisons des mesures de sécurité standard.</p><h3>4. Cookies</h3><p>Ce site utilise des cookies nécessaires.</p><h3>5. Vos droits</h3><p>Vous avez le droit d'accéder, corriger ou supprimer vos données.</p><h3>6. Mises à jour</h3><p>Nous pouvons modifier cette politique.</p>`,
-                    contactLabel: 'Contact', contactTitle: 'Prenez contact', formTitle: 'Envoyer un message', formName: 'Nom', formEmail: 'E-mail',
-                    formMessage: 'Message', formSubmit: 'Envoyer', contactEmailLabel: 'E-mail', contactWhatsAppLabel: 'WhatsApp',
-                    contactHoursLabel: 'Heures d\'ouverture', contactHoursValue: 'Lun-Ven 9h00-18h00 (GMT+8)', footerRights: 'Tous droits réservés.',
+                    logLabel: 'Logistique & SAV',
+                    logTitle: 'Logistique mondiale, SAV fiable',
+                    logCard1Title: 'Réseau logistique international',
+                    logCard1Desc: 'Couverture des principaux ports et villes avec DHL/FedEx/UPS.',
+                    logCard2Title: 'Suivi complet',
+                    logCard2Desc: 'Suivi en temps réel de l\'expédition à la livraison.',
+                    logCard3Title: 'Garantie après-vente',
+                    logCard3Desc: 'Tous les produits Apple bénéficient de la garantie mondiale.',
+                    warrantyTitle: 'Engagement d\'authenticité',
+                    warrantyDesc: 'Tous les produits sont authentiques avec garantie Apple mondiale.',
+                    privacyLabel: 'Confidentialité',
+                    privacyTitle: 'Politique de confidentialité',
+                    privacyContent: '<h3>1. Collecte</h3><p>Nous collectons des informations via notre formulaire de contact.</p><h3>2. Utilisation</h3><p>Les informations sont utilisées pour traiter vos demandes.</p><h3>3. Sécurité</h3><p>Nous utilisons des mesures de sécurité standard.</p><h3>4. Cookies</h3><p>Ce site utilise des cookies nécessaires.</p><h3>5. Vos droits</h3><p>Vous avez le droit d\'accéder, corriger ou supprimer vos données.</p><h3>6. Mises à jour</h3><p>Nous pouvons modifier cette politique.</p>',
+                    contactLabel: 'Contact',
+                    contactTitle: 'Prenez contact',
+                    formTitle: 'Envoyer un message',
+                    formName: 'Nom',
+                    formEmail: 'E-mail',
+                    formMessage: 'Message',
+                    formSubmit: 'Envoyer',
+                    contactEmailLabel: 'E-mail',
+                    contactWhatsAppLabel: 'WhatsApp',
+                    contactHoursLabel: 'Heures d\'ouverture',
+                    contactHoursValue: 'Lun-Ven 9h00-18h00 (GMT+8)',
+                    footerRights: 'Tous droits réservés.',
+                    modalTitle: 'Contactez-nous',
+                    modalSubtitle: 'Choisissez votre méthode préférée',
+                    modalCancel: 'Annuler',
                 },
                 es: {
-                    navHome: 'Inicio', navAbout: 'Nosotros', navProducts: 'Productos', navLogistics: 'Logística', navPrivacy: 'Privacidad',
-                    navContact: 'Contacto', heroTagline: 'Productos Apple · Envío mundial', heroCta: 'Comprar ahora',
-                    statSeries: 'Líneas Apple', statCountries: 'Países',
-                    aboutLabel: 'Nosotros', aboutTitle: 'Profesional Productos Apple',
-                    aboutP1: 'xinlo es una empresa de comercio internacional especializada en productos Apple con alianzas estables con distribuidores autorizados en todo el mundo.',
-                    aboutP2: 'Nuestro equipo está formado por especialistas en electrónica y coordinadores logísticos. Todos los productos son auténticos y cuentan con garantía completa.',
-                    aboutH1: '100% Auténtico', aboutH1d: 'Todos los productos garantizados', aboutH2: 'Ventaja de Precio', aboutH2d: 'El mejor valor por su dinero',
-                    aboutH3: 'Express Mundial', aboutH3d: 'DHL/FedEx/UPS mundial', aboutH4: 'Transacción Segura', aboutH4d: 'Múltiples métodos de pago',
-                    productsLabel: 'Productos', productsTitle: 'iPhone 15-17 & Productos Apple',
-                    productsSubtitle: 'Haga clic en las pestañas para cambiar de serie. Cada modelo ofrece múltiples opciones de almacenamiento y colores.',
+                    navHome: 'Inicio',
+                    navAbout: 'Nosotros',
+                    navProducts: 'Productos',
+                    navLogistics: 'Logística',
+                    navPrivacy: 'Privacidad',
+                    navContact: 'Contacto',
+                    heroBadge: '~25% bajo precio mercado EE.UU.',
+                    heroTagline: 'Productos Apple · Envío mundial · Garantía genuina',
+                    heroCta: 'Comprar ahora',
+                    statSeries: 'Líneas Apple',
+                    statCountries: 'Países',
+                    statDiscount: 'Descuento med.',
+                    aboutLabel: 'Nosotros',
+                    aboutTitle: 'Profesional Productos Apple',
+                    aboutP1: 'xinlo es una empresa de comercio internacional especializada en productos Apple con alianzas estables con distribuidores autorizados.',
+                    aboutP2: 'Nuestro equipo está formado por especialistas en electrónica y coordinadores logísticos. Todos los productos son auténticos. Gracias a nuestra cadena de suministro, los precios son ~25% bajo el mercado EE.UU.',
+                    aboutH1: '100% Auténtico',
+                    aboutH1d: 'Todos los productos garantizados',
+                    aboutH2: 'Ventaja de Precio',
+                    aboutH2d: '~25% bajo mercado EE.UU.',
+                    aboutH3: 'Express Mundial',
+                    aboutH3d: 'DHL/FedEx/UPS mundial',
+                    aboutH4: 'Transacción Segura',
+                    aboutH4d: 'Múltiples métodos de pago',
+                    productsLabel: 'Productos',
+                    productsTitle: 'iPhone 15-17 & Productos Apple',
+                    productsSubtitle: 'Haga clic en las pestañas para cambiar de serie. Precios ~25% bajo mercado EE.UU.',
                     buyNow: 'Comprar',
-                    logLabel: 'Logística y posventa', logTitle: 'Logística global, posventa confiable',
-                    logCard1Title: 'Red logística internacional', logCard1Desc: 'Cobertura de los principales puertos y ciudades con DHL/FedEx/UPS.',
-                    logCard2Title: 'Seguimiento completo', logCard2Desc: 'Seguimiento en tiempo real desde el envío hasta la entrega.',
-                    logCard3Title: 'Garantía posventa', logCard3Desc: 'Todos los productos Apple con garantía mundial.',
-                    warrantyTitle: 'Compromiso de autenticidad', warrantyDesc: 'Todos los productos son auténticos con garantía Apple mundial.',
-                    privacyLabel: 'Privacidad', privacyTitle: 'Política de privacidad',
-                    privacyContent: `<h3>1. Recopilación</h3><p>Recopilamos información como nombre y email a través de nuestro formulario de contacto.</p><h3>2. Uso</h3><p>La información se utiliza para procesar sus consultas.</p><h3>3. Seguridad</h3><p>Utilizamos medidas de seguridad estándar.</p><h3>4. Cookies</h3><p>Este sitio utiliza cookies necesarias.</p><h3>5. Sus derechos</h3><p>Tiene derecho a acceder, corregir o eliminar sus datos.</p><h3>6. Actualizaciones</h3><p>Podemos modificar esta política.</p>`,
-                    contactLabel: 'Contacto', contactTitle: 'Póngase en contacto', formTitle: 'Enviar mensaje', formName: 'Nombre', formEmail: 'Correo electrónico',
-                    formMessage: 'Mensaje', formSubmit: 'Enviar', contactEmailLabel: 'Correo electrónico', contactWhatsAppLabel: 'WhatsApp',
-                    contactHoursLabel: 'Horario', contactHoursValue: 'Lun-Vie 9:00-18:00 (GMT+8)', footerRights: 'Todos los derechos reservados.',
+                    logLabel: 'Logística y posventa',
+                    logTitle: 'Logística global, posventa confiable',
+                    logCard1Title: 'Red logística internacional',
+                    logCard1Desc: 'Cobertura de los principales puertos y ciudades con DHL/FedEx/UPS.',
+                    logCard2Title: 'Seguimiento completo',
+                    logCard2Desc: 'Seguimiento en tiempo real desde el envío hasta la entrega.',
+                    logCard3Title: 'Garantía posventa',
+                    logCard3Desc: 'Todos los productos Apple con garantía mundial.',
+                    warrantyTitle: 'Compromiso de autenticidad',
+                    warrantyDesc: 'Todos los productos son auténticos con garantía Apple mundial.',
+                    privacyLabel: 'Privacidad',
+                    privacyTitle: 'Política de privacidad',
+                    privacyContent: '<h3>1. Recopilación</h3><p>Recopilamos información a través de nuestro formulario.</p><h3>2. Uso</h3><p>La información se utiliza para procesar sus consultas.</p><h3>3. Seguridad</h3><p>Utilizamos medidas de seguridad estándar.</p><h3>4. Cookies</h3><p>Este sitio utiliza cookies necesarias.</p><h3>5. Sus derechos</h3><p>Tiene derecho a acceder, corregir o eliminar sus datos.</p><h3>6. Actualizaciones</h3><p>Podemos modificar esta política.</p>',
+                    contactLabel: 'Contacto',
+                    contactTitle: 'Póngase en contacto',
+                    formTitle: 'Enviar mensaje',
+                    formName: 'Nombre',
+                    formEmail: 'Correo electrónico',
+                    formMessage: 'Mensaje',
+                    formSubmit: 'Enviar',
+                    contactEmailLabel: 'Correo electrónico',
+                    contactWhatsAppLabel: 'WhatsApp',
+                    contactHoursLabel: 'Horario',
+                    contactHoursValue: 'Lun-Vie 9:00-18:00 (GMT+8)',
+                    footerRights: 'Todos los derechos reservados.',
+                    modalTitle: 'Contáctenos',
+                    modalSubtitle: 'Elija su método preferido',
+                    modalCancel: 'Cancelar',
                 },
             };
 
-            let currentLang = 'en';
+            let currentLang = 'zh';
             const langSwitcher = document.getElementById('langSwitcher');
             const langBtn = document.getElementById('langBtn');
             const langDropdown = document.getElementById('langDropdown');
@@ -1517,7 +2043,8 @@
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (t[key] !== undefined) {
-                        if (key === 'privacyContent') { /* handled separately */ } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        if (key === 'privacyContent') { /* handled separately */ } else if (el.tagName ===
+                            'INPUT' || el.tagName === 'TEXTAREA') {
                             el.placeholder = t[key];
                         } else {
                             el.textContent = t[key];
@@ -1564,6 +2091,7 @@
                 mobileOverlay.classList.remove('show');
                 document.body.style.overflow = '';
             }
+
             function openMobileNav() {
                 hamburger.classList.add('active');
                 mobilePanel.classList.add('open');
@@ -1598,7 +2126,7 @@
                 });
             });
 
-            // 购买按钮：弹出选择窗口（WhatsApp 或 Telegram）
+            // 购买按钮弹窗
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('btn-buy-product')) {
                     const card = e.target.closest('.product-card');
@@ -1610,39 +2138,37 @@
             });
 
             function showContactModal(productName) {
-                // 如果已存在弹窗先移除
                 const existing = document.querySelector('.modal-overlay');
                 if (existing) existing.remove();
-
+                const t = translations[currentLang] || translations['zh'];
+                const modalTitle = (t.modalTitle || '联系我们选购').replace('{product}', productName);
                 const overlay = document.createElement('div');
                 overlay.className = 'modal-overlay';
                 overlay.innerHTML = `
                     <div class="modal-dialog">
-                        <h3>Contact us for ${productName}</h3>
-                        <p class="modal-product-name">Choose your preferred way to reach us</p>
+                        <h3>${modalTitle} — ${productName}</h3>
+                        <p class="modal-product-name">${t.modalSubtitle || '选择您偏好的联系方式'}</p>
                         <div class="modal-btns">
-                            <a class="modal-btn whatsapp" href="https://wa.me/15203489531?text=${encodeURIComponent('Hi xinlo, I\'m interested in ' + productName)}" target="_blank">
+                            <a class="modal-btn whatsapp" href="https://wa.me/15203489531?text=${encodeURIComponent('Hi xinlo, I\'m interested in ' + productName)}" target="_blank" rel="noopener">
                                 <span class="btn-icon">💬</span> WhatsApp
                             </a>
-                            <a class="modal-btn telegram" href="https://t.me/axcch" target="_blank">
+                            <a class="modal-btn telegram" href="https://t.me/axcch" target="_blank" rel="noopener">
                                 <span class="btn-icon">✈️</span> Telegram
                             </a>
                         </div>
-                        <button class="modal-close">Cancel</button>
+                        <button class="modal-close">${t.modalCancel || '取消'}</button>
                     </div>
                 `;
                 document.body.appendChild(overlay);
                 requestAnimationFrame(() => overlay.classList.add('show'));
 
-                overlay.querySelector('.modal-close').addEventListener('click', () => {
+                const closeModal = () => {
                     overlay.classList.remove('show');
                     setTimeout(() => overlay.remove(), 300);
-                });
+                };
+                overlay.querySelector('.modal-close').addEventListener('click', closeModal);
                 overlay.addEventListener('click', (ev) => {
-                    if (ev.target === overlay) {
-                        overlay.classList.remove('show');
-                        setTimeout(() => overlay.remove(), 300);
-                    }
+                    if (ev.target === overlay) closeModal();
                 });
             }
 
@@ -1651,22 +2177,25 @@
                 const name = document.getElementById('formName').value.trim();
                 const email = document.getElementById('formEmail').value.trim();
                 const message = document.getElementById('formMessage').value.trim();
+                const alerts = { zh: '请填写所有字段。', de: 'Bitte füllen Sie alle Felder aus.', fr: 'Veuillez remplir tous les champs.',
+                    es: 'Por favor, complete todos los campos.' };
                 if (!name || !email || !message) {
-                    const alerts = { zh: '请填写所有字段。', de: 'Bitte füllen Sie alle Felder aus.', fr: 'Veuillez remplir tous les champs.', es: 'Por favor, complete todos los campos.' };
                     alert(alerts[currentLang] || 'Please fill in all fields.');
                     return;
                 }
-                window.location.href = `mailto:axccch@proton.me?subject=${encodeURIComponent('Contact from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message)}`;
+                window.location.href =
+                    `mailto:axccch@proton.me?subject=${encodeURIComponent('Contact from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message)}`;
             };
 
-            // 初始化语言为英文，或从localStorage读取
+            // 初始化语言
             try {
                 const savedLang = localStorage.getItem('xinlo_lang');
-                if (savedLang && translations[savedLang]) { applyTranslation(savedLang); } else { applyTranslation('en'); }
-            } catch (e) { applyTranslation('en'); }
+                if (savedLang && translations[savedLang]) { applyTranslation(savedLang); } else { applyTranslation(
+                    'zh'); }
+            } catch (e) { applyTranslation('zh'); }
             if (privacyContent && !privacyContent.innerHTML.trim()) { applyTranslation(currentLang); }
 
-            console.log('✅ xinlo Apple产品外贸独立站已就绪 | 当前语言: ' + currentLang);
+            console.log('✅ xinlo Apple产品外贸独立站已就绪 | 当前语言: ' + currentLang + ' | 产品: iPhone 15-17全系列 + 其他Apple产品 | 折扣: ~25%');
         })();
     </script>
 </body>
