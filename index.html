@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>XINLO • Premium Unlocked Phones</title>
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* 极简苹果风格微调，无冗余样式 */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #ffffff;
+      overflow: hidden;
+      margin: 0;
+    }
+    .page-container {
+      display: flex;
+      width: 200%;
+      height: 100vh;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    .page {
+      width: 50%;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 1.5rem;
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: #c0c0c0 #f5f5f5;
+    }
+    .page::-webkit-scrollbar {
+      width: 6px;
+    }
+    .page::-webkit-scrollbar-track {
+      background: #f5f5f5;
+    }
+    .page::-webkit-scrollbar-thumb {
+      background-color: #c0c0c0;
+      border-radius: 3px;
+    }
+    /* 彩虹流水动画 */
+    @keyframes rainbowFlow {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .rainbow-text-animate {
+      background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rainbowFlow 2.2s ease-in-out forwards;
+    }
+    .rainbow-text-static {
+      background: linear-gradient(90deg, #ff6b6b, #fca13e, #f8e81c, #56c596, #5c9cec, #ae7ef2, #ff6b6b);
+      background-size: 150% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: none;
+    }
+    .slide-arrow {
+      transition: transform 0.3s ease;
+    }
+    button:hover .slide-arrow {
+      transform: translateX(6px);
+    }
+    /* 卡片hover效果 */
+    .price-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      background: #ffffff;
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.02);
+    }
+    .price-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 30px rgba(0,0,0,0.08);
+    }
+    /* 响应式卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      .page {
+        padding: 1rem;
+      }
+    }
+    /* 语言选择器风格 */
+    .lang-select {
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 2rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1d1d1f;
+      outline: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- 语言切换器 (右上角) -->
+  <div class="fixed top-5 right-5 z-50 flex items-center space-x-2">
+    <i class="fas fa-globe text-gray-500 text-sm"></i>
+    <select id="languageSelect" class="lang-select shadow-sm">
+      <option value="en">English</option>
+      <option value="zh">中文</option>
+      <option value="es">Español</option>
+      <option value="ar">العربية</option>
+      <option value="hi">हिन्दी</option>
+      <option value="pt">Português</option>
+      <option value="bn">বাংলা</option>
+      <option value="ru">Русский</option>
+      <option value="ja">日本語</option>
+      <option value="fr">Français</option>
+    </select>
+  </div>
+
+  <!-- 双页滑动容器 -->
+  <div id="pageSlider" class="page-container">
+    
+    <!-- 第1页：主页 -->
+    <div class="page flex flex-col items-center justify-center text-center relative bg-white">
+      <div class="max-w-2xl w-full mx-auto flex flex-col items-center">
+        
+        <!-- 动态XINLO logo -->
+        <h1 id="mainLogo" class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight rainbow-text-animate mb-4" style="font-weight: 800;">
+          XINLO
+        </h1>
+        
+        <!-- 副标题小字 (修改此处：标语文本) -->
+        <p id="subTagline" class="text-base md:text-lg text-gray-500 font-medium mb-10 tracking-wide">
+          Premium Unlocked Phones | Global Shipping
+        </p>
+        
+        <!-- 品牌介绍3段 (修改此处：品牌描述) -->
+        <div id="introText" class="space-y-3 text-gray-600 text-sm md:text-base max-w-lg mx-auto mb-10 leading-relaxed">
+          <p>Global supplier of genuine unlocked smartphones, sourced directly from authorized channels.</p>
+          <p>Every device is brand new, unopened, and ready for worldwide express shipping with full warranty.</p>
+          <p>Secure payments, transparent pricing, and dedicated support from our team.</p>
+        </div>
+        
+        <!-- 核心按钮：查看价格表 + 滑动箭头指示 -->
+        <button id="goToPriceBtn" class="group relative inline-flex items-center justify-center px-8 py-4 bg-black text-white font-semibold rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-base md:text-lg">
+          <span id="viewPriceText">View Price List</span>
+          <i class="fas fa-arrow-right ml-3 slide-arrow text-lg"></i>
+        </button>
+        
+        <!-- 底部版权 (修改此处：版权年份/品牌) -->
+        <div class="mt-16 text-gray-400 text-xs md:text-sm">
+          <span id="copyrightText">© 2026 Xinlo. All rights reserved.</span>
+        </div>
+      </div>
+      
+      <!-- 彩虹动画结束后变为静态彩虹色 (通过JS控制) -->
+    </div>
+    
+    <!-- 第2页：价格表页 -->
+    <div class="page bg-[#fbfbfd]">
+      <div class="max-w-5xl mx-auto">
+        
+        <!-- 顶部导航：标题 + 返回按钮 -->
+        <div class="flex items-center justify-between mb-8 mt-2">
+          <h2 id="priceListTitle" class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">Price List</h2>
+          <button id="backToHomeBtn" class="flex items-center space-x-2 text-gray-600 hover:text-black transition-colors bg-white/70 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-gray-100">
+            <i class="fas fa-arrow-left text-sm"></i>
+            <span id="backText" class="font-medium">Back</span>
+          </button>
+        </div>
+        
+        <!-- 手机价格卡片区域 动态JS渲染以支持多语言 -->
+        <div id="priceContentContainer" class="space-y-10">
+          <!-- JS动态填充，保持结构清晰 -->
+        </div>
+        
+        <!-- WhatsApp联系按钮 -->
+        <div class="mt-14 flex justify-center pb-8">
+          <a href="https://wa.me/15203489531" target="_blank" rel="noopener noreferrer" 
+             class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-base md:text-lg">
+            <i class="fab fa-whatsapp mr-3 text-xl"></i>
+            <span id="whatsappText">Contact Us on WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- 多语言数据集 (修改此处：所有翻译文本) ----------
+      const translations = {
+        en: {
+          tagline: "Premium Unlocked Phones | Global Shipping",
+          intro1: "Global supplier of genuine unlocked smartphones, sourced directly from authorized channels.",
+          intro2: "Every device is brand new, unopened, and ready for worldwide express shipping with full warranty.",
+          intro3: "Secure payments, transparent pricing, and dedicated support from our team.",
+          viewPrice: "View Price List",
+          copyright: "© 2026 Xinlo. All rights reserved.",
+          priceTitle: "Price List",
+          back: "Back",
+          whatsapp: "Contact Us on WhatsApp",
+          iphoneSeries: "iPhone Series",
+          samsungSeries: "Samsung Galaxy Series",
+          pixelSeries: "Google Pixel Series",
+          // 产品描述简化 (修改此处：产品描述)
+          iphone14Desc: "A15 Bionic, advanced dual-camera system.",
+          iphone14PlusDesc: "Larger 6.7-inch display, A15 Bionic.",
+          iphone14ProDesc: "Pro camera system, Dynamic Island, A16 chip.",
+          iphone14ProMaxDesc: "Ultimate Pro experience, 6.7” display.",
+          iphone15Desc: "Dynamic Island, A16 chip, 48MP camera.",
+          iphone15PlusDesc: "Big screen, A16 power, USB-C.",
+          iphone15ProDesc: "A17 Pro, titanium design, Action button.",
+          iphone15ProMaxDesc: "5x optical zoom, A17 Pro, titanium.",
+          iphone16Desc: "Next-gen A18 chip, advanced dual camera.",
+          iphone16PlusDesc: "Larger display, A18 performance.",
+          iphone16ProDesc: "A18 Pro, camera control, 48MP Fusion.",
+          iphone16ProMaxDesc: "Best iPhone display, A18 Pro, 5x zoom.",
+          iphone17Desc: "New design, A19 chip, improved battery.",
+          iphone17PlusDesc: "Bigger size, A19 power.",
+          iphone17ProDesc: "ProMotion 2.0, A19 Pro, triple camera.",
+          iphone17ProMaxDesc: "Ultimate performance, pro cameras.",
+          s24Desc: "Snapdragon 8 Gen 3, 50MP camera.",
+          s24PlusDesc: "Larger QHD+ display, 12GB RAM.",
+          s24UltraDesc: "Titanium frame, 200MP camera, S Pen.",
+          s25Desc: "Refined design, Galaxy AI enhancements.",
+          s25PlusDesc: "Immersive screen, pro-grade camera.",
+          s25UltraDesc: "Advanced Nightography, built-in S Pen.",
+          zFlip6Desc: "Compact foldable, FlexCam selfie.",
+          zFold6Desc: "Large foldable display, multitasking.",
+          pixel8Desc: "Google Tensor G3, AI-powered camera.",
+          pixel8ProDesc: "Pro-level zoom, Tensor G3, 6.7”.",
+          pixel9Desc: "Tensor G4, sleek design, improved AI.",
+          pixel9ProDesc: "Pro camera system, Tensor G4.",
+          pixel9ProXLDesc: "Large display, ultimate Pixel camera."
+        },
+        zh: {
+          tagline: "优质解锁手机 | 全球配送",
+          intro1: "全球正品解锁智能手机供应商，直接授权渠道采购。",
+          intro2: "每台设备全新未拆封，支持全球快递，附带完整保修。",
+          intro3: "安全支付，透明定价，专业团队支持。",
+          viewPrice: "查看价格表",
+          copyright: "© 2026 Xinlo. 保留所有权利。",
+          priceTitle: "价格表",
+          back: "返回",
+          whatsapp: "通过WhatsApp联系我们",
+          iphoneSeries: "iPhone 系列",
+          samsungSeries: "三星 Galaxy 系列",
+          pixelSeries: "谷歌 Pixel 系列",
+          iphone14Desc: "A15仿生芯片，先进双摄系统。",
+          iphone14PlusDesc: "更大6.7英寸显示屏，A15仿生。",
+          iphone14ProDesc: "专业摄像头系统，灵动岛，A16芯片。",
+          iphone14ProMaxDesc: "极致Pro体验，6.7英寸屏。",
+          iphone15Desc: "灵动岛，A16芯片，4800万像素。",
+          iphone15PlusDesc: "大屏幕，A16性能，USB-C。",
+          iphone15ProDesc: "A17 Pro，钛金属设计，操作按钮。",
+          iphone15ProMaxDesc: "5倍光学变焦，A17 Pro，钛金属。",
+          iphone16Desc: "新一代A18芯片，先进双摄。",
+          iphone16PlusDesc: "更大显示屏，A18性能。",
+          iphone16ProDesc: "A18 Pro，相机控制，4800万融合。",
+          iphone16ProMaxDesc: "最佳iPhone显示屏，A18 Pro，5倍变焦。",
+          iphone17Desc: "全新设计，A19芯片，续航提升。",
+          iphone17PlusDesc: "更大尺寸，A19动力。",
+          iphone17ProDesc: "ProMotion 2.0，A19 Pro，三摄。",
+          iphone17ProMaxDesc: "极致性能，专业摄像头。",
+          s24Desc: "骁龙8 Gen 3，5000万像素。",
+          s24PlusDesc: "更大QHD+屏幕，12GB内存。",
+          s24UltraDesc: "钛金属边框，2亿像素，S Pen。",
+          s25Desc: "精炼设计，Galaxy AI增强。",
+          s25PlusDesc: "沉浸屏幕，专业级相机。",
+          s25UltraDesc: "先进夜景拍摄，内置S Pen。",
+          zFlip6Desc: "紧凑折叠，FlexCam自拍。",
+          zFold6Desc: "大折叠屏，多任务处理。",
+          pixel8Desc: "Google Tensor G3，AI相机。",
+          pixel8ProDesc: "专业级变焦，Tensor G3，6.7英寸。",
+          pixel9Desc: "Tensor G4，时尚设计，增强AI。",
+          pixel9ProDesc: "专业相机系统，Tensor G4。",
+          pixel9ProXLDesc: "大显示屏，终极Pixel相机。"
+        },
+        es: { tagline:"Teléfonos desbloqueados premium | Envío global", intro1:"Proveedor global de smartphones originales desbloqueados.", intro2:"Cada dispositivo es nuevo, sin abrir, listo para envío exprés mundial.", intro3:"Pagos seguros, precios transparentes y soporte dedicado.", viewPrice:"Ver lista de precios", copyright:"© 2026 Xinlo. Todos los derechos reservados.", priceTitle:"Lista de precios", back:"Volver", whatsapp:"Contáctanos en WhatsApp", iphoneSeries:"iPhone Series", samsungSeries:"Samsung Galaxy Series", pixelSeries:"Google Pixel Series", iphone14Desc:"A15 Bionic, sistema de cámara dual avanzado.", iphone14PlusDesc:"Pantalla más grande de 6.7”, A15 Bionic.", iphone14ProDesc:"Sistema de cámara Pro, Dynamic Island.", iphone14ProMaxDesc:"Experiencia Pro definitiva, 6.7”.", iphone15Desc:"Dynamic Island, chip A16, cámara 48MP.", iphone15PlusDesc:"Pantalla grande, potencia A16, USB-C.", iphone15ProDesc:"A17 Pro, diseño de titanio.", iphone15ProMaxDesc:"Zoom óptico 5x, A17 Pro.", iphone16Desc:"Chip A18 de nueva generación.", iphone16PlusDesc:"Pantalla grande, rendimiento A18.", iphone16ProDesc:"A18 Pro, control de cámara.", iphone16ProMaxDesc:"Mejor pantalla iPhone, A18 Pro.", iphone17Desc:"Nuevo diseño, chip A19.", iphone17PlusDesc:"Tamaño grande, potencia A19.", iphone17ProDesc:"ProMotion 2.0, A19 Pro.", iphone17ProMaxDesc:"Rendimiento máximo.", s24Desc:"Snapdragon 8 Gen 3, cámara 50MP.", s24PlusDesc:"Pantalla QHD+, 12GB RAM.", s24UltraDesc:"Marco de titanio, cámara 200MP.", s25Desc:"Diseño refinado, Galaxy AI.", s25PlusDesc:"Pantalla inmersiva.", s25UltraDesc:"Nightography avanzado.", zFlip6Desc:"Plegable compacto, FlexCam.", zFold6Desc:"Pantalla plegable grande.", pixel8Desc:"Tensor G3, cámara con IA.", pixel8ProDesc:"Zoom nivel Pro, Tensor G3.", pixel9Desc:"Tensor G4, diseño elegante.", pixel9ProDesc:"Sistema de cámara Pro.", pixel9ProXLDesc:"Pantalla grande, cámara Pixel definitiva." },
+        ar: { tagline:"هواتف متميزة مفتوحة | شحن عالمي", intro1:"مورد عالمي للهواتف الذكية الأصلية.", intro2:"كل جهاز جديد وغير مفتوح وجاهز للشحن السريع.", intro3:"مدفوعات آمنة وأسعار شفافة.", viewPrice:"عرض قائمة الأسعار", copyright:"© 2026 Xinlo. جميع الحقوق محفوظة.", priceTitle:"قائمة الأسعار", back:"رجوع", whatsapp:"اتصل بنا عبر واتساب", iphoneSeries:"سلسلة iPhone", samsungSeries:"سلسلة Samsung Galaxy", pixelSeries:"سلسلة Google Pixel", iphone14Desc:"A15 Bionic، كاميرا مزدوجة.", iphone14PlusDesc:"شاشة 6.7 بوصة، A15.", iphone14ProDesc:"كاميرا Pro، Dynamic Island.", iphone14ProMaxDesc:"تجربة Pro القصوى.", iphone15Desc:"Dynamic Island، A16.", iphone15PlusDesc:"شاشة كبيرة، USB-C.", iphone15ProDesc:"A17 Pro، تصميم تيتانيوم.", iphone15ProMaxDesc:"تكبير 5x، A17 Pro.", iphone16Desc:"شريحة A18 الجديدة.", iphone16PlusDesc:"شاشة أكبر، أداء A18.", iphone16ProDesc:"A18 Pro، تحكم بالكاميرا.", iphone16ProMaxDesc:"أفضل شاشة iPhone.", iphone17Desc:"تصميم جديد، A19.", iphone17PlusDesc:"حجم أكبر، A19.", iphone17ProDesc:"ProMotion 2.0، A19 Pro.", iphone17ProMaxDesc:"أداء أقصى.", s24Desc:"Snapdragon 8 Gen 3.", s24PlusDesc:"شاشة QHD+.", s24UltraDesc:"تيتانيوم، 200MP.", s25Desc:"تصميم محسن، Galaxy AI.", s25PlusDesc:"شاشة غامرة.", s25UltraDesc:"Nightography متقدم.", zFlip6Desc:"قابل للطي، FlexCam.", zFold6Desc:"شاشة كبيرة قابلة للطي.", pixel8Desc:"Tensor G3، كاميرا AI.", pixel8ProDesc:"تكبير Pro، Tensor G3.", pixel9Desc:"Tensor G4.", pixel9ProDesc:"نظام كاميرا Pro.", pixel9ProXLDesc:"شاشة كبيرة، كاميرا Pixel." },
+        hi: { tagline:"प्रीमियम अनलॉक्ड फोन | वैश्विक शिपिंग", intro1:"वैश्विक आपूर्तिकर्ता।", intro2:"हर डिवाइस नया और अनपैक्ड।", intro3:"सुरक्षित भुगतान।", viewPrice:"मूल्य सूची देखें", copyright:"© 2026 Xinlo. सर्वाधिकार सुरक्षित।", priceTitle:"मूल्य सूची", back:"वापस", whatsapp:"WhatsApp पर संपर्क करें", iphoneSeries:"iPhone सीरीज", samsungSeries:"Samsung Galaxy सीरीज", pixelSeries:"Google Pixel सीरीज", iphone14Desc:"A15 बायोनिक।", iphone14PlusDesc:"6.7” डिस्प्ले।", iphone14ProDesc:"प्रो कैमरा।", iphone14ProMaxDesc:"अल्टीमेट प्रो।", iphone15Desc:"डायनामिक आइलैंड।", iphone15PlusDesc:"बड़ी स्क्रीन।", iphone15ProDesc:"A17 प्रो।", iphone15ProMaxDesc:"5x ज़ूम।", iphone16Desc:"A18 चिप।", iphone16PlusDesc:"बड़ा डिस्प्ले।", iphone16ProDesc:"A18 प्रो।", iphone16ProMaxDesc:"सर्वश्रेष्ठ iPhone।", iphone17Desc:"नया डिज़ाइन।", iphone17PlusDesc:"बड़ा आकार।", iphone17ProDesc:"A19 प्रो।", iphone17ProMaxDesc:"अधिकतम प्रदर्शन।", s24Desc:"Snapdragon 8 Gen 3।", s24PlusDesc:"QHD+।", s24UltraDesc:"200MP।", s25Desc:"Galaxy AI।", s25PlusDesc:"इमर्सिव।", s25UltraDesc:"नाइटोग्राफी।", zFlip6Desc:"फोल्डेबल।", zFold6Desc:"बड़ा फोल्डेबल।", pixel8Desc:"Tensor G3।", pixel8ProDesc:"प्रो ज़ूम।", pixel9Desc:"Tensor G4।", pixel9ProDesc:"प्रो कैमरा।", pixel9ProXLDesc:"बड़ी स्क्रीन।" },
+        pt: { tagline:"Telefones premium desbloqueados | Envio global", intro1:"Fornecedor global.", intro2:"Dispositivos novos.", intro3:"Pagamentos seguros.", viewPrice:"Ver lista de preços", copyright:"© 2026 Xinlo.", priceTitle:"Lista de preços", back:"Voltar", whatsapp:"Fale conosco no WhatsApp", iphoneSeries:"Série iPhone", samsungSeries:"Série Samsung Galaxy", pixelSeries:"Série Google Pixel", iphone14Desc:"A15 Bionic.", iphone14PlusDesc:"Tela 6.7”.", iphone14ProDesc:"Câmera Pro.", iphone14ProMaxDesc:"Experiência Pro.", iphone15Desc:"Dynamic Island.", iphone15PlusDesc:"Tela grande.", iphone15ProDesc:"A17 Pro.", iphone15ProMaxDesc:"Zoom 5x.", iphone16Desc:"Chip A18.", iphone16PlusDesc:"Tela maior.", iphone16ProDesc:"A18 Pro.", iphone16ProMaxDesc:"Melhor iPhone.", iphone17Desc:"Novo design.", iphone17PlusDesc:"Maior.", iphone17ProDesc:"A19 Pro.", iphone17ProMaxDesc:"Performance máxima.", s24Desc:"Snapdragon 8 Gen 3.", s24PlusDesc:"QHD+.", s24UltraDesc:"200MP.", s25Desc:"Galaxy AI.", s25PlusDesc:"Imersivo.", s25UltraDesc:"Nightography.", zFlip6Desc:"Dobrável.", zFold6Desc:"Dobrável grande.", pixel8Desc:"Tensor G3.", pixel8ProDesc:"Zoom Pro.", pixel9Desc:"Tensor G4.", pixel9ProDesc:"Câmera Pro.", pixel9ProXLDesc:"Tela grande." },
+        bn: { tagline:"প্রিমিয়াম আনলকড ফোন | গ্লোবাল শিপিং", intro1:"বৈশ্বিক সরবরাহকারী।", intro2:"নতুন ডিভাইস।", intro3:"নিরাপদ পেমেন্ট।", viewPrice:"মূল্য তালিকা দেখুন", copyright:"© 2026 Xinlo।", priceTitle:"মূল্য তালিকা", back:"ফিরে যান", whatsapp:"WhatsApp এ যোগাযোগ করুন", iphoneSeries:"iPhone সিরিজ", samsungSeries:"Samsung Galaxy সিরিজ", pixelSeries:"Google Pixel সিরিজ", iphone14Desc:"A15 বায়োনিক।", iphone14PlusDesc:"6.7” ডিসপ্লে।", iphone14ProDesc:"প্রো ক্যামেরা।", iphone14ProMaxDesc:"আলটিমেট প্রো।", iphone15Desc:"ডায়নামিক আইল্যান্ড।", iphone15PlusDesc:"বড় স্ক্রিন।", iphone15ProDesc:"A17 প্রো।", iphone15ProMaxDesc:"5x জুম।", iphone16Desc:"A18 চিপ।", iphone16PlusDesc:"বড় ডিসপ্লে।", iphone16ProDesc:"A18 প্রো।", iphone16ProMaxDesc:"সেরা iPhone।", iphone17Desc:"নতুন ডিজাইন।", iphone17PlusDesc:"বড় সাইজ।", iphone17ProDesc:"A19 প্রো।", iphone17ProMaxDesc:"সর্বোচ্চ পারফরম্যান্স।", s24Desc:"Snapdragon 8 Gen 3।", s24PlusDesc:"QHD+।", s24UltraDesc:"200MP।", s25Desc:"Galaxy AI।", s25PlusDesc:"ইমারসিভ।", s25UltraDesc:"নাইটোগ্রাফি।", zFlip6Desc:"ফোল্ডেবল।", zFold6Desc:"বড় ফোল্ডেবল।", pixel8Desc:"Tensor G3।", pixel8ProDesc:"প্রো জুম।", pixel9Desc:"Tensor G4।", pixel9ProDesc:"প্রো ক্যামেরা।", pixel9ProXLDesc:"বড় স্ক্রিন।" },
+        ru: { tagline:"Премиум разблокированные телефоны | Глобальная доставка", intro1:"Глобальный поставщик.", intro2:"Новые устройства.", intro3:"Безопасные платежи.", viewPrice:"Смотреть цены", copyright:"© 2026 Xinlo.", priceTitle:"Прайс-лист", back:"Назад", whatsapp:"Связаться в WhatsApp", iphoneSeries:"iPhone Series", samsungSeries:"Samsung Galaxy Series", pixelSeries:"Google Pixel Series", iphone14Desc:"A15 Bionic.", iphone14PlusDesc:"6.7” дисплей.", iphone14ProDesc:"Pro камера.", iphone14ProMaxDesc:"Максимальный Pro.", iphone15Desc:"Dynamic Island.", iphone15PlusDesc:"Большой экран.", iphone15ProDesc:"A17 Pro.", iphone15ProMaxDesc:"5x зум.", iphone16Desc:"Чип A18.", iphone16PlusDesc:"Большой дисплей.", iphone16ProDesc:"A18 Pro.", iphone16ProMaxDesc:"Лучший iPhone.", iphone17Desc:"Новый дизайн.", iphone17PlusDesc:"Больше размер.", iphone17ProDesc:"A19 Pro.", iphone17ProMaxDesc:"Макс. производительность.", s24Desc:"Snapdragon 8 Gen 3.", s24PlusDesc:"QHD+.", s24UltraDesc:"200MP.", s25Desc:"Galaxy AI.", s25PlusDesc:"Иммерсивный.", s25UltraDesc:"Nightography.", zFlip6Desc:"Складной.", zFold6Desc:"Большой складной.", pixel8Desc:"Tensor G3.", pixel8ProDesc:"Pro зум.", pixel9Desc:"Tensor G4.", pixel9ProDesc:"Pro камера.", pixel9ProXLDesc:"Большой экран." },
+        ja: { tagline:"プレミアムアンロックフォン | 世界配送", intro1:"正規品グローバルサプライヤー。", intro2:"新品未開封、迅速発送。", intro3:"安全な支払い。", viewPrice:"価格表を見る", copyright:"© 2026 Xinlo.", priceTitle:"価格表", back:"戻る", whatsapp:"WhatsAppで問い合わせ", iphoneSeries:"iPhoneシリーズ", samsungSeries:"Samsung Galaxyシリーズ", pixelSeries:"Google Pixelシリーズ", iphone14Desc:"A15 Bionic。", iphone14PlusDesc:"6.7インチ。", iphone14ProDesc:"Proカメラ。", iphone14ProMaxDesc:"究極のPro。", iphone15Desc:"Dynamic Island。", iphone15PlusDesc:"大画面。", iphone15ProDesc:"A17 Pro。", iphone15ProMaxDesc:"5倍ズーム。", iphone16Desc:"A18チップ。", iphone16PlusDesc:"大型ディスプレイ。", iphone16ProDesc:"A18 Pro。", iphone16ProMaxDesc:"最高のiPhone。", iphone17Desc:"新デザイン。", iphone17PlusDesc:"大きいサイズ。", iphone17ProDesc:"A19 Pro。", iphone17ProMaxDesc:"最大パフォーマンス。", s24Desc:"Snapdragon 8 Gen 3。", s24PlusDesc:"QHD+。", s24UltraDesc:"200MP。", s25Desc:"Galaxy AI。", s25PlusDesc:"没入感。", s25UltraDesc:"Nightography。", zFlip6Desc:"折りたたみ。", zFold6Desc:"大画面折りたたみ。", pixel8Desc:"Tensor G3。", pixel8ProDesc:"Proズーム。", pixel9Desc:"Tensor G4。", pixel9ProDesc:"Proカメラ。", pixel9ProXLDesc:"大画面。" },
+        fr: { tagline:"Téléphones débloqués premium | Expédition mondiale", intro1:"Fournisseur mondial.", intro2:"Appareils neufs.", intro3:"Paiements sécurisés.", viewPrice:"Voir la liste des prix", copyright:"© 2026 Xinlo.", priceTitle:"Liste des prix", back:"Retour", whatsapp:"Contactez-nous sur WhatsApp", iphoneSeries:"Série iPhone", samsungSeries:"Série Samsung Galaxy", pixelSeries:"Série Google Pixel", iphone14Desc:"A15 Bionic.", iphone14PlusDesc:"Écran 6.7”.", iphone14ProDesc:"Caméra Pro.", iphone14ProMaxDesc:"Expérience Pro ultime.", iphone15Desc:"Dynamic Island.", iphone15PlusDesc:"Grand écran.", iphone15ProDesc:"A17 Pro.", iphone15ProMaxDesc:"Zoom 5x.", iphone16Desc:"Puce A18.", iphone16PlusDesc:"Écran plus grand.", iphone16ProDesc:"A18 Pro.", iphone16ProMaxDesc:"Meilleur iPhone.", iphone17Desc:"Nouveau design.", iphone17PlusDesc:"Plus grand.", iphone17ProDesc:"A19 Pro.", iphone17ProMaxDesc:"Performance max.", s24Desc:"Snapdragon 8 Gen 3.", s24PlusDesc:"QHD+.", s24UltraDesc:"200MP.", s25Desc:"Galaxy AI.", s25PlusDesc:"Immersif.", s25UltraDesc:"Nightography.", zFlip6Desc:"Pliable compact.", zFold6Desc:"Grand pliable.", pixel8Desc:"Tensor G3.", pixel8ProDesc:"Zoom Pro.", pixel9Desc:"Tensor G4.", pixel9ProDesc:"Caméra Pro.", pixel9ProXLDesc:"Grand écran." }
+      };
+
+      // ---------- 产品价格数据 (修改此处：所有价格，单位为美元) ----------
+      const productData = [
+        { series: 'iphone', name: 'iPhone 14', storage: ['128GB','256GB','512GB'], descKey: 'iphone14Desc', prices: [699.00, 769.00, 899.00] },
+        { series: 'iphone', name: 'iPhone 14 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone14PlusDesc', prices: [799.00, 869.00, 999.00] },
+        { series: 'iphone', name: 'iPhone 14 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone14ProDesc', prices: [899.00, 979.00, 1129.00, 1319.00] },
+        { series: 'iphone', name: 'iPhone 14 Pro Max', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone14ProMaxDesc', prices: [999.00, 1079.00, 1229.00, 1419.00] },
+        { series: 'iphone', name: 'iPhone 15', storage: ['128GB','256GB','512GB'], descKey: 'iphone15Desc', prices: [729.00, 799.00, 959.00] },
+        { series: 'iphone', name: 'iPhone 15 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone15PlusDesc', prices: [829.00, 899.00, 1059.00] },
+        { series: 'iphone', name: 'iPhone 15 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone15ProDesc', prices: [899.00, 979.00, 1149.00, 1349.00] },
+        { series: 'iphone', name: 'iPhone 15 Pro Max', storage: ['256GB','512GB','1TB'], descKey: 'iphone15ProMaxDesc', prices: [999.00, 1169.00, 1369.00] },
+        { series: 'iphone', name: 'iPhone 16', storage: ['128GB','256GB','512GB'], descKey: 'iphone16Desc', prices: [749.00, 819.00, 979.00] },
+        { series: 'iphone', name: 'iPhone 16 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone16PlusDesc', prices: [849.00, 919.00, 1079.00] },
+        { series: 'iphone', name: 'iPhone 16 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone16ProDesc', prices: [919.00, 999.00, 1179.00, 1379.00] },
+        { series: 'iphone', name: 'iPhone 16 Pro Max', storage: ['256GB','512GB','1TB'], descKey: 'iphone16ProMaxDesc', prices: [1019.00, 1199.00, 1399.00] },
+        { series: 'iphone', name: 'iPhone 17', storage: ['128GB','256GB','512GB'], descKey: 'iphone17Desc', prices: [799.00, 869.00, 1029.00] },
+        { series: 'iphone', name: 'iPhone 17 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone17PlusDesc', prices: [899.00, 969.00, 1129.00] },
+        { series: 'iphone', name: 'iPhone 17 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone17ProDesc', prices: [999.00, 1079.00, 1249.00, 1449.00] },
+        { series: 'iphone', name: 'iPhone 17 Pro Max', storage: ['256GB','512GB','1TB'], descKey: 'iphone17ProMaxDesc', prices: [1099.00, 1269.00, 1469.00] },
+        { series: 'samsung', name: 'Galaxy S24', storage: ['128GB','256GB'], descKey: 's24Desc', prices: [699.00, 759.00] },
+        { series: 'samsung', name: 'Galaxy S24+', storage: ['256GB','512GB'], descKey: 's24PlusDesc', prices: [849.00, 919.00] },
+        { series: 'samsung', name: 'Galaxy S24 Ultra', storage: ['256GB','512GB','1TB'], descKey: 's24UltraDesc', prices: [1099.00, 1199.00, 1399.00] },
+        { series: 'samsung', name: 'Galaxy S25', storage: ['128GB','256GB'], descKey: 's25Desc', prices: [749.00, 809.00] },
+        { series: 'samsung', name: 'Galaxy S25+', storage: ['256GB','512GB'], descKey: 's25PlusDesc', prices: [899.00, 969.00] },
+        { series: 'samsung', name: 'Galaxy S25 Ultra', storage: ['256GB','512GB','1TB'], descKey: 's25UltraDesc', prices: [1149.00, 1249.00, 1449.00] },
+        { series: 'samsung', name: 'Galaxy Z Flip 6', storage: ['256GB','512GB'], descKey: 'zFlip6Desc', prices: [899.00, 979.00] },
+        { series: 'samsung', name: 'Galaxy Z Fold 6', storage: ['256GB','512GB','1TB'], descKey: 'zFold6Desc', prices: [1599.00, 1719.00, 1919.00] },
+        { series: 'pixel', name: 'Pixel 8', storage: ['128GB','256GB'], descKey: 'pixel8Desc', prices: [599.00, 659.00] },
+        { series: 'pixel', name: 'Pixel 8 Pro', storage: ['128GB','256GB','512GB'], descKey: 'pixel8ProDesc', prices: [799.00, 879.00, 999.00] },
+        { series: 'pixel', name: 'Pixel 9', storage: ['128GB','256GB'], descKey: 'pixel9Desc', prices: [649.00, 719.00] },
+        { series: 'pixel', name: 'Pixel 9 Pro', storage: ['128GB','256GB','512GB'], descKey: 'pixel9ProDesc', prices: [849.00, 929.00, 1049.00] },
+        { series: 'pixel', name: 'Pixel 9 Pro XL', storage: ['128GB','256GB','512GB','1TB'], descKey: 'pixel9ProXLDesc', prices: [949.00, 1029.00, 1149.00, 1349.00] }
+      ];
+
+      // DOM元素
+      const slider = document.getElementById('pageSlider');
+      const goToPriceBtn = document.getElementById('goToPriceBtn');
+      const backBtn = document.getElementById('backToHomeBtn');
+      const langSelect = document.getElementById('languageSelect');
+      const mainLogo = document.getElementById('mainLogo');
+      
+      // 当前语言
+      let currentLang = 'en';
+
+      // 更新页面文本
+      function updateUITexts(lang) {
+        const t = translations[lang];
+        document.getElementById('subTagline').textContent = t.tagline;
+        const introPs = document.querySelectorAll('#introText p');
+        if (introPs.length >= 3) {
+          introPs[0].textContent = t.intro1;
+          introPs[1].textContent = t.intro2;
+          introPs[2].textContent = t.intro3;
+        }
+        document.getElementById('viewPriceText').textContent = t.viewPrice;
+        document.getElementById('copyrightText').textContent = t.copyright;
+        document.getElementById('priceListTitle').textContent = t.priceTitle;
+        document.getElementById('backText').textContent = t.back;
+        document.getElementById('whatsappText').textContent = t.whatsapp;
+        
+        // 重新渲染价格卡片以更新描述
+        renderPriceCards(lang);
+      }
+
+      // 渲染价格卡片
+      function renderPriceCards(lang) {
+        const container = document.getElementById('priceContentContainer');
+        if (!container) return;
+        const t = translations[lang];
+        
+        const iphoneItems = productData.filter(p => p.series === 'iphone');
+        const samsungItems = productData.filter(p => p.series === 'samsung');
+        const pixelItems = productData.filter(p => p.series === 'pixel');
+        
+        let html = '';
+        
+        function createSeriesSection(title, items) {
+          let section = `<div class="mb-8"><h3 class="text-xl font-semibold text-gray-800 mb-4 pl-1">${title}</h3><div class="card-grid">`;
+          items.forEach(item => {
+            const desc = t[item.descKey] || '';
+            const storageOptions = item.storage.map((s, idx) => {
+              return `<span class="text-sm font-medium bg-gray-100 px-2 py-0.5 rounded-md">${s} <strong class="text-gray-900">$${item.prices[idx].toFixed(2)}</strong></span>`;
+            }).join(' ');
+            section += `
+              <div class="price-card flex flex-col">
+                <h4 class="text-lg font-bold text-gray-900">${item.name}</h4>
+                <p class="text-xs text-gray-500 mt-1 mb-3">${desc}</p>
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  ${storageOptions}
+                </div>
+              </div>
+            `;
+          });
+          section += `</div></div>`;
+          return section;
+        }
+        
+        html += createSeriesSection(t.iphoneSeries, iphoneItems);
+        html += createSeriesSection(t.samsungSeries, samsungItems);
+        html += createSeriesSection(t.pixelSeries, pixelItems);
+        
+        container.innerHTML = html;
+      }
+
+      // 翻页逻辑
+      function slideToPage(index) {
+        if (index === 0) {
+          slider.style.transform = 'translateX(0)';
+        } else {
+          slider.style.transform = 'translateX(-50%)';
+        }
+      }
+
+      goToPriceBtn.addEventListener('click', () => slideToPage(1));
+      backBtn.addEventListener('click', () => slideToPage(0));
+
+      // 语言切换
+      langSelect.addEventListener('change', (e) => {
+        currentLang = e.target.value;
+        updateUITexts(currentLang);
+      });
+
+      // 彩虹动画结束后变为静态彩虹色
+      mainLogo.addEventListener('animationend', () => {
+        mainLogo.classList.remove('rainbow-text-animate');
+        mainLogo.classList.add('rainbow-text-static');
+      });
+
+      // 初始渲染
+      updateUITexts('en');
+      renderPriceCards('en');
+      
+      // 确保滑动容器初始位置
+      slider.style.transform = 'translateX(0)';
+    })();
+  </script>
+</body>
+</html>
