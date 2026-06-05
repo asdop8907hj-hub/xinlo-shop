@@ -9,42 +9,53 @@
   <!-- Font Awesome 6 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background-color: #ffffff;
       overflow: hidden;
       margin: 0;
+      overscroll-behavior: none;
     }
     .page-container {
       display: flex;
       width: 200%;
       height: 100vh;
-      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      height: 100dvh;
+      transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
       will-change: transform;
     }
     .page {
       width: 50%;
       height: 100vh;
+      height: 100dvh;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 1.5rem;
+      padding: 2rem;
       box-sizing: border-box;
       scrollbar-width: thin;
-      scrollbar-color: #c0c0c0 #f5f5f5;
+      scrollbar-color: #d0d0d0 transparent;
+      -webkit-overflow-scrolling: touch;
     }
     .page::-webkit-scrollbar {
-      width: 6px;
+      width: 5px;
     }
     .page::-webkit-scrollbar-track {
-      background: #f5f5f5;
+      background: transparent;
     }
     .page::-webkit-scrollbar-thumb {
-      background-color: #c0c0c0;
-      border-radius: 3px;
+      background-color: #d0d0d0;
+      border-radius: 10px;
     }
     @keyframes rainbowFlow {
       0% { background-position: -200% center; }
       100% { background-position: 200% center; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .rainbow-text-animate {
       background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d);
@@ -52,7 +63,8 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      animation: rainbowFlow 2.2s ease-in-out forwards;
+      animation: rainbowFlow 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      letter-spacing: -0.03em;
     }
     .rainbow-text-static {
       background: linear-gradient(90deg, #ff6b6b, #fca13e, #f8e81c, #56c596, #5c9cec, #ae7ef2, #ff6b6b);
@@ -61,56 +73,240 @@
       background-clip: text;
       color: transparent;
       animation: none;
+      letter-spacing: -0.03em;
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+      opacity: 0;
+    }
+    .fade-in-up:nth-child(1) { animation-delay: 2.5s; }
+    .fade-in-up:nth-child(2) { animation-delay: 2.65s; }
+    .fade-in-up:nth-child(3) { animation-delay: 2.8s; }
+    .btn-view-price {
+      animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+      animation-delay: 3s;
+      opacity: 0;
+    }
+    .btn-copyright {
+      animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+      animation-delay: 3.2s;
+      opacity: 0;
     }
     .slide-arrow {
-      transition: transform 0.3s ease;
+      transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
     }
     button:hover .slide-arrow {
-      transform: translateX(6px);
+      transform: translateX(8px);
+    }
+    button:active .slide-arrow {
+      transform: translateX(12px);
     }
     .price-card {
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.35s cubic-bezier(0.32, 0.72, 0, 1);
       background: #ffffff;
-      border-radius: 1.25rem;
-      padding: 1.25rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.02);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.04);
+      cursor: default;
     }
     .price-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 18px 30px rgba(0,0,0,0.08);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .price-card:active {
+      transform: translateY(-2px);
     }
     .card-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
     @media (max-width: 768px) {
       .card-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
       }
       .page {
-        padding: 1rem;
+        padding: 1.25rem;
+      }
+      .price-card {
+        padding: 1.25rem;
+        border-radius: 1.25rem;
       }
     }
     .lang-select {
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(0,0,0,0.05);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0,0,0,0.08);
       border-radius: 2rem;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
       font-weight: 500;
       color: #1d1d1f;
       outline: none;
       cursor: pointer;
+      transition: all 0.3s ease;
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 2rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.7rem center;
+    }
+    .lang-select:hover {
+      border-color: rgba(0,0,0,0.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.1rem 2.8rem;
+      background: #25D366;
+      color: white;
+      font-weight: 600;
+      border-radius: 3rem;
+      box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35);
+      transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+      text-decoration: none;
+      cursor: pointer;
+      min-width: 280px;
+      min-height: 56px;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .whatsapp-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+      border-radius: 3rem;
+      pointer-events: none;
+    }
+    .whatsapp-btn:hover {
+      background: #1fbf57;
+      box-shadow: 0 14px 36px rgba(37, 211, 102, 0.45);
+      transform: translateY(-3px);
+    }
+    .whatsapp-btn:active {
+      background: #1aab4d;
+      transform: translateY(0);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+      transition: all 0.15s ease;
+    }
+    .whatsapp-btn i {
+      font-size: 1.5rem;
+      margin-right: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .whatsapp-btn span {
+      position: relative;
+      z-index: 1;
+    }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 2.5rem;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+      cursor: pointer;
+      border: none;
+      font-size: 0.95rem;
+      min-height: 44px;
+      min-width: 44px;
+    }
+    .nav-btn-back {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #555;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-btn-back:hover {
+      background: rgba(255,255,255,0.9);
+      color: #111;
+      border-color: rgba(0,0,0,0.12);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .nav-btn-back:active {
+      transform: scale(0.96);
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem;
+      background: #1d1d1f;
+      color: white;
+      font-weight: 600;
+      border-radius: 3rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+      cursor: pointer;
+      border: none;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+      min-height: 56px;
+    }
+    .cta-btn:hover {
+      background: #000;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.22);
+      transform: translateY(-3px);
+    }
+    .cta-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      transition: all 0.15s ease;
+    }
+    .section-title {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+    .storage-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #f5f5f7;
+      padding: 0.4rem 0.75rem;
+      border-radius: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #555;
+      transition: all 0.2s ease;
+    }
+    .storage-badge strong {
+      color: #1d1d1f;
+      font-weight: 700;
+    }
+    .storage-badge:hover {
+      background: #eeeef1;
+    }
+    @media (max-width: 480px) {
+      .whatsapp-btn {
+        min-width: 240px;
+        padding: 1rem 2rem;
+        font-size: 0.95rem;
+      }
+      .cta-btn {
+        padding: 0.9rem 2rem;
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
 
-  <div class="fixed top-5 right-5 z-50 flex items-center space-x-2">
-    <i class="fas fa-globe text-gray-500 text-sm"></i>
+  <div class="fixed top-4 right-4 md:top-6 md:right-6 z-50 flex items-center gap-2">
     <select id="languageSelect" class="lang-select shadow-sm">
       <option value="en">English</option>
       <option value="zh">中文</option>
@@ -128,49 +324,57 @@
   <div id="pageSlider" class="page-container">
     
     <div class="page flex flex-col items-center justify-center text-center relative bg-white">
-      <div class="max-w-2xl w-full mx-auto flex flex-col items-center">
-        <!-- 修改此处：品牌名称 -->
-        <h1 id="mainLogo" class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight rainbow-text-animate mb-4" style="font-weight: 800;">
+      <div class="max-w-xl w-full mx-auto flex flex-col items-center px-4">
+        
+        <h1 id="mainLogo" class="text-6xl sm:text-7xl md:text-8xl font-extrabold tracking-tight rainbow-text-animate mb-3" style="line-height: 1.1;">
           XINLO
         </h1>
-        <!-- 修改此处：标语 -->
-        <p id="subTagline" class="text-base md:text-lg text-gray-500 font-medium mb-10 tracking-wide">
+        
+        <p id="subTagline" class="fade-in-up text-sm sm:text-base md:text-lg text-gray-400 font-medium mb-8 tracking-wide">
           Premium Unlocked Phones | Global Shipping
         </p>
-        <!-- 修改此处：品牌介绍 -->
-        <div id="introText" class="space-y-3 text-gray-600 text-sm md:text-base max-w-lg mx-auto mb-10 leading-relaxed">
-          <p>Global supplier of genuine unlocked smartphones, sourced directly from authorized channels.</p>
-          <p>Every device is brand new, unopened, and ready for worldwide express shipping with full warranty.</p>
-          <p>Secure payments, transparent pricing, and dedicated support from our team.</p>
+        
+        <div id="introText" class="space-y-3 text-gray-500 text-sm sm:text-base max-w-md mx-auto mb-10 leading-relaxed">
+          <p class="fade-in-up">Global supplier of genuine unlocked smartphones, sourced directly from authorized channels.</p>
+          <p class="fade-in-up">Every device is brand new, unopened, and ready for worldwide express shipping with full warranty.</p>
+          <p class="fade-in-up">Secure payments, transparent pricing, and dedicated support from our team.</p>
         </div>
-        <button id="goToPriceBtn" class="group relative inline-flex items-center justify-center px-8 py-4 bg-black text-white font-semibold rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-base md:text-lg">
+        
+        <button id="goToPriceBtn" class="btn-view-price cta-btn group">
           <span id="viewPriceText">View Price List</span>
           <i class="fas fa-arrow-right ml-3 slide-arrow text-lg"></i>
         </button>
-        <!-- 修改此处：版权 -->
-        <div class="mt-16 text-gray-400 text-xs md:text-sm">
+        
+        <div class="btn-copyright mt-12 text-gray-300 text-xs sm:text-sm">
           <span id="copyrightText">© 2026 Xinlo. All rights reserved.</span>
         </div>
       </div>
     </div>
     
-    <div class="page bg-[#fbfbfd]">
-      <div class="max-w-5xl mx-auto">
-        <div class="flex items-center justify-between mb-8 mt-2">
-          <h2 id="priceListTitle" class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">Price List</h2>
-          <button id="backToHomeBtn" class="flex items-center space-x-2 text-gray-600 hover:text-black transition-colors bg-white/70 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-gray-100">
-            <i class="fas fa-arrow-left text-sm"></i>
-            <span id="backText" class="font-medium">Back</span>
+    <div class="page bg-[#fafafa]">
+      <div class="max-w-4xl mx-auto">
+        
+        <div class="flex items-center justify-between mb-8 mt-1 sticky top-0 bg-[#fafafa]/80 backdrop-blur-md py-3 z-10 rounded-b-2xl">
+          <h2 id="priceListTitle" class="section-title text-2xl sm:text-3xl text-gray-900">Price List</h2>
+          <button id="backToHomeBtn" class="nav-btn nav-btn-back">
+            <i class="fas fa-arrow-left text-xs"></i>
+            <span id="backText">Back</span>
           </button>
         </div>
-        <div id="priceContentContainer" class="space-y-10"></div>
-        <!-- 修改此处：WhatsApp号码 -->
-        <div class="mt-14 flex justify-center pb-8">
-          <a href="https://wa.me/15203489531" target="_blank" rel="noopener noreferrer" 
-             class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-base md:text-lg">
-            <i class="fab fa-whatsapp mr-3 text-xl"></i>
+        
+        <div id="priceContentContainer" class="space-y-10 pb-4"></div>
+        
+        <div class="mt-12 mb-6 flex flex-col items-center gap-4">
+          <p class="text-gray-400 text-xs tracking-wide uppercase font-medium">Have questions?</p>
+          <a href="https://wa.me/15203489531" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="whatsapp-btn"
+             aria-label="Contact us on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
             <span id="whatsappText">Contact Us on WhatsApp</span>
           </a>
+          <p class="text-gray-300 text-xs mt-1">Tap to open chat • We reply instantly</p>
         </div>
       </div>
     </div>
@@ -275,7 +479,6 @@
         fr: { tagline:"Téléphones débloqués premium | Expédition mondiale", intro1:"Fournisseur mondial.", intro2:"Appareils neufs.", intro3:"Paiements sécurisés.", viewPrice:"Voir la liste des prix", copyright:"© 2026 Xinlo.", priceTitle:"Liste des prix", back:"Retour", whatsapp:"Contactez-nous sur WhatsApp", iphoneSeries:"Série iPhone", samsungSeries:"Série Samsung Galaxy", pixelSeries:"Série Google Pixel", iphone14Desc:"A15 Bionic.", iphone14PlusDesc:"Écran 6.7”.", iphone14ProDesc:"Caméra Pro.", iphone14ProMaxDesc:"Expérience Pro ultime.", iphone15Desc:"Dynamic Island.", iphone15PlusDesc:"Grand écran.", iphone15ProDesc:"A17 Pro.", iphone15ProMaxDesc:"Zoom 5x.", iphone16Desc:"Puce A18.", iphone16PlusDesc:"Écran plus grand.", iphone16ProDesc:"A18 Pro.", iphone16ProMaxDesc:"Meilleur iPhone.", iphone17Desc:"Nouveau design.", iphone17PlusDesc:"Plus grand.", iphone17ProDesc:"A19 Pro.", iphone17ProMaxDesc:"Performance max.", s24Desc:"Snapdragon 8 Gen 3.", s24PlusDesc:"QHD+.", s24UltraDesc:"200MP.", s25Desc:"Galaxy AI.", s25PlusDesc:"Immersif.", s25UltraDesc:"Nightography.", zFlip6Desc:"Pliable compact.", zFold6Desc:"Grand pliable.", pixel8Desc:"Tensor G3.", pixel8ProDesc:"Zoom Pro.", pixel9Desc:"Tensor G4.", pixel9ProDesc:"Caméra Pro.", pixel9ProXLDesc:"Grand écran." }
       };
 
-      // 修改此处：产品价格数据（已使用您提供的完整价格表）
       const productData = [
         { series: 'iphone', name: 'iPhone 14', storage: ['128GB','256GB','512GB'], descKey: 'iphone14Desc', prices: [429.00,479.00,569.00] },
         { series: 'iphone', name: 'iPhone 14 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone14PlusDesc', prices: [499.00,549.00,639.00] },
@@ -343,16 +546,16 @@
         
         let html = '';
         function createSeriesSection(title, items) {
-          let section = `<div class="mb-8"><h3 class="text-xl font-semibold text-gray-800 mb-4 pl-1">${title}</h3><div class="card-grid">`;
+          let section = `<div class="mb-8"><h3 class="section-title text-lg sm:text-xl text-gray-800 mb-4 pl-1">${title}</h3><div class="card-grid">`;
           items.forEach(item => {
             const desc = t[item.descKey] || '';
             const storageOptions = item.storage.map((s, idx) => {
-              return `<span class="text-sm font-medium bg-gray-100 px-2 py-0.5 rounded-md">${s} <strong class="text-gray-900">$${item.prices[idx].toFixed(2)}</strong></span>`;
-            }).join(' ');
+              return `<span class="storage-badge">${s} <strong>$${item.prices[idx].toFixed(2)}</strong></span>`;
+            }).join('');
             section += `
               <div class="price-card flex flex-col">
-                <h4 class="text-lg font-bold text-gray-900">${item.name}</h4>
-                <p class="text-xs text-gray-500 mt-1 mb-3">${desc}</p>
+                <h4 class="text-base sm:text-lg font-bold text-gray-900 mb-1">${item.name}</h4>
+                <p class="text-xs text-gray-400 mb-3 leading-relaxed">${desc}</p>
                 <div class="flex flex-wrap gap-2 mt-auto">
                   ${storageOptions}
                 </div>
