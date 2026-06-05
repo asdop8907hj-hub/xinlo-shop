@@ -9,7 +9,6 @@
   <!-- Font Awesome 6 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* 极简苹果风格微调，无冗余样式 */
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background-color: #ffffff;
@@ -43,7 +42,6 @@
       background-color: #c0c0c0;
       border-radius: 3px;
     }
-    /* 彩虹流水动画 */
     @keyframes rainbowFlow {
       0% { background-position: -200% center; }
       100% { background-position: 200% center; }
@@ -70,7 +68,6 @@
     button:hover .slide-arrow {
       transform: translateX(6px);
     }
-    /* 卡片hover效果 */
     .price-card {
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       background: #ffffff;
@@ -83,7 +80,6 @@
       transform: translateY(-5px);
       box-shadow: 0 18px 30px rgba(0,0,0,0.08);
     }
-    /* 响应式卡片网格 */
     .card-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -97,7 +93,6 @@
         padding: 1rem;
       }
     }
-    /* 语言选择器风格 */
     .lang-select {
       background: rgba(255,255,255,0.8);
       backdrop-filter: blur(12px);
@@ -114,7 +109,6 @@
 </head>
 <body class="bg-white text-gray-900 antialiased">
 
-  <!-- 语言切换器 (右上角) -->
   <div class="fixed top-5 right-5 z-50 flex items-center space-x-2">
     <i class="fas fa-globe text-gray-500 text-sm"></i>
     <select id="languageSelect" class="lang-select shadow-sm">
@@ -131,50 +125,37 @@
     </select>
   </div>
 
-  <!-- 双页滑动容器 -->
   <div id="pageSlider" class="page-container">
     
-    <!-- 第1页：主页 -->
     <div class="page flex flex-col items-center justify-center text-center relative bg-white">
       <div class="max-w-2xl w-full mx-auto flex flex-col items-center">
-        
-        <!-- 动态XINLO logo -->
+        <!-- 修改此处：品牌名称 -->
         <h1 id="mainLogo" class="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight rainbow-text-animate mb-4" style="font-weight: 800;">
           XINLO
         </h1>
-        
-        <!-- 副标题小字 (修改此处：标语文本) -->
+        <!-- 修改此处：标语 -->
         <p id="subTagline" class="text-base md:text-lg text-gray-500 font-medium mb-10 tracking-wide">
           Premium Unlocked Phones | Global Shipping
         </p>
-        
-        <!-- 品牌介绍3段 (修改此处：品牌描述) -->
+        <!-- 修改此处：品牌介绍 -->
         <div id="introText" class="space-y-3 text-gray-600 text-sm md:text-base max-w-lg mx-auto mb-10 leading-relaxed">
           <p>Global supplier of genuine unlocked smartphones, sourced directly from authorized channels.</p>
           <p>Every device is brand new, unopened, and ready for worldwide express shipping with full warranty.</p>
           <p>Secure payments, transparent pricing, and dedicated support from our team.</p>
         </div>
-        
-        <!-- 核心按钮：查看价格表 + 滑动箭头指示 -->
         <button id="goToPriceBtn" class="group relative inline-flex items-center justify-center px-8 py-4 bg-black text-white font-semibold rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 text-base md:text-lg">
           <span id="viewPriceText">View Price List</span>
           <i class="fas fa-arrow-right ml-3 slide-arrow text-lg"></i>
         </button>
-        
-        <!-- 底部版权 (修改此处：版权年份/品牌) -->
+        <!-- 修改此处：版权 -->
         <div class="mt-16 text-gray-400 text-xs md:text-sm">
           <span id="copyrightText">© 2026 Xinlo. All rights reserved.</span>
         </div>
       </div>
-      
-      <!-- 彩虹动画结束后变为静态彩虹色 (通过JS控制) -->
     </div>
     
-    <!-- 第2页：价格表页 -->
     <div class="page bg-[#fbfbfd]">
       <div class="max-w-5xl mx-auto">
-        
-        <!-- 顶部导航：标题 + 返回按钮 -->
         <div class="flex items-center justify-between mb-8 mt-2">
           <h2 id="priceListTitle" class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">Price List</h2>
           <button id="backToHomeBtn" class="flex items-center space-x-2 text-gray-600 hover:text-black transition-colors bg-white/70 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-gray-100">
@@ -182,13 +163,8 @@
             <span id="backText" class="font-medium">Back</span>
           </button>
         </div>
-        
-        <!-- 手机价格卡片区域 动态JS渲染以支持多语言 -->
-        <div id="priceContentContainer" class="space-y-10">
-          <!-- JS动态填充，保持结构清晰 -->
-        </div>
-        
-        <!-- WhatsApp联系按钮 -->
+        <div id="priceContentContainer" class="space-y-10"></div>
+        <!-- 修改此处：WhatsApp号码 -->
         <div class="mt-14 flex justify-center pb-8">
           <a href="https://wa.me/15203489531" target="_blank" rel="noopener noreferrer" 
              class="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-base md:text-lg">
@@ -202,7 +178,6 @@
 
   <script>
     (function() {
-      // ---------- 多语言数据集 (修改此处：所有翻译文本) ----------
       const translations = {
         en: {
           tagline: "Premium Unlocked Phones | Global Shipping",
@@ -217,7 +192,6 @@
           iphoneSeries: "iPhone Series",
           samsungSeries: "Samsung Galaxy Series",
           pixelSeries: "Google Pixel Series",
-          // 产品描述简化 (修改此处：产品描述)
           iphone14Desc: "A15 Bionic, advanced dual-camera system.",
           iphone14PlusDesc: "Larger 6.7-inch display, A15 Bionic.",
           iphone14ProDesc: "Pro camera system, Dynamic Island, A16 chip.",
@@ -301,50 +275,47 @@
         fr: { tagline:"Téléphones débloqués premium | Expédition mondiale", intro1:"Fournisseur mondial.", intro2:"Appareils neufs.", intro3:"Paiements sécurisés.", viewPrice:"Voir la liste des prix", copyright:"© 2026 Xinlo.", priceTitle:"Liste des prix", back:"Retour", whatsapp:"Contactez-nous sur WhatsApp", iphoneSeries:"Série iPhone", samsungSeries:"Série Samsung Galaxy", pixelSeries:"Série Google Pixel", iphone14Desc:"A15 Bionic.", iphone14PlusDesc:"Écran 6.7”.", iphone14ProDesc:"Caméra Pro.", iphone14ProMaxDesc:"Expérience Pro ultime.", iphone15Desc:"Dynamic Island.", iphone15PlusDesc:"Grand écran.", iphone15ProDesc:"A17 Pro.", iphone15ProMaxDesc:"Zoom 5x.", iphone16Desc:"Puce A18.", iphone16PlusDesc:"Écran plus grand.", iphone16ProDesc:"A18 Pro.", iphone16ProMaxDesc:"Meilleur iPhone.", iphone17Desc:"Nouveau design.", iphone17PlusDesc:"Plus grand.", iphone17ProDesc:"A19 Pro.", iphone17ProMaxDesc:"Performance max.", s24Desc:"Snapdragon 8 Gen 3.", s24PlusDesc:"QHD+.", s24UltraDesc:"200MP.", s25Desc:"Galaxy AI.", s25PlusDesc:"Immersif.", s25UltraDesc:"Nightography.", zFlip6Desc:"Pliable compact.", zFold6Desc:"Grand pliable.", pixel8Desc:"Tensor G3.", pixel8ProDesc:"Zoom Pro.", pixel9Desc:"Tensor G4.", pixel9ProDesc:"Caméra Pro.", pixel9ProXLDesc:"Grand écran." }
       };
 
-      // ---------- 产品价格数据 (修改此处：所有价格，单位为美元) ----------
+      // 修改此处：产品价格数据（已使用您提供的完整价格表）
       const productData = [
-        { series: 'iphone', name: 'iPhone 14', storage: ['128GB','256GB','512GB'], descKey: 'iphone14Desc', prices: [699.00, 769.00, 899.00] },
-        { series: 'iphone', name: 'iPhone 14 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone14PlusDesc', prices: [799.00, 869.00, 999.00] },
-        { series: 'iphone', name: 'iPhone 14 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone14ProDesc', prices: [899.00, 979.00, 1129.00, 1319.00] },
-        { series: 'iphone', name: 'iPhone 14 Pro Max', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone14ProMaxDesc', prices: [999.00, 1079.00, 1229.00, 1419.00] },
-        { series: 'iphone', name: 'iPhone 15', storage: ['128GB','256GB','512GB'], descKey: 'iphone15Desc', prices: [729.00, 799.00, 959.00] },
-        { series: 'iphone', name: 'iPhone 15 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone15PlusDesc', prices: [829.00, 899.00, 1059.00] },
-        { series: 'iphone', name: 'iPhone 15 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone15ProDesc', prices: [899.00, 979.00, 1149.00, 1349.00] },
-        { series: 'iphone', name: 'iPhone 15 Pro Max', storage: ['256GB','512GB','1TB'], descKey: 'iphone15ProMaxDesc', prices: [999.00, 1169.00, 1369.00] },
-        { series: 'iphone', name: 'iPhone 16', storage: ['128GB','256GB','512GB'], descKey: 'iphone16Desc', prices: [749.00, 819.00, 979.00] },
-        { series: 'iphone', name: 'iPhone 16 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone16PlusDesc', prices: [849.00, 919.00, 1079.00] },
-        { series: 'iphone', name: 'iPhone 16 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone16ProDesc', prices: [919.00, 999.00, 1179.00, 1379.00] },
-        { series: 'iphone', name: 'iPhone 16 Pro Max', storage: ['256GB','512GB','1TB'], descKey: 'iphone16ProMaxDesc', prices: [1019.00, 1199.00, 1399.00] },
-        { series: 'iphone', name: 'iPhone 17', storage: ['128GB','256GB','512GB'], descKey: 'iphone17Desc', prices: [799.00, 869.00, 1029.00] },
-        { series: 'iphone', name: 'iPhone 17 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone17PlusDesc', prices: [899.00, 969.00, 1129.00] },
-        { series: 'iphone', name: 'iPhone 17 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone17ProDesc', prices: [999.00, 1079.00, 1249.00, 1449.00] },
-        { series: 'iphone', name: 'iPhone 17 Pro Max', storage: ['256GB','512GB','1TB'], descKey: 'iphone17ProMaxDesc', prices: [1099.00, 1269.00, 1469.00] },
-        { series: 'samsung', name: 'Galaxy S24', storage: ['128GB','256GB'], descKey: 's24Desc', prices: [699.00, 759.00] },
-        { series: 'samsung', name: 'Galaxy S24+', storage: ['256GB','512GB'], descKey: 's24PlusDesc', prices: [849.00, 919.00] },
-        { series: 'samsung', name: 'Galaxy S24 Ultra', storage: ['256GB','512GB','1TB'], descKey: 's24UltraDesc', prices: [1099.00, 1199.00, 1399.00] },
-        { series: 'samsung', name: 'Galaxy S25', storage: ['128GB','256GB'], descKey: 's25Desc', prices: [749.00, 809.00] },
-        { series: 'samsung', name: 'Galaxy S25+', storage: ['256GB','512GB'], descKey: 's25PlusDesc', prices: [899.00, 969.00] },
-        { series: 'samsung', name: 'Galaxy S25 Ultra', storage: ['256GB','512GB','1TB'], descKey: 's25UltraDesc', prices: [1149.00, 1249.00, 1449.00] },
-        { series: 'samsung', name: 'Galaxy Z Flip 6', storage: ['256GB','512GB'], descKey: 'zFlip6Desc', prices: [899.00, 979.00] },
-        { series: 'samsung', name: 'Galaxy Z Fold 6', storage: ['256GB','512GB','1TB'], descKey: 'zFold6Desc', prices: [1599.00, 1719.00, 1919.00] },
-        { series: 'pixel', name: 'Pixel 8', storage: ['128GB','256GB'], descKey: 'pixel8Desc', prices: [599.00, 659.00] },
-        { series: 'pixel', name: 'Pixel 8 Pro', storage: ['128GB','256GB','512GB'], descKey: 'pixel8ProDesc', prices: [799.00, 879.00, 999.00] },
-        { series: 'pixel', name: 'Pixel 9', storage: ['128GB','256GB'], descKey: 'pixel9Desc', prices: [649.00, 719.00] },
-        { series: 'pixel', name: 'Pixel 9 Pro', storage: ['128GB','256GB','512GB'], descKey: 'pixel9ProDesc', prices: [849.00, 929.00, 1049.00] },
-        { series: 'pixel', name: 'Pixel 9 Pro XL', storage: ['128GB','256GB','512GB','1TB'], descKey: 'pixel9ProXLDesc', prices: [949.00, 1029.00, 1149.00, 1349.00] }
+        { series: 'iphone', name: 'iPhone 14', storage: ['128GB','256GB','512GB'], descKey: 'iphone14Desc', prices: [429.00,479.00,569.00] },
+        { series: 'iphone', name: 'iPhone 14 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone14PlusDesc', prices: [499.00,549.00,639.00] },
+        { series: 'iphone', name: 'iPhone 14 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone14ProDesc', prices: [569.00,629.00,739.00,859.00] },
+        { series: 'iphone', name: 'iPhone 14 Pro Max', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone14ProMaxDesc', prices: [629.00,689.00,799.00,919.00] },
+        { series: 'iphone', name: 'iPhone 15', storage: ['128GB','256GB','512GB'], descKey: 'iphone15Desc', prices: [459.00,509.00,619.00] },
+        { series: 'iphone', name: 'iPhone 15 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone15PlusDesc', prices: [529.00,579.00,689.00] },
+        { series: 'iphone', name: 'iPhone 15 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone15ProDesc', prices: [599.00,659.00,779.00,899.00] },
+        { series: 'iphone', name: 'iPhone 15 Pro Max', storage: ['256GB','512GB','1TB'], descKey: 'iphone15ProMaxDesc', prices: [659.00,749.00,869.00] },
+        { series: 'iphone', name: 'iPhone 16', storage: ['128GB','256GB','512GB'], descKey: 'iphone16Desc', prices: [489.00,539.00,649.00] },
+        { series: 'iphone', name: 'iPhone 16 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone16PlusDesc', prices: [559.00,609.00,719.00] },
+        { series: 'iphone', name: 'iPhone 16 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone16ProDesc', prices: [629.00,689.00,809.00,929.00] },
+        { series: 'iphone', name: 'iPhone 16 Pro Max', storage: ['256GB','512GB','1TB'], descKey: 'iphone16ProMaxDesc', prices: [699.00,789.00,909.00] },
+        { series: 'iphone', name: 'iPhone 17', storage: ['128GB','256GB','512GB'], descKey: 'iphone17Desc', prices: [529.00,579.00,689.00] },
+        { series: 'iphone', name: 'iPhone 17 Plus', storage: ['128GB','256GB','512GB'], descKey: 'iphone17PlusDesc', prices: [599.00,649.00,759.00] },
+        { series: 'iphone', name: 'iPhone 17 Pro', storage: ['128GB','256GB','512GB','1TB'], descKey: 'iphone17ProDesc', prices: [689.00,749.00,869.00,989.00] },
+        { series: 'iphone', name: 'iPhone 17 Pro Max', storage: ['256GB','512GB','1TB'], descKey: 'iphone17ProMaxDesc', prices: [759.00,849.00,969.00] },
+        { series: 'samsung', name: 'Galaxy S24', storage: ['128GB','256GB'], descKey: 's24Desc', prices: [399.00,449.00] },
+        { series: 'samsung', name: 'Galaxy S24+', storage: ['256GB','512GB'], descKey: 's24PlusDesc', prices: [519.00,579.00] },
+        { series: 'samsung', name: 'Galaxy S24 Ultra', storage: ['256GB','512GB','1TB'], descKey: 's24UltraDesc', prices: [699.00,769.00,889.00] },
+        { series: 'samsung', name: 'Galaxy S25', storage: ['128GB','256GB'], descKey: 's25Desc', prices: [439.00,489.00] },
+        { series: 'samsung', name: 'Galaxy S25+', storage: ['256GB','512GB'], descKey: 's25PlusDesc', prices: [559.00,619.00] },
+        { series: 'samsung', name: 'Galaxy S25 Ultra', storage: ['256GB','512GB','1TB'], descKey: 's25UltraDesc', prices: [739.00,809.00,929.00] },
+        { series: 'samsung', name: 'Galaxy Z Flip 6', storage: ['256GB','512GB'], descKey: 'zFlip6Desc', prices: [599.00,659.00] },
+        { series: 'samsung', name: 'Galaxy Z Fold 6', storage: ['256GB','512GB','1TB'], descKey: 'zFold6Desc', prices: [1099.00,1199.00,1329.00] },
+        { series: 'pixel', name: 'Pixel 8', storage: ['128GB','256GB'], descKey: 'pixel8Desc', prices: [349.00,399.00] },
+        { series: 'pixel', name: 'Pixel 8 Pro', storage: ['128GB','256GB','512GB'], descKey: 'pixel8ProDesc', prices: [489.00,559.00,639.00] },
+        { series: 'pixel', name: 'Pixel 9', storage: ['128GB','256GB'], descKey: 'pixel9Desc', prices: [399.00,449.00] },
+        { series: 'pixel', name: 'Pixel 9 Pro', storage: ['128GB','256GB','512GB'], descKey: 'pixel9ProDesc', prices: [539.00,609.00,689.00] },
+        { series: 'pixel', name: 'Pixel 9 Pro XL', storage: ['128GB','256GB','512GB','1TB'], descKey: 'pixel9ProXLDesc', prices: [619.00,689.00,769.00,899.00] }
       ];
 
-      // DOM元素
       const slider = document.getElementById('pageSlider');
       const goToPriceBtn = document.getElementById('goToPriceBtn');
       const backBtn = document.getElementById('backToHomeBtn');
       const langSelect = document.getElementById('languageSelect');
       const mainLogo = document.getElementById('mainLogo');
       
-      // 当前语言
       let currentLang = 'en';
 
-      // 更新页面文本
       function updateUITexts(lang) {
         const t = translations[lang];
         document.getElementById('subTagline').textContent = t.tagline;
@@ -359,23 +330,18 @@
         document.getElementById('priceListTitle').textContent = t.priceTitle;
         document.getElementById('backText').textContent = t.back;
         document.getElementById('whatsappText').textContent = t.whatsapp;
-        
-        // 重新渲染价格卡片以更新描述
         renderPriceCards(lang);
       }
 
-      // 渲染价格卡片
       function renderPriceCards(lang) {
         const container = document.getElementById('priceContentContainer');
         if (!container) return;
         const t = translations[lang];
-        
         const iphoneItems = productData.filter(p => p.series === 'iphone');
         const samsungItems = productData.filter(p => p.series === 'samsung');
         const pixelItems = productData.filter(p => p.series === 'pixel');
         
         let html = '';
-        
         function createSeriesSection(title, items) {
           let section = `<div class="mb-8"><h3 class="text-xl font-semibold text-gray-800 mb-4 pl-1">${title}</h3><div class="card-grid">`;
           items.forEach(item => {
@@ -396,43 +362,30 @@
           section += `</div></div>`;
           return section;
         }
-        
         html += createSeriesSection(t.iphoneSeries, iphoneItems);
         html += createSeriesSection(t.samsungSeries, samsungItems);
         html += createSeriesSection(t.pixelSeries, pixelItems);
-        
         container.innerHTML = html;
       }
 
-      // 翻页逻辑
       function slideToPage(index) {
-        if (index === 0) {
-          slider.style.transform = 'translateX(0)';
-        } else {
-          slider.style.transform = 'translateX(-50%)';
-        }
+        slider.style.transform = index === 0 ? 'translateX(0)' : 'translateX(-50%)';
       }
 
       goToPriceBtn.addEventListener('click', () => slideToPage(1));
       backBtn.addEventListener('click', () => slideToPage(0));
-
-      // 语言切换
       langSelect.addEventListener('change', (e) => {
         currentLang = e.target.value;
         updateUITexts(currentLang);
       });
 
-      // 彩虹动画结束后变为静态彩虹色
       mainLogo.addEventListener('animationend', () => {
         mainLogo.classList.remove('rainbow-text-animate');
         mainLogo.classList.add('rainbow-text-static');
       });
 
-      // 初始渲染
       updateUITexts('en');
       renderPriceCards('en');
-      
-      // 确保滑动容器初始位置
       slider.style.transform = 'translateX(0)';
     })();
   </script>
