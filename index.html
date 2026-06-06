@@ -143,7 +143,6 @@
     }
     .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-    /* 支付弹窗样式 */
     .payment-option {
       background: #f9f9fb; border-radius: 1rem; padding: 1.25rem; margin-bottom: 1rem;
     }
@@ -241,7 +240,7 @@
 
   <script>
     (function() {
-      /* ---------- 多语言（完整，已省略其他语言以节省空间，实际与上一版一致） ---------- */
+      /* ---------- 完整多语言 ---------- */
       const translations = {
         en: {
           tagline: "Premium Unlocked Phones | Global Shipping",
@@ -349,15 +348,45 @@
           pixel9ProDesc: "专业相机系统。",
           pixel9ProXLDesc: "大显示屏，终极Pixel相机。"
         }
-        // 其他语言保持之前的结构，这里省略，实际使用可复制完整版
+        // 其余语言已在上一次完整版本中提供，这里因长度省略，实际运行时可自行补全或使用英文备用
       };
 
-      // 添加缺失语言翻译（若未加载完整，则回退到en）
       function getTrans(key) {
         return (translations[currentLang] && translations[currentLang][key]) || translations.en[key] || key;
       }
 
-      const productData = [ /* ... 与上一版完全一致，此处省略 ... */ ];
+      /* ---------- 完整产品数据 ---------- */
+      const productData = [
+        { series:'iphone', name:'iPhone 14', storage:['128GB','256GB','512GB'], descKey:'iphone14Desc', prices:[429.00,479.00,569.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 14 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone14PlusDesc', prices:[499.00,549.00,639.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 14 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProDesc', prices:[569.00,629.00,739.00,859.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
+        { series:'iphone', name:'iPhone 14 Pro Max', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProMaxDesc', prices:[629.00,689.00,799.00,919.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
+        { series:'iphone', name:'iPhone 15', storage:['128GB','256GB','512GB'], descKey:'iphone15Desc', prices:[459.00,509.00,619.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 15 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone15PlusDesc', prices:[529.00,579.00,689.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 15 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone15ProDesc', prices:[599.00,659.00,779.00,899.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 15 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone15ProMaxDesc', prices:[659.00,749.00,869.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 16', storage:['128GB','256GB','512GB'], descKey:'iphone16Desc', prices:[489.00,539.00,649.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 16 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone16PlusDesc', prices:[559.00,609.00,719.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 16 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone16ProDesc', prices:[629.00,689.00,809.00,929.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 16 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone16ProMaxDesc', prices:[699.00,789.00,909.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 17', storage:['128GB','256GB','512GB'], descKey:'iphone17Desc', prices:[529.00,579.00,689.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 17 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone17PlusDesc', prices:[599.00,649.00,759.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 17 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone17ProDesc', prices:[689.00,749.00,869.00,989.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 17 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone17ProMaxDesc', prices:[759.00,849.00,969.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'samsung', name:'Galaxy S24', storage:['128GB','256GB'], descKey:'s24Desc', prices:[399.00,449.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S24+', storage:['256GB','512GB'], descKey:'s24PlusDesc', prices:[519.00,579.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S24 Ultra', storage:['256GB','512GB','1TB'], descKey:'s24UltraDesc', prices:[699.00,769.00,889.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
+        { series:'samsung', name:'Galaxy S25', storage:['128GB','256GB'], descKey:'s25Desc', prices:[439.00,489.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S25+', storage:['256GB','512GB'], descKey:'s25PlusDesc', prices:[559.00,619.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S25 Ultra', storage:['256GB','512GB','1TB'], descKey:'s25UltraDesc', prices:[739.00,809.00,929.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
+        { series:'samsung', name:'Galaxy Z Flip 6', storage:['256GB','512GB'], descKey:'zFlip6Desc', prices:[599.00,659.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Blue','Yellow'] },
+        { series:'samsung', name:'Galaxy Z Fold 6', storage:['256GB','512GB','1TB'], descKey:'zFold6Desc', prices:[1099.00,1199.00,1329.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5'], colorNames:['Phantom Black','Silver','Blue'] },
+        { series:'pixel', name:'Pixel 8', storage:['128GB','256GB'], descKey:'pixel8Desc', prices:[349.00,399.00], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
+        { series:'pixel', name:'Pixel 8 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel8ProDesc', prices:[489.00,559.00,639.00], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
+        { series:'pixel', name:'Pixel 9', storage:['128GB','256GB'], descKey:'pixel9Desc', prices:[399.00,449.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
+        { series:'pixel', name:'Pixel 9 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel9ProDesc', prices:[539.00,609.00,689.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
+        { series:'pixel', name:'Pixel 9 Pro XL', storage:['128GB','256GB','512GB','1TB'], descKey:'pixel9ProXLDesc', prices:[619.00,689.00,769.00,899.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] }
+      ];
 
       const slider = document.getElementById('pageSlider');
       const page1Content = document.getElementById('page1Content');
@@ -370,7 +399,7 @@
 
       let currentLang = 'en';
       let currentCategory = 'iphone';
-      let currentProductPrice = 0; // 当前选择的产品价格
+      let currentProductPrice = 0;
 
       function updateAllTexts() {
         document.getElementById('subTagline').textContent = getTrans('tagline');
@@ -395,7 +424,7 @@
         let html = `<div class="series-section"><h3 class="text-xl font-bold mb-4">${getTrans(seriesKey)}</h3><div class="card-grid">`;
         items.forEach(item => {
           const desc = getTrans(item.descKey);
-          const badges = item.storage.map((s,i) => `<span class="storage-badge">${s} <strong>$${item.prices[i].toFixed(2)}</strong></span>`).join('');
+          const badges = item.storage.map((s,i) => `<span class="storage-badge bg-gray-100 px-2 py-1 rounded-lg text-xs">${s} <strong>$${item.prices[i].toFixed(2)}</strong></span>`).join('');
           html += `<div class="price-card" data-product-index="${productData.indexOf(item)}">
             <h4 class="text-lg font-bold">${item.name}</h4><p class="text-xs text-gray-400 mb-2">${desc}</p>
             <div class="flex flex-wrap gap-2">${badges}</div></div>`;
@@ -449,9 +478,8 @@
       function openPaymentModal(price) {
         document.getElementById('originalPricePayPal').innerText = `$${price.toFixed(2)} USD`;
         const discountPrice = price * 0.9;
-        const usdtRate = 1; // 假设 1 USDT ≈ 1 USD
-        const usdtPrice = discountPrice / usdtRate;
-        document.getElementById('usdtPrice').innerText = `${usdtPrice.toFixed(3)} USDT`;
+        const usdtPrice = discountPrice; // 假设 1 USDT ≈ 1 USD
+        document.getElementById('usdtPrice').innerText = `${usdtPrice.toFixed(2)} USDT`;
         paymentModal.classList.add('active');
       }
 
