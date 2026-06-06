@@ -19,6 +19,35 @@
       margin: 0;
       overscroll-behavior: none;
     }
+    /* 微妙背景光晕动画 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -30%;
+      right: -20%;
+      width: 70%;
+      height: 80%;
+      background: radial-gradient(circle at 70% 30%, rgba(120,120,255,0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+      animation: bgGlow 12s ease-in-out infinite alternate;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -20%;
+      left: -15%;
+      width: 60%;
+      height: 70%;
+      background: radial-gradient(circle at 30% 70%, rgba(255,180,100,0.03) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+      animation: bgGlow 15s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes bgGlow {
+      0% { opacity: 0.6; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.08); }
+    }
     .page-container {
       display: flex;
       width: 200%;
@@ -26,6 +55,8 @@
       height: 100dvh;
       transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
       will-change: transform;
+      position: relative;
+      z-index: 1;
     }
     .page {
       width: 50%;
@@ -38,6 +69,8 @@
       scrollbar-width: thin;
       scrollbar-color: #d0d0d0 transparent;
       -webkit-overflow-scrolling: touch;
+      position: relative;
+      z-index: 1;
     }
     .page::-webkit-scrollbar {
       width: 5px;
@@ -56,6 +89,10 @@
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes subtlePulse {
+      0%, 100% { box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+      50% { box-shadow: 0 12px 32px rgba(0,0,0,0.22); }
     }
     .rainbow-text-animate {
       background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d);
@@ -83,8 +120,8 @@
     .fade-in-up:nth-child(2) { animation-delay: 2.65s; }
     .fade-in-up:nth-child(3) { animation-delay: 2.8s; }
     .btn-view-price {
-      animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards;
-      animation-delay: 3s;
+      animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards, subtlePulse 3s ease-in-out 3.5s infinite;
+      animation-delay: 3s, 3.5s;
       opacity: 0;
     }
     .btn-copyright {
@@ -102,17 +139,34 @@
       transform: translateX(12px);
     }
     .price-card {
-      transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+      transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.35s cubic-bezier(0.32, 0.72, 0, 1), border-color 0.35s ease;
       background: #ffffff;
       border-radius: 1.5rem;
       padding: 1.5rem;
       box-shadow: 0 4px 16px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.02);
       border: 1px solid rgba(0,0,0,0.04);
       cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(120,120,255,0.15), rgba(255,150,100,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .price-card:hover::before {
+      opacity: 1;
     }
     .price-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 16px 32px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.05);
+      border-color: rgba(0,0,0,0.08);
     }
     .price-card:active {
       transform: translateY(-2px);
@@ -134,6 +188,24 @@
         padding: 1.25rem;
         border-radius: 1.25rem;
       }
+      /* 移动端语言选择器下移避免与sticky标题重叠 */
+      .lang-select-wrapper {
+        top: 0.75rem !important;
+        right: 0.75rem !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .lang-select-wrapper {
+        top: 0.5rem !important;
+        right: 0.5rem !important;
+      }
+    }
+    .lang-select-wrapper {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 60;
+      transition: all 0.3s ease;
     }
     .lang-select {
       background: rgba(255,255,255,0.85);
@@ -157,7 +229,7 @@
     }
     .lang-select:hover {
       border-color: rgba(0,0,0,0.15);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
     }
     .whatsapp-btn {
       display: inline-flex;
@@ -184,13 +256,13 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%);
+      background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 50%);
       border-radius: 3rem;
       pointer-events: none;
     }
     .whatsapp-btn:hover {
       background: #1fbf57;
-      box-shadow: 0 14px 36px rgba(37, 211, 102, 0.45);
+      box-shadow: 0 16px 40px rgba(37, 211, 102, 0.5);
       transform: translateY(-3px);
     }
     .whatsapp-btn:active {
@@ -223,19 +295,21 @@
       font-size: 0.95rem;
       min-height: 44px;
       min-width: 44px;
+      position: relative;
+      z-index: 5;
     }
     .nav-btn-back {
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       color: #555;
       border: 1px solid rgba(0,0,0,0.06);
     }
     .nav-btn-back:hover {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.92);
       color: #111;
-      border-color: rgba(0,0,0,0.12);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      border-color: rgba(0,0,0,0.14);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
     }
     .nav-btn-back:active {
       transform: scale(0.96);
@@ -259,7 +333,7 @@
     }
     .cta-btn:hover {
       background: #000;
-      box-shadow: 0 14px 32px rgba(0,0,0,0.22);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.25);
       transform: translateY(-3px);
     }
     .cta-btn:active {
@@ -282,14 +356,19 @@
       font-size: 0.8rem;
       font-weight: 500;
       color: #555;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
     .storage-badge strong {
       color: #1d1d1f;
       font-weight: 700;
+      transition: color 0.25s ease;
     }
     .storage-badge:hover {
-      background: #eeeef1;
+      background: #e8e8ed;
+      transform: translateY(-1px);
+    }
+    .storage-badge:hover strong {
+      color: #000;
     }
     @media (max-width: 480px) {
       .whatsapp-btn {
@@ -302,11 +381,24 @@
         font-size: 0.95rem;
       }
     }
+    /* 第二页sticky标题栏安全区 */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      background: rgba(250,250,250,0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 0.75rem 0;
+      z-index: 10;
+      border-radius: 0 0 1.5rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
 
-  <div class="fixed top-4 right-4 md:top-6 md:right-6 z-50 flex items-center gap-2">
+  <!-- 语言切换器 - 增加包裹层优化定位 -->
+  <div class="lang-select-wrapper">
     <select id="languageSelect" class="lang-select shadow-sm">
       <option value="en">English</option>
       <option value="zh">中文</option>
@@ -354,9 +446,10 @@
     <div class="page bg-[#fafafa]">
       <div class="max-w-4xl mx-auto">
         
-        <div class="flex items-center justify-between mb-8 mt-1 sticky top-0 bg-[#fafafa]/80 backdrop-blur-md py-3 z-10 rounded-b-2xl">
-          <h2 id="priceListTitle" class="section-title text-2xl sm:text-3xl text-gray-900">Price List</h2>
-          <button id="backToHomeBtn" class="nav-btn nav-btn-back">
+        <!-- 优化后的sticky标题栏，给语言选择器留足空间 -->
+        <div class="sticky-header flex items-center justify-between">
+          <h2 id="priceListTitle" class="section-title text-xl sm:text-2xl md:text-3xl text-gray-900 truncate mr-3">Price List</h2>
+          <button id="backToHomeBtn" class="nav-btn nav-btn-back flex-shrink-0">
             <i class="fas fa-arrow-left text-xs"></i>
             <span id="backText">Back</span>
           </button>
@@ -364,9 +457,10 @@
         
         <div id="priceContentContainer" class="space-y-10 pb-4"></div>
         
+        <!-- 修改此处：WhatsApp号码已更新 -->
         <div class="mt-12 mb-6 flex flex-col items-center gap-4">
           <p class="text-gray-400 text-xs tracking-wide uppercase font-medium">Have questions?</p>
-          <a href="https://wa.me/15203489531" 
+          <a href="https://wa.me/12139362929" 
              target="_blank" 
              rel="noopener noreferrer" 
              class="whatsapp-btn"
