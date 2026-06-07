@@ -224,7 +224,7 @@
 
   <script>
     (function() {
-      // ==================== 多语言翻译 (10种语言) ====================
+      // ==================== 多语言翻译 (10种语言，完整保留) ====================
       const translations = {
         en: {
           tagline: "Premium Unlocked Phones | Global Shipping",
@@ -590,37 +590,54 @@
         }
       };
 
-      // ==================== 产品数据（价格已下调 5%） ====================
+      // ==================== 产品数据（二手市场价 -8%） ====================
       const productData = [
-        { series:'iphone', name:'iPhone 14', storage:['128GB','256GB','512GB'], descKey:'iphone14Desc', prices:[407.55,455.05,540.55], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 14 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone14PlusDesc', prices:[474.05,521.55,607.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 14 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProDesc', prices:[540.55,597.55,702.05,816.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
-        { series:'iphone', name:'iPhone 14 Pro Max', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProMaxDesc', prices:[597.55,654.55,759.05,873.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
-        { series:'iphone', name:'iPhone 15', storage:['128GB','256GB','512GB'], descKey:'iphone15Desc', prices:[436.05,483.55,588.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 15 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone15PlusDesc', prices:[502.55,550.05,654.55], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 15 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone15ProDesc', prices:[569.05,626.05,740.05,854.05], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 15 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone15ProMaxDesc', prices:[626.05,711.55,825.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 16', storage:['128GB','256GB','512GB'], descKey:'iphone16Desc', prices:[464.55,512.05,616.55], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 16 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone16PlusDesc', prices:[531.05,578.55,683.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 16 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone16ProDesc', prices:[597.55,654.55,768.55,882.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 16 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone16ProMaxDesc', prices:[664.05,749.55,863.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 17', storage:['128GB','256GB','512GB'], descKey:'iphone17Desc', prices:[502.55,550.05,654.55], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 17 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone17PlusDesc', prices:[569.05,616.55,721.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 17 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone17ProDesc', prices:[654.55,711.55,825.55,939.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 17 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone17ProMaxDesc', prices:[721.05,806.55,920.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'samsung', name:'Galaxy S24', storage:['128GB','256GB'], descKey:'s24Desc', prices:[379.05,426.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S24+', storage:['256GB','512GB'], descKey:'s24PlusDesc', prices:[493.05,550.05], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S24 Ultra', storage:['256GB','512GB','1TB'], descKey:'s24UltraDesc', prices:[664.05,730.55,844.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
-        { series:'samsung', name:'Galaxy S25', storage:['128GB','256GB'], descKey:'s25Desc', prices:[417.05,464.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S25+', storage:['256GB','512GB'], descKey:'s25PlusDesc', prices:[531.05,588.05], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S25 Ultra', storage:['256GB','512GB','1TB'], descKey:'s25UltraDesc', prices:[702.05,768.55,882.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
-        { series:'samsung', name:'Galaxy Z Flip 6', storage:['256GB','512GB'], descKey:'zFlip6Desc', prices:[569.05,626.05], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Blue','Yellow'] },
-        { series:'samsung', name:'Galaxy Z Fold 6', storage:['256GB','512GB','1TB'], descKey:'zFold6Desc', prices:[1044.05,1139.05,1262.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5'], colorNames:['Phantom Black','Silver','Blue'] },
-        { series:'pixel', name:'Pixel 8', storage:['128GB','256GB'], descKey:'pixel8Desc', prices:[331.55,379.05], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
-        { series:'pixel', name:'Pixel 8 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel8ProDesc', prices:[464.55,531.05,607.05], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
-        { series:'pixel', name:'Pixel 9', storage:['128GB','256GB'], descKey:'pixel9Desc', prices:[379.05,426.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
-        { series:'pixel', name:'Pixel 9 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel9ProDesc', prices:[512.05,578.55,654.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
-        { series:'pixel', name:'Pixel 9 Pro XL', storage:['128GB','256GB','512GB','1TB'], descKey:'pixel9ProXLDesc', prices:[588.05,654.55,730.55,854.05], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] }
+        // iPhone 14 系列（二手 -8%）
+        { series:'iphone', name:'iPhone 14', storage:['128GB','256GB','512GB'], descKey:'iphone14Desc', prices:[303.60, 337.60, 388.40], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 14 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone14PlusDesc', prices:[342.80, 380.80, 435.60], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 14 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProDesc', prices:[427.80, 473.20, 555.60, 644.40], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
+        { series:'iphone', name:'iPhone 14 Pro Max', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProMaxDesc', prices:[473.20, 518.60, 601.00, 689.80], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
+
+        // iPhone 15 系列（二手 -8%）
+        { series:'iphone', name:'iPhone 15', storage:['128GB','256GB','512GB'], descKey:'iphone15Desc', prices:[411.60, 454.80, 542.40], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 15 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone15PlusDesc', prices:[465.60, 508.80, 596.40], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 15 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone15ProDesc', prices:[524.40, 573.20, 672.40, 771.60], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 15 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone15ProMaxDesc', prices:[573.20, 652.40, 741.20], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+
+        // iPhone 16 系列（全新）
+        { series:'iphone', name:'iPhone 16', storage:['128GB','256GB','512GB'], descKey:'iphone16Desc', prices:[599.00, 659.00, 779.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 16 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone16PlusDesc', prices:[699.00, 759.00, 879.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 16 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone16ProDesc', prices:[799.00, 859.00, 979.00, 1099.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 16 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone16ProMaxDesc', prices:[899.00, 999.00, 1119.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+
+        // iPhone 17 系列（最新款）
+        { series:'iphone', name:'iPhone 17', storage:['128GB','256GB','512GB'], descKey:'iphone17Desc', prices:[649.00, 709.00, 829.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 17 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone17PlusDesc', prices:[749.00, 809.00, 929.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 17 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone17ProDesc', prices:[849.00, 909.00, 1029.00, 1149.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 17 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone17ProMaxDesc', prices:[949.00, 1049.00, 1169.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+
+        // Samsung Galaxy S24 系列（二手 -8%）
+        { series:'samsung', name:'Galaxy S24', storage:['128GB','256GB'], descKey:'s24Desc', prices:[303.60, 337.60], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S24+', storage:['256GB','512GB'], descKey:'s24PlusDesc', prices:[380.80, 435.60], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S24 Ultra', storage:['256GB','512GB','1TB'], descKey:'s24UltraDesc', prices:[518.60, 601.00, 689.80], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
+
+        // Samsung Galaxy S25 系列（同年参考二手）
+        { series:'samsung', name:'Galaxy S25', storage:['128GB','256GB'], descKey:'s25Desc', prices:[359.00, 399.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S25+', storage:['256GB','512GB'], descKey:'s25PlusDesc', prices:[459.00, 519.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S25 Ultra', storage:['256GB','512GB','1TB'], descKey:'s25UltraDesc', prices:[599.00, 679.00, 779.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
+
+        // Samsung Galaxy Z 系列（二手 -8%）
+        { series:'samsung', name:'Galaxy Z Flip 6', storage:['256GB','512GB'], descKey:'zFlip6Desc', prices:[473.20, 518.60], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Blue','Yellow'] },
+        { series:'samsung', name:'Galaxy Z Fold 6', storage:['256GB','512GB','1TB'], descKey:'zFold6Desc', prices:[899.00, 979.00, 1099.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5'], colorNames:['Phantom Black','Silver','Blue'] },
+
+        // Google Pixel 8 系列（二手 -8%）
+        { series:'pixel', name:'Pixel 8', storage:['128GB','256GB'], descKey:'pixel8Desc', prices:[257.60, 294.40], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
+        { series:'pixel', name:'Pixel 8 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel8ProDesc', prices:[370.00, 420.00, 490.00], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
+
+        // Google Pixel 9 系列（同年参考二手）
+        { series:'pixel', name:'Pixel 9', storage:['128GB','256GB'], descKey:'pixel9Desc', prices:[349.00, 399.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
+        { series:'pixel', name:'Pixel 9 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel9ProDesc', prices:[449.00, 519.00, 599.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
+        { series:'pixel', name:'Pixel 9 Pro XL', storage:['128GB','256GB','512GB','1TB'], descKey:'pixel9ProXLDesc', prices:[549.00, 619.00, 699.00, 799.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] }
       ];
 
       const slider = document.getElementById('pageSlider');
@@ -837,7 +854,6 @@
       pricePage.addEventListener('scroll', ()=>backToTopBtn.classList.toggle('visible', pricePage.scrollTop>400));
       backToTopBtn.addEventListener('click', ()=>pricePage.scrollTo({top:0,behavior:'smooth'}));
 
-      // Logo 动画结束后切换为静态彩虹色
       mainLogo.addEventListener('animationend', () => {
         mainLogo.classList.remove('rainbow-text-animate');
         mainLogo.classList.add('rainbow-text-static');
