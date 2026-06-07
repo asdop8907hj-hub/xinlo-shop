@@ -8,12 +8,9 @@
   <meta name="keywords" content="unlocked phones, iPhone, Samsung, Pixel, wholesale phones, USDT payment">
   <meta name="theme-color" content="#1d1d1f">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
-  <!-- Tailwind CSS v3 CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome 6 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ============ 全局重置 ============ */
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
     :root {
       --bg-primary: #ffffff;
@@ -37,293 +34,90 @@
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-primary);
-      overflow: hidden;
-      margin: 0;
-      overscroll-behavior: none;
-      -webkit-font-smoothing: antialiased;
+      background-color: var(--bg-primary); overflow: hidden; margin: 0; overscroll-behavior: none; -webkit-font-smoothing: antialiased;
     }
-    /* 动态背景光晕 */
-    body::before {
-      content: ''; position: fixed; top: -30%; right: -20%; width: 70%; height: 80%;
-      background: radial-gradient(circle at 70% 30%, rgba(120,120,255,0.03) 0%, transparent 60%);
-      pointer-events: none; z-index: 0; animation: bgGlow 12s ease-in-out infinite alternate;
-    }
-    body::after {
-      content: ''; position: fixed; bottom: -20%; left: -15%; width: 60%; height: 70%;
-      background: radial-gradient(circle at 30% 70%, rgba(255,180,100,0.02) 0%, transparent 60%);
-      pointer-events: none; z-index: 0; animation: bgGlow 15s ease-in-out infinite alternate-reverse;
-    }
+    body::before { content: ''; position: fixed; top: -30%; right: -20%; width: 70%; height: 80%; background: radial-gradient(circle at 70% 30%, rgba(120,120,255,0.03) 0%, transparent 60%); pointer-events: none; z-index: 0; animation: bgGlow 12s ease-in-out infinite alternate; }
+    body::after { content: ''; position: fixed; bottom: -20%; left: -15%; width: 60%; height: 70%; background: radial-gradient(circle at 30% 70%, rgba(255,180,100,0.02) 0%, transparent 60%); pointer-events: none; z-index: 0; animation: bgGlow 15s ease-in-out infinite alternate-reverse; }
     @keyframes bgGlow { 0% { opacity: 0.5; transform: scale(1); } 100% { opacity: 1; transform: scale(1.06); } }
-
-    /* ============ 双页滑动容器 ============ */
-    .page-container {
-      display: flex; width: 200%; height: 100vh; height: 100dvh;
-      transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
-      will-change: transform; position: relative; z-index: 1;
-    }
-    .page {
-      width: 50%; height: 100vh; height: 100dvh; overflow-y: auto; overflow-x: hidden;
-      padding: 2rem; scrollbar-width: thin; scrollbar-color: #d0d0d0 transparent;
-      -webkit-overflow-scrolling: touch;
-    }
+    .page-container { display: flex; width: 200%; height: 100vh; height: 100dvh; transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1); will-change: transform; position: relative; z-index: 1; }
+    .page { width: 50%; height: 100vh; height: 100dvh; overflow-y: auto; overflow-x: hidden; padding: 2rem; scrollbar-width: thin; scrollbar-color: #d0d0d0 transparent; -webkit-overflow-scrolling: touch; }
     .page::-webkit-scrollbar { width: 5px; }
     .page::-webkit-scrollbar-track { background: transparent; }
     .page::-webkit-scrollbar-thumb { background-color: #d0d0d0; border-radius: 10px; }
-
-    /* ============ 动画关键帧 ============ */
-    @keyframes starFlyIn {
-      0% { left: -5%; transform: scale(0.2); opacity: 0; }
-      15% { opacity: 1; }
-      75% { left: 82%; transform: scale(1.3); opacity: 1; }
-      90% { left: 90%; transform: scale(1.1); opacity: 0.7; }
-      100% { left: 98%; transform: scale(0.6); opacity: 0; }
-    }
-    @keyframes trailGrow {
-      0% { width: 0; opacity: 0; }
-      20% { opacity: 0.9; }
-      80% { width: 80%; opacity: 0.8; }
-      100% { width: 96%; opacity: 0; }
-    }
-    @keyframes textReveal {
-      0% { opacity: 0; transform: scale(0.7) translateY(10px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes subtlePulse {
-      0%, 100% { box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
-      50% { box-shadow: 0 14px 34px rgba(0,0,0,0.2); }
-    }
-    @keyframes modalSlideUp {
-      from { opacity: 0; transform: translateY(40px) scale(0.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    @keyframes successBounce {
-      0% { transform: scale(0); }
-      60% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-6px); }
-      75% { transform: translateX(6px); }
-    }
-
-    /* ============ Logo 动画 ============ */
-    .logo-wrapper {
-      position: relative; height: 150px; width: 100%;
-      display: flex; align-items: center; justify-content: center;
-      overflow: visible; margin-bottom: 0.5rem;
-      transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1);
-    }
-    .logo-wrapper.shifted {
-      opacity: 0.4; transform: scale(0.85);
-    }
-    .logo-star {
-      position: absolute; font-size: 2rem; z-index: 2; opacity: 0;
-      animation: starFlyIn 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-      filter: drop-shadow(0 0 14px rgba(255,200,0,0.7));
-      left: 5%;
-    }
-    .logo-trail {
-      position: absolute; height: 3px; border-radius: 3px;
-      background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d);
-      background-size: 400% auto; animation: trailGrow 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-      top: 50%; left: 0; width: 0; z-index: 1; filter: blur(1px); opacity: 0.8;
-    }
-    .logo-text-final {
-      position: absolute; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900;
-      letter-spacing: -0.04em;
-      background: linear-gradient(90deg, #ff6b6b, #fca13e, #f8e81c, #56c596, #5c9cec, #ae7ef2, #ff6b6b);
-      background-size: 200% auto;
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      opacity: 0; transform: scale(0.7) translateY(10px);
-      animation: textReveal 0.55s cubic-bezier(0.32, 0.72, 0, 1) 2s forwards;
-      z-index: 3;
-    }
-
-    /* ============ 同步淡入元素 ============ */
+    @keyframes starFlyIn { 0% { left: -5%; transform: scale(0.2); opacity: 0; } 15% { opacity: 1; } 75% { left: 82%; transform: scale(1.3); opacity: 1; } 90% { left: 90%; transform: scale(1.1); opacity: 0.7; } 100% { left: 98%; transform: scale(0.6); opacity: 0; } }
+    @keyframes trailGrow { 0% { width: 0; opacity: 0; } 20% { opacity: 0.9; } 80% { width: 80%; opacity: 0.8; } 100% { width: 96%; opacity: 0; } }
+    @keyframes textReveal { 0% { opacity: 0; transform: scale(0.7) translateY(10px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes subtlePulse { 0%, 100% { box-shadow: 0 8px 24px rgba(0,0,0,0.12); } 50% { box-shadow: 0 14px 34px rgba(0,0,0,0.2); } }
+    @keyframes modalSlideUp { from { opacity: 0; transform: translateY(40px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes successBounce { 0% { transform: scale(0); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+    .logo-wrapper { position: relative; height: 150px; width: 100%; display: flex; align-items: center; justify-content: center; overflow: visible; margin-bottom: 0.5rem; transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1); }
+    .logo-wrapper.shifted { opacity: 0.4; transform: scale(0.85); }
+    .logo-star { position: absolute; font-size: 2rem; z-index: 2; opacity: 0; animation: starFlyIn 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; filter: drop-shadow(0 0 14px rgba(255,200,0,0.7)); left: 5%; }
+    .logo-trail { position: absolute; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d); background-size: 400% auto; animation: trailGrow 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; top: 50%; left: 0; width: 0; z-index: 1; filter: blur(1px); opacity: 0.8; }
+    .logo-text-final { position: absolute; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; letter-spacing: -0.04em; background: linear-gradient(90deg, #ff6b6b, #fca13e, #f8e81c, #56c596, #5c9cec, #ae7ef2, #ff6b6b); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; opacity: 0; transform: scale(0.7) translateY(10px); animation: textReveal 0.55s cubic-bezier(0.32, 0.72, 0, 1) 2s forwards; z-index: 3; }
     .sync-fade { opacity: 0; animation: fadeInUp 0.65s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
     .sync-fade:nth-child(1) { animation-delay: 1.7s; }
     .sync-fade:nth-child(2) { animation-delay: 1.9s; }
     .sync-fade:nth-child(3) { animation-delay: 2.1s; }
     .btn-sync { opacity: 0; animation: fadeInUp 0.65s cubic-bezier(0.32, 0.72, 0, 1) forwards, subtlePulse 3s ease-in-out 3s infinite; animation-delay: 2.3s; }
-
-    /* ============ 页面过渡 ============ */
     .page-1-content { transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1); }
     .page-1-content.shifted { opacity: 0.25; transform: scale(0.95); pointer-events: none; }
     .page-2-content { transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1); opacity: 0.4; transform: translateX(35px); }
     .page-2-content.entered { opacity: 1; transform: translateX(0); }
-
-    /* ============ 组件样式 ============ */
-    .price-card {
-      transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.3s;
-      background: #fff; border-radius: var(--radius-lg); padding: 1.5rem;
-      box-shadow: var(--shadow-sm); border: 1px solid var(--border); cursor: pointer;
-      position: relative; overflow: hidden;
-    }
-    .price-card::after {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(120,120,255,0.1), transparent);
-      opacity: 0; transition: opacity 0.3s;
-    }
+    .price-card { transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.3s; background: #fff; border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm); border: 1px solid var(--border); cursor: pointer; position: relative; overflow: hidden; }
+    .price-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(120,120,255,0.1), transparent); opacity: 0; transition: opacity 0.3s; }
     .price-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .price-card:hover::after { opacity: 1; }
     .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-
-    /* ============ 响应式 ============ */
-    @media (max-width: 768px) {
-      .card-grid { grid-template-columns: 1fr; }
-      .page { padding: 1rem; }
-      .price-card { padding: 1.25rem; border-radius: var(--radius-md); }
-      .logo-wrapper { height: 120px; }
-    }
-    @media (max-width: 480px) {
-      .page { padding: 0.75rem; }
-      .logo-wrapper { height: 100px; }
-    }
-
-    /* ============ 语言选择器 ============ */
+    @media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } .page { padding: 1rem; } .price-card { padding: 1.25rem; border-radius: var(--radius-md); } .logo-wrapper { height: 120px; } }
+    @media (max-width: 480px) { .page { padding: 0.75rem; } .logo-wrapper { height: 100px; } }
     .lang-select-wrapper { position: fixed; top: 1.25rem; left: 1.25rem; z-index: 60; }
-    .lang-select {
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(16px);
-      border: 1px solid var(--border); border-radius: var(--radius-full);
-      padding: 0.45rem 2rem 0.45rem 1rem; font-size: 0.85rem; font-weight: 500;
-      color: var(--text-primary); appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 0.65rem center;
-      cursor: pointer; transition: all 0.25s;
-    }
+    .lang-select { background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); border: 1px solid var(--border); border-radius: var(--radius-full); padding: 0.45rem 2rem 0.45rem 1rem; font-size: 0.85rem; font-weight: 500; color: var(--text-primary); appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.65rem center; cursor: pointer; transition: all 0.25s; }
     .lang-select:hover { border-color: rgba(0,0,0,0.18); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-
-    /* ============ 导航按钮 ============ */
-    .nav-btn {
-      padding: 0.55rem 1.2rem; border-radius: var(--radius-full); font-weight: 500;
-      border: none; background: rgba(255,255,255,0.7); backdrop-filter: blur(12px);
-      color: var(--text-secondary); cursor: pointer; transition: all 0.25s;
-      font-size: 0.9rem; min-height: 40px;
-    }
+    .nav-btn { padding: 0.55rem 1.2rem; border-radius: var(--radius-full); font-weight: 500; border: none; background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); color: var(--text-secondary); cursor: pointer; transition: all 0.25s; font-size: 0.9rem; min-height: 40px; }
     .nav-btn:hover { background: white; color: var(--text-primary); box-shadow: var(--shadow-sm); }
-    .address-book-btn {
-      background: none; border: none; color: var(--text-secondary); cursor: pointer;
-      padding: 0.4rem; border-radius: 50%; transition: all 0.2s; font-size: 1.1rem;
-    }
+    .address-book-btn { background: none; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.4rem; border-radius: 50%; transition: all 0.2s; font-size: 1.1rem; }
     .address-book-btn:hover { background: rgba(0,0,0,0.04); color: var(--text-primary); }
-
-    /* ============ 主要按钮 ============ */
-    .cta-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 0.95rem 2.5rem; background: var(--accent); color: white;
-      font-weight: 600; border-radius: var(--radius-full); box-shadow: var(--shadow-md);
-      transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-      border: none; font-size: 1rem; min-height: 52px; cursor: pointer;
-    }
+    .cta-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.95rem 2.5rem; background: var(--accent); color: white; font-weight: 600; border-radius: var(--radius-full); box-shadow: var(--shadow-md); transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1); border: none; font-size: 1rem; min-height: 52px; cursor: pointer; }
     .cta-btn:hover { background: var(--accent-hover); transform: translateY(-3px); box-shadow: 0 16px 36px rgba(0,0,0,0.2); }
     .cta-btn:active { transform: translateY(0); }
-
-    /* ============ 弹窗 ============ */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(8px);
-      z-index: 100; display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s;
-    }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(8px); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
-    .modal-content {
-      background: white; border-radius: var(--radius-xl); padding: 2rem;
-      max-width: 520px; width: 92%; max-height: 85vh; overflow-y: auto;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-      animation: modalSlideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1); position: relative;
-    }
-
-    /* ============ 其他组件 ============ */
-    .color-dot {
-      width: 30px; height: 30px; border-radius: 50%; display: inline-block;
-      border: 2px solid transparent; cursor: pointer; transition: all 0.2s; margin: 0 5px;
-    }
+    .modal-content { background: white; border-radius: var(--radius-xl); padding: 2rem; max-width: 520px; width: 92%; max-height: 85vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.2); animation: modalSlideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1); position: relative; }
+    .color-dot { width: 30px; height: 30px; border-radius: 50%; display: inline-block; border: 2px solid transparent; cursor: pointer; transition: all 0.2s; margin: 0 5px; }
     .color-dot:hover { transform: scale(1.1); }
     .color-dot.selected { border-color: var(--accent); transform: scale(1.2); box-shadow: 0 0 0 4px rgba(0,0,0,0.06); }
-    .back-to-top {
-      position: fixed; bottom: 25px; right: 25px; z-index: 50; width: 44px; height: 44px;
-      border-radius: 50%; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
-      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
-      display: flex; align-items: center; justify-content: center; cursor: pointer;
-      opacity: 0; transform: translateY(12px); pointer-events: none; transition: all 0.3s;
-    }
+    .back-to-top { position: fixed; bottom: 25px; right: 25px; z-index: 50; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border: 1px solid var(--border); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: all 0.3s; }
     .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .payment-option { background: #f9f9fb; border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1rem; }
-    .address-text {
-      word-break: break-all; background: #eef; padding: 0.75rem; border-radius: var(--radius-sm);
-      font-family: monospace; font-size: 0.85rem; margin: 0.75rem 0;
-    }
-    .saved-address-item {
-      background: #f5f5f7; border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem;
-      cursor: pointer; border: 1px solid transparent; transition: all 0.2s;
-    }
+    .address-text { word-break: break-all; background: #eef; padding: 0.75rem; border-radius: var(--radius-sm); font-family: monospace; font-size: 0.85rem; margin: 0.75rem 0; }
+    .saved-address-item { background: #f5f5f7; border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem; cursor: pointer; border: 1px solid transparent; transition: all 0.2s; }
     .saved-address-item:hover { border-color: var(--accent); background: #fff; }
-    .upload-area {
-      border: 2px dashed #d0d0d0; border-radius: var(--radius-md); padding: 1.5rem;
-      text-align: center; cursor: pointer; transition: all 0.25s;
-    }
+    .upload-area { border: 2px dashed #d0d0d0; border-radius: var(--radius-md); padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.25s; }
     .upload-area:hover { border-color: #888; background: #fafafa; }
     .upload-preview { max-width: 100%; max-height: 200px; border-radius: var(--radius-sm); margin-top: 0.5rem; display: none; }
     .order-summary-line { display: flex; justify-content: space-between; padding: 0.3rem 0; font-size: 0.9rem; }
-
-    /* ============ 用户中心按钮 ============ */
-    .user-center-btn {
-      position: fixed; bottom: 80px; right: 25px; z-index: 50; width: 44px; height: 44px;
-      border-radius: 50%; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
-      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
-      display: flex; align-items: center; justify-content: center; cursor: pointer;
-      transition: all 0.3s; font-size: 1.1rem; color: var(--text-secondary);
-    }
+    .user-center-btn { position: fixed; bottom: 80px; right: 25px; z-index: 50; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border: 1px solid var(--border); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; font-size: 1.1rem; color: var(--text-secondary); }
     .user-center-btn:hover { background: white; box-shadow: var(--shadow-md); color: var(--text-primary); }
     .user-center-modal .modal-content { max-width: 600px; }
-    .order-item {
-      border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem;
-      background: #fafafa; transition: all 0.2s;
-    }
+    .order-item { border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem; background: #fafafa; transition: all 0.2s; }
     .order-item:hover { background: #fff; box-shadow: var(--shadow-sm); }
-
-    /* ============ 数量选择器 ============ */
-    .quantity-btn {
-      width: 38px; height: 38px; border-radius: 50%; border: 1px solid #ddd;
-      background: white; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.2s; user-select: none;
-    }
+    .quantity-btn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid #ddd; background: white; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; user-select: none; }
     .quantity-btn:hover { background: #f0f0f5; border-color: #bbb; }
-    .quantity-input {
-      width: 55px; text-align: center; font-size: 1.1rem; font-weight: 600;
-      border: 1px solid #ddd; border-radius: var(--radius-sm); padding: 0.35rem;
-      appearance: textfield; -moz-appearance: textfield;
-    }
-    .quantity-input::-webkit-inner-spin-button,
-    .quantity-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-
-    /* ============ 表单验证 ============ */
+    .quantity-input { width: 55px; text-align: center; font-size: 1.1rem; font-weight: 600; border: 1px solid #ddd; border-radius: var(--radius-sm); padding: 0.35rem; appearance: textfield; -moz-appearance: textfield; }
+    .quantity-input::-webkit-inner-spin-button, .quantity-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     .input-error { border-color: var(--error) !important; background: #fef2f2 !important; animation: shake 0.4s; }
     .error-msg { color: var(--error); font-size: 0.72rem; margin-top: 0.2rem; display: none; }
     .error-msg.show { display: block; }
     .success-icon { animation: successBounce 0.5s cubic-bezier(0.32, 0.72, 0, 1); }
-
-    /* ============ 滑动指示器 ============ */
-    .swipe-hint {
-      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-      color: rgba(0,0,0,0.25); font-size: 0.75rem; pointer-events: none;
-      display: flex; flex-direction: column; align-items: center; gap: 4px;
-      animation: fadeInUp 0.5s 2.5s forwards; opacity: 0;
-    }
+    .swipe-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(0,0,0,0.25); font-size: 0.75rem; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 4px; animation: fadeInUp 0.5s 2.5s forwards; opacity: 0; }
     .swipe-hint i { font-size: 1rem; animation: bounceHint 2s infinite; }
-    @keyframes bounceHint {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
+    @keyframes bounceHint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
   </style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
-  <!-- 语言选择器 -->
   <div class="lang-select-wrapper">
     <select id="languageSelect" class="lang-select shadow-sm">
       <option value="en">🇺🇸 English</option>
@@ -339,12 +133,9 @@
     </select>
   </div>
 
-  <!-- 双页容器 -->
   <div id="pageSlider" class="page-container">
-    <!-- 第1页：主页 -->
     <div class="page flex flex-col items-center justify-center text-center relative bg-white" id="page1">
       <div id="page1Content" class="page-1-content max-w-xl w-full mx-auto flex flex-col items-center px-4">
-        <!-- Logo动画 -->
         <div class="logo-wrapper" id="logoWrapper">
           <span class="logo-star" id="logoStar">✨</span>
           <div class="logo-trail" id="logoTrail"></div>
@@ -352,9 +143,9 @@
         </div>
         <p id="subTagline" class="sync-fade text-sm sm:text-base md:text-lg text-gray-400 font-medium mb-8 tracking-wide">Premium Unlocked Phones | Global Shipping</p>
         <div id="introText" class="space-y-3 text-gray-500 text-sm sm:text-base max-w-md mx-auto mb-8 leading-relaxed">
-          <p class="sync-fade">Global supplier of genuine unlocked smartphones.</p>
-          <p class="sync-fade">Every device brand new, worldwide express shipping.</p>
-          <p class="sync-fade">Secure payments, transparent pricing, dedicated support.</p>
+          <p class="sync-fade">Global supplier of genuine unlocked smartphones, sourced directly from authorized channels.</p>
+          <p class="sync-fade">Every device is brand new, unopened, and ready for worldwide express shipping with full warranty.</p>
+          <p class="sync-fade">Secure USDT payments, transparent pricing, and dedicated customer support team.</p>
         </div>
         <button id="goToPriceBtn" class="btn-sync cta-btn group">
           <span id="viewPriceText">View Price List</span>
@@ -370,7 +161,6 @@
       <div class="swipe-hint"><i class="fas fa-chevron-up"></i><span>Swipe for prices</span></div>
     </div>
 
-    <!-- 第2页：价格表 -->
     <div class="page bg-[#fafafa]" id="pricePage">
       <div class="max-w-4xl mx-auto page-2-content" id="page2Content">
         <div class="sticky top-0 bg-[#fafafa]/85 backdrop-blur-md py-3 z-10 flex items-center justify-between mb-6">
@@ -390,12 +180,9 @@
     </div>
   </div>
 
-  <!-- 回到顶部 -->
   <div class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></div>
-  <!-- 用户中心 -->
   <div class="user-center-btn" id="userCenterBtn" title="My Orders"><i class="fas fa-user"></i></div>
 
-  <!-- 弹窗容器 -->
   <div class="modal-overlay" id="productModal"><div class="modal-content" id="modalContent"></div></div>
   <div class="modal-overlay" id="addressModal"><div class="modal-content" id="addressModalContent"></div></div>
   <div class="modal-overlay" id="addressBookModal"><div class="modal-content" id="addressBookContent"></div></div>
@@ -405,63 +192,34 @@
 
   <script>
     (function() {
-      // ==================== 完整多语言 (10种语言) ====================
       const translations = {
         en: {
           tagline: "Premium Unlocked Phones | Global Shipping",
           intro1: "Global supplier of genuine unlocked smartphones, sourced directly from authorized channels.",
           intro2: "Every device is brand new, unopened, and ready for worldwide express shipping with full warranty.",
           intro3: "Secure USDT payments, transparent pricing, and dedicated customer support team.",
-          viewPrice: "View Price List",
-          copyright: "© 2026 Xinlo. All rights reserved.",
-          priceTitle: "Price List",
-          back: "Back",
-          iphoneSeries: "iPhone Series",
-          samsungSeries: "Samsung Galaxy Series",
-          pixelSeries: "Google Pixel Series",
-          storageLabel: "Storage",
-          colorLabel: "Color",
-          quantityLabel: "Quantity",
-          proceedToAddress: "Continue to Shipping",
-          shippingTitle: "Shipping Address",
-          fullName: "Full Name",
-          phone: "Phone Number",
-          email: "Email Address",
-          address: "Full Address",
-          fromAddressBook: "Choose from Address Book",
-          saveAddress: "Save address for future orders",
-          confirmAndPay: "Proceed to Payment",
-          addressBookTitle: "Address Book",
-          noSavedAddress: "No saved addresses yet. Add one during checkout.",
-          addNewAddress: "Add New Address",
-          deleteAddress: "Delete",
-          selectAddress: "Select",
-          paymentTitle: "Payment",
-          usdtTitle: "USDT (TRC20) — 10% Discount",
-          usdtPriceLabel: "Discounted price:",
-          usdtAddressLabel: "Please transfer to:",
+          viewPrice: "View Price List", copyright: "© 2026 Xinlo. All rights reserved.", priceTitle: "Price List", back: "Back",
+          iphoneSeries: "iPhone Series", samsungSeries: "Samsung Galaxy Series", pixelSeries: "Google Pixel Series",
+          storageLabel: "Storage", colorLabel: "Color", quantityLabel: "Quantity",
+          proceedToAddress: "Continue to Shipping", shippingTitle: "Shipping Address",
+          fullName: "Full Name", phone: "Phone Number", email: "Email Address", address: "Full Address",
+          fromAddressBook: "Choose from Address Book", saveAddress: "Save address for future orders",
+          confirmAndPay: "Proceed to Payment", addressBookTitle: "Address Book",
+          noSavedAddress: "No saved addresses yet. Add one during checkout.", addNewAddress: "Add New Address",
+          deleteAddress: "Delete", selectAddress: "Select",
+          paymentTitle: "Payment", usdtTitle: "USDT (TRC20) — 10% Discount",
+          usdtPriceLabel: "Discounted price:", usdtAddressLabel: "Please transfer to:",
           usdtNote: "After transfer, upload your payment receipt below. We'll verify and ship within 24 hours.",
-          uploadReceipt: "Upload Payment Receipt",
-          uploadHint: "Click or drag to upload screenshot",
-          receiptUploaded: "✓ Receipt uploaded successfully",
-          confirmPayment: "Confirm Payment",
-          orderSuccessTitle: "🎉 Order Submitted Successfully!",
-          orderSummary: "Order Summary",
-          productLabel: "Product",
-          storageOption: "Storage",
-          colorOption: "Color",
-          originalPrice: "Original Price",
-          discountPrice: "Discount Price (USDT)",
-          shippingInfo: "Shipping Information",
-          paymentTime: "Payment Time",
+          uploadReceipt: "Upload Payment Receipt", uploadHint: "Click or drag to upload screenshot",
+          receiptUploaded: "✓ Receipt uploaded successfully", confirmPayment: "Confirm Payment",
+          orderSuccessTitle: "🎉 Order Submitted Successfully!", orderSummary: "Order Summary",
+          productLabel: "Product", storageOption: "Storage", colorOption: "Color",
+          originalPrice: "Original Price", discountPrice: "Discount Price (USDT)",
+          shippingInfo: "Shipping Information", paymentTime: "Payment Time",
           thankYou: "Thank you for your order! We will verify your payment and ship your device(s) within 24 hours. You'll receive a confirmation email shortly.",
-          close: "Close",
-          backToHome: "Back to Home",
-          myOrders: "My Orders",
-          noOrders: "No orders yet. Start shopping!",
-          orderID: "Order ID",
-          orderStatus: "Status",
-          statusPending: "Awaiting Shipment",
+          close: "Close", backToHome: "Back to Home",
+          myOrders: "My Orders", noOrders: "No orders yet. Start shopping!", orderID: "Order ID",
+          orderStatus: "Status", statusPending: "Awaiting Shipment",
           invalidName: "Please enter a valid name (2-50 characters)",
           invalidPhone: "Please enter a valid phone number (7-15 digits)",
           invalidEmail: "Please enter a valid email address",
@@ -496,91 +254,43 @@
           pixel9ProXLDesc: "Large 6.8” display, ultimate Pixel camera experience."
         },
         zh: {
-          tagline: "优质解锁手机 | 全球配送",
-          intro1: "全球正品解锁智能手机供应商，直接授权渠道采购。",
-          intro2: "每台设备全新未拆封，支持全球快递，附带完整保修。",
-          intro3: "安全USDT支付，透明定价，专业客服团队支持。",
-          viewPrice: "查看价格表",
-          copyright: "© 2026 Xinlo. 保留所有权利。",
-          priceTitle: "价格表",
-          back: "返回",
-          iphoneSeries: "iPhone 系列",
-          samsungSeries: "三星 Galaxy 系列",
-          pixelSeries: "谷歌 Pixel 系列",
-          storageLabel: "存储容量",
-          colorLabel: "颜色",
-          quantityLabel: "数量",
-          proceedToAddress: "填写收货信息",
-          shippingTitle: "收货地址",
-          fullName: "收货人姓名",
-          phone: "联系电话",
-          email: "邮箱地址",
-          address: "详细地址",
-          fromAddressBook: "从地址本选择",
-          saveAddress: "保存地址以便下次使用",
-          confirmAndPay: "确认并支付",
-          addressBookTitle: "地址本",
-          noSavedAddress: "暂无保存的地址，下单时可保存。",
-          addNewAddress: "添加新地址",
-          deleteAddress: "删除",
-          selectAddress: "选择",
-          paymentTitle: "支付",
-          usdtTitle: "USDT (TRC20) — 10% 优惠",
-          usdtPriceLabel: "折扣价：",
-          usdtAddressLabel: "请转账至以下地址：",
+          tagline: "优质解锁手机 | 全球配送", intro1: "全球正品解锁智能手机供应商，直接授权渠道采购。", intro2: "每台设备全新未拆封，支持全球快递，附带完整保修。", intro3: "安全USDT支付，透明定价，专业客服团队支持。",
+          viewPrice: "查看价格表", copyright: "© 2026 Xinlo. 保留所有权利。", priceTitle: "价格表", back: "返回",
+          iphoneSeries: "iPhone 系列", samsungSeries: "三星 Galaxy 系列", pixelSeries: "谷歌 Pixel 系列",
+          storageLabel: "存储容量", colorLabel: "颜色", quantityLabel: "数量",
+          proceedToAddress: "填写收货信息", shippingTitle: "收货地址",
+          fullName: "收货人姓名", phone: "联系电话", email: "邮箱地址", address: "详细地址",
+          fromAddressBook: "从地址本选择", saveAddress: "保存地址以便下次使用", confirmAndPay: "确认并支付",
+          addressBookTitle: "地址本", noSavedAddress: "暂无保存的地址，下单时可保存。", addNewAddress: "添加新地址",
+          deleteAddress: "删除", selectAddress: "选择",
+          paymentTitle: "支付", usdtTitle: "USDT (TRC20) — 10% 优惠",
+          usdtPriceLabel: "折扣价：", usdtAddressLabel: "请转账至以下地址：",
           usdtNote: "转账后请上传付款凭证，我们将在24小时内核实并发货。",
-          uploadReceipt: "上传付款凭证",
-          uploadHint: "点击或拖拽上传截图",
-          receiptUploaded: "✓ 凭证已上传",
-          confirmPayment: "确认已支付",
-          orderSuccessTitle: "🎉 订单提交成功！",
-          orderSummary: "订单摘要",
-          productLabel: "商品",
-          storageOption: "存储",
-          colorOption: "颜色",
-          originalPrice: "原价",
-          discountPrice: "折扣价 (USDT)",
-          shippingInfo: "收货信息",
-          paymentTime: "支付时间",
+          uploadReceipt: "上传付款凭证", uploadHint: "点击或拖拽上传截图",
+          receiptUploaded: "✓ 凭证已上传", confirmPayment: "确认已支付",
+          orderSuccessTitle: "🎉 订单提交成功！", orderSummary: "订单摘要",
+          productLabel: "商品", storageOption: "存储", colorOption: "颜色",
+          originalPrice: "原价", discountPrice: "折扣价 (USDT)",
+          shippingInfo: "收货信息", paymentTime: "支付时间",
           thankYou: "感谢您的订单！我们将核实付款并在24小时内为您发货。您将很快收到确认邮件。",
-          close: "关闭",
-          backToHome: "返回首页",
-          myOrders: "我的订单",
-          noOrders: "暂无订单，快去选购吧！",
-          orderID: "订单编号",
-          orderStatus: "状态",
-          statusPending: "待发货",
-          invalidName: "请输入有效姓名（2-50个字符）",
-          invalidPhone: "请输入有效电话号码（7-15位数字）",
-          invalidEmail: "请输入有效邮箱地址",
-          iphone14Desc: "A15仿生芯片，先进双摄系统，光像引擎。",
-          iphone14PlusDesc: "更大6.7英寸超视网膜XDR显示屏，A15仿生。",
-          iphone14ProDesc: "专业摄像头系统，4800万像素主摄，灵动岛，A16芯片。",
-          iphone14ProMaxDesc: "极致Pro体验，6.7英寸ProMotion显示屏。",
-          iphone15Desc: "灵动岛，A16芯片，4800万像素主摄，USB-C。",
-          iphone15PlusDesc: "大屏6.7英寸，A16性能，USB-C连接。",
-          iphone15ProDesc: "A17 Pro芯片，钛金属设计，操作按钮，USB-C。",
-          iphone15ProMaxDesc: "5倍光学变焦，A17 Pro，钛金属，6.7英寸屏。",
-          iphone16Desc: "新一代A18芯片，先进双摄，相机控制。",
-          iphone16PlusDesc: "更大6.7英寸显示屏，A18性能，相机控制。",
-          iphone16ProDesc: "A18 Pro，4800万融合摄像头，相机控制，钛金属。",
-          iphone16ProMaxDesc: "最佳iPhone显示屏，A18 Pro，5倍变焦，钛金属。",
-          iphone17Desc: "全新设计，A19芯片，续航提升，USB-C。",
-          iphone17PlusDesc: "更大尺寸，A19动力，全天续航。",
-          iphone17ProDesc: "ProMotion 2.0，A19 Pro，三摄系统。",
-          iphone17ProMaxDesc: "极致性能，专业级摄像头，钛金属。",
-          s24Desc: "骁龙8 Gen 3，5000万像素摄像头，Galaxy AI。",
-          s24PlusDesc: "更大QHD+屏幕，12GB内存，Galaxy AI。",
-          s24UltraDesc: "钛金属边框，2亿像素摄像头，S Pen，Galaxy AI。",
-          s25Desc: "精炼设计，Galaxy AI增强，5000万像素。",
-          s25PlusDesc: "沉浸6.7英寸屏幕，专业级相机系统。",
-          s25UltraDesc: "先进夜景拍摄，内置S Pen，钛金属。",
-          zFlip6Desc: "紧凑折叠设计，FlexCam自拍，Galaxy AI。",
-          zFold6Desc: "大屏7.6英寸折叠显示，多任务利器。",
-          pixel8Desc: "Google Tensor G3，AI驱动相机，6.2英寸屏。",
-          pixel8ProDesc: "专业级变焦，Tensor G3，6.7英寸LTPO屏。",
-          pixel9Desc: "Tensor G4，时尚设计，增强AI功能。",
-          pixel9ProDesc: "专业相机系统，Tensor G4，6.3英寸屏。",
+          close: "关闭", backToHome: "返回首页",
+          myOrders: "我的订单", noOrders: "暂无订单，快去选购吧！", orderID: "订单编号",
+          orderStatus: "状态", statusPending: "待发货",
+          invalidName: "请输入有效姓名（2-50个字符）", invalidPhone: "请输入有效电话号码（7-15位数字）", invalidEmail: "请输入有效邮箱地址",
+          iphone14Desc: "A15仿生芯片，先进双摄系统，光像引擎。", iphone14PlusDesc: "更大6.7英寸超视网膜XDR显示屏，A15仿生。",
+          iphone14ProDesc: "专业摄像头系统，4800万像素主摄，灵动岛，A16芯片。", iphone14ProMaxDesc: "极致Pro体验，6.7英寸ProMotion显示屏。",
+          iphone15Desc: "灵动岛，A16芯片，4800万像素主摄，USB-C。", iphone15PlusDesc: "大屏6.7英寸，A16性能，USB-C连接。",
+          iphone15ProDesc: "A17 Pro芯片，钛金属设计，操作按钮，USB-C。", iphone15ProMaxDesc: "5倍光学变焦，A17 Pro，钛金属，6.7英寸屏。",
+          iphone16Desc: "新一代A18芯片，先进双摄，相机控制。", iphone16PlusDesc: "更大6.7英寸显示屏，A18性能，相机控制。",
+          iphone16ProDesc: "A18 Pro，4800万融合摄像头，相机控制，钛金属。", iphone16ProMaxDesc: "最佳iPhone显示屏，A18 Pro，5倍变焦，钛金属。",
+          iphone17Desc: "全新设计，A19芯片，续航提升，USB-C。", iphone17PlusDesc: "更大尺寸，A19动力，全天续航。",
+          iphone17ProDesc: "ProMotion 2.0，A19 Pro，三摄系统。", iphone17ProMaxDesc: "极致性能，专业级摄像头，钛金属。",
+          s24Desc: "骁龙8 Gen 3，5000万像素摄像头，Galaxy AI。", s24PlusDesc: "更大QHD+屏幕，12GB内存，Galaxy AI。",
+          s24UltraDesc: "钛金属边框，2亿像素摄像头，S Pen，Galaxy AI。", s25Desc: "精炼设计，Galaxy AI增强，5000万像素。",
+          s25PlusDesc: "沉浸6.7英寸屏幕，专业级相机系统。", s25UltraDesc: "先进夜景拍摄，内置S Pen，钛金属。",
+          zFlip6Desc: "紧凑折叠设计，FlexCam自拍，Galaxy AI。", zFold6Desc: "大屏7.6英寸折叠显示，多任务利器。",
+          pixel8Desc: "Google Tensor G3，AI驱动相机，6.2英寸屏。", pixel8ProDesc: "专业级变焦，Tensor G3，6.7英寸LTPO屏。",
+          pixel9Desc: "Tensor G4，时尚设计，增强AI功能。", pixel9ProDesc: "专业相机系统，Tensor G4，6.3英寸屏。",
           pixel9ProXLDesc: "大屏6.8英寸，终极Pixel相机体验。"
         },
         es: { tagline:"Teléfonos desbloqueados premium | Envío global", intro1:"Proveedor global de smartphones originales desbloqueados, directamente de canales autorizados.", intro2:"Cada dispositivo es nuevo, sin abrir, listo para envío exprés mundial con garantía completa.", intro3:"Pagos seguros con USDT, precios transparentes y equipo de soporte dedicado.", viewPrice:"Ver lista de precios", copyright:"© 2026 Xinlo. Todos los derechos reservados.", priceTitle:"Lista de precios", back:"Volver", iphoneSeries:"iPhone Series", samsungSeries:"Samsung Galaxy Series", pixelSeries:"Google Pixel Series", storageLabel:"Almacenamiento", colorLabel:"Color", quantityLabel:"Cantidad", proceedToAddress:"Continuar al envío", shippingTitle:"Dirección de envío", fullName:"Nombre completo", phone:"Teléfono", email:"Correo electrónico", address:"Dirección completa", fromAddressBook:"Elegir de la agenda", saveAddress:"Guardar para futuros pedidos", confirmAndPay:"Ir al pago", addressBookTitle:"Agenda", noSavedAddress:"Sin direcciones guardadas.", addNewAddress:"Agregar dirección", deleteAddress:"Eliminar", selectAddress:"Seleccionar", paymentTitle:"Pago", usdtTitle:"USDT (TRC20) — 10% desc.", usdtPriceLabel:"Precio con descuento:", usdtAddressLabel:"Transferir a:", usdtNote:"Después de transferir, suba el comprobante.", uploadReceipt:"Subir comprobante", uploadHint:"Clic o arrastre", receiptUploaded:"✓ Comprobante subido", confirmPayment:"Confirmar pago", orderSuccessTitle:"🎉 ¡Pedido realizado!", orderSummary:"Resumen del pedido", productLabel:"Producto", storageOption:"Almacenamiento", colorOption:"Color", originalPrice:"Precio original", discountPrice:"Precio desc. (USDT)", shippingInfo:"Información de envío", paymentTime:"Hora de pago", thankYou:"¡Gracias por su pedido! Verificaremos el pago y enviaremos en 24h.", close:"Cerrar", backToHome:"Volver al inicio", myOrders:"Mis pedidos", noOrders:"No hay pedidos aún.", orderID:"ID del pedido", orderStatus:"Estado", statusPending:"Envío pendiente", invalidName:"Nombre inválido", invalidPhone:"Teléfono inválido", invalidEmail:"Email inválido", iphone14Desc:"Chip A15 Bionic, sistema avanzado de doble cámara.", iphone14PlusDesc:"Pantalla más grande de 6.7”, A15 Bionic.", iphone14ProDesc:"Sistema de cámaras Pro, Dynamic Island, chip A16.", iphone14ProMaxDesc:"Experiencia Pro definitiva, pantalla 6.7”.", iphone15Desc:"Dynamic Island, chip A16, cámara 48MP.", iphone15PlusDesc:"Pantalla grande, potencia A16, USB-C.", iphone15ProDesc:"A17 Pro, diseño de titanio, botón de acción.", iphone15ProMaxDesc:"Zoom óptico 5x, A17 Pro, titanio.", iphone16Desc:"Chip A18 de nueva generación, doble cámara.", iphone16PlusDesc:"Pantalla más grande, rendimiento A18.", iphone16ProDesc:"A18 Pro, cámara 48MP Fusion, titanio.", iphone16ProMaxDesc:"Mejor pantalla iPhone, A18 Pro, zoom 5x.", iphone17Desc:"Nuevo diseño, chip A19, batería mejorada.", iphone17PlusDesc:"Tamaño más grande, potencia A19.", iphone17ProDesc:"ProMotion 2.0, A19 Pro, triple cámara.", iphone17ProMaxDesc:"Rendimiento máximo, cámaras profesionales.", s24Desc:"Snapdragon 8 Gen 3, cámara 50MP.", s24PlusDesc:"Pantalla QHD+ más grande, 12GB RAM.", s24UltraDesc:"Marco de titanio, cámara 200MP, S Pen.", s25Desc:"Diseño refinado, mejoras Galaxy AI.", s25PlusDesc:"Pantalla inmersiva, cámara profesional.", s25UltraDesc:"Nightography avanzada, S Pen.", zFlip6Desc:"Plegable compacto, selfie FlexCam.", zFold6Desc:"Pantalla plegable grande, multitarea.", pixel8Desc:"Google Tensor G3, cámara con IA.", pixel8ProDesc:"Zoom nivel Pro, Tensor G3.", pixel9Desc:"Tensor G4, diseño elegante.", pixel9ProDesc:"Sistema de cámara Pro, Tensor G4.", pixel9ProXLDesc:"Pantalla grande, cámara Pixel definitiva." },
@@ -593,40 +303,39 @@
         fr: { tagline:"Téléphones débloqués premium | Expédition mondiale", intro1:"Fournisseur mondial de smartphones authentiques débloqués, directement des canaux autorisés.", intro2:"Chaque appareil est neuf, scellé, prêt pour l'expédition express mondiale avec garantie complète.", intro3:"Paiements sécurisés en USDT, prix transparents et équipe de support dédiée.", viewPrice:"Voir la liste des prix", copyright:"© 2026 Xinlo. Tous droits réservés.", priceTitle:"Liste des prix", back:"Retour", iphoneSeries:"Série iPhone", samsungSeries:"Série Samsung Galaxy", pixelSeries:"Série Google Pixel", storageLabel:"Stockage", colorLabel:"Couleur", quantityLabel:"Quantité", proceedToAddress:"Continuer vers la livraison", shippingTitle:"Adresse de livraison", fullName:"Nom complet", phone:"Téléphone", email:"Email", address:"Adresse complète", fromAddressBook:"Choisir dans le carnet", saveAddress:"Enregistrer pour plus tard", confirmAndPay:"Payer", addressBookTitle:"Carnet d'adresses", noSavedAddress:"Aucune adresse enregistrée.", addNewAddress:"Ajouter une adresse", deleteAddress:"Supprimer", selectAddress:"Sélectionner", paymentTitle:"Paiement", usdtTitle:"USDT (TRC20) -10%", usdtPriceLabel:"Prix réduit :", usdtAddressLabel:"Transférer à :", usdtNote:"Après le transfert, téléversez le reçu.", uploadReceipt:"Téléverser le reçu", uploadHint:"Cliquez ou glissez", receiptUploaded:"✓ Reçu téléversé", confirmPayment:"Confirmer le paiement", orderSuccessTitle:"🎉 Commande passée !", orderSummary:"Résumé de la commande", productLabel:"Produit", storageOption:"Stockage", colorOption:"Couleur", originalPrice:"Prix original", discountPrice:"Prix réduit (USDT)", shippingInfo:"Informations de livraison", paymentTime:"Heure du paiement", thankYou:"Merci pour votre commande ! Nous vérifierons le paiement sous 24h.", close:"Fermer", backToHome:"Retour à l'accueil", myOrders:"Mes commandes", noOrders:"Aucune commande.", orderID:"N° de commande", orderStatus:"Statut", statusPending:"Expédition en attente", invalidName:"Nom invalide", invalidPhone:"Téléphone invalide", invalidEmail:"Email invalide", iphone14Desc:"A15 Bionic, système avancé à double caméra.", iphone14PlusDesc:"Écran plus grand 6.7”, A15 Bionic.", iphone14ProDesc:"Système caméra Pro, Dynamic Island, A16.", iphone14ProMaxDesc:"Expérience Pro ultime, écran 6.7”.", iphone15Desc:"Dynamic Island, A16, 48MP.", iphone15PlusDesc:"Grand écran, A16, USB-C.", iphone15ProDesc:"A17 Pro, titane.", iphone15ProMaxDesc:"Zoom 5x, A17 Pro.", iphone16Desc:"Puce A18, double caméra avancée.", iphone16PlusDesc:"Écran plus grand, A18.", iphone16ProDesc:"A18 Pro, 48MP, titane.", iphone16ProMaxDesc:"Meilleur iPhone, A18 Pro.", iphone17Desc:"Nouveau design, A19.", iphone17PlusDesc:"Plus grand, A19.", iphone17ProDesc:"ProMotion 2.0, A19 Pro.", iphone17ProMaxDesc:"Performance max.", s24Desc:"Snapdragon 8 Gen 3, 50MP.", s24PlusDesc:"QHD+, 12 Go RAM.", s24UltraDesc:"Titane, 200MP, S Pen.", s25Desc:"Galaxy AI, 50MP.", s25PlusDesc:"Immersif, caméra Pro.", s25UltraDesc:"Nightography, S Pen.", zFlip6Desc:"Pliable compact, FlexCam.", zFold6Desc:"Grand écran pliable.", pixel8Desc:"Tensor G3, caméra IA.", pixel8ProDesc:"Zoom Pro, Tensor G3.", pixel9Desc:"Tensor G4, élégant.", pixel9ProDesc:"Caméra Pro, Tensor G4.", pixel9ProXLDesc:"Grand écran, caméra Pixel." }
       };
 
-      // ==================== 产品数据 (价格已下调2%) ====================
+      // ==================== 产品数据 (价格已取整) ====================
       const productData = [
-        { series:'iphone', name:'iPhone 14', storage:['128GB','256GB','512GB'], descKey:'iphone14Desc', prices:[252.90, 281.22, 323.54], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 14 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone14PlusDesc', prices:[285.55, 317.21, 362.85], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 14 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProDesc', prices:[356.36, 394.18, 462.81, 536.79], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
-        { series:'iphone', name:'iPhone 14 Pro Max', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProMaxDesc', prices:[394.18, 431.99, 500.63, 574.60], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
-        { series:'iphone', name:'iPhone 15', storage:['128GB','256GB','512GB'], descKey:'iphone15Desc', prices:[342.86, 378.85, 451.82], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 15 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone15PlusDesc', prices:[387.84, 423.83, 496.80], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 15 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone15ProDesc', prices:[436.83, 477.48, 560.11, 642.74], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 15 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone15ProMaxDesc', prices:[477.48, 543.45, 617.42], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 16', storage:['128GB','256GB','512GB'], descKey:'iphone16Desc', prices:[498.97, 548.95, 648.91], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 16 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone16PlusDesc', prices:[582.27, 632.25, 732.21], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 16 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone16ProDesc', prices:[665.57, 715.55, 815.51, 915.47], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 16 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone16ProMaxDesc', prices:[748.87, 832.17, 932.13], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 17', storage:['128GB','256GB','512GB'], descKey:'iphone17Desc', prices:[540.62, 590.60, 690.56], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 17 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone17PlusDesc', prices:[623.92, 673.90, 773.86], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 17 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone17ProDesc', prices:[707.22, 757.20, 857.16, 957.12], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 17 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone17ProMaxDesc', prices:[790.52, 873.82, 973.78], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'samsung', name:'Galaxy S24', storage:['128GB','256GB'], descKey:'s24Desc', prices:[252.90, 281.22], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S24+', storage:['256GB','512GB'], descKey:'s24PlusDesc', prices:[317.21, 362.85], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S24 Ultra', storage:['256GB','512GB','1TB'], descKey:'s24UltraDesc', prices:[431.99, 500.63, 574.60], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
-        { series:'samsung', name:'Galaxy S25', storage:['128GB','256GB'], descKey:'s25Desc', prices:[299.05, 332.37], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S25+', storage:['256GB','512GB'], descKey:'s25PlusDesc', prices:[382.35, 432.33], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S25 Ultra', storage:['256GB','512GB','1TB'], descKey:'s25UltraDesc', prices:[498.97, 565.61, 648.91], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
-        { series:'samsung', name:'Galaxy Z Flip 6', storage:['256GB','512GB'], descKey:'zFlip6Desc', prices:[394.18, 431.99], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Blue','Yellow'] },
-        { series:'samsung', name:'Galaxy Z Fold 6', storage:['256GB','512GB','1TB'], descKey:'zFold6Desc', prices:[748.87, 815.51, 915.47], colors:['#1d1d1f','#c0c0c0','#4a6fa5'], colorNames:['Phantom Black','Silver','Blue'] },
-        { series:'pixel', name:'Pixel 8', storage:['128GB','256GB'], descKey:'pixel8Desc', prices:[214.58, 245.24], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
-        { series:'pixel', name:'Pixel 8 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel8ProDesc', prices:[308.21, 349.86, 408.17], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
-        { series:'pixel', name:'Pixel 9', storage:['128GB','256GB'], descKey:'pixel9Desc', prices:[290.72, 332.37], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
-        { series:'pixel', name:'Pixel 9 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel9ProDesc', prices:[374.02, 432.33, 498.97], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
-        { series:'pixel', name:'Pixel 9 Pro XL', storage:['128GB','256GB','512GB','1TB'], descKey:'pixel9ProXLDesc', prices:[457.32, 515.63, 582.27, 665.57], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] }
+        { series:'iphone', name:'iPhone 14', storage:['128GB','256GB','512GB'], descKey:'iphone14Desc', prices:[253, 281, 324], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 14 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone14PlusDesc', prices:[286, 317, 363], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 14 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProDesc', prices:[356, 394, 463, 537], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
+        { series:'iphone', name:'iPhone 14 Pro Max', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProMaxDesc', prices:[394, 432, 501, 575], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
+        { series:'iphone', name:'iPhone 15', storage:['128GB','256GB','512GB'], descKey:'iphone15Desc', prices:[343, 379, 452], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 15 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone15PlusDesc', prices:[388, 424, 497], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 15 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone15ProDesc', prices:[437, 477, 560, 643], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 15 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone15ProMaxDesc', prices:[477, 543, 617], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 16', storage:['128GB','256GB','512GB'], descKey:'iphone16Desc', prices:[499, 549, 649], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 16 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone16PlusDesc', prices:[582, 632, 732], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 16 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone16ProDesc', prices:[666, 716, 816, 915], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 16 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone16ProMaxDesc', prices:[749, 832, 932], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 17', storage:['128GB','256GB','512GB'], descKey:'iphone17Desc', prices:[541, 591, 691], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 17 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone17PlusDesc', prices:[624, 674, 774], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 17 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone17ProDesc', prices:[707, 757, 857, 957], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 17 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone17ProMaxDesc', prices:[791, 874, 974], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'samsung', name:'Galaxy S24', storage:['128GB','256GB'], descKey:'s24Desc', prices:[253, 281], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S24+', storage:['256GB','512GB'], descKey:'s24PlusDesc', prices:[317, 363], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S24 Ultra', storage:['256GB','512GB','1TB'], descKey:'s24UltraDesc', prices:[432, 501, 575], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
+        { series:'samsung', name:'Galaxy S25', storage:['128GB','256GB'], descKey:'s25Desc', prices:[299, 332], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S25+', storage:['256GB','512GB'], descKey:'s25PlusDesc', prices:[382, 432], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S25 Ultra', storage:['256GB','512GB','1TB'], descKey:'s25UltraDesc', prices:[499, 566, 649], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
+        { series:'samsung', name:'Galaxy Z Flip 6', storage:['256GB','512GB'], descKey:'zFlip6Desc', prices:[394, 432], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Blue','Yellow'] },
+        { series:'samsung', name:'Galaxy Z Fold 6', storage:['256GB','512GB','1TB'], descKey:'zFold6Desc', prices:[749, 816, 915], colors:['#1d1d1f','#c0c0c0','#4a6fa5'], colorNames:['Phantom Black','Silver','Blue'] },
+        { series:'pixel', name:'Pixel 8', storage:['128GB','256GB'], descKey:'pixel8Desc', prices:[215, 245], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
+        { series:'pixel', name:'Pixel 8 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel8ProDesc', prices:[308, 350, 408], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
+        { series:'pixel', name:'Pixel 9', storage:['128GB','256GB'], descKey:'pixel9Desc', prices:[291, 332], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
+        { series:'pixel', name:'Pixel 9 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel9ProDesc', prices:[374, 432, 499], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
+        { series:'pixel', name:'Pixel 9 Pro XL', storage:['128GB','256GB','512GB','1TB'], descKey:'pixel9ProXLDesc', prices:[457, 516, 582, 666], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] }
       ];
 
-      // DOM 元素
       const slider = document.getElementById('pageSlider');
       const page1Content = document.getElementById('page1Content');
       const page2Content = document.getElementById('page2Content');
@@ -641,18 +350,10 @@
       const userCenterBtn = document.getElementById('userCenterBtn');
       const userCenterModal = document.getElementById('userCenterModal');
 
-      let currentLang = 'en';
-      let currentCategory = 'iphone';
-      let currentProduct = null;
-      let currentProductPrice = 0;
-      let currentAddress = null;
-      let selectedStorageIndex = 0;
-      let selectedColorIndex = 0;
-      let selectedQuantity = 1;
+      let currentLang = 'en', currentCategory = 'iphone', currentProduct = null, currentProductPrice = 0, currentAddress = null;
+      let selectedStorageIndex = 0, selectedColorIndex = 0, selectedQuantity = 1;
 
       function t(key) { return (translations[currentLang] && translations[currentLang][key]) || translations.en[key] || key; }
-
-      // 本地存储
       function getSavedAddresses() { try { return JSON.parse(localStorage.getItem('xinlo_addresses') || '[]'); } catch(e) { return []; } }
       function saveAddresses(arr) { localStorage.setItem('xinlo_addresses', JSON.stringify(arr)); }
       function getOrders() { try { return JSON.parse(localStorage.getItem('xinlo_orders') || '[]'); } catch(e) { return []; } }
@@ -676,7 +377,7 @@
         let html = `<div class="series-section"><h3 class="text-xl font-bold mb-4">${t(seriesKey)}</h3><div class="card-grid">`;
         items.forEach(item => {
           const desc = t(item.descKey);
-          const badges = item.storage.map((s,i) => `<span class="bg-gray-100 px-2 py-1 rounded-lg text-xs font-medium">${s} <strong>$${item.prices[i].toFixed(2)}</strong></span>`).join('');
+          const badges = item.storage.map((s,i) => `<span class="bg-gray-100 px-2 py-1 rounded-lg text-xs font-medium">${s} <strong>$${item.prices[i]}</strong></span>`).join('');
           html += `<div class="price-card" data-product-index="${productData.indexOf(item)}"><h4 class="text-lg font-bold">${item.name}</h4><p class="text-xs text-gray-400 mb-2">${desc}</p><div class="flex flex-wrap gap-2">${badges}</div></div>`;
         });
         html += `</div></div>`;
@@ -685,8 +386,7 @@
       }
 
       function openProductModal(product) {
-        currentProduct = product;
-        selectedStorageIndex = 0; selectedColorIndex = 0; selectedQuantity = 1;
+        currentProduct = product; selectedStorageIndex = 0; selectedColorIndex = 0; selectedQuantity = 1;
         const render = () => {
           const total = product.prices[selectedStorageIndex] * selectedQuantity;
           document.getElementById('modalContent').innerHTML = `
@@ -695,7 +395,7 @@
             <div class="mb-4"><span class="text-sm font-medium">${t('storageLabel')}:</span><div class="flex gap-2 mt-2">${product.storage.map((s,i)=>`<button class="storage-opt px-3 py-1.5 rounded-full text-sm font-medium ${i===selectedStorageIndex?'bg-black text-white':'bg-gray-100'}" data-idx="${i}">${s}</button>`).join('')}</div></div>
             <div class="mb-4"><span class="text-sm font-medium">${t('colorLabel')}:</span><div class="flex gap-2 mt-2 items-center">${product.colors.map((c,i)=>`<span class="color-dot ${i===selectedColorIndex?'selected':''}" style="background:${c}" data-cidx="${i}" title="${product.colorNames[i]}"></span>`).join('')}<span class="text-xs text-gray-500 ml-2">${product.colorNames[selectedColorIndex]}</span></div></div>
             <div class="mb-4"><span class="text-sm font-medium">${t('quantityLabel')}:</span><div class="flex items-center gap-2 mt-2"><button class="quantity-btn" id="qtyMinus">−</button><input type="number" id="qtyInput" class="quantity-input" value="${selectedQuantity}" min="1" max="10"><button class="quantity-btn" id="qtyPlus">+</button></div></div>
-            <div class="text-2xl font-bold my-4">$${total.toFixed(2)}</div>
+            <div class="text-2xl font-bold my-4">$${total}</div>
             <button id="goToAddressBtn" class="w-full py-3 bg-black text-white rounded-full font-semibold hover:bg-gray-800 transition">${t('proceedToAddress')}</button>`;
           document.getElementById('closeProductModal').addEventListener('click', ()=> productModal.classList.remove('active'));
           document.querySelectorAll('.storage-opt').forEach(b=>b.addEventListener('click', function(){ selectedStorageIndex=parseInt(this.dataset.idx); render(); }));
@@ -724,10 +424,7 @@
         document.getElementById('closeAddressModal').addEventListener('click', ()=> addressModal.classList.remove('active'));
         document.getElementById('chooseFromBookBtn').addEventListener('click', ()=>{ openAddressBookModal(true); });
         document.getElementById('confirmAddressBtn').addEventListener('click', ()=>{
-          const name = document.getElementById('addrName').value.trim();
-          const phone = document.getElementById('addrPhone').value.trim();
-          const email = document.getElementById('addrEmail').value.trim();
-          const address = document.getElementById('addrAddress').value.trim();
+          const name = document.getElementById('addrName').value.trim(), phone = document.getElementById('addrPhone').value.trim(), email = document.getElementById('addrEmail').value.trim(), address = document.getElementById('addrAddress').value.trim();
           let valid = true;
           document.querySelectorAll('.error-msg').forEach(e=>e.classList.remove('show'));
           document.querySelectorAll('#addressModalContent input, #addressModalContent textarea').forEach(e=>e.classList.remove('input-error'));
@@ -758,12 +455,12 @@
       }
 
       function openPaymentModal() {
-        const discountPrice = currentProductPrice * 0.9;
+        const discountPrice = Math.round(currentProductPrice * 0.9);
         let receiptFile = null;
         const render = () => {
           document.getElementById('paymentModalContent').innerHTML = `
             <div class="flex justify-between items-start mb-4"><h3 class="text-xl font-bold">${t('paymentTitle')}</h3><button id="closePaymentModal" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button></div>
-            <div class="payment-option"><h3>${t('usdtTitle')}</h3><p class="text-sm">${t('usdtPriceLabel')} <strong>${discountPrice.toFixed(2)} USDT</strong></p><p class="text-sm mt-2">${t('usdtAddressLabel')}</p><p class="address-text">TP1HgMuwTkYDbiALMeCie9gY2hGBWfrfky</p><p class="text-xs text-gray-400 mt-1">${t('usdtNote')}</p></div>
+            <div class="payment-option"><h3>${t('usdtTitle')}</h3><p class="text-sm">${t('usdtPriceLabel')} <strong>${discountPrice} USDT</strong></p><p class="text-sm mt-2">${t('usdtAddressLabel')}</p><p class="address-text">TP1HgMuwTkYDbiALMeCie9gY2hGBWfrfky</p><p class="text-xs text-gray-400 mt-1">${t('usdtNote')}</p></div>
             <div class="mb-4"><p class="text-sm font-medium mb-1">${t('uploadReceipt')}</p><div class="upload-area" id="receiptUploadArea"><i class="fas fa-cloud-upload-alt text-2xl text-gray-400 mb-2"></i><p class="text-sm text-gray-500">${t('uploadHint')}</p><input type="file" id="receiptFileInput" accept="image/*" class="hidden"><img id="receiptPreview" class="upload-preview" style="display:none;"><p id="uploadStatus" class="text-xs text-green-600 mt-1 hidden">${t('receiptUploaded')}</p></div></div>
             <button id="confirmPaymentBtn" class="w-full py-3 bg-green-500 text-white rounded-full font-semibold hover:bg-green-600 transition">${t('confirmPayment')}</button>`;
           document.getElementById('closePaymentModal').addEventListener('click', ()=> paymentModal.classList.remove('active'));
@@ -782,11 +479,11 @@
       }
 
       function openOrderConfirmModal() {
-        const discountPrice = currentProductPrice * 0.9;
+        const discountPrice = Math.round(currentProductPrice * 0.9);
         const now = new Date().toLocaleString();
         document.getElementById('orderConfirmContent').innerHTML = `
           <div class="text-center mb-4"><i class="fas fa-check-circle text-green-500 text-4xl success-icon"></i><h3 class="text-xl font-bold mt-2">${t('orderSuccessTitle')}</h3></div>
-          <div class="bg-gray-50 rounded-xl p-4 mb-4"><h4 class="font-semibold mb-2">${t('orderSummary')}</h4><div class="order-summary-line"><span>${t('productLabel')}:</span><strong>${currentProduct.name}</strong></div><div class="order-summary-line"><span>${t('storageOption')}:</span>${currentProduct.storage[selectedStorageIndex]}</div><div class="order-summary-line"><span>${t('colorOption')}:</span>${currentProduct.colorNames[selectedColorIndex]}</div><div class="order-summary-line"><span>${t('quantityLabel')}:</span>${selectedQuantity}</div><div class="order-summary-line"><span>${t('originalPrice')}:</span>$${currentProductPrice.toFixed(2)}</div><div class="order-summary-line"><span>${t('discountPrice')}:</span><strong>${discountPrice.toFixed(2)} USDT</strong></div></div>
+          <div class="bg-gray-50 rounded-xl p-4 mb-4"><h4 class="font-semibold mb-2">${t('orderSummary')}</h4><div class="order-summary-line"><span>${t('productLabel')}:</span><strong>${currentProduct.name}</strong></div><div class="order-summary-line"><span>${t('storageOption')}:</span>${currentProduct.storage[selectedStorageIndex]}</div><div class="order-summary-line"><span>${t('colorOption')}:</span>${currentProduct.colorNames[selectedColorIndex]}</div><div class="order-summary-line"><span>${t('quantityLabel')}:</span>${selectedQuantity}</div><div class="order-summary-line"><span>${t('originalPrice')}:</span>$${currentProductPrice}</div><div class="order-summary-line"><span>${t('discountPrice')}:</span><strong>${discountPrice} USDT</strong></div></div>
           <div class="bg-gray-50 rounded-xl p-4 mb-4"><h4 class="font-semibold mb-2">${t('shippingInfo')}</h4><p><strong>${currentAddress.name}</strong></p><p>${currentAddress.phone} | ${currentAddress.email}</p><p>${currentAddress.address}</p></div>
           <p class="text-xs text-gray-500 mb-2">${t('paymentTime')}: ${now}</p><p class="text-sm text-gray-600 mb-4">${t('thankYou')}</p>
           <div class="flex gap-3"><button id="closeOrderConfirm" class="flex-1 py-2.5 border rounded-full hover:bg-gray-50 transition">${t('close')}</button><button id="backToHomeFromOrder" class="flex-1 py-2.5 bg-black text-white rounded-full font-semibold hover:bg-gray-800 transition">${t('backToHome')}</button></div>`;
@@ -801,7 +498,7 @@
         if(orders.length === 0) html += `<p class="text-gray-500 text-center py-4">${t('noOrders')}</p>`;
         else orders.forEach(order => {
           const date = new Date(order.time).toLocaleString();
-          html += `<div class="order-item"><div class="flex justify-between"><strong>${order.product}</strong><span class="text-xs text-gray-500">${t('orderID')}: ${order.id}</span></div><p class="text-sm">${order.storage} | ${order.color} | Qty: ${order.quantity || 1} | $${(order.price||0).toFixed(2)} → ${(order.discount||0).toFixed(2)} USDT</p><p class="text-xs text-gray-500">${order.address.name}, ${order.address.phone}</p><p class="text-xs text-gray-400">${date}</p><span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">${t('statusPending')}</span></div>`;
+          html += `<div class="order-item"><div class="flex justify-between"><strong>${order.product}</strong><span class="text-xs text-gray-500">${t('orderID')}: ${order.id}</span></div><p class="text-sm">${order.storage} | ${order.color} | Qty: ${order.quantity || 1} | $${(order.price||0)} → ${(order.discount||0)} USDT</p><p class="text-xs text-gray-500">${order.address.name}, ${order.address.phone}</p><p class="text-xs text-gray-400">${date}</p><span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">${t('statusPending')}</span></div>`;
         });
         document.getElementById('userCenterContent').innerHTML = html;
         document.getElementById('closeUserCenter').addEventListener('click', ()=> userCenterModal.classList.remove('active'));
@@ -813,12 +510,10 @@
         else { slider.style.transform='translateX(-50%)'; page1Content.classList.add('shifted'); logoWrapper.classList.add('shifted'); page2Content.classList.add('entered'); }
       }
 
-      // 仅滑动翻页（白色区域）
       let touchStartY=0, touchStartX=0;
       slider.addEventListener('touchstart', e=>{ touchStartY=e.changedTouches[0].screenY; touchStartX=e.changedTouches[0].screenX; }, {passive:true});
       slider.addEventListener('touchend', e=>{
-        const diffY=touchStartY-e.changedTouches[0].screenY;
-        const diffX=touchStartX-e.changedTouches[0].screenX;
+        const diffY=touchStartY-e.changedTouches[0].screenY, diffX=touchStartX-e.changedTouches[0].screenX;
         if(Math.abs(diffY)>Math.abs(diffX) && Math.abs(diffY)>40){
           const isPage1=slider.style.transform.includes('0');
           if(diffY>0 && isPage1) slideToPage(1);
@@ -826,7 +521,6 @@
         }
       });
 
-      // 按钮事件
       document.getElementById('goToPriceBtn').addEventListener('click', (e)=>{ e.stopPropagation(); slideToPage(1); });
       document.getElementById('backToHomeBtn').addEventListener('click', (e)=>{ e.stopPropagation(); slideToPage(0); });
       document.getElementById('openAddressBookBtn').addEventListener('click', (e)=>{ e.stopPropagation(); openAddressBookModal(false); });
@@ -840,26 +534,13 @@
       document.getElementById('languageSelect').addEventListener('change', e=>{ currentLang=e.target.value; updateAllTexts(); });
       userCenterBtn.addEventListener('click', openUserCenter);
 
-      // 弹窗背景关闭
-      [productModal,addressModal,addressBookModal,paymentModal,orderConfirmModal,userCenterModal].forEach(m=>{
-        m.addEventListener('click', function(e){ if(e.target===m) m.classList.remove('active'); });
-      });
-
-      // 回到顶部
+      [productModal,addressModal,addressBookModal,paymentModal,orderConfirmModal,userCenterModal].forEach(m=>{ m.addEventListener('click', function(e){ if(e.target===m) m.classList.remove('active'); }); });
       pricePage.addEventListener('scroll', ()=>backToTopBtn.classList.toggle('visible', pricePage.scrollTop>400));
       backToTopBtn.addEventListener('click', ()=>pricePage.scrollTo({top:0,behavior:'smooth'}));
 
-      // Logo动画结束处理
-      setTimeout(() => {
-        const star = document.getElementById('logoStar');
-        const trail = document.getElementById('logoTrail');
-        if(star) star.style.display = 'none';
-        if(trail) trail.style.display = 'none';
-      }, 2200);
+      setTimeout(() => { const star = document.getElementById('logoStar'); const trail = document.getElementById('logoTrail'); if(star) star.style.display = 'none'; if(trail) trail.style.display = 'none'; }, 2200);
 
-      // 初始化
-      updateAllTexts();
-      slider.style.transform='translateX(0)';
+      updateAllTexts(); slider.style.transform='translateX(0)';
     })();
   </script>
 </body>
