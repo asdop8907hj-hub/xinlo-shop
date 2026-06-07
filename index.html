@@ -36,15 +36,28 @@
     .page::-webkit-scrollbar { width: 5px; }
     .page::-webkit-scrollbar-track { background: transparent; }
     .page::-webkit-scrollbar-thumb { background-color: #d0d0d0; border-radius: 10px; }
-    @keyframes dropIn {
-      0% { transform: translateY(-140px); opacity: 0; }
-      60% { transform: translateY(8px); opacity: 1; }
-      80% { transform: translateY(-4px); }
-      100% { transform: translateY(0); opacity: 1; }
+    @keyframes starDrop {
+      0% { transform: translateY(-180px) rotate(0deg); opacity: 0; }
+      20% { opacity: 1; }
+      60% { transform: translateY(10px) rotate(720deg); opacity: 1; }
+      80% { transform: translateY(-5px) rotate(680deg); }
+      100% { transform: translateY(0) rotate(720deg); opacity: 1; }
     }
-    @keyframes rainbowFlow {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
+    @keyframes rainbowTrail {
+      0% { background-position: 0% center; opacity: 0; }
+      30% { opacity: 1; }
+      100% { background-position: 400% center; opacity: 1; }
+    }
+    @keyframes trailFade {
+      0% { opacity: 0; height: 0; }
+      50% { opacity: 1; height: 120px; }
+      90% { opacity: 0.6; height: 120px; }
+      100% { opacity: 0; height: 0; }
+    }
+    @keyframes textAppear {
+      0% { opacity: 0; }
+      70% { opacity: 0; }
+      100% { opacity: 1; }
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -58,23 +71,75 @@
       from { opacity: 0; transform: translateY(40px) scale(0.96); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
-    .rainbow-text-animate {
-      background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d);
-      background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
-      animation: dropIn 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards, rainbowFlow 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+
+    .logo-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 160px;
+      margin-bottom: 0.5rem;
+    }
+    .star-icon {
+      font-size: 3.5rem;
+      position: absolute;
+      z-index: 2;
+      animation: starDrop 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      filter: drop-shadow(0 0 12px rgba(255,200,0,0.6));
+      transform-origin: center center;
+    }
+    .trail-text {
+      position: absolute;
+      top: -20px;
+      font-size: 2rem;
+      font-weight: 900;
       letter-spacing: -0.03em;
+      background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d);
+      background-size: 400% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rainbowTrail 2.5s linear infinite, textAppear 1.8s ease forwards;
+      z-index: 1;
+      opacity: 0;
+      white-space: nowrap;
     }
-    .rainbow-text-static {
+    .star-trail {
+      position: absolute;
+      top: 60px;
+      width: 3px;
+      border-radius: 4px;
+      background: linear-gradient(to bottom, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d);
+      background-size: 100% 300%;
+      animation: trailFade 2.2s ease-in-out forwards;
+      z-index: 0;
+      opacity: 0;
+      height: 0;
+    }
+    .logo-text-static {
+      font-size: 5rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
       background: linear-gradient(90deg, #ff6b6b, #fca13e, #f8e81c, #56c596, #5c9cec, #ae7ef2, #ff6b6b);
-      background-size: 150% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
-      animation: none; letter-spacing: -0.03em;
+      background-size: 150% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 0;
+      transition: opacity 0.6s;
+      position: absolute;
+      top: 30px;
     }
+    .logo-text-static.show {
+      opacity: 1;
+    }
+
     .fade-in-up { animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards; opacity: 0; }
-    .fade-in-up:nth-child(1) { animation-delay: 1.2s; }
-    .fade-in-up:nth-child(2) { animation-delay: 1.4s; }
-    .fade-in-up:nth-child(3) { animation-delay: 1.6s; }
-    .btn-view-price { animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards, subtlePulse 3s ease-in-out 2.5s infinite; animation-delay: 1.8s, 2.5s; opacity: 0; }
-    .btn-copyright { animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards; animation-delay: 2s; opacity: 0; }
+    .fade-in-up:nth-child(1) { animation-delay: 2.2s; }
+    .fade-in-up:nth-child(2) { animation-delay: 2.4s; }
+    .fade-in-up:nth-child(3) { animation-delay: 2.6s; }
+    .btn-view-price { animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards, subtlePulse 3s ease-in-out 3s infinite; animation-delay: 2.8s, 3.5s; opacity: 0; }
+    .btn-copyright { animation: fadeInUp 0.7s cubic-bezier(0.32, 0.72, 0, 1) forwards; animation-delay: 3s; opacity: 0; }
     .page-1-content { transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1); }
     .page-1-content.shifted { opacity: 0.3; transform: scale(0.96); pointer-events: none; }
     .page-2-content { transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1); opacity: 0.5; transform: translateX(30px); }
@@ -132,7 +197,6 @@
     .upload-area:hover { border-color: #888; }
     .upload-preview { max-width: 100%; max-height: 200px; border-radius: 0.75rem; margin-top: 0.5rem; display: none; }
     .order-summary-line { display: flex; justify-content: space-between; padding: 0.3rem 0; font-size: 0.9rem; }
-
     .user-center-btn {
       position: fixed; bottom: 80px; right: 30px; z-index: 50; width: 44px; height: 44px;
       border-radius: 50%; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
@@ -175,7 +239,13 @@
   <div id="pageSlider" class="page-container">
     <div class="page flex flex-col items-center justify-center text-center relative bg-white">
       <div id="page1Content" class="page-1-content max-w-xl w-full mx-auto flex flex-col items-center px-4">
-        <h1 id="mainLogo" class="text-6xl sm:text-7xl md:text-8xl font-extrabold rainbow-text-animate mb-3">XINLO</h1>
+        <!-- 彩虹拖尾星星 Logo -->
+        <div class="logo-container" id="logoContainer">
+          <div class="star-trail" id="starTrail"></div>
+          <span class="star-icon" id="starIcon">✨</span>
+          <span class="trail-text" id="trailText">XINLO</span>
+          <h1 class="logo-text-static" id="logoStatic">XINLO</h1>
+        </div>
         <p id="subTagline" class="fade-in-up text-sm sm:text-base md:text-lg text-gray-400 font-medium mb-8">Premium Unlocked Phones | Global Shipping</p>
         <div id="introText" class="space-y-3 text-gray-500 text-sm sm:text-base max-w-md mx-auto mb-8">
           <p class="fade-in-up">Global supplier of genuine unlocked smartphones.</p>
@@ -186,7 +256,6 @@
           <span id="viewPriceText">View Price List</span>
           <i class="fas fa-arrow-right ml-3 slide-arrow text-lg"></i>
         </button>
-        <!-- 联系方式：去除 WhatsApp 跳转，仅保留电话和邮箱文本 -->
         <div class="mt-6 flex gap-4 text-sm text-gray-600">
           <span><i class="fas fa-phone"></i> +1 213 936 2929</span>
           <span><i class="far fa-envelope"></i> axccch@proton.me</span>
@@ -217,7 +286,6 @@
   <div class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></div>
   <div class="user-center-btn" id="userCenterBtn" title="My Orders"><i class="fas fa-user"></i></div>
 
-  <!-- 所有弹窗 -->
   <div class="modal-overlay" id="productModal"><div class="modal-content" id="modalContent"></div></div>
   <div class="modal-overlay" id="addressModal"><div class="modal-content" id="addressModalContent"></div></div>
   <div class="modal-overlay" id="addressBookModal"><div class="modal-content" id="addressBookContent"></div></div>
@@ -227,7 +295,7 @@
 
   <script>
     (function() {
-      // ==================== 多语言翻译 (10种语言) ====================
+      // ==================== 多语言翻译 (10种语言，完整保留) ====================
       const translations = {
         en: {
           tagline: "Premium Unlocked Phones | Global Shipping",
@@ -593,36 +661,37 @@
         }
       };
 
+      // ==================== 产品数据（价格已下调 5%） ====================
       const productData = [
-        { series:'iphone', name:'iPhone 14', storage:['128GB','256GB','512GB'], descKey:'iphone14Desc', prices:[429.00,479.00,569.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 14 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone14PlusDesc', prices:[499.00,549.00,639.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 14 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProDesc', prices:[569.00,629.00,739.00,859.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
-        { series:'iphone', name:'iPhone 14 Pro Max', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProMaxDesc', prices:[629.00,689.00,799.00,919.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
-        { series:'iphone', name:'iPhone 15', storage:['128GB','256GB','512GB'], descKey:'iphone15Desc', prices:[459.00,509.00,619.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 15 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone15PlusDesc', prices:[529.00,579.00,689.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 15 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone15ProDesc', prices:[599.00,659.00,779.00,899.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 15 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone15ProMaxDesc', prices:[659.00,749.00,869.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 16', storage:['128GB','256GB','512GB'], descKey:'iphone16Desc', prices:[489.00,539.00,649.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 16 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone16PlusDesc', prices:[559.00,609.00,719.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
-        { series:'iphone', name:'iPhone 16 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone16ProDesc', prices:[629.00,689.00,809.00,929.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 16 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone16ProMaxDesc', prices:[699.00,789.00,909.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 17', storage:['128GB','256GB','512GB'], descKey:'iphone17Desc', prices:[529.00,579.00,689.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 17 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone17PlusDesc', prices:[599.00,649.00,759.00], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
-        { series:'iphone', name:'iPhone 17 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone17ProDesc', prices:[689.00,749.00,869.00,989.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'iphone', name:'iPhone 17 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone17ProMaxDesc', prices:[759.00,849.00,969.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
-        { series:'samsung', name:'Galaxy S24', storage:['128GB','256GB'], descKey:'s24Desc', prices:[399.00,449.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S24+', storage:['256GB','512GB'], descKey:'s24PlusDesc', prices:[519.00,579.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S24 Ultra', storage:['256GB','512GB','1TB'], descKey:'s24UltraDesc', prices:[699.00,769.00,889.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
-        { series:'samsung', name:'Galaxy S25', storage:['128GB','256GB'], descKey:'s25Desc', prices:[439.00,489.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S25+', storage:['256GB','512GB'], descKey:'s25PlusDesc', prices:[559.00,619.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
-        { series:'samsung', name:'Galaxy S25 Ultra', storage:['256GB','512GB','1TB'], descKey:'s25UltraDesc', prices:[739.00,809.00,929.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
-        { series:'samsung', name:'Galaxy Z Flip 6', storage:['256GB','512GB'], descKey:'zFlip6Desc', prices:[599.00,659.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Blue','Yellow'] },
-        { series:'samsung', name:'Galaxy Z Fold 6', storage:['256GB','512GB','1TB'], descKey:'zFold6Desc', prices:[1099.00,1199.00,1329.00], colors:['#1d1d1f','#c0c0c0','#4a6fa5'], colorNames:['Phantom Black','Silver','Blue'] },
-        { series:'pixel', name:'Pixel 8', storage:['128GB','256GB'], descKey:'pixel8Desc', prices:[349.00,399.00], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
-        { series:'pixel', name:'Pixel 8 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel8ProDesc', prices:[489.00,559.00,639.00], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
-        { series:'pixel', name:'Pixel 9', storage:['128GB','256GB'], descKey:'pixel9Desc', prices:[399.00,449.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
-        { series:'pixel', name:'Pixel 9 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel9ProDesc', prices:[539.00,609.00,689.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
-        { series:'pixel', name:'Pixel 9 Pro XL', storage:['128GB','256GB','512GB','1TB'], descKey:'pixel9ProXLDesc', prices:[619.00,689.00,769.00,899.00], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] }
+        { series:'iphone', name:'iPhone 14', storage:['128GB','256GB','512GB'], descKey:'iphone14Desc', prices:[407.55,455.05,540.55], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 14 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone14PlusDesc', prices:[474.05,521.55,607.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 14 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProDesc', prices:[540.55,597.55,702.05,816.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
+        { series:'iphone', name:'iPhone 14 Pro Max', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProMaxDesc', prices:[597.55,654.55,759.05,873.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'] },
+        { series:'iphone', name:'iPhone 15', storage:['128GB','256GB','512GB'], descKey:'iphone15Desc', prices:[436.05,483.55,588.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 15 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone15PlusDesc', prices:[502.55,550.05,654.55], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 15 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone15ProDesc', prices:[569.05,626.05,740.05,854.05], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 15 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone15ProMaxDesc', prices:[626.05,711.55,825.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 16', storage:['128GB','256GB','512GB'], descKey:'iphone16Desc', prices:[464.55,512.05,616.55], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 16 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone16PlusDesc', prices:[531.05,578.55,683.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'] },
+        { series:'iphone', name:'iPhone 16 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone16ProDesc', prices:[597.55,654.55,768.55,882.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 16 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone16ProMaxDesc', prices:[664.05,749.55,863.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 17', storage:['128GB','256GB','512GB'], descKey:'iphone17Desc', prices:[502.55,550.05,654.55], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 17 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone17PlusDesc', prices:[569.05,616.55,721.05], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'] },
+        { series:'iphone', name:'iPhone 17 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone17ProDesc', prices:[654.55,711.55,825.55,939.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'iphone', name:'iPhone 17 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone17ProMaxDesc', prices:[721.05,806.55,920.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'] },
+        { series:'samsung', name:'Galaxy S24', storage:['128GB','256GB'], descKey:'s24Desc', prices:[379.05,426.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S24+', storage:['256GB','512GB'], descKey:'s24PlusDesc', prices:[493.05,550.05], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S24 Ultra', storage:['256GB','512GB','1TB'], descKey:'s24UltraDesc', prices:[664.05,730.55,844.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
+        { series:'samsung', name:'Galaxy S25', storage:['128GB','256GB'], descKey:'s25Desc', prices:[417.05,464.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S25+', storage:['256GB','512GB'], descKey:'s25PlusDesc', prices:[531.05,588.05], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'] },
+        { series:'samsung', name:'Galaxy S25 Ultra', storage:['256GB','512GB','1TB'], descKey:'s25UltraDesc', prices:[702.05,768.55,882.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'] },
+        { series:'samsung', name:'Galaxy Z Flip 6', storage:['256GB','512GB'], descKey:'zFlip6Desc', prices:[569.05,626.05], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Blue','Yellow'] },
+        { series:'samsung', name:'Galaxy Z Fold 6', storage:['256GB','512GB','1TB'], descKey:'zFold6Desc', prices:[1044.05,1139.05,1262.55], colors:['#1d1d1f','#c0c0c0','#4a6fa5'], colorNames:['Phantom Black','Silver','Blue'] },
+        { series:'pixel', name:'Pixel 8', storage:['128GB','256GB'], descKey:'pixel8Desc', prices:[331.55,379.05], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
+        { series:'pixel', name:'Pixel 8 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel8ProDesc', prices:[464.55,531.05,607.05], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'] },
+        { series:'pixel', name:'Pixel 9', storage:['128GB','256GB'], descKey:'pixel9Desc', prices:[379.05,426.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
+        { series:'pixel', name:'Pixel 9 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel9ProDesc', prices:[512.05,578.55,654.55], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] },
+        { series:'pixel', name:'Pixel 9 Pro XL', storage:['128GB','256GB','512GB','1TB'], descKey:'pixel9ProXLDesc', prices:[588.05,654.55,730.55,854.05], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'] }
       ];
 
       const slider = document.getElementById('pageSlider');
@@ -837,6 +906,14 @@
       });
       pricePage.addEventListener('scroll', ()=>backToTopBtn.classList.toggle('visible', pricePage.scrollTop>400));
       backToTopBtn.addEventListener('click', ()=>pricePage.scrollTo({top:0,behavior:'smooth'}));
+
+      // Logo 动画完成后的处理
+      setTimeout(() => {
+        document.getElementById('logoStatic').classList.add('show');
+        document.getElementById('starIcon').style.display = 'none';
+        document.getElementById('starTrail').style.display = 'none';
+        document.getElementById('trailText').style.display = 'none';
+      }, 2500);
 
       updateAllTexts(); slider.style.transform='translateX(0)';
     })();
