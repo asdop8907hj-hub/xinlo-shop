@@ -32,8 +32,14 @@
     .page { width: 50%; height: 100vh; height: 100dvh; overflow-y: auto; overflow-x: hidden; padding: 2rem; scrollbar-width: thin; scrollbar-color: #d0d0d0 transparent; -webkit-overflow-scrolling: touch; }
     .page::-webkit-scrollbar { width: 5px; } .page::-webkit-scrollbar-track { background: transparent; } .page::-webkit-scrollbar-thumb { background-color: #d0d0d0; border-radius: 10px; }
 
-    /* ============ Logo 动画 ============ */
-    @keyframes starFlyIn { 0% { left: -5%; transform: scale(0.2); opacity: 0; } 15% { opacity: 1; } 75% { left: 82%; transform: scale(1.3); opacity: 1; } 90% { left: 90%; transform: scale(1.1); opacity: 0.7; } 100% { left: 98%; transform: scale(0.6); opacity: 0; } }
+    /* ============ Logo 动画（星星保留，结束后不消失，XINLO文字在2s后出现并保留） ============ */
+    @keyframes starFlyIn {
+      0% { left: -5%; transform: scale(0.2); opacity: 0; }
+      15% { opacity: 1; }
+      75% { left: 82%; transform: scale(1.3); opacity: 1; }
+      90% { left: 90%; transform: scale(1.1); opacity: 0.9; }
+      100% { left: 5%; transform: scale(0.5); opacity: 0.6; } /* 星星保留，缩小且半透明 */
+    }
     @keyframes trailGrow { 0% { width: 0; opacity: 0; } 20% { opacity: 0.9; } 80% { width: 80%; opacity: 0.8; } 100% { width: 96%; opacity: 0; } }
     @keyframes textReveal { 0% { opacity: 0; transform: scale(0.7) translateY(10px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
@@ -43,7 +49,7 @@
     @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
     .logo-wrapper { position: relative; height: 150px; width: 100%; display: flex; align-items: center; justify-content: center; overflow: visible; margin-bottom: 0.5rem; transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1); }
     .logo-wrapper.shifted { opacity: 0.4; transform: scale(0.85); }
-    .logo-star { position: absolute; font-size: 2rem; z-index: 2; opacity: 0; animation: starFlyIn 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; filter: drop-shadow(0 0 14px rgba(255,200,0,0.7)); left: 5%; }
+    .logo-star { position: absolute; font-size: 2rem; z-index: 2; opacity: 0; animation: starFlyIn 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; filter: drop-shadow(0 0 8px rgba(255,200,0,0.5)); left: 5%; }
     .logo-trail { position: absolute; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d); background-size: 400% auto; animation: trailGrow 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; top: 50%; left: 0; width: 0; z-index: 1; filter: blur(1px); opacity: 0.8; }
     .logo-text-final { position: absolute; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; letter-spacing: -0.04em; background: linear-gradient(90deg, #ff6b6b, #fca13e, #f8e81c, #56c596, #5c9cec, #ae7ef2, #ff6b6b); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; opacity: 0; transform: scale(0.7) translateY(10px); animation: textReveal 0.55s cubic-bezier(0.32, 0.72, 0, 1) 2s forwards; z-index: 3; }
 
@@ -65,13 +71,13 @@
     @media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } .page { padding: 1rem; } .price-card { padding: 1.25rem; border-radius: var(--radius-md); } .logo-wrapper { height: 120px; } }
     @media (max-width: 480px) { .page { padding: 0.75rem; } .logo-wrapper { height: 100px; } .cart-sidebar { width: 100%; } }
 
-    /* ============ iOS 液态玻璃导航栏 ============ */
+    /* ============ iOS 液态玻璃导航栏（更透明） ============ */
     .sticky-nav {
       position: sticky; top: 0; z-index: 10;
-      background: rgba(250, 250, 250, 0.72);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      background: rgba(250, 250, 250, 0.38);
+      backdrop-filter: blur(30px) saturate(240%);
+      -webkit-backdrop-filter: blur(30px) saturate(240%);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
       padding: 0.75rem 0; margin-bottom: 1.5rem;
       border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     }
@@ -101,7 +107,7 @@
     .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 199; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .cart-overlay.active { opacity: 1; pointer-events: auto; }
 
-    /* ============ Toast 提示 ============ */
+    /* ============ Toast ============ */
     .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #1d1d1f; color: #fff; padding: 1rem 2rem; border-radius: var(--radius-full); z-index: 300; opacity: 0; transition: opacity 0.3s; }
     .toast.show { opacity: 1; }
 
@@ -162,7 +168,7 @@
           <p>Every device is brand new, unopened, and ready for worldwide express shipping with full warranty.</p>
           <p>Secure payments, transparent pricing, and dedicated customer support team.</p>
         </div>
-        <!-- 移除黑色 banner 区域，改为在商品页通过 toast 或弹窗提醒 -->
+        <!-- 移除黑色 banner，促销信息改用 toast 提醒 -->
         <button id="goToPriceBtn" class="btn-sync cta-btn group">
           <span id="viewPriceText">Shop Now</span>
           <i class="fas fa-arrow-right ml-3 slide-arrow text-lg transition-transform duration-300 group-hover:translate-x-2"></i>
@@ -179,7 +185,6 @@
 
     <div class="page bg-[#fafafa]" id="pricePage">
       <div class="max-w-5xl mx-auto page-2-content" id="page2Content">
-        <!-- iOS 液态玻璃导航栏 -->
         <div class="sticky-nav flex items-center justify-between">
           <h2 class="text-2xl font-bold tracking-tight" id="priceListTitle">Store</h2>
           <button id="backToHomeBtn" class="nav-btn"><i class="fas fa-arrow-left mr-1"></i> <span id="backText">Back</span></button>
@@ -206,7 +211,6 @@
     </div>
   </div>
 
-  <!-- 悬浮球与面板 -->
   <div class="floating-ball" id="floatingBall"><i class="fas fa-ellipsis-h"></i></div>
   <div class="quick-panel" id="quickPanel">
     <div class="quick-panel-item" id="openCartFromPanel"><i class="fas fa-shopping-cart"></i> <span id="panelCartLabel">Cart</span> <span class="ml-auto bg-gray-200 text-xs rounded-full px-2 py-0.5" id="panelCartCount">0</span></div>
@@ -223,7 +227,6 @@
     </div>
   </div>
 
-  <!-- 购物车侧边栏 -->
   <div class="cart-overlay" id="cartOverlay"></div>
   <div class="cart-sidebar" id="cartSidebar">
     <div class="p-4 h-full flex flex-col">
@@ -234,7 +237,6 @@
     </div>
   </div>
 
-  <!-- 弹窗 -->
   <div class="modal-overlay" id="productModal"><div class="modal-content" id="modalContent"></div></div>
   <div class="modal-overlay" id="addressModal"><div class="modal-content" id="addressModalContent"></div></div>
   <div class="modal-overlay" id="addressBookModal"><div class="modal-content" id="addressBookContent"></div></div>
@@ -242,7 +244,6 @@
   <div class="modal-overlay" id="orderConfirmModal"><div class="modal-content" id="orderConfirmContent"></div></div>
   <div class="modal-overlay" id="userCenterModal"><div class="modal-content" id="userCenterContent"></div></div>
   <div class="toast" id="toast"></div>
-
   <script>
     (function() {
       // ==================== 完整多语言翻译 (10种语言，包含所有产品描述) ====================
@@ -676,10 +677,10 @@
           s24PlusDesc: "QHD+, 12GB RAM, Galaxy AI。",
           s24UltraDesc: "チタン, 200MP, S Pen。",
           s25Desc: "Galaxy AI, 50MP。", s25PlusDesc: "6.7\"画面, Proカメラ。",
-          s25UltraDesc: "Nightography, S Pen。", zFlip6Desc: "コンパクト折りたたみ, FlexCam。",
-          zFold6Desc: "大画面折りたたみ。", pixel8Desc: "Tensor G3, AIカメラ。",
-          pixel8ProDesc: "Proズーム, Tensor G3。", pixel9Desc: "Tensor G4, 洗練デザイン。",
-          pixel9ProDesc: "Proカメラ, Tensor G4。", pixel9ProXLDesc: "6.8\"ディスプレイ, 究極のPixelカメラ。"
+          s25UltraDesc: "Nightography, S Pen।", zFlip6Desc: "コンパクト折りたたみ, FlexCam।",
+          zFold6Desc: "大画面折りたたみ।", pixel8Desc: "Tensor G3, AIカメラ।",
+          pixel8ProDesc: "Proズーム, Tensor G3।", pixel9Desc: "Tensor G4, 洗練デザイン।",
+          pixel9ProDesc: "Proカメラ, Tensor G4।", pixel9ProXLDesc: "6.8\"ディスプレイ, 究極のPixelカメラ।"
         },
         fr: {
           tagline: "Téléphones premium | Expédition", intro1: "Fournisseur mondial.", intro2: "Neufs, expédition mondiale.", intro3: "Paiements sécurisés.",
@@ -724,7 +725,8 @@
           pixel9ProDesc: "Caméra Pro, Tensor G4.", pixel9ProXLDesc: "Écran 6.8\", caméra Pixel ultime."
         }
       };
-      // ==================== 产品数据 (含 descKey，价格已取整) ====================
+
+      // ==================== 产品数据 (完整，部分高端机型价格调整为吉祥数字，下调5%) ====================
       const productData = [
         { series:'iphone', name:'iPhone 14', storage:['128GB','256GB','512GB'], descKey:'iphone14Desc', prices:[253,281,324], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'], rating:4.5, reviews:128, stock:'in', tag:'sale' },
         { series:'iphone', name:'iPhone 14 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone14PlusDesc', prices:[286,317,363], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'], rating:4.6, reviews:95, stock:'low', tag:'sale' },
@@ -732,29 +734,29 @@
         { series:'iphone', name:'iPhone 14 Pro Max', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone14ProMaxDesc', prices:[394,432,501,575], colors:['#1d1d1f','#f5f5f0','#fad7bd','#594f62'], colorNames:['Space Black','Silver','Gold','Deep Purple'], rating:4.9, reviews:312, stock:'low', tag:'hot' },
         { series:'iphone', name:'iPhone 15', storage:['128GB','256GB','512GB'], descKey:'iphone15Desc', prices:[343,379,452], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'], rating:4.7, reviews:189, stock:'in', tag:'sale' },
         { series:'iphone', name:'iPhone 15 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone15PlusDesc', prices:[388,424,497], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'], rating:4.7, reviews:145, stock:'in', tag:'sale' },
-        { series:'iphone', name:'iPhone 15 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone15ProDesc', prices:[437,477,560,643], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.9, reviews:289, stock:'low', tag:'hot' },
-        { series:'iphone', name:'iPhone 15 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone15ProMaxDesc', prices:[477,543,617], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:5.0, reviews:345, stock:'low', tag:'hot' },
+        { series:'iphone', name:'iPhone 15 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone15ProDesc', prices:[466,488,566,666], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.9, reviews:289, stock:'low', tag:'hot' },
+        { series:'iphone', name:'iPhone 15 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone15ProMaxDesc', prices:[488,566,666], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:5.0, reviews:345, stock:'low', tag:'hot' },
         { series:'iphone', name:'iPhone 16', storage:['128GB','256GB','512GB'], descKey:'iphone16Desc', prices:[499,549,649], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'], rating:4.8, reviews:56, stock:'in', tag:'new' },
-        { series:'iphone', name:'iPhone 16 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone16PlusDesc', prices:[582,632,732], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'], rating:4.8, reviews:42, stock:'in', tag:'new' },
-        { series:'iphone', name:'iPhone 16 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone16ProDesc', prices:[666,716,816,915], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.9, reviews:78, stock:'in', tag:'new' },
-        { series:'iphone', name:'iPhone 16 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone16ProMaxDesc', prices:[749,832,932], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.9, reviews:102, stock:'low', tag:'hot' },
-        { series:'iphone', name:'iPhone 17', storage:['128GB','256GB','512GB'], descKey:'iphone17Desc', prices:[541,591,691], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'], rating:4.6, reviews:23, stock:'in', tag:'new' },
-        { series:'iphone', name:'iPhone 17 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone17PlusDesc', prices:[624,674,774], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'], rating:4.6, reviews:18, stock:'in', tag:'new' },
-        { series:'iphone', name:'iPhone 17 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone17ProDesc', prices:[707,757,857,957], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.7, reviews:31, stock:'low', tag:'hot' },
-        { series:'iphone', name:'iPhone 17 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone17ProMaxDesc', prices:[791,874,974], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.8, reviews:45, stock:'low', tag:'hot' },
+        { series:'iphone', name:'iPhone 16 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone16PlusDesc', prices:[599,649,749], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f','#5f9ea0'], colorNames:['Midnight','Starlight','Pink','Red','Blue'], rating:4.8, reviews:42, stock:'in', tag:'new' },
+        { series:'iphone', name:'iPhone 16 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone16ProDesc', prices:[688,788,888,988], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.9, reviews:78, stock:'in', tag:'new' },
+        { series:'iphone', name:'iPhone 16 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone16ProMaxDesc', prices:[788,888,988], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.9, reviews:102, stock:'low', tag:'hot' },
+        { series:'iphone', name:'iPhone 17', storage:['128GB','256GB','512GB'], descKey:'iphone17Desc', prices:[588,688,788], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'], rating:4.6, reviews:23, stock:'in', tag:'new' },
+        { series:'iphone', name:'iPhone 17 Plus', storage:['128GB','256GB','512GB'], descKey:'iphone17PlusDesc', prices:[688,788,888], colors:['#1d1d1f','#f5f5f0','#fad7bd','#bf1a2f'], colorNames:['Midnight','Starlight','Pink','Red'], rating:4.6, reviews:18, stock:'in', tag:'new' },
+        { series:'iphone', name:'iPhone 17 Pro', storage:['128GB','256GB','512GB','1TB'], descKey:'iphone17ProDesc', prices:[788,888,988,1088], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.7, reviews:31, stock:'low', tag:'hot' },
+        { series:'iphone', name:'iPhone 17 Pro Max', storage:['256GB','512GB','1TB'], descKey:'iphone17ProMaxDesc', prices:[888,988,1088], colors:['#1d1d1f','#f5f5f0','#bfa08a','#3a4a5c'], colorNames:['Black Titanium','White Titanium','Natural Titanium','Blue Titanium'], rating:4.8, reviews:45, stock:'low', tag:'hot' },
         { series:'samsung', name:'Galaxy S24', storage:['128GB','256GB'], descKey:'s24Desc', prices:[253,281], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'], rating:4.5, reviews:88, stock:'in', tag:'sale' },
         { series:'samsung', name:'Galaxy S24+', storage:['256GB','512GB'], descKey:'s24PlusDesc', prices:[317,363], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'], rating:4.6, reviews:72, stock:'low', tag:'sale' },
-        { series:'samsung', name:'Galaxy S24 Ultra', storage:['256GB','512GB','1TB'], descKey:'s24UltraDesc', prices:[432,501,575], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'], rating:4.8, reviews:156, stock:'in', tag:'hot' },
+        { series:'samsung', name:'Galaxy S24 Ultra', storage:['256GB','512GB','1TB'], descKey:'s24UltraDesc', prices:[488,566,666], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'], rating:4.8, reviews:156, stock:'in', tag:'hot' },
         { series:'samsung', name:'Galaxy S25', storage:['128GB','256GB'], descKey:'s25Desc', prices:[299,332], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'], rating:4.7, reviews:34, stock:'in', tag:'new' },
         { series:'samsung', name:'Galaxy S25+', storage:['256GB','512GB'], descKey:'s25PlusDesc', prices:[382,432], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Cobalt Violet','Amber Yellow'], rating:4.7, reviews:28, stock:'in', tag:'new' },
-        { series:'samsung', name:'Galaxy S25 Ultra', storage:['256GB','512GB','1TB'], descKey:'s25UltraDesc', prices:[499,566,649], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'], rating:4.9, reviews:67, stock:'low', tag:'hot' },
-        { series:'samsung', name:'Galaxy Z Flip 6', storage:['256GB','512GB'], descKey:'zFlip6Desc', prices:[394,432], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Blue','Yellow'], rating:4.6, reviews:53, stock:'in', tag:'new' },
-        { series:'samsung', name:'Galaxy Z Fold 6', storage:['256GB','512GB','1TB'], descKey:'zFold6Desc', prices:[749,816,915], colors:['#1d1d1f','#c0c0c0','#4a6fa5'], colorNames:['Phantom Black','Silver','Blue'], rating:4.8, reviews:89, stock:'low', tag:'hot' },
+        { series:'samsung', name:'Galaxy S25 Ultra', storage:['256GB','512GB','1TB'], descKey:'s25UltraDesc', prices:[566,666,788], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Titanium Black','Titanium Silver','Titanium Violet','Titanium Yellow'], rating:4.9, reviews:67, stock:'low', tag:'hot' },
+        { series:'samsung', name:'Galaxy Z Flip 6', storage:['256GB','512GB'], descKey:'zFlip6Desc', prices:[488,566], colors:['#1d1d1f','#c0c0c0','#4a6fa5','#e8d5b7'], colorNames:['Phantom Black','Silver','Blue','Yellow'], rating:4.6, reviews:53, stock:'in', tag:'new' },
+        { series:'samsung', name:'Galaxy Z Fold 6', storage:['256GB','512GB','1TB'], descKey:'zFold6Desc', prices:[888,988,1088], colors:['#1d1d1f','#c0c0c0','#4a6fa5'], colorNames:['Phantom Black','Silver','Blue'], rating:4.8, reviews:89, stock:'low', tag:'hot' },
         { series:'pixel', name:'Pixel 8', storage:['128GB','256GB'], descKey:'pixel8Desc', prices:[215,245], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'], rating:4.4, reviews:112, stock:'in', tag:'sale' },
         { series:'pixel', name:'Pixel 8 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel8ProDesc', prices:[308,350,408], colors:['#1d1d1f','#f5f5f0','#bfa08a'], colorNames:['Obsidian','Porcelain','Hazel'], rating:4.5, reviews:98, stock:'low', tag:'sale' },
         { series:'pixel', name:'Pixel 9', storage:['128GB','256GB'], descKey:'pixel9Desc', prices:[291,332], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'], rating:4.6, reviews:45, stock:'in', tag:'new' },
-        { series:'pixel', name:'Pixel 9 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel9ProDesc', prices:[374,432,499], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'], rating:4.7, reviews:38, stock:'in', tag:'new' },
-        { series:'pixel', name:'Pixel 9 Pro XL', storage:['128GB','256GB','512GB','1TB'], descKey:'pixel9ProXLDesc', prices:[457,516,582,666], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'], rating:4.8, reviews:52, stock:'low', tag:'new' }
+        { series:'pixel', name:'Pixel 9 Pro', storage:['128GB','256GB','512GB'], descKey:'pixel9ProDesc', prices:[432,488,566], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'], rating:4.7, reviews:38, stock:'in', tag:'new' },
+        { series:'pixel', name:'Pixel 9 Pro XL', storage:['128GB','256GB','512GB','1TB'], descKey:'pixel9ProXLDesc', prices:[566,666,788,888], colors:['#1d1d1f','#f5f5f0','#bfa08a','#5f9ea0'], colorNames:['Obsidian','Porcelain','Hazel','Bay'], rating:4.8, reviews:52, stock:'low', tag:'new' }
       ];
 
       // ==================== 全局状态 ====================
@@ -769,7 +771,7 @@
       let cart = [];
       let currentProduct = null, currentProductPrice = 0, currentAddress = null;
       let selectedStorageIndex = 0, selectedColorIndex = 0, selectedQuantity = 1;
-      const MAX_QUANTITY_PER_ITEM = 5; // 限制单款最多购买5个
+      const MAX_QUANTITY_PER_ITEM = 5;
 
       /* ========= 工具函数 ========= */
       function t(key) { return translations[currentLang]?.[key] || translations.en[key] || key; }
@@ -779,6 +781,7 @@
       function saveOrders(arr) { localStorage.setItem('xinlo_orders', JSON.stringify(arr)); }
       function showToast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
 
+      // ========= 第2段结束，请继续拼接第3段 =========
       function updateAllTexts() {
         document.getElementById('subTagline').textContent = t('tagline');
         const intros = document.querySelectorAll('#introText p');
@@ -850,7 +853,7 @@
         });
       }
 
-      /* 购物车界面更新 */
+      /* 更新购物车界面 */
       function updateCartUI() {
         const totalQty = cart.reduce((s,i) => s + (i.checked ? i.qty : 0), 0);
         document.getElementById('panelCartCount').textContent = totalQty;
@@ -885,7 +888,8 @@
           });
         });
       }
-      /* 商品详情弹窗 */
+
+      /* 打开商品详情弹窗 */
       function openProductModal(p) {
         currentProduct = p; selectedStorageIndex = 0; selectedColorIndex = 0; selectedQuantity = 1;
         const render = () => {
@@ -1021,32 +1025,84 @@
         document.getElementById('closeUserCenter').addEventListener('click', () => userCenterModal.classList.remove('active'));
         userCenterModal.classList.add('active');
       }
+
+      // ========= 第3段结束，请继续拼接第4段 =========
+      /* ========= 页面滑动逻辑 ========= */
       function slideToPage(index) {
-        if(index === 0) { slider.style.transform = 'translateX(0)'; page1Content.classList.remove('shifted'); logoWrapper.classList.remove('shifted'); page2Content.classList.remove('entered'); }
-        else { slider.style.transform = 'translateX(-50%)'; page1Content.classList.add('shifted'); logoWrapper.classList.add('shifted'); page2Content.classList.add('entered'); }
+        if(index === 0) {
+          slider.style.transform = 'translateX(0)';
+          page1Content.classList.remove('shifted');
+          logoWrapper.classList.remove('shifted');
+          page2Content.classList.remove('entered');
+        } else {
+          slider.style.transform = 'translateX(-50%)';
+          page1Content.classList.add('shifted');
+          logoWrapper.classList.add('shifted');
+          page2Content.classList.add('entered');
+        }
       }
 
+      /* 全方位手势翻页 */
       let touchStartY = 0, touchStartX = 0;
-      slider.addEventListener('touchstart', e => { touchStartY = e.changedTouches[0].screenY; touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+      slider.addEventListener('touchstart', e => {
+        touchStartY = e.changedTouches[0].screenY;
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
       slider.addEventListener('touchend', e => {
-        const diffY = touchStartY - e.changedTouches[0].screenY, diffX = touchStartX - e.changedTouches[0].screenX;
-        if(Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 40) {
-          const isPage1 = slider.style.transform.includes('0');
-          if(diffY > 0 && isPage1) slideToPage(1);
-          else if(diffY < 0 && !isPage1) slideToPage(0);
+        const diffY = touchStartY - e.changedTouches[0].screenY;
+        const diffX = touchStartX - e.changedTouches[0].screenX;
+        // 判断滑动方向：只要位移超过阈值即可翻页
+        const absDiffY = Math.abs(diffY);
+        const absDiffX = Math.abs(diffX);
+        const isPage1 = slider.style.transform.includes('0');
+
+        if (absDiffY > 40 || absDiffX > 40) {
+          if (isPage1) {
+            // 在第一页：向上滑动或向左滑动 → 翻到第二页
+            if (diffY > 30 || diffX > 30) {
+              slideToPage(1);
+            }
+          } else {
+            // 在第二页：向下滑动或向右滑动 → 翻回第一页
+            if (diffY < -30 || diffX < -30) {
+              slideToPage(0);
+            }
+          }
         }
       });
 
       /* 悬浮球与面板 */
-      floatingBall.addEventListener('click', () => { quickPanel.classList.toggle('open'); floatingBall.classList.toggle('active'); });
-      document.getElementById('openCartFromPanel').addEventListener('click', () => { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('active'); quickPanel.classList.remove('open'); });
-      document.getElementById('openOrdersFromPanel').addEventListener('click', () => { openUserCenter(); quickPanel.classList.remove('open'); });
-      document.getElementById('openAddressBookFromPanel').addEventListener('click', () => { openAddressBookModal(false); quickPanel.classList.remove('open'); });
-      document.getElementById('langSelectPanel').addEventListener('change', function(e) { currentLang = e.target.value; updateAllTexts(); });
+      floatingBall.addEventListener('click', () => {
+        quickPanel.classList.toggle('open');
+        floatingBall.classList.toggle('active');
+      });
+      document.getElementById('openCartFromPanel').addEventListener('click', () => {
+        document.getElementById('cartSidebar').classList.add('open');
+        document.getElementById('cartOverlay').classList.add('active');
+        quickPanel.classList.remove('open');
+      });
+      document.getElementById('openOrdersFromPanel').addEventListener('click', () => {
+        openUserCenter();
+        quickPanel.classList.remove('open');
+      });
+      document.getElementById('openAddressBookFromPanel').addEventListener('click', () => {
+        openAddressBookModal(false);
+        quickPanel.classList.remove('open');
+      });
+      document.getElementById('langSelectPanel').addEventListener('change', function(e) {
+        currentLang = e.target.value;
+        updateAllTexts();
+      });
 
       /* 购物车侧边栏 */
-      document.getElementById('closeCartBtn').addEventListener('click', () => { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('active'); });
-      document.getElementById('cartOverlay').addEventListener('click', () => { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('active'); });
+      document.getElementById('closeCartBtn').addEventListener('click', () => {
+        document.getElementById('cartSidebar').classList.remove('open');
+        document.getElementById('cartOverlay').classList.remove('active');
+      });
+      document.getElementById('cartOverlay').addEventListener('click', () => {
+        document.getElementById('cartSidebar').classList.remove('open');
+        document.getElementById('cartOverlay').classList.remove('active');
+      });
       document.getElementById('checkoutCartBtn').addEventListener('click', () => {
         const selected = cart.filter(i => i.checked);
         if(selected.length === 0) return showToast('Please select items');
@@ -1060,38 +1116,71 @@
         openAddressModal();
       });
 
-      document.getElementById('goToPriceBtn').addEventListener('click', (e) => { e.stopPropagation(); slideToPage(1); });
-      document.getElementById('backToHomeBtn').addEventListener('click', (e) => { e.stopPropagation(); slideToPage(0); });
+      /* 页面按钮 */
+      document.getElementById('goToPriceBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        slideToPage(1);
+      });
+      document.getElementById('backToHomeBtn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        slideToPage(0);
+      });
+
+      /* 分类切换 */
       document.getElementById('categoryTabs').addEventListener('click', e => {
         if(e.target.classList.contains('category-tab')) {
-          document.querySelectorAll('.category-tab').forEach(t => { t.classList.remove('active','bg-black','text-white','shadow-sm'); t.classList.add('bg-white','border'); });
-          e.target.classList.add('active','bg-black','text-white','shadow-sm'); e.target.classList.remove('bg-white','border');
-          currentCategory = e.target.dataset.category; renderStore();
+          document.querySelectorAll('.category-tab').forEach(t => {
+            t.classList.remove('active','bg-black','text-white','shadow-sm');
+            t.classList.add('bg-white','border');
+          });
+          e.target.classList.add('active','bg-black','text-white','shadow-sm');
+          e.target.classList.remove('bg-white','border');
+          currentCategory = e.target.dataset.category;
+          renderStore();
         }
       });
+
+      /* 排序切换 */
       document.getElementById('sortButtons').addEventListener('click', e => {
         if(e.target.classList.contains('sort-btn')) {
           document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
           e.target.classList.add('active');
-          currentSort = e.target.dataset.sort; renderStore();
+          currentSort = e.target.dataset.sort;
+          renderStore();
         }
       });
+
+      /* 搜索 */
       document.getElementById('searchInput').addEventListener('input', renderStore);
 
-      /* 轮播 */
+      /* 轮播（如果主页有 banner 则自动播放） */
       let bannerIdx = 0;
       setInterval(() => {
         const slides = document.querySelectorAll('.banner-slide');
-        if(slides.length > 0) { slides.forEach(s => s.classList.remove('active')); bannerIdx = (bannerIdx + 1) % slides.length; slides[bannerIdx].classList.add('active'); }
+        if(slides.length > 0) {
+          slides.forEach(s => s.classList.remove('active'));
+          bannerIdx = (bannerIdx + 1) % slides.length;
+          slides[bannerIdx].classList.add('active');
+        }
       }, 3000);
 
-      /* 关闭弹窗 */
-      [document.getElementById('productModal'), document.getElementById('addressModal'), document.getElementById('addressBookModal'), document.getElementById('paymentModal'), document.getElementById('orderConfirmModal'), document.getElementById('userCenterModal')].forEach(m => {
-        m.addEventListener('click', function(e) { if(e.target === m) m.classList.remove('active'); });
+      /* 弹窗背景点击关闭 */
+      [document.getElementById('productModal'),
+       document.getElementById('addressModal'),
+       document.getElementById('addressBookModal'),
+       document.getElementById('paymentModal'),
+       document.getElementById('orderConfirmModal'),
+       document.getElementById('userCenterModal')].forEach(m => {
+        m.addEventListener('click', function(e) {
+          if(e.target === m) m.classList.remove('active');
+        });
       });
 
-      setTimeout(() => { const star = document.getElementById('logoStar'); const trail = document.getElementById('logoTrail'); if(star) star.style.display = 'none'; if(trail) trail.style.display = 'none'; }, 2200);
+      /* Logo 动画结束后保留星星和文字，不再隐藏 */
+      // 已通过 CSS 动画实现：星星缩小到左侧并半透明保留，XINLO 文字在 2s 后出现并保留
+      // 无需额外 JS 操作
 
+      /* 初始化 */
       updateAllTexts();
       updateCartUI();
       slider.style.transform = 'translateX(0)';
