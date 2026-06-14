@@ -9,7 +9,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ========== 全局变量与重置 ========== */
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     :root {
       --bg-primary: #1a1a1a; --bg-secondary: #121212; --text-primary: #f5f5f5; --text-secondary: #b0b0b0; --text-muted: #888;
@@ -25,11 +24,9 @@
     body::before { content: ''; position: fixed; top: -30%; right: -20%; width: 70%; height: 80%; background: radial-gradient(circle at 70% 30%, rgba(120,120,255,0.04) 0%, transparent 60%); pointer-events: none; z-index: 0; animation: bgGlow 12s ease-in-out infinite alternate; }
     body::after { content: ''; position: fixed; bottom: -20%; left: -15%; width: 60%; height: 70%; background: radial-gradient(circle at 30% 70%, rgba(255,180,100,0.03) 0%, transparent 60%); pointer-events: none; z-index: 0; animation: bgGlow 15s ease-in-out infinite alternate-reverse; }
     @keyframes bgGlow { 0% { opacity: 0.3; transform: scale(1); } 100% { opacity: 0.6; transform: scale(1.06); } }
-
     .page-container { display: flex; width: 200%; height: 100vh; height: 100dvh; transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1); will-change: transform; position: relative; z-index: 1; }
     .page { width: 50%; height: 100vh; height: 100dvh; overflow-y: auto; overflow-x: hidden; padding: 2rem; scrollbar-width: thin; scrollbar-color: #444 transparent; -webkit-overflow-scrolling: touch; }
     .page::-webkit-scrollbar { width: 5px; } .page::-webkit-scrollbar-track { background: transparent; } .page::-webkit-scrollbar-thumb { background-color: #444; border-radius: 10px; }
-
     @keyframes starFlyIn { 0% { left: -5%; transform: scale(0.2); opacity: 0; } 15% { opacity: 1; } 75% { left: 82%; transform: scale(1.3); opacity: 1; } 90% { left: 90%; transform: scale(1.1); opacity: 0.9; } 100% { left: 5%; transform: scale(0.5); opacity: 0.6; } }
     @keyframes trailGrow { 0% { width: 0; opacity: 0; } 20% { opacity: 0.9; } 80% { width: 80%; opacity: 0.8; } 100% { width: 96%; opacity: 0; } }
     @keyframes textReveal { 0% { opacity: 0; transform: scale(0.7) translateY(10px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
@@ -41,7 +38,6 @@
     .logo-star { position: absolute; font-size: 2rem; z-index: 2; opacity: 0; animation: starFlyIn 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; filter: drop-shadow(0 0 8px rgba(255,200,0,0.5)); left: 5%; }
     .logo-trail { position: absolute; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d); background-size: 400% auto; animation: trailGrow 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; top: 50%; left: 0; width: 0; z-index: 1; filter: blur(1px); opacity: 0.8; }
     .logo-text-final { position: absolute; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; letter-spacing: -0.04em; background: linear-gradient(90deg, #ff6b6b, #fca13e, #f8e81c, #56c596, #5c9cec, #ae7ef2, #ff6b6b); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; opacity: 0; transform: scale(0.7) translateY(10px); animation: textReveal 0.55s cubic-bezier(0.32, 0.72, 0, 1) 2s forwards; z-index: 3; }
-
     .sync-fade { opacity: 0; animation: fadeInUp 0.65s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
     .sync-fade:nth-child(1) { animation-delay: 1.7s; } .sync-fade:nth-child(2) { animation-delay: 1.9s; } .sync-fade:nth-child(3) { animation-delay: 2.1s; }
     .btn-sync { opacity: 0; animation: fadeInUp 0.65s cubic-bezier(0.32, 0.72, 0, 1) forwards, subtlePulse 3s ease-in-out 3s infinite; animation-delay: 2.3s; }
@@ -49,24 +45,20 @@
     .page-1-content.shifted { opacity: 0.25; transform: scale(0.95); pointer-events: none; }
     .page-2-content { transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1); opacity: 0.4; transform: translateX(35px); }
     .page-2-content.entered { opacity: 1; transform: translateX(0); }
-
     .price-card { transition: transform 0.3s, box-shadow 0.3s; background: #252525; border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm); border: 1px solid var(--border); cursor: pointer; text-align: center; }
     .price-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.15); }
     .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     @media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } .page { padding: 1rem; } .price-card { padding: 1.25rem; } .logo-wrapper { height: 120px; } }
     @media (max-width: 480px) { .page { padding: 0.75rem; } .logo-wrapper { height: 100px; } .cart-sidebar { width: 100%; } }
     .product-img { width: 100%; height: 160px; object-fit: contain; border-radius: var(--radius-sm); margin-bottom: 0.75rem; background: #1a1a1a; padding: 1rem; }
-
     .sticky-nav { position: sticky; top: 0; z-index: 10; background: rgba(26,26,26,0.8); backdrop-filter: blur(30px) saturate(240%); -webkit-backdrop-filter: blur(30px) saturate(240%); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.75rem 0; margin-bottom: 1.5rem; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
     .nav-btn { padding: 0.55rem 1.2rem; border-radius: var(--radius-full); font-weight: 500; border: none; background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); color: #ccc; cursor: pointer; transition: all 0.25s; font-size: 0.9rem; min-height: 40px; }
     .nav-btn:hover { background: rgba(255,255,255,0.25); color: #fff; }
     .cta-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.95rem 2.5rem; background: #fff; color: #000; font-weight: 600; border-radius: var(--radius-full); box-shadow: var(--shadow-md); transition: all 0.3s; border: none; font-size: 1rem; min-height: 52px; cursor: pointer; }
     .cta-btn:hover { background: #e0e0e0; transform: translateY(-3px); }
-
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { background: #252525; border-radius: var(--radius-xl); padding: 2rem; max-width: 520px; width: 92%; max-height: 85vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.6); animation: modalSlideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1); color: #f0f0f0; }
-
     .floating-ball { position: fixed; left: 10px; bottom: 100px; z-index: 150; width: 52px; height: 52px; background: #fff; color: #000; border-radius: 50%; box-shadow: 0 8px 24px rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: grab; transition: box-shadow 0.3s, left 0.3s ease; font-size: 1.3rem; touch-action: none; user-select: none; }
     .floating-ball:active { cursor: grabbing; }
     .quick-panel { position: fixed; z-index: 140; background: #252525; border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0,0,0,0.5); padding: 1rem; min-width: 250px; transform: translateX(-120%); opacity: 0; transition: transform 0.35s ease, opacity 0.35s ease; }
@@ -76,15 +68,12 @@
     .quick-panel-item i { width: 20px; text-align: center; color: #aaa; }
     .quick-panel select { background: transparent; border: none; outline: none; color: #ddd; font-size: 0.9rem; cursor: pointer; width: 100%; }
     .quick-panel select option { background: #252525; color: #ddd; }
-
     .cart-sidebar { position: fixed; right: 0; top: 0; height: 100vh; height: 100dvh; width: 380px; background: #252525; box-shadow: -10px 0 30px rgba(0,0,0,0.5); z-index: 200; transform: translateX(100%); transition: transform 0.35s ease; color: #f0f0f0; }
     .cart-sidebar.open { transform: translateX(0); }
     .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 199; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .cart-overlay.active { opacity: 1; pointer-events: auto; }
-
     .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 1rem 2rem; border-radius: var(--radius-full); z-index: 300; opacity: 0; transition: opacity 0.3s; }
     .toast.show { opacity: 1; }
-
     .search-box input { width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-full); border: 1px solid rgba(255,255,255,0.15); outline: none; font-size: 0.9rem; background: #252525; color: #fff; }
     .modal-content input, .modal-content textarea { background: #333; border: 1px solid rgba(255,255,255,0.15); color: #fff; border-radius: var(--radius-sm); padding: 0.75rem; width: 100%; }
     .input-error { border-color: var(--error) !important; background: #4a2020 !important; }
@@ -146,7 +135,7 @@
 
   <!-- 悬浮球（可拖拽，吸附边缘） -->
   <div class="floating-ball" id="floatingBall" style="left:10px;bottom:100px;"><i class="fas fa-ellipsis-h"></i></div>
-  <!-- 悬浮球弹出面板（功能完整） -->
+  <!-- 悬浮球面板（含10种语言选择） -->
   <div class="quick-panel" id="quickPanel" style="left:70px;bottom:100px;">
     <div class="quick-panel-item" id="openCartFromPanel">
       <i class="fas fa-shopping-cart"></i>
@@ -162,6 +151,14 @@
       <select id="langSelectPanel" style="background:transparent;border:none;outline:none;color:#ddd;font-size:0.9rem;cursor:pointer;width:100%;">
         <option value="en">🇺🇸 English</option>
         <option value="zh">🇨🇳 中文</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="ar">🇸🇦 العربية</option>
+        <option value="hi">🇮🇳 हिन्दी</option>
+        <option value="pt">🇧🇷 Português</option>
+        <option value="bn">🇧🇩 বাংলা</option>
+        <option value="ru">🇷🇺 Русский</option>
+        <option value="ja">🇯🇵 日本語</option>
+        <option value="fr">🇫🇷 Français</option>
       </select>
     </div>
   </div>
@@ -184,10 +181,9 @@
   <div class="modal-overlay" id="orderConfirmModal"><div class="modal-content" id="orderConfirmContent"></div></div>
   <div class="modal-overlay" id="userCenterModal"><div class="modal-content" id="userCenterContent"></div></div>
   <div class="toast" id="toast"></div>
-  <!-- 第1段结束，请继续拼接第2段 -->
-  <script>
+  <!-- 第1段结束 --><script>
     (function() {
-      // ==================== 完整多语言 ====================
+      // ==================== 完整10种语言翻译 ====================
       const translations = {
         en: {
           tagline: "Premium Discount Gift Cards",
@@ -268,6 +264,318 @@
           bestbuyDesc: "Best Buy 礼品卡，电子产品、家电等。",
           targetDesc: "Target 礼品卡，服装、家居、杂货等。",
           walmartDesc: "Walmart 礼品卡，日常所需，天天低价。"
+        },
+        es: {
+          tagline: "Tarjetas de regalo con descuento",
+          intro1: "iTunes, Google Play, Amazon, Steam, Xbox y más – hasta 35% de descuento.",
+          intro2: "Entrega digital instantánea por correo electrónico tras la confirmación del pago.",
+          intro3: "Pagos seguros con USDT, confianza mundial.",
+          viewPrice: "Ver tarjetas", copyright: "© 2026 XINLO. Todos los derechos reservados.", priceTitle: "Tarjetas", back: "Volver",
+          allCategory: "Todo", appleCategory: "Apple", googleCategory: "Google", gamingCategory: "Juegos", otherCategory: "Otro",
+          faceValueLabel: "Valor nominal", salePriceLabel: "Tú pagas",
+          proceedToAddress: "Pagar", shippingTitle: "Datos de entrega",
+          fullName: "Nombre completo", email: "Correo electrónico",
+          saveAddress: "Guardar datos", confirmAndPay: "Proceder al pago",
+          addressBookTitle: "Datos guardados", noSavedAddress: "Sin datos guardados.", addNewAddress: "Añadir",
+          deleteAddress: "Eliminar", selectAddress: "Seleccionar",
+          paymentTitle: "Pago", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "Importe:", usdtAddressLabel: "Transferir a:",
+          usdtNote: "Después de transferir, sube la captura. El código se enviará en 30 minutos.",
+          uploadReceipt: "Subir comprobante", uploadHint: "Haz clic o arrastra",
+          receiptUploaded: "✓ Subido", confirmPayment: "Confirmar pago",
+          orderSuccessTitle: "🎉 ¡Pedido realizado!", orderSummary: "Resumen",
+          productLabel: "Tarjeta", faceValue: "Valor nominal",
+          originalPrice: "Valor nominal", discountPrice: "Tú pagas",
+          deliveryInfo: "Información de entrega", paymentTime: "Hora",
+          thankYou: "¡Gracias! Enviaremos el código a tu correo en 30 minutos. Productos virtuales no reembolsables.",
+          close: "Cerrar", backToHome: "Inicio",
+          myOrders: "Mis pedidos", noOrders: "Sin pedidos.", orderID: "ID", orderStatus: "Estado", statusPending: "Procesando",
+          invalidName: "Introduce un nombre válido", invalidEmail: "Introduce un email válido",
+          panelCart: "Carrito", panelOrders: "Pedidos",
+          refundNote: "Los códigos se envían en 30 minutos. Productos virtuales no reembolsables.",
+          itunesDesc: "Tarjeta Apple App Store & iTunes. Canjeable por apps, música, películas y más.",
+          googleplayDesc: "Tarjeta Google Play. Para apps, juegos, películas, libros en Android.",
+          amazonDesc: "Tarjeta Amazon.com. Compra millones de productos en Amazon.",
+          steamDesc: "Código Steam Wallet. Compra juegos, software y artículos en Steam.",
+          xboxDesc: "Tarjeta Xbox. Juegos, complementos, suscripciones y más en Xbox.",
+          nintendoDesc: "Tarjeta Nintendo eShop. Juegos y contenido para Nintendo Switch.",
+          sephoraDesc: "Tarjeta Sephora. Belleza, cuidado de la piel, maquillaje y fragancias.",
+          bestbuyDesc: "Tarjeta Best Buy. Electrónica, electrodomésticos y más.",
+          targetDesc: "Tarjeta Target. Ropa, hogar, comestibles y más.",
+          walmartDesc: "Tarjeta Walmart. Todo lo que necesitas a precios bajos."
+        },
+        ar: {
+          tagline: "بطاقات هدايا مخفضة",
+          intro1: "iTunes وGoogle Play وAmazon وSteam وXbox والمزيد – خصم يصل إلى 35%.",
+          intro2: "تسليم رقمي فوري عبر البريد الإلكتروني بعد تأكيد الدفع.",
+          intro3: "دفع آمن بـ USDT، موثوق به عالمياً.",
+          viewPrice: "تصفح البطاقات", copyright: "© 2026 XINLO. جميع الحقوق محفوظة.", priceTitle: "بطاقات", back: "رجوع",
+          allCategory: "الكل", appleCategory: "Apple", googleCategory: "Google", gamingCategory: "ألعاب", otherCategory: "أخرى",
+          faceValueLabel: "القيمة", salePriceLabel: "تدفع",
+          proceedToAddress: "الدفع", shippingTitle: "بيانات التسليم",
+          fullName: "الاسم الكامل", email: "البريد الإلكتروني",
+          saveAddress: "حفظ البيانات", confirmAndPay: "متابعة للدفع",
+          addressBookTitle: "البيانات المحفوظة", noSavedAddress: "لا توجد بيانات.", addNewAddress: "إضافة",
+          deleteAddress: "حذف", selectAddress: "اختيار",
+          paymentTitle: "الدفع", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "المبلغ:", usdtAddressLabel: "حول إلى:",
+          usdtNote: "بعد التحويل، ارفع لقطة الشاشة. سيتم إرسال الكود خلال 30 دقيقة.",
+          uploadReceipt: "رفع الإيصال", uploadHint: "انقر أو اسحب",
+          receiptUploaded: "✓ تم الرفع", confirmPayment: "تأكيد الدفع",
+          orderSuccessTitle: "🎉 تم الطلب!", orderSummary: "ملخص",
+          productLabel: "بطاقة", faceValue: "القيمة",
+          originalPrice: "القيمة", discountPrice: "تدفع",
+          deliveryInfo: "معلومات التسليم", paymentTime: "الوقت",
+          thankYou: "شكراً! سنرسل الكود إلى بريدك خلال 30 دقيقة. المنتجات الرقمية غير قابلة للاسترداد.",
+          close: "إغلاق", backToHome: "الرئيسية",
+          myOrders: "طلباتي", noOrders: "لا طلبات.", orderID: "رقم", orderStatus: "الحالة", statusPending: "قيد المعالجة",
+          invalidName: "أدخل اسماً صالحاً", invalidEmail: "أدخل بريداً صالحاً",
+          panelCart: "السلة", panelOrders: "طلباتي",
+          refundNote: "تُرسل الأكواد خلال 30 دقيقة. المنتجات الرقمية غير قابلة للاسترداد.",
+          itunesDesc: "بطاقة Apple App Store & iTunes. للتطبيقات والموسيقى والأفلام.",
+          googleplayDesc: "بطاقة Google Play. للتطبيقات والألعاب والأفلام والكتب.",
+          amazonDesc: "بطاقة Amazon.com. تسوق ملايين المنتجات.",
+          steamDesc: "كود Steam Wallet. لشراء الألعاب والبرامج.",
+          xboxDesc: "بطاقة Xbox. للألعاب والإضافات والاشتراكات.",
+          nintendoDesc: "بطاقة Nintendo eShop. ألعاب ومحتوى Nintendo Switch.",
+          sephoraDesc: "بطاقة Sephora. للجمال والعناية والمكياج.",
+          bestbuyDesc: "بطاقة Best Buy. للإلكترونيات والأجهزة.",
+          targetDesc: "بطاقة Target. للملابس والمنزل والبقالة.",
+          walmartDesc: "بطاقة Walmart. كل ما تحتاجه بأسعار منخفضة."
+        },
+        hi: {
+          tagline: "डिस्काउंट गिफ्ट कार्ड",
+          intro1: "iTunes, Google Play, Amazon, Steam, Xbox और अधिक – 35% तक छूट।",
+          intro2: "भुगतान पुष्टि के बाद ईमेल द्वारा तुरंत डिजिटल डिलीवरी।",
+          intro3: "सुरक्षित USDT भुगतान, दुनिया भर में विश्वसनीय।",
+          viewPrice: "कार्ड देखें", copyright: "© 2026 XINLO. सर्वाधिकार सुरक्षित।", priceTitle: "उपहार कार्ड", back: "वापस",
+          allCategory: "सभी", appleCategory: "Apple", googleCategory: "Google", gamingCategory: "गेमिंग", otherCategory: "अन्य",
+          faceValueLabel: "अंकित मूल्य", salePriceLabel: "आप भुगतान करें",
+          proceedToAddress: "चेकआउट", shippingTitle: "डिलीवरी विवरण",
+          fullName: "पूरा नाम", email: "ईमेल पता",
+          saveAddress: "भविष्य के लिए सहेजें", confirmAndPay: "भुगतान करें",
+          addressBookTitle: "सहेजे गए विवरण", noSavedAddress: "कोई सहेजा विवरण नहीं।", addNewAddress: "नया जोड़ें",
+          deleteAddress: "हटाएं", selectAddress: "चुनें",
+          paymentTitle: "भुगतान", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "राशि:", usdtAddressLabel: "स्थानांतरित करें:",
+          usdtNote: "स्थानांतरण के बाद स्क्रीनशॉट अपलोड करें। कोड 30 मिनट में ईमेल किया जाएगा।",
+          uploadReceipt: "रसीद अपलोड करें", uploadHint: "क्लिक या खींचें",
+          receiptUploaded: "✓ अपलोडेड", confirmPayment: "भुगतान पुष्टि करें",
+          orderSuccessTitle: "🎉 ऑर्डर सबमिट!", orderSummary: "सारांश",
+          productLabel: "गिफ्ट कार्ड", faceValue: "अंकित मूल्य",
+          originalPrice: "अंकित मूल्य", discountPrice: "आप भुगतान करें",
+          deliveryInfo: "डिलीवरी जानकारी", paymentTime: "समय",
+          thankYou: "धन्यवाद! हम 30 मिनट में कोड आपके ईमेल पर भेजेंगे। वर्चुअल उत्पाद रिफंडेबल नहीं हैं।",
+          close: "बंद करें", backToHome: "होम",
+          myOrders: "मेरे ऑर्डर", noOrders: "अभी कोई ऑर्डर नहीं।", orderID: "ऑर्डर ID", orderStatus: "स्थिति", statusPending: "प्रसंस्करण",
+          invalidName: "कृपया वैध नाम दर्ज करें", invalidEmail: "कृपया वैध ईमेल दर्ज करें",
+          panelCart: "कार्ट", panelOrders: "मेरे ऑर्डर",
+          refundNote: "भुगतान के 30 मिनट बाद कोड भेजे जाते हैं। वर्चुअल उत्पाद रिफंडेबल नहीं।",
+          itunesDesc: "Apple App Store और iTunes गिफ्ट कार्ड। ऐप्स, संगीत, फिल्मों के लिए।",
+          googleplayDesc: "Google Play गिफ्ट कार्ड। Android पर ऐप्स, गेम्स, फिल्मों के लिए।",
+          amazonDesc: "Amazon.com गिफ्ट कार्ड। लाखों उत्पाद खरीदें।",
+          steamDesc: "Steam वॉलेट कोड। गेम्स, सॉफ्टवेयर खरीदें।",
+          xboxDesc: "Xbox गिफ्ट कार्ड। गेम्स, ऐड-ऑन, सब्सक्रिप्शन।",
+          nintendoDesc: "Nintendo eShop कार्ड। Switch के लिए गेम्स और सामग्री।",
+          sephoraDesc: "Sephora गिफ्ट कार्ड। सौंदर्य, स्किनकेयर, मेकअप।",
+          bestbuyDesc: "Best Buy गिफ्ट कार्ड। इलेक्ट्रॉनिक्स, उपकरण।",
+          targetDesc: "Target गिफ्ट कार्ड। कपड़े, घरेलू सामान, किराना।",
+          walmartDesc: "Walmart गिफ्ट कार्ड। रोज़मर्रा की कम कीमतें।"
+        },
+        pt: {
+          tagline: "Cartões-presente com desconto",
+          intro1: "iTunes, Google Play, Amazon, Steam, Xbox e mais – até 35% de desconto.",
+          intro2: "Entrega digital instantânea por e-mail após confirmação do pagamento.",
+          intro3: "Pagamentos seguros com USDT, confiança mundial.",
+          viewPrice: "Ver cartões", copyright: "© 2026 XINLO. Todos os direitos reservados.", priceTitle: "Cartões", back: "Voltar",
+          allCategory: "Todos", appleCategory: "Apple", googleCategory: "Google", gamingCategory: "Jogos", otherCategory: "Outro",
+          faceValueLabel: "Valor nominal", salePriceLabel: "Você paga",
+          proceedToAddress: "Finalizar", shippingTitle: "Dados de entrega",
+          fullName: "Nome completo", email: "E-mail",
+          saveAddress: "Salvar dados", confirmAndPay: "Prosseguir para pagamento",
+          addressBookTitle: "Dados salvos", noSavedAddress: "Nenhum dado salvo.", addNewAddress: "Adicionar",
+          deleteAddress: "Excluir", selectAddress: "Selecionar",
+          paymentTitle: "Pagamento", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "Valor:", usdtAddressLabel: "Transferir para:",
+          usdtNote: "Após transferir, envie a captura. O código será enviado em 30 minutos.",
+          uploadReceipt: "Enviar comprovante", uploadHint: "Clique ou arraste",
+          receiptUploaded: "✓ Enviado", confirmPayment: "Confirmar pagamento",
+          orderSuccessTitle: "🎉 Pedido realizado!", orderSummary: "Resumo",
+          productLabel: "Cartão", faceValue: "Valor nominal",
+          originalPrice: "Valor nominal", discountPrice: "Você paga",
+          deliveryInfo: "Informações de entrega", paymentTime: "Hora",
+          thankYou: "Obrigado! Enviaremos o código para seu e-mail em 30 minutos. Produtos virtuais não são reembolsáveis.",
+          close: "Fechar", backToHome: "Início",
+          myOrders: "Meus pedidos", noOrders: "Nenhum pedido.", orderID: "ID", orderStatus: "Status", statusPending: "Processando",
+          invalidName: "Digite um nome válido", invalidEmail: "Digite um e-mail válido",
+          panelCart: "Carrinho", panelOrders: "Pedidos",
+          refundNote: "Códigos enviados em 30 minutos. Produtos virtuais não reembolsáveis.",
+          itunesDesc: "Cartão Apple App Store & iTunes. Aplicativos, música, filmes e mais.",
+          googleplayDesc: "Cartão Google Play. Apps, jogos, filmes, livros no Android.",
+          amazonDesc: "Cartão Amazon.com. Milhões de produtos na Amazon.",
+          steamDesc: "Código Steam Wallet. Compre jogos, software e itens no Steam.",
+          xboxDesc: "Cartão Xbox. Jogos, complementos, assinaturas e mais.",
+          nintendoDesc: "Cartão Nintendo eShop. Jogos e conteúdo para Nintendo Switch.",
+          sephoraDesc: "Cartão Sephora. Beleza, cuidados com a pele, maquiagem.",
+          bestbuyDesc: "Cartão Best Buy. Eletrônicos, eletrodomésticos e mais.",
+          targetDesc: "Cartão Target. Roupas, itens domésticos, mantimentos.",
+          walmartDesc: "Cartão Walmart. Tudo o que você precisa com preços baixos."
+        },
+        bn: {
+          tagline: "ডিসকাউন্ট গিফট কার্ড",
+          intro1: "iTunes, Google Play, Amazon, Steam, Xbox এবং আরও – ৩৫% পর্যন্ত ছাড়।",
+          intro2: "পেমেন্ট নিশ্চিতকরণের পর ইমেইলের মাধ্যমে তাৎক্ষণিক ডিজিটাল ডেলিভারি।",
+          intro3: "নিরাপদ USDT পেমেন্ট, বিশ্বব্যাপী বিশ্বস্ত।",
+          viewPrice: "কার্ড দেখুন", copyright: "© 2026 XINLO. সর্বস্বত্ব সংরক্ষিত।", priceTitle: "উপহার কার্ড", back: "ফিরুন",
+          allCategory: "সব", appleCategory: "Apple", googleCategory: "Google", gamingCategory: "গেমিং", otherCategory: "অন্যান্য",
+          faceValueLabel: "মূল্য", salePriceLabel: "আপনি পেমেন্ট করবেন",
+          proceedToAddress: "চেকআউট", shippingTitle: "ডেলিভারি বিবরণ",
+          fullName: "পুরো নাম", email: "ইমেইল ঠিকানা",
+          saveAddress: "ভবিষ্যতের জন্য সংরক্ষণ করুন", confirmAndPay: "পেমেন্ট করতে এগিয়ে যান",
+          addressBookTitle: "সংরক্ষিত বিবরণ", noSavedAddress: "কোন সংরক্ষিত বিবরণ নেই।", addNewAddress: "নতুন যোগ করুন",
+          deleteAddress: "মুছুন", selectAddress: "নির্বাচন করুন",
+          paymentTitle: "পেমেন্ট", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "পরিমাণ:", usdtAddressLabel: "স্থানান্তর করুন:",
+          usdtNote: "স্থানান্তরের পর স্ক্রিনশট আপলোড করুন। কোড ৩০ মিনিটের মধ্যে ইমেইল করা হবে।",
+          uploadReceipt: "রসিদ আপলোড করুন", uploadHint: "ক্লিক বা টেনে আনুন",
+          receiptUploaded: "✓ আপলোডেড", confirmPayment: "পেমেন্ট নিশ্চিত করুন",
+          orderSuccessTitle: "🎉 অর্ডার সাবমিট!", orderSummary: "সারাংশ",
+          productLabel: "গিফট কার্ড", faceValue: "মূল্য",
+          originalPrice: "মূল্য", discountPrice: "আপনি পেমেন্ট করবেন",
+          deliveryInfo: "ডেলিভারি তথ্য", paymentTime: "সময়",
+          thankYou: "ধন্যবাদ! আমরা ৩০ মিনিটের মধ্যে কোড আপনার ইমেইলে পাঠাব। ভার্চুয়াল পণ্য ফেরতযোগ্য নয়।",
+          close: "বন্ধ করুন", backToHome: "হোম",
+          myOrders: "আমার অর্ডার", noOrders: "এখনো কোন অর্ডার নেই।", orderID: "অর্ডার ID", orderStatus: "অবস্থা", statusPending: "প্রক্রিয়াধীন",
+          invalidName: "একটি বৈধ নাম লিখুন", invalidEmail: "একটি বৈধ ইমেইল লিখুন",
+          panelCart: "কার্ট", panelOrders: "আমার অর্ডার",
+          refundNote: "পেমেন্টের ৩০ মিনিটের মধ্যে কোড পাঠানো হয়। ভার্চুয়াল পণ্য ফেরতযোগ্য নয়।",
+          itunesDesc: "Apple App Store এবং iTunes গিফট কার্ড। অ্যাপ, সঙ্গীত, সিনেমার জন্য।",
+          googleplayDesc: "Google Play গিফট কার্ড। Android এ অ্যাপ, গেম, সিনেমার জন্য।",
+          amazonDesc: "Amazon.com গিফট কার্ড। লক্ষ লক্ষ পণ্য কিনুন।",
+          steamDesc: "Steam ওয়ালেট কোড। গেম, সফটওয়্যার কিনুন।",
+          xboxDesc: "Xbox গিফট কার্ড। গেম, অ্যাড-অন, সাবস্ক্রিপশন।",
+          nintendoDesc: "Nintendo eShop কার্ড। Switch এর জন্য গেম এবং কন্টেন্ট।",
+          sephoraDesc: "Sephora গিফট কার্ড। সৌন্দর্য, স্কিনকেয়ার, মেকআপ।",
+          bestbuyDesc: "Best Buy গিফট কার্ড। ইলেকট্রনিক্স, যন্ত্রপাতি।",
+          targetDesc: "Target গিফট কার্ড। পোশাক, গৃহস্থালি, মুদি।",
+          walmartDesc: "Walmart গিফট কার্ড। দৈনন্দিন কম দামে সবকিছু।"
+        },
+        ru: {
+          tagline: "Подарочные карты со скидкой",
+          intro1: "iTunes, Google Play, Amazon, Steam, Xbox и другие – скидка до 35%.",
+          intro2: "Мгновенная цифровая доставка на email после подтверждения оплаты.",
+          intro3: "Безопасные платежи USDT, доверие по всему миру.",
+          viewPrice: "Смотреть карты", copyright: "© 2026 XINLO. Все права защищены.", priceTitle: "Карты", back: "Назад",
+          allCategory: "Все", appleCategory: "Apple", googleCategory: "Google", gamingCategory: "Игры", otherCategory: "Другое",
+          faceValueLabel: "Номинал", salePriceLabel: "Вы платите",
+          proceedToAddress: "Оформить", shippingTitle: "Данные доставки",
+          fullName: "Полное имя", email: "Эл. почта",
+          saveAddress: "Сохранить данные", confirmAndPay: "Перейти к оплате",
+          addressBookTitle: "Сохраненные данные", noSavedAddress: "Нет сохраненных данных.", addNewAddress: "Добавить",
+          deleteAddress: "Удалить", selectAddress: "Выбрать",
+          paymentTitle: "Оплата", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "Сумма:", usdtAddressLabel: "Перевести на:",
+          usdtNote: "После перевода загрузите скриншот. Код будет отправлен в течение 30 минут.",
+          uploadReceipt: "Загрузить квитанцию", uploadHint: "Нажмите или перетащите",
+          receiptUploaded: "✓ Загружено", confirmPayment: "Подтвердить оплату",
+          orderSuccessTitle: "🎉 Заказ оформлен!", orderSummary: "Сводка",
+          productLabel: "Карта", faceValue: "Номинал",
+          originalPrice: "Номинал", discountPrice: "Вы платите",
+          deliveryInfo: "Информация о доставке", paymentTime: "Время",
+          thankYou: "Спасибо! Мы отправим код на вашу почту в течение 30 минут. Виртуальные товары не подлежат возврату.",
+          close: "Закрыть", backToHome: "На главную",
+          myOrders: "Мои заказы", noOrders: "Заказов пока нет.", orderID: "ID", orderStatus: "Статус", statusPending: "Обработка",
+          invalidName: "Введите действительное имя", invalidEmail: "Введите действительный email",
+          panelCart: "Корзина", panelOrders: "Заказы",
+          refundNote: "Коды отправляются в течение 30 минут. Виртуальные товары не подлежат возврату.",
+          itunesDesc: "Карта Apple App Store & iTunes. Для приложений, музыки, фильмов.",
+          googleplayDesc: "Карта Google Play. Приложения, игры, фильмы, книги на Android.",
+          amazonDesc: "Карта Amazon.com. Миллионы товаров на Amazon.",
+          steamDesc: "Код Steam Wallet. Покупка игр, программ и предметов в Steam.",
+          xboxDesc: "Карта Xbox. Игры, дополнения, подписки и многое другое.",
+          nintendoDesc: "Карта Nintendo eShop. Игры и контент для Nintendo Switch.",
+          sephoraDesc: "Карта Sephora. Красота, уход, макияж и парфюмерия.",
+          bestbuyDesc: "Карта Best Buy. Электроника, бытовая техника и другое.",
+          targetDesc: "Карта Target. Одежда, товары для дома, продукты.",
+          walmartDesc: "Карта Walmart. Всё, что нужно, по низким ценам."
+        },
+        ja: {
+          tagline: "割引ギフトカード",
+          intro1: "iTunes、Google Play、Amazon、Steam、Xboxなど – 最大35%オフ。",
+          intro2: "支払い確認後、メールで即時デジタル配信。",
+          intro3: "安全なUSDT決済、世界中で信頼。",
+          viewPrice: "カードを見る", copyright: "© 2026 XINLO. 全著作権所有。", priceTitle: "ギフトカード", back: "戻る",
+          allCategory: "すべて", appleCategory: "Apple", googleCategory: "Google", gamingCategory: "ゲーム", otherCategory: "その他",
+          faceValueLabel: "額面", salePriceLabel: "お支払い額",
+          proceedToAddress: "チェックアウト", shippingTitle: "配信詳細",
+          fullName: "氏名", email: "メールアドレス",
+          saveAddress: "詳細を保存", confirmAndPay: "支払いに進む",
+          addressBookTitle: "保存済み詳細", noSavedAddress: "保存された詳細はありません。", addNewAddress: "新規追加",
+          deleteAddress: "削除", selectAddress: "選択",
+          paymentTitle: "支払い", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "金額:", usdtAddressLabel: "送金先:",
+          usdtNote: "送金後、スクリーンショットをアップロード。30分以内にコードをメールで送信します。",
+          uploadReceipt: "領収書アップロード", uploadHint: "クリックまたはドラッグ",
+          receiptUploaded: "✓ アップロード完了", confirmPayment: "支払い確認",
+          orderSuccessTitle: "🎉 注文完了!", orderSummary: "概要",
+          productLabel: "ギフトカード", faceValue: "額面",
+          originalPrice: "額面", discountPrice: "お支払い額",
+          deliveryInfo: "配信情報", paymentTime: "時間",
+          thankYou: "ありがとうございます！30分以内にコードをメールで送信します。仮想商品は返金不可です。",
+          close: "閉じる", backToHome: "ホーム",
+          myOrders: "注文履歴", noOrders: "まだ注文はありません。", orderID: "注文ID", orderStatus: "ステータス", statusPending: "処理中",
+          invalidName: "有効な名前を入力してください", invalidEmail: "有効なメールを入力してください",
+          panelCart: "カート", panelOrders: "注文",
+          refundNote: "コードは支払い後30分以内に送信されます。仮想商品は返金不可です。",
+          itunesDesc: "Apple App Store & iTunesギフトカード。アプリ、音楽、映画などに利用可能。",
+          googleplayDesc: "Google Playギフトカード。Androidのアプリ、ゲーム、映画、書籍に。",
+          amazonDesc: "Amazon.comギフトカード。Amazonで何百万もの商品を購入。",
+          steamDesc: "Steamウォレットコード。ゲーム、ソフトウェア、アイテムを購入。",
+          xboxDesc: "Xboxギフトカード。ゲーム、アドオン、サブスクリプションなど。",
+          nintendoDesc: "Nintendo eShopカード。Switchのゲームとコンテンツ。",
+          sephoraDesc: "Sephoraギフトカード。美容、スキンケア、メイク、フレグランス。",
+          bestbuyDesc: "Best Buyギフトカード。電子機器、家電など。",
+          targetDesc: "Targetギフトカード。衣料品、家庭用品、食料品。",
+          walmartDesc: "Walmartギフトカード。日常のあらゆるものを低価格で。"
+        },
+        fr: {
+          tagline: "Cartes cadeaux à prix réduit",
+          intro1: "iTunes, Google Play, Amazon, Steam, Xbox et plus – jusqu'à 35% de réduction.",
+          intro2: "Livraison numérique instantanée par email après confirmation du paiement.",
+          intro3: "Paiements sécurisés en USDT, confiance mondiale.",
+          viewPrice: "Voir les cartes", copyright: "© 2026 XINLO. Tous droits réservés.", priceTitle: "Cartes", back: "Retour",
+          allCategory: "Tout", appleCategory: "Apple", googleCategory: "Google", gamingCategory: "Jeux", otherCategory: "Autre",
+          faceValueLabel: "Valeur faciale", salePriceLabel: "Vous payez",
+          proceedToAddress: "Commander", shippingTitle: "Détails de livraison",
+          fullName: "Nom complet", email: "Adresse email",
+          saveAddress: "Enregistrer les détails", confirmAndPay: "Procéder au paiement",
+          addressBookTitle: "Détails enregistrés", noSavedAddress: "Aucun détail enregistré.", addNewAddress: "Ajouter",
+          deleteAddress: "Supprimer", selectAddress: "Sélectionner",
+          paymentTitle: "Paiement", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "Montant:", usdtAddressLabel: "Transférer à:",
+          usdtNote: "Après le transfert, téléversez la capture. Le code sera envoyé sous 30 minutes.",
+          uploadReceipt: "Téléverser le reçu", uploadHint: "Cliquez ou glissez",
+          receiptUploaded: "✓ Téléversé", confirmPayment: "Confirmer le paiement",
+          orderSuccessTitle: "🎉 Commande passée!", orderSummary: "Résumé",
+          productLabel: "Carte", faceValue: "Valeur faciale",
+          originalPrice: "Valeur faciale", discountPrice: "Vous payez",
+          deliveryInfo: "Informations de livraison", paymentTime: "Heure",
+          thankYou: "Merci! Nous enverrons le code à votre email sous 30 minutes. Produits virtuels non remboursables.",
+          close: "Fermer", backToHome: "Accueil",
+          myOrders: "Mes commandes", noOrders: "Aucune commande.", orderID: "ID", orderStatus: "Statut", statusPending: "Traitement",
+          invalidName: "Veuillez entrer un nom valide", invalidEmail: "Veuillez entrer un email valide",
+          panelCart: "Panier", panelOrders: "Commandes",
+          refundNote: "Les codes sont envoyés sous 30 minutes. Produits virtuels non remboursables.",
+          itunesDesc: "Carte Apple App Store & iTunes. Pour apps, musique, films et plus.",
+          googleplayDesc: "Carte Google Play. Apps, jeux, films, livres sur Android.",
+          amazonDesc: "Carte Amazon.com. Des millions de produits sur Amazon.",
+          steamDesc: "Code Steam Wallet. Achetez des jeux, logiciels et objets sur Steam.",
+          xboxDesc: "Carte Xbox. Jeux, extensions, abonnements et plus sur Xbox.",
+          nintendoDesc: "Carte Nintendo eShop. Jeux et contenu pour Nintendo Switch.",
+          sephoraDesc: "Carte Sephora. Beauté, soins, maquillage et parfums.",
+          bestbuyDesc: "Carte Best Buy. Électronique, électroménager et plus.",
+          targetDesc: "Carte Target. Vêtements, articles ménagers, épicerie.",
+          walmartDesc: "Carte Walmart. Tout ce dont vous avez besoin à bas prix."
         }
       };
 
@@ -506,7 +814,7 @@
         }
       });
 
-      // ==================== 悬浮球拖拽 + 吸附边缘 + 面板功能 ====================
+      // ==================== 悬浮球拖拽 + 吸附边缘 ====================
       let isDragging = false, startX, startY, ballX, ballY;
       floatingBall.addEventListener('mousedown', startDrag);
       floatingBall.addEventListener('touchstart', startDrag, {passive: false});
@@ -612,3 +920,4 @@
   </script>
 </body>
 </html>
+  
