@@ -22,17 +22,15 @@
       background-color: var(--bg-primary); overflow: hidden; margin: 0; overscroll-behavior: none;
       -webkit-font-smoothing: antialiased; color: var(--text-primary);
     }
-    /* 柔和背景光晕 */
     body::before { content: ''; position: fixed; top: -30%; right: -20%; width: 70%; height: 80%; background: radial-gradient(circle at 70% 30%, rgba(120,120,255,0.04) 0%, transparent 60%); pointer-events: none; z-index: 0; animation: bgGlow 12s ease-in-out infinite alternate; }
     body::after { content: ''; position: fixed; bottom: -20%; left: -15%; width: 60%; height: 70%; background: radial-gradient(circle at 30% 70%, rgba(255,180,100,0.03) 0%, transparent 60%); pointer-events: none; z-index: 0; animation: bgGlow 15s ease-in-out infinite alternate-reverse; }
     @keyframes bgGlow { 0% { opacity: 0.3; transform: scale(1); } 100% { opacity: 0.6; transform: scale(1.06); } }
 
-    /* ========== 双页滑动布局 ========== */
     .page-container { display: flex; width: 200%; height: 100vh; height: 100dvh; transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1); will-change: transform; position: relative; z-index: 1; }
     .page { width: 50%; height: 100vh; height: 100dvh; overflow-y: auto; overflow-x: hidden; padding: 2rem; scrollbar-width: thin; scrollbar-color: #444 transparent; -webkit-overflow-scrolling: touch; }
     .page::-webkit-scrollbar { width: 5px; } .page::-webkit-scrollbar-track { background: transparent; } .page::-webkit-scrollbar-thumb { background-color: #444; border-radius: 10px; }
 
-    /* ========== Logo 动画 ========== */
+    /* Logo 动画 */
     @keyframes starFlyIn { 0% { left: -5%; transform: scale(0.2); opacity: 0; } 15% { opacity: 1; } 75% { left: 82%; transform: scale(1.3); opacity: 1; } 90% { left: 90%; transform: scale(1.1); opacity: 0.9; } 100% { left: 5%; transform: scale(0.5); opacity: 0.6; } }
     @keyframes trailGrow { 0% { width: 0; opacity: 0; } 20% { opacity: 0.9; } 80% { width: 80%; opacity: 0.8; } 100% { width: 96%; opacity: 0; } }
     @keyframes textReveal { 0% { opacity: 0; transform: scale(0.7) translateY(10px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
@@ -45,90 +43,75 @@
     .logo-trail { position: absolute; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #ff4d4d, #ffb347, #ffe066, #69db7e, #4dabf7, #da77f2, #ff4d4d); background-size: 400% auto; animation: trailGrow 1.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; top: 50%; left: 0; width: 0; z-index: 1; filter: blur(1px); opacity: 0.8; }
     .logo-text-final { position: absolute; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; letter-spacing: -0.04em; background: linear-gradient(90deg, #ff6b6b, #fca13e, #f8e81c, #56c596, #5c9cec, #ae7ef2, #ff6b6b); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; opacity: 0; transform: scale(0.7) translateY(10px); animation: textReveal 0.55s cubic-bezier(0.32, 0.72, 0, 1) 2s forwards; z-index: 3; }
 
-    /* ========== 页面过渡 ========== */
+    .sync-fade { opacity: 0; animation: fadeInUp 0.65s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+    .sync-fade:nth-child(1) { animation-delay: 1.7s; } .sync-fade:nth-child(2) { animation-delay: 1.9s; } .sync-fade:nth-child(3) { animation-delay: 2.1s; }
+    .btn-sync { opacity: 0; animation: fadeInUp 0.65s cubic-bezier(0.32, 0.72, 0, 1) forwards, subtlePulse 3s ease-in-out 3s infinite; animation-delay: 2.3s; }
     .page-1-content { transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1); }
     .page-1-content.shifted { opacity: 0.25; transform: scale(0.95); pointer-events: none; }
     .page-2-content { transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1); opacity: 0.4; transform: translateX(35px); }
     .page-2-content.entered { opacity: 1; transform: translateX(0); }
 
-    /* ========== 商品卡片 ========== */
-    .price-card {
-      transition: transform 0.3s, box-shadow 0.3s; background: #252525; border-radius: var(--radius-lg); padding: 1.5rem;
-      box-shadow: var(--shadow-sm); border: 1px solid var(--border); cursor: pointer; text-align: center;
-    }
+    .price-card { transition: transform 0.3s, box-shadow 0.3s; background: #252525; border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-sm); border: 1px solid var(--border); cursor: pointer; text-align: center; }
     .price-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.15); }
     .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     @media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } .page { padding: 1rem; } .price-card { padding: 1.25rem; } .logo-wrapper { height: 120px; } }
     @media (max-width: 480px) { .page { padding: 0.75rem; } .logo-wrapper { height: 100px; } .cart-sidebar { width: 100%; } }
     .product-img { width: 100%; height: 160px; object-fit: contain; border-radius: var(--radius-sm); margin-bottom: 0.75rem; background: #1a1a1a; padding: 1rem; }
 
-    /* ========== 导航栏（暗色液态玻璃） ========== */
-    .sticky-nav {
-      position: sticky; top: 0; z-index: 10; background: rgba(26,26,26,0.8); backdrop-filter: blur(30px) saturate(240%);
-      -webkit-backdrop-filter: blur(30px) saturate(240%); border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 0.75rem 0; margin-bottom: 1.5rem; border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-    }
-
-    /* ========== 按钮 ========== */
+    .sticky-nav { position: sticky; top: 0; z-index: 10; background: rgba(26,26,26,0.8); backdrop-filter: blur(30px) saturate(240%); -webkit-backdrop-filter: blur(30px) saturate(240%); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.75rem 0; margin-bottom: 1.5rem; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
     .nav-btn { padding: 0.55rem 1.2rem; border-radius: var(--radius-full); font-weight: 500; border: none; background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); color: #ccc; cursor: pointer; transition: all 0.25s; font-size: 0.9rem; min-height: 40px; }
     .nav-btn:hover { background: rgba(255,255,255,0.25); color: #fff; }
     .cta-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.95rem 2.5rem; background: #fff; color: #000; font-weight: 600; border-radius: var(--radius-full); box-shadow: var(--shadow-md); transition: all 0.3s; border: none; font-size: 1rem; min-height: 52px; cursor: pointer; }
     .cta-btn:hover { background: #e0e0e0; transform: translateY(-3px); }
 
-    /* ========== 弹窗 ========== */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { background: #252525; border-radius: var(--radius-xl); padding: 2rem; max-width: 520px; width: 92%; max-height: 85vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.6); animation: modalSlideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1); color: #f0f0f0; }
 
-    /* ========== 悬浮球 ========== */
-    .floating-ball { position: fixed; left: 20px; bottom: 100px; z-index: 150; width: 52px; height: 52px; background: #fff; color: #000; border-radius: 50%; box-shadow: 0 8px 24px rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: grab; transition: box-shadow 0.3s; font-size: 1.3rem; touch-action: none; user-select: none; }
+    /* 悬浮球（默认吸附左边缘） */
+    .floating-ball {
+      position: fixed; left: 10px; bottom: 100px; z-index: 150; width: 52px; height: 52px;
+      background: #fff; color: #000; border-radius: 50%; box-shadow: 0 8px 24px rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center; cursor: grab; transition: box-shadow 0.3s, left 0.3s ease, right 0.3s ease;
+      font-size: 1.3rem; touch-action: none; user-select: none;
+    }
     .floating-ball:active { cursor: grabbing; }
-    .quick-panel { position: fixed; left: 80px; bottom: 100px; z-index: 140; background: #252525; border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0,0,0,0.5); padding: 1rem; min-width: 260px; transform: translateX(-120%); opacity: 0; transition: transform 0.35s ease, opacity 0.35s ease; }
+    .quick-panel {
+      position: fixed; z-index: 140; background: #252525; border-radius: var(--radius-lg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5); padding: 1rem; min-width: 260px;
+      transform: translateX(-120%); opacity: 0; transition: transform 0.35s ease, opacity 0.35s ease, left 0.3s ease;
+    }
     .quick-panel.open { transform: translateX(0); opacity: 1; }
     .quick-panel-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: var(--radius-md); cursor: pointer; transition: background 0.2s; color: #ddd; }
     .quick-panel-item:hover { background: #333; }
     .quick-panel select { background: transparent; border: none; outline: none; color: #ddd; font-size: 0.9rem; cursor: pointer; }
     .quick-panel select option { background: #252525; color: #ddd; }
 
-    /* ========== 购物车侧边栏 ========== */
     .cart-sidebar { position: fixed; right: 0; top: 0; height: 100vh; height: 100dvh; width: 380px; background: #252525; box-shadow: -10px 0 30px rgba(0,0,0,0.5); z-index: 200; transform: translateX(100%); transition: transform 0.35s ease; color: #f0f0f0; }
     .cart-sidebar.open { transform: translateX(0); }
     .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 199; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .cart-overlay.active { opacity: 1; pointer-events: auto; }
 
-    /* ========== Toast 提示 ========== */
     .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 1rem 2rem; border-radius: var(--radius-full); z-index: 300; opacity: 0; transition: opacity 0.3s; }
     .toast.show { opacity: 1; }
 
-    /* ========== 表单 ========== */
     .search-box input { width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-full); border: 1px solid rgba(255,255,255,0.15); outline: none; font-size: 0.9rem; background: #252525; color: #fff; }
-    .search-box input::placeholder { color: #888; }
     .modal-content input, .modal-content textarea { background: #333; border: 1px solid rgba(255,255,255,0.15); color: #fff; }
-    .modal-content input::placeholder, .modal-content textarea::placeholder { color: #888; }
     .input-error { border-color: var(--error) !important; background: #4a2020 !important; }
-    .error-msg { color: var(--error); font-size: 0.72rem; margin-top: 0.2rem; display: none; }
-    .error-msg.show { display: block; }
     .payment-option { background: #2a2a2a; border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1rem; }
     .address-text { word-break: break-all; background: #333; padding: 0.75rem; border-radius: var(--radius-sm); font-family: monospace; font-size: 0.85rem; margin: 0.75rem 0; color: #4dabf7; cursor: pointer; }
-    .upload-area { border: 2px dashed #555; border-radius: var(--radius-md); padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
+    .upload-area { border: 2px dashed #555; border-radius: var(--radius-md); padding: 1.5rem; text-align: center; cursor: pointer; }
     .upload-area:hover { border-color: #fff; background: #2a2a2a; }
     .order-item { border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem; background: #252525; color: #ddd; }
-    .order-item:hover { background: #2a2a2a; }
-    .category-tab { padding: 0.5rem 1.2rem; border-radius: var(--radius-full); font-size: 0.9rem; font-weight: 500; transition: all 0.2s; cursor: pointer; }
-    .category-tab.active { background: #fff; color: #000; border: 1px solid transparent; }
+    .category-tab.active { background: #fff; color: #000; }
     .category-tab:not(.active) { background: transparent; color: #bbb; border: 1px solid rgba(255,255,255,0.2); }
-    .category-tab:not(.active):hover { background: rgba(255,255,255,0.05); color: #fff; }
-    .swipe-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.3); font-size: 0.7rem; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 2px; animation: fadeInUp 0.5s 2.5s forwards; opacity: 0; }
-    .swipe-hint i { animation: bounceHint 2s infinite; }
-    @keyframes bounceHint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-    .telegram-link { color: #2AABEE; font-weight: 600; text-decoration: none; }
-    .telegram-link:hover { text-decoration: underline; }
+    .swipe-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.3); font-size: 0.7rem; pointer-events: none; }
+    .telegram-link { color: #2AABEE; font-weight: 600; }
     .small-note { font-size: 0.75rem; color: #888; text-align: center; margin-top: 0.75rem; }
   </style>
 </head>
 <body class="bg-[#1a1a1a] text-white antialiased">
   <div id="pageSlider" class="page-container">
-    <!-- 第1页：主页 -->
     <div class="page flex flex-col items-center justify-center text-center" id="page1">
       <div id="page1Content" class="page-1-content max-w-xl w-full mx-auto px-4">
         <div class="logo-wrapper" id="logoWrapper"><span class="logo-star">✨</span><div class="logo-trail"></div><h1 class="logo-text-final">XINLO</h1></div>
@@ -146,13 +129,9 @@
       </div>
       <div class="swipe-hint"><i class="fas fa-chevron-up"></i><span>Swipe for cards</span></div>
     </div>
-    <!-- 第2页：商店 -->
     <div class="page bg-[#121212]" id="pricePage">
       <div class="max-w-5xl mx-auto page-2-content" id="page2Content">
-        <div class="sticky-nav flex items-center justify-between">
-          <h2 class="text-2xl font-bold" id="priceListTitle">Gift Cards</h2>
-          <button id="backToHomeBtn" class="nav-btn"><i class="fas fa-arrow-left mr-1"></i> <span id="backText">Back</span></button>
-        </div>
+        <div class="sticky-nav flex items-center justify-between"><h2 class="text-2xl font-bold" id="priceListTitle">Gift Cards</h2><button id="backToHomeBtn" class="nav-btn"><i class="fas fa-arrow-left mr-1"></i> <span id="backText">Back</span></button></div>
         <div class="search-box mb-4"><input type="text" id="searchInput" placeholder="Search gift cards..." class="w-full"></div>
         <div class="flex gap-2 mb-4 flex-wrap" id="categoryTabs">
           <button class="category-tab active" data-category="all">All</button>
@@ -166,9 +145,10 @@
     </div>
   </div>
 
-  <!-- 可拖拽悬浮球 + 弹出面板 -->
-  <div class="floating-ball" id="floatingBall"><i class="fas fa-ellipsis-h"></i></div>
-  <div class="quick-panel" id="quickPanel">
+  <!-- 悬浮球（初始位于左边缘） -->
+  <div class="floating-ball" id="floatingBall" style="left: 10px; bottom: 100px;"><i class="fas fa-ellipsis-h"></i></div>
+  <!-- 弹出面板（位置会动态更新） -->
+  <div class="quick-panel" id="quickPanel" style="left: 70px; bottom: 100px;">
     <div class="quick-panel-item" id="openCartFromPanel"><i class="fas fa-shopping-cart"></i> <span id="panelCartLabel">Cart</span> <span class="ml-auto bg-white/20 rounded-full px-2 text-xs" id="panelCartCount">0</span></div>
     <div class="quick-panel-item" id="openOrdersFromPanel"><i class="fas fa-box"></i> <span id="panelOrdersLabel">My Orders</span></div>
     <div class="quick-panel-item">
@@ -180,7 +160,6 @@
     </div>
   </div>
 
-  <!-- 购物车侧边栏 -->
   <div class="cart-overlay" id="cartOverlay"></div>
   <div class="cart-sidebar" id="cartSidebar">
     <div class="p-4 h-full flex flex-col">
@@ -191,74 +170,43 @@
     </div>
   </div>
 
-  <!-- 弹窗容器 -->
   <div class="modal-overlay" id="productModal"><div class="modal-content" id="modalContent"></div></div>
   <div class="modal-overlay" id="addressModal"><div class="modal-content" id="addressModalContent"></div></div>
   <div class="modal-overlay" id="paymentModal"><div class="modal-content" id="paymentModalContent"></div></div>
   <div class="modal-overlay" id="orderConfirmModal"><div class="modal-content" id="orderConfirmContent"></div></div>
   <div class="modal-overlay" id="userCenterModal"><div class="modal-content" id="userCenterContent"></div></div>
   <div class="toast" id="toast"></div>
-  <!-- 第1段结束，请继续拼接第2段 -->
   <script>
     (function() {
-      // ==================== 完整多语言翻译 ====================
       const translations = {
         en: {
           tagline: "Premium Discount Gift Cards",
           intro1: "iTunes, Google Play, Amazon, Steam, Xbox & more – up to 35% off.",
           intro2: "Instant digital delivery via email after payment confirmation.",
           intro3: "Secure USDT payments, trusted by thousands worldwide.",
-          viewPrice: "Browse Cards",
-          copyright: "© 2026 XINLO. All rights reserved.",
-          priceTitle: "Gift Cards",
-          back: "Back",
-          allCategory: "All",
-          appleCategory: "Apple",
-          googleCategory: "Google",
-          gamingCategory: "Gaming",
-          otherCategory: "Other",
-          faceValueLabel: "Face Value",
-          salePriceLabel: "You Pay",
-          proceedToAddress: "Checkout",
-          shippingTitle: "Delivery Details",
-          fullName: "Full Name",
-          email: "Email Address",
-          saveAddress: "Save details for future",
-          confirmAndPay: "Proceed to Payment",
-          addressBookTitle: "Saved Details",
-          noSavedAddress: "No saved details yet.",
-          addNewAddress: "Add New",
-          deleteAddress: "Delete",
-          selectAddress: "Select",
-          paymentTitle: "Payment",
-          usdtTitle: "USDT (TRC20)",
-          usdtPriceLabel: "Amount:",
-          usdtAddressLabel: "Transfer to:",
+          viewPrice: "Browse Cards", copyright: "© 2026 XINLO. All rights reserved.", priceTitle: "Gift Cards", back: "Back",
+          allCategory: "All", appleCategory: "Apple", googleCategory: "Google", gamingCategory: "Gaming", otherCategory: "Other",
+          faceValueLabel: "Face Value", salePriceLabel: "You Pay",
+          proceedToAddress: "Checkout", shippingTitle: "Delivery Details",
+          fullName: "Full Name", email: "Email Address",
+          saveAddress: "Save details for future", confirmAndPay: "Proceed to Payment",
+          addressBookTitle: "Saved Details", noSavedAddress: "No saved details yet.", addNewAddress: "Add New",
+          deleteAddress: "Delete", selectAddress: "Select",
+          paymentTitle: "Payment", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "Amount:", usdtAddressLabel: "Transfer to:",
           usdtNote: "After transfer, upload screenshot. Code will be emailed within 30 minutes.",
-          uploadReceipt: "Upload Receipt",
-          uploadHint: "Click or drag screenshot",
-          receiptUploaded: "✓ Uploaded",
-          confirmPayment: "Confirm Payment",
-          orderSuccessTitle: "🎉 Order Submitted!",
-          orderSummary: "Summary",
-          productLabel: "Gift Card",
-          faceValue: "Face Value",
-          originalPrice: "Face Value",
-          discountPrice: "You Pay",
-          deliveryInfo: "Delivery Information",
-          paymentTime: "Time",
+          uploadReceipt: "Upload Receipt", uploadHint: "Click or drag screenshot",
+          receiptUploaded: "✓ Uploaded", confirmPayment: "Confirm Payment",
+          orderSuccessTitle: "🎉 Order Submitted!", orderSummary: "Summary",
+          productLabel: "Gift Card", faceValue: "Face Value",
+          originalPrice: "Face Value", discountPrice: "You Pay",
+          deliveryInfo: "Delivery Information", paymentTime: "Time",
           thankYou: "Thank you! We'll send the code to your email within 30 minutes. Virtual products are non-refundable.",
-          close: "Close",
-          backToHome: "Back to Home",
-          myOrders: "My Orders",
-          noOrders: "No orders yet.",
-          orderID: "Order ID",
-          orderStatus: "Status",
-          statusPending: "Processing",
-          invalidName: "Please enter a valid name",
-          invalidEmail: "Please enter a valid email",
-          panelCart: "Cart",
-          panelOrders: "My Orders",
+          close: "Close", backToHome: "Back to Home",
+          myOrders: "My Orders", noOrders: "No orders yet.", orderID: "Order ID",
+          orderStatus: "Status", statusPending: "Processing",
+          invalidName: "Please enter a valid name", invalidEmail: "Please enter a valid email",
+          panelCart: "Cart", panelOrders: "My Orders",
           refundNote: "Codes are sent within 30 minutes after payment. Virtual products are non-refundable.",
           itunesDesc: "Apple App Store & iTunes gift card. Redeemable for apps, music, movies and more.",
           googleplayDesc: "Google Play gift card. Use for apps, games, movies, books on Android.",
@@ -276,57 +224,29 @@
           intro1: "iTunes、Google Play、Amazon、Steam、Xbox 等 – 最高可享 35% 折扣。",
           intro2: "付款确认后，通过电子邮件即时发送数字卡密。",
           intro3: "安全 USDT 支付，全球信赖。",
-          viewPrice: "浏览卡片",
-          copyright: "© 2026 XINLO. 保留所有权利。",
-          priceTitle: "礼品卡",
-          back: "返回",
-          allCategory: "全部",
-          appleCategory: "苹果",
-          googleCategory: "谷歌",
-          gamingCategory: "游戏",
-          otherCategory: "其他",
-          faceValueLabel: "面额",
-          salePriceLabel: "实付",
-          proceedToAddress: "去结算",
-          shippingTitle: "收货信息",
-          fullName: "姓名",
-          email: "邮箱地址",
-          saveAddress: "保存信息以便下次使用",
-          confirmAndPay: "确认并支付",
-          addressBookTitle: "已保存信息",
-          noSavedAddress: "暂无保存的信息",
-          addNewAddress: "添加新信息",
-          deleteAddress: "删除",
-          selectAddress: "选择",
-          paymentTitle: "支付",
-          usdtTitle: "USDT (TRC20)",
-          usdtPriceLabel: "金额:",
-          usdtAddressLabel: "请转账至:",
+          viewPrice: "浏览卡片", copyright: "© 2026 XINLO. 保留所有权利。", priceTitle: "礼品卡", back: "返回",
+          allCategory: "全部", appleCategory: "苹果", googleCategory: "谷歌", gamingCategory: "游戏", otherCategory: "其他",
+          faceValueLabel: "面额", salePriceLabel: "实付",
+          proceedToAddress: "去结算", shippingTitle: "收货信息",
+          fullName: "姓名", email: "邮箱地址",
+          saveAddress: "保存信息以便下次使用", confirmAndPay: "确认并支付",
+          addressBookTitle: "已保存信息", noSavedAddress: "暂无保存的信息", addNewAddress: "添加新信息",
+          deleteAddress: "删除", selectAddress: "选择",
+          paymentTitle: "支付", usdtTitle: "USDT (TRC20)",
+          usdtPriceLabel: "金额:", usdtAddressLabel: "请转账至:",
           usdtNote: "转账后上传截图，卡密将在30分钟内发送到邮箱。",
-          uploadReceipt: "上传凭证",
-          uploadHint: "点击或拖拽上传截图",
-          receiptUploaded: "✓ 已上传",
-          confirmPayment: "确认支付",
-          orderSuccessTitle: "🎉 订单已提交！",
-          orderSummary: "订单摘要",
-          productLabel: "礼品卡",
-          faceValue: "面额",
-          originalPrice: "面额",
-          discountPrice: "实付",
-          deliveryInfo: "收货信息",
-          paymentTime: "支付时间",
+          uploadReceipt: "上传凭证", uploadHint: "点击或拖拽上传截图",
+          receiptUploaded: "✓ 已上传", confirmPayment: "确认支付",
+          orderSuccessTitle: "🎉 订单已提交！", orderSummary: "订单摘要",
+          productLabel: "礼品卡", faceValue: "面额",
+          originalPrice: "面额", discountPrice: "实付",
+          deliveryInfo: "收货信息", paymentTime: "支付时间",
           thankYou: "感谢您的订单！卡密将在30分钟内发送到您的邮箱。虚拟产品不支持退款。",
-          close: "关闭",
-          backToHome: "返回首页",
-          myOrders: "我的订单",
-          noOrders: "暂无订单",
-          orderID: "订单编号",
-          orderStatus: "状态",
-          statusPending: "处理中",
-          invalidName: "请输入有效姓名",
-          invalidEmail: "请输入有效邮箱地址",
-          panelCart: "购物车",
-          panelOrders: "我的订单",
+          close: "关闭", backToHome: "返回首页",
+          myOrders: "我的订单", noOrders: "暂无订单", orderID: "订单编号",
+          orderStatus: "状态", statusPending: "处理中",
+          invalidName: "请输入有效姓名", invalidEmail: "请输入有效邮箱地址",
+          panelCart: "购物车", panelOrders: "我的订单",
           refundNote: "付款后30分钟内发送卡密。虚拟产品不支持退款。",
           itunesDesc: "Apple App Store 和 iTunes 礼品卡，可用于购买应用、音乐、电影等。",
           googleplayDesc: "Google Play 礼品卡，用于 Android 设备上的应用、游戏、电影、图书。",
@@ -341,7 +261,6 @@
         }
       };
 
-      // ==================== 产品数据（面额50-300，售价65%） ====================
       const productData = [
         { category:'apple', name:'iTunes Gift Card', faceValues:[50,100,200], descKey:'itunesDesc', img:'https://picsum.photos/seed/itunes/400/300' },
         { category:'google', name:'Google Play Gift Card', faceValues:[50,100,200], descKey:'googleplayDesc', img:'https://picsum.photos/seed/googleplay/400/300' },
@@ -355,10 +274,8 @@
         { category:'other', name:'Walmart Gift Card', faceValues:[50,100,200,300], descKey:'walmartDesc', img:'https://picsum.photos/seed/walmart/400/300' }
       ];
 
-      // 售价计算
       function calcPrice(faceValue) { return Math.round(faceValue * 0.65); }
 
-      // DOM 元素
       const slider = document.getElementById('pageSlider');
       const page1Content = document.getElementById('page1Content');
       const page2Content = document.getElementById('page2Content');
@@ -371,23 +288,17 @@
       const orderConfirmModal = document.getElementById('orderConfirmModal');
       const userCenterModal = document.getElementById('userCenterModal');
 
-      let currentLang = 'en';
-      let currentCategory = 'all';
+      let currentLang = 'en', currentCategory = 'all';
       let cart = [];
-      let currentProduct = null;
-      let currentFaceValue = 0;
-      let currentPrice = 0;
-      let currentAddress = null;
+      let currentProduct = null, currentFaceValue = 0, currentPrice = 0, currentAddress = null;
 
-      // 工具函数
       function t(key) { return translations[currentLang]?.[key] || translations.en[key] || key; }
-      function showToast(msg) { const el = document.getElementById('toast'); el.textContent = msg; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2000); }
+      function showToast(m) { const el = document.getElementById('toast'); el.textContent = m; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2000); }
       function getSavedAddresses() { try { return JSON.parse(localStorage.getItem('xinlo_addresses') || '[]'); } catch(e) { return []; } }
       function saveAddresses(arr) { localStorage.setItem('xinlo_addresses', JSON.stringify(arr)); }
       function getOrders() { try { return JSON.parse(localStorage.getItem('xinlo_orders') || '[]'); } catch(e) { return []; } }
       function saveOrders(arr) { localStorage.setItem('xinlo_orders', JSON.stringify(arr)); }
 
-      // 更新所有文本
       function updateAllTexts() {
         document.getElementById('subTagline').textContent = t('tagline');
         const intros = document.querySelectorAll('#introText p');
@@ -401,15 +312,13 @@
         renderStore();
       }
 
-      // 渲染商店
       function renderStore() {
         let items = currentCategory === 'all' ? productData : productData.filter(p => p.category === currentCategory);
-        const searchVal = document.getElementById('searchInput')?.value.toLowerCase() || '';
-        if(searchVal) items = items.filter(p => p.name.toLowerCase().includes(searchVal));
+        const search = document.getElementById('searchInput')?.value.toLowerCase() || '';
+        if(search) items = items.filter(p => p.name.toLowerCase().includes(search));
         let html = '<div class="card-grid">';
         items.forEach(p => {
-          const face = p.faceValues[0];
-          const price = calcPrice(face);
+          const face = p.faceValues[0], price = calcPrice(face);
           html += `<div class="price-card" data-product-index="${productData.indexOf(p)}">
             <img src="${p.img}" alt="${p.name}" class="product-img" loading="lazy">
             <h4 class="text-lg font-bold text-white">${p.name}</h4>
@@ -423,17 +332,13 @@
         });
         html += '</div>';
         document.getElementById('priceContentContainer').innerHTML = html;
-        // 绑定事件
         document.querySelectorAll('.price-card').forEach(card => {
           card.addEventListener('click', function(e) {
             if(e.target.classList.contains('add-to-cart-btn')) {
               e.stopPropagation();
               const p = productData[parseInt(this.dataset.productIndex)];
-              const face = p.faceValues[0];
-              const price = calcPrice(face);
-              cart.push({ ...p, faceValue: face, price: price, qty: 1, checked: true });
-              updateCartUI();
-              showToast('Added to cart');
+              cart.push({ ...p, faceValue: p.faceValues[0], price: calcPrice(p.faceValues[0]), qty: 1, checked: true });
+              updateCartUI(); showToast('Added to cart');
               return;
             }
             openProductModal(productData[parseInt(this.dataset.productIndex)]);
@@ -441,7 +346,6 @@
         });
       }
 
-      // 更新购物车UI
       function updateCartUI() {
         const totalQty = cart.reduce((s,i) => s + (i.checked ? i.qty : 0), 0);
         const totalPrice = cart.reduce((s,i) => s + (i.checked ? i.price * i.qty : 0), 0);
@@ -457,11 +361,7 @@
           </div>`;
         });
         document.getElementById('cartItems').innerHTML = itemsHtml || '<p class="text-gray-500 text-center py-4">Cart is empty</p>';
-        const selectAll = document.getElementById('selectAllCart');
-        if(selectAll) {
-          selectAll.checked = cart.length > 0 && cart.every(i => i.checked);
-          selectAll.onchange = () => { cart.forEach(i => i.checked = selectAll.checked); updateCartUI(); };
-        }
+        document.getElementById('selectAllCart').checked = cart.length > 0 && cart.every(i => i.checked);
         document.querySelectorAll('.cart-check').forEach(cb => {
           cb.addEventListener('change', function() { cart[parseInt(this.dataset.idx)].checked = this.checked; updateCartUI(); });
         });
@@ -470,45 +370,36 @@
         });
       }
       // 第2段结束，请继续拼接第3段
-      // ==================== 打开产品弹窗 ====================
       function openProductModal(p) {
-        currentProduct = p;
-        let selFaceIdx = 0;
+        currentProduct = p; let selIdx = 0;
         const render = () => {
-          const face = p.faceValues[selFaceIdx];
-          const price = calcPrice(face);
+          const fv = p.faceValues[selIdx], pr = calcPrice(fv);
           document.getElementById('modalContent').innerHTML = `
             <div class="flex justify-between mb-4"><h3 class="text-xl font-bold text-white">${p.name}</h3><button id="closeModalBtn" class="text-gray-400 hover:text-white text-2xl">&times;</button></div>
             <img src="${p.img}" class="w-full h-48 object-contain bg-[#1a1a1a] rounded-xl mb-4">
             <p class="text-gray-300 mb-4">${t(p.descKey)}</p>
             <div class="mb-4"><span class="text-sm text-gray-400">${t('faceValueLabel')}:</span>
-              <div class="flex gap-2 mt-2">${p.faceValues.map((fv,i) => `<button class="face-opt px-3 py-1.5 rounded-full text-sm font-medium ${i===selFaceIdx?'bg-white text-black':'bg-[#444] text-gray-200'}" data-idx="${i}">$${fv}</button>`).join('')}</div>
+              <div class="flex gap-2 mt-2">${p.faceValues.map((fv,i) => `<button class="face-opt px-3 py-1.5 rounded-full text-sm font-medium ${i===selIdx?'bg-white text-black':'bg-[#444] text-gray-200'}" data-idx="${i}">$${fv}</button>`).join('')}</div>
             </div>
-            <div class="flex justify-between items-center my-4"><span class="text-gray-400">${t('salePriceLabel')}:</span><span class="text-2xl font-bold text-white">$${price}</span></div>
+            <div class="flex justify-between items-center my-4"><span class="text-gray-400">${t('salePriceLabel')}:</span><span class="text-2xl font-bold text-white">$${pr}</span></div>
             <button id="addToCartBtn" class="w-full py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition">Add to Cart</button>
             <button id="buyNowBtn" class="w-full py-3 mt-2 bg-green-500 text-white rounded-full font-semibold hover:bg-green-600 transition">Buy Now</button>
           `;
           document.getElementById('closeModalBtn').addEventListener('click', () => productModal.classList.remove('active'));
-          document.querySelectorAll('.face-opt').forEach(b => b.addEventListener('click', function() { selFaceIdx = parseInt(this.dataset.idx); render(); }));
+          document.querySelectorAll('.face-opt').forEach(b => b.addEventListener('click', function() { selIdx = parseInt(this.dataset.idx); render(); }));
           document.getElementById('addToCartBtn').addEventListener('click', () => {
-            const fv = p.faceValues[selFaceIdx];
-            const pr = calcPrice(fv);
-            cart.push({ ...p, faceValue: fv, price: pr, qty: 1, checked: true });
+            cart.push({ ...p, faceValue: p.faceValues[selIdx], price: calcPrice(p.faceValues[selIdx]), qty: 1, checked: true });
             updateCartUI(); productModal.classList.remove('active'); showToast('Added to cart');
           });
           document.getElementById('buyNowBtn').addEventListener('click', () => {
-            currentFaceValue = p.faceValues[selFaceIdx];
-            currentPrice = calcPrice(currentFaceValue);
-            productModal.classList.remove('active');
-            openAddressModal();
+            currentFaceValue = p.faceValues[selIdx]; currentPrice = calcPrice(currentFaceValue);
+            productModal.classList.remove('active'); openAddressModal();
           });
         };
-        render();
-        productModal.classList.add('active');
+        render(); productModal.classList.add('active');
       }
 
-      // ==================== 地址弹窗（仅姓名和邮箱） ====================
-      function openAddressModal(prefill = {}) {
+      function openAddressModal(prefill={}) {
         document.getElementById('addressModalContent').innerHTML = `
           <div class="flex justify-between mb-4"><h3 class="text-xl font-bold text-white">${t('shippingTitle')}</h3><button id="closeAddressBtn" class="text-gray-400 hover:text-white text-2xl">&times;</button></div>
           <div class="mb-3"><input id="addrName" placeholder="${t('fullName')}" value="${prefill.name||''}" class="w-full p-3 rounded-xl bg-[#333] border border-white/10 text-white focus:outline-none"><p class="error-msg" id="errName">${t('invalidName')}</p></div>
@@ -519,24 +410,19 @@
         `;
         document.getElementById('closeAddressBtn').addEventListener('click', () => addressModal.classList.remove('active'));
         document.getElementById('confirmAddressBtn').addEventListener('click', () => {
-          const name = document.getElementById('addrName').value.trim();
-          const email = document.getElementById('addrEmail').value.trim();
+          const name = document.getElementById('addrName').value.trim(), email = document.getElementById('addrEmail').value.trim();
           let valid = true;
           document.querySelectorAll('.error-msg').forEach(e => e.classList.remove('show'));
-          document.querySelectorAll('#addressModalContent input').forEach(e => e.classList.remove('input-error'));
           if(!name || name.length < 2) { document.getElementById('errName').classList.add('show'); document.getElementById('addrName').classList.add('input-error'); valid = false; }
           if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('errEmail').classList.add('show'); document.getElementById('addrEmail').classList.add('input-error'); valid = false; }
           if(!valid) return;
-          const addr = { name, email };
-          if(document.getElementById('saveAddressCheck').checked) { let list = getSavedAddresses(); list.unshift({...addr, id: Date.now()}); saveAddresses(list); }
-          currentAddress = addr;
-          addressModal.classList.remove('active');
-          openPaymentModal();
+          currentAddress = { name, email };
+          if(document.getElementById('saveAddressCheck').checked) { let list = getSavedAddresses(); list.unshift({...currentAddress, id: Date.now()}); saveAddresses(list); }
+          addressModal.classList.remove('active'); openPaymentModal();
         });
         addressModal.classList.add('active');
       }
 
-      // ==================== 支付弹窗（单地址） ====================
       function openPaymentModal() {
         let receiptFile = null;
         const renderPayment = () => {
@@ -557,8 +443,7 @@
           document.getElementById('closePaymentBtn').addEventListener('click', () => paymentModal.classList.remove('active'));
           document.getElementById('receiptUploadArea').addEventListener('click', () => document.getElementById('receiptFileInput').click());
           document.getElementById('receiptFileInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if(file) { receiptFile = file; const reader = new FileReader(); reader.onload = function(ev) { document.getElementById('receiptPreview').src = ev.target.result; document.getElementById('receiptPreview').classList.remove('hidden'); document.getElementById('uploadStatus').classList.remove('hidden'); }; reader.readAsDataURL(file); }
+            const file = e.target.files[0]; if(file) { receiptFile = file; const reader = new FileReader(); reader.onload = function(ev) { document.getElementById('receiptPreview').src = ev.target.result; document.getElementById('receiptPreview').classList.remove('hidden'); document.getElementById('uploadStatus').classList.remove('hidden'); }; reader.readAsDataURL(file); }
           });
           document.getElementById('confirmPaymentBtn').addEventListener('click', () => {
             if(!receiptFile) { alert('Please upload receipt'); return; }
@@ -567,65 +452,42 @@
             paymentModal.classList.remove('active'); openOrderConfirmModal();
           });
         };
-        renderPayment();
-        paymentModal.classList.add('active');
+        renderPayment(); paymentModal.classList.add('active');
       }
 
-      // ==================== 订单确认弹窗 ====================
       function openOrderConfirmModal() {
         const now = new Date().toLocaleString();
         document.getElementById('orderConfirmContent').innerHTML = `
           <div class="text-center"><i class="fas fa-check-circle text-green-400 text-4xl mb-2"></i><h3 class="text-xl font-bold text-white">${t('orderSuccessTitle')}</h3></div>
-          <div class="bg-[#2a2a2a] rounded-xl p-4 my-4 text-gray-200">
-            <p><strong>${t('productLabel')}:</strong> ${currentProduct.name} ($${currentFaceValue})</p>
-            <p><strong>${t('discountPrice')}:</strong> ${currentPrice} USDT</p>
-            <p><strong>${t('deliveryInfo')}:</strong> ${currentAddress.name} (${currentAddress.email})</p>
-            <p class="text-xs text-gray-500 mt-2">${t('paymentTime')}: ${now}</p>
-          </div>
+          <div class="bg-[#2a2a2a] rounded-xl p-4 my-4 text-gray-200"><p><strong>${t('productLabel')}:</strong> ${currentProduct.name} ($${currentFaceValue})</p><p><strong>${t('discountPrice')}:</strong> ${currentPrice} USDT</p><p><strong>${t('deliveryInfo')}:</strong> ${currentAddress.name} (${currentAddress.email})</p><p class="text-xs text-gray-500 mt-2">${t('paymentTime')}: ${now}</p></div>
           <p class="text-sm text-gray-400 mb-4">${t('thankYou')}</p>
-          <div class="flex gap-3"><button id="closeOrderConfirmBtn" class="flex-1 py-2.5 border border-white/20 text-white rounded-full">${t('close')}</button><button id="backToHomeFromOrderBtn" class="flex-1 py-2.5 bg-white text-black rounded-full font-semibold">${t('backToHome')}</button></div>
-        `;
+          <div class="flex gap-3"><button id="closeOrderConfirmBtn" class="flex-1 py-2.5 border border-white/20 text-white rounded-full">${t('close')}</button><button id="backToHomeFromOrderBtn" class="flex-1 py-2.5 bg-white text-black rounded-full font-semibold">${t('backToHome')}</button></div>`;
         document.getElementById('closeOrderConfirmBtn').addEventListener('click', () => orderConfirmModal.classList.remove('active'));
         document.getElementById('backToHomeFromOrderBtn').addEventListener('click', () => { orderConfirmModal.classList.remove('active'); slideToPage(0); });
         orderConfirmModal.classList.add('active');
       }
 
-      // ==================== 用户中心（订单历史） ====================
       function openUserCenter() {
         const orders = getOrders();
         let html = `<div class="flex justify-between mb-4"><h3 class="text-xl font-bold text-white">${t('myOrders')}</h3><button id="closeUserCenterBtn" class="text-gray-400 hover:text-white text-2xl">&times;</button></div>`;
         if(orders.length === 0) html += '<p class="text-gray-400 text-center py-4">'+t('noOrders')+'</p>';
         else orders.forEach(order => {
-          const date = new Date(order.time).toLocaleString();
-          html += `<div class="order-item"><div class="flex justify-between"><strong>${order.product}</strong><span class="text-xs text-gray-500">${t('orderID')}: ${order.id}</span></div><p class="text-sm">$${order.faceValue} → ${order.price} USDT</p><p class="text-xs text-gray-500">${order.address.name} | ${order.address.email}</p><p class="text-xs text-gray-500">${date}</p><span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">${t('statusPending')}</span></div>`;
+          html += `<div class="order-item"><div class="flex justify-between"><strong>${order.product}</strong><span class="text-xs text-gray-500">${t('orderID')}: ${order.id}</span></div><p class="text-sm">$${order.faceValue} → ${order.price} USDT</p><p class="text-xs text-gray-500">${order.address.name} | ${order.address.email}</p><p class="text-xs text-gray-500">${new Date(order.time).toLocaleString()}</p><span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">${t('statusPending')}</span></div>`;
         });
         document.getElementById('userCenterContent').innerHTML = html;
         document.getElementById('closeUserCenterBtn').addEventListener('click', () => userCenterModal.classList.remove('active'));
         userCenterModal.classList.add('active');
       }
 
-      // ==================== 页面滑动（双向） ====================
       function slideToPage(index) {
-        if(index === 0) {
-          slider.style.transform = 'translateX(0)';
-          page1Content.classList.remove('shifted');
-          logoWrapper.classList.remove('shifted');
-          page2Content.classList.remove('entered');
-        } else {
-          slider.style.transform = 'translateX(-50%)';
-          page1Content.classList.add('shifted');
-          logoWrapper.classList.add('shifted');
-          page2Content.classList.add('entered');
-        }
+        if(index === 0) { slider.style.transform = 'translateX(0)'; page1Content.classList.remove('shifted'); logoWrapper.classList.remove('shifted'); page2Content.classList.remove('entered'); }
+        else { slider.style.transform = 'translateX(-50%)'; page1Content.classList.add('shifted'); logoWrapper.classList.add('shifted'); page2Content.classList.add('entered'); }
       }
+
       let touchStartY = 0, touchStartX = 0;
-      slider.addEventListener('touchstart', e => {
-        touchStartY = e.changedTouches[0].screenY;
-        touchStartX = e.changedTouches[0].screenX;
-      }, {passive: true});
+      slider.addEventListener('touchstart', e => { touchStartY = e.changedTouches[0].screenY; touchStartX = e.changedTouches[0].screenX; }, {passive: true});
       slider.addEventListener('touchend', e => {
-        const diffY = touchStartY - e.changedTouches[0].screenY;
-        const diffX = touchStartX - e.changedTouches[0].screenX;
+        const diffY = touchStartY - e.changedTouches[0].screenY, diffX = touchStartX - e.changedTouches[0].screenX;
         const isPage1 = slider.style.transform.includes('0');
         if(Math.abs(diffY) > 40 || Math.abs(diffX) > 40) {
           if(isPage1 && (diffY > 30 || diffX > 30)) slideToPage(1);
@@ -633,7 +495,7 @@
         }
       });
 
-      // ==================== 悬浮球拖拽 ====================
+      // 悬浮球拖拽 + 吸附边缘
       let isDragging = false, startX, startY, ballX, ballY;
       floatingBall.addEventListener('mousedown', startDrag);
       floatingBall.addEventListener('touchstart', startDrag, {passive: false});
@@ -643,86 +505,83 @@
         startX = touch.clientX; startY = touch.clientY;
         const rect = floatingBall.getBoundingClientRect();
         ballX = rect.left; ballY = rect.top;
-        window.addEventListener('mousemove', drag);
-        window.addEventListener('mouseup', stopDrag);
-        window.addEventListener('touchmove', drag, {passive: false});
-        window.addEventListener('touchend', stopDrag);
+        floatingBall.style.transition = 'none';
+        window.addEventListener('mousemove', drag); window.addEventListener('mouseup', stopDrag);
+        window.addEventListener('touchmove', drag, {passive: false}); window.addEventListener('touchend', stopDrag);
       }
       function drag(e) {
         if(!isDragging) return;
         const touch = e.touches ? e.touches[0] : e;
-        const newX = ballX + touch.clientX - startX;
-        const newY = ballY + touch.clientY - startY;
+        const newX = ballX + touch.clientX - startX, newY = ballY + touch.clientY - startY;
         floatingBall.style.left = Math.max(0, Math.min(window.innerWidth - 52, newX)) + 'px';
         floatingBall.style.top = Math.max(0, Math.min(window.innerHeight - 52, newY)) + 'px';
-        floatingBall.style.bottom = 'auto';
-        floatingBall.style.right = 'auto';
+        floatingBall.style.bottom = 'auto'; floatingBall.style.right = 'auto';
       }
       function stopDrag() {
         isDragging = false;
-        window.removeEventListener('mousemove', drag);
-        window.removeEventListener('mouseup', stopDrag);
-        window.removeEventListener('touchmove', drag);
-        window.removeEventListener('touchend', stopDrag);
+        window.removeEventListener('mousemove', drag); window.removeEventListener('mouseup', stopDrag);
+        window.removeEventListener('touchmove', drag); window.removeEventListener('touchend', stopDrag);
+        // 吸附到最近边缘
+        const rect = floatingBall.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const targetLeft = centerX < window.innerWidth / 2 ? 10 : window.innerWidth - 62;
+        floatingBall.style.transition = 'left 0.3s ease, top 0.3s ease';
+        floatingBall.style.left = targetLeft + 'px';
+        floatingBall.style.right = 'auto';
+        // 更新面板位置
+        updatePanelPosition();
+      }
+      function updatePanelPosition() {
+        const ballRect = floatingBall.getBoundingClientRect();
+        const panelLeft = ballRect.left + 60;
+        const panelRight = window.innerWidth - ballRect.right + 60;
+        if (ballRect.left < window.innerWidth / 2) {
+          quickPanel.style.left = panelLeft + 'px';
+          quickPanel.style.right = 'auto';
+        } else {
+          quickPanel.style.right = panelRight + 'px';
+          quickPanel.style.left = 'auto';
+        }
+        quickPanel.style.top = Math.max(10, ballRect.top - quickPanel.offsetHeight / 2 + 26) + 'px';
       }
       floatingBall.addEventListener('click', (e) => {
-        if(!isDragging) quickPanel.classList.toggle('open');
+        if(!isDragging) {
+          quickPanel.classList.toggle('open');
+          updatePanelPosition();
+        }
       });
+      window.addEventListener('resize', () => { if(!isDragging) updatePanelPosition(); });
 
-      // ==================== 其他事件绑定 ====================
       document.getElementById('goToPriceBtn').addEventListener('click', () => slideToPage(1));
       document.getElementById('backToHomeBtn').addEventListener('click', () => slideToPage(0));
       document.getElementById('categoryTabs').addEventListener('click', e => {
         if(e.target.classList.contains('category-tab')) {
           document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
           e.target.classList.add('active');
-          currentCategory = e.target.dataset.category;
-          renderStore();
+          currentCategory = e.target.dataset.category; renderStore();
         }
       });
       document.getElementById('searchInput').addEventListener('input', renderStore);
-      document.getElementById('langSelectPanel').addEventListener('change', function(e) {
-        currentLang = e.target.value;
-        updateAllTexts();
-      });
-      document.getElementById('openCartFromPanel').addEventListener('click', () => {
-        document.getElementById('cartSidebar').classList.add('open');
-        document.getElementById('cartOverlay').classList.add('active');
-        quickPanel.classList.remove('open');
-      });
-      document.getElementById('openOrdersFromPanel').addEventListener('click', () => {
-        openUserCenter();
-        quickPanel.classList.remove('open');
-      });
-      document.getElementById('closeCartBtn').addEventListener('click', () => {
-        document.getElementById('cartSidebar').classList.remove('open');
-        document.getElementById('cartOverlay').classList.remove('active');
-      });
-      document.getElementById('cartOverlay').addEventListener('click', () => {
-        document.getElementById('cartSidebar').classList.remove('open');
-        document.getElementById('cartOverlay').classList.remove('active');
-      });
+      document.getElementById('langSelectPanel').addEventListener('change', function(e) { currentLang = e.target.value; updateAllTexts(); });
+      document.getElementById('openCartFromPanel').addEventListener('click', () => { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('active'); quickPanel.classList.remove('open'); });
+      document.getElementById('openOrdersFromPanel').addEventListener('click', () => { openUserCenter(); quickPanel.classList.remove('open'); });
+      document.getElementById('closeCartBtn').addEventListener('click', () => { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('active'); });
+      document.getElementById('cartOverlay').addEventListener('click', () => { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('active'); });
+      document.getElementById('selectAllCart').addEventListener('change', function() { cart.forEach(i => i.checked = this.checked); updateCartUI(); });
       document.getElementById('checkoutCartBtn').addEventListener('click', () => {
         const selected = cart.filter(i => i.checked);
         if(selected.length === 0) return showToast('Please select items');
-        currentProduct = selected[0];
-        currentFaceValue = selected[0].faceValue;
+        currentProduct = selected[0]; currentFaceValue = selected[0].faceValue;
         currentPrice = selected.reduce((s,i) => s + i.price * i.qty, 0);
-        document.getElementById('cartSidebar').classList.remove('open');
-        document.getElementById('cartOverlay').classList.remove('active');
+        document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('active');
         openAddressModal();
       });
 
-      // 弹窗背景点击关闭
       [productModal, addressModal, paymentModal, orderConfirmModal, userCenterModal].forEach(m => {
         m.addEventListener('click', function(e) { if(e.target === m) m.classList.remove('active'); });
       });
 
-      // 页面滚动时更新 logo 状态（由滑动触发，但也可以加入滚动监听）
-      // 初始化
-      updateAllTexts();
-      updateCartUI();
-      slider.style.transform = 'translateX(0)';
+      updateAllTexts(); updateCartUI(); slider.style.transform = 'translateX(0)';
     })();
   </script>
 </body>
