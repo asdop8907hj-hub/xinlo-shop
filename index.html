@@ -9,7 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ========== 全局重置与变量 ========== */
+    /* ========== 全局变量与重置 ========== */
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     :root {
       --bg-primary: #1a1a1a; --bg-secondary: #121212; --text-primary: #f5f5f5; --text-secondary: #b0b0b0; --text-muted: #888;
@@ -30,7 +30,6 @@
     .page { width: 50%; height: 100vh; height: 100dvh; overflow-y: auto; overflow-x: hidden; padding: 2rem; scrollbar-width: thin; scrollbar-color: #444 transparent; -webkit-overflow-scrolling: touch; }
     .page::-webkit-scrollbar { width: 5px; } .page::-webkit-scrollbar-track { background: transparent; } .page::-webkit-scrollbar-thumb { background-color: #444; border-radius: 10px; }
 
-    /* Logo 动画 */
     @keyframes starFlyIn { 0% { left: -5%; transform: scale(0.2); opacity: 0; } 15% { opacity: 1; } 75% { left: 82%; transform: scale(1.3); opacity: 1; } 90% { left: 90%; transform: scale(1.1); opacity: 0.9; } 100% { left: 5%; transform: scale(0.5); opacity: 0.6; } }
     @keyframes trailGrow { 0% { width: 0; opacity: 0; } 20% { opacity: 0.9; } 80% { width: 80%; opacity: 0.8; } 100% { width: 96%; opacity: 0; } }
     @keyframes textReveal { 0% { opacity: 0; transform: scale(0.7) translateY(10px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
@@ -68,23 +67,14 @@
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content { background: #252525; border-radius: var(--radius-xl); padding: 2rem; max-width: 520px; width: 92%; max-height: 85vh; overflow-y: auto; box-shadow: 0 30px 60px rgba(0,0,0,0.6); animation: modalSlideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1); color: #f0f0f0; }
 
-    /* 悬浮球（默认吸附左边缘） */
-    .floating-ball {
-      position: fixed; left: 10px; bottom: 100px; z-index: 150; width: 52px; height: 52px;
-      background: #fff; color: #000; border-radius: 50%; box-shadow: 0 8px 24px rgba(255,255,255,0.15);
-      display: flex; align-items: center; justify-content: center; cursor: grab; transition: box-shadow 0.3s, left 0.3s ease, right 0.3s ease;
-      font-size: 1.3rem; touch-action: none; user-select: none;
-    }
+    .floating-ball { position: fixed; left: 10px; bottom: 100px; z-index: 150; width: 52px; height: 52px; background: #fff; color: #000; border-radius: 50%; box-shadow: 0 8px 24px rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: grab; transition: box-shadow 0.3s, left 0.3s ease; font-size: 1.3rem; touch-action: none; user-select: none; }
     .floating-ball:active { cursor: grabbing; }
-    .quick-panel {
-      position: fixed; z-index: 140; background: #252525; border-radius: var(--radius-lg);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5); padding: 1rem; min-width: 260px;
-      transform: translateX(-120%); opacity: 0; transition: transform 0.35s ease, opacity 0.35s ease, left 0.3s ease;
-    }
+    .quick-panel { position: fixed; z-index: 140; background: #252525; border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0,0,0,0.5); padding: 1rem; min-width: 250px; transform: translateX(-120%); opacity: 0; transition: transform 0.35s ease, opacity 0.35s ease; }
     .quick-panel.open { transform: translateX(0); opacity: 1; }
     .quick-panel-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: var(--radius-md); cursor: pointer; transition: background 0.2s; color: #ddd; }
     .quick-panel-item:hover { background: #333; }
-    .quick-panel select { background: transparent; border: none; outline: none; color: #ddd; font-size: 0.9rem; cursor: pointer; }
+    .quick-panel-item i { width: 20px; text-align: center; color: #aaa; }
+    .quick-panel select { background: transparent; border: none; outline: none; color: #ddd; font-size: 0.9rem; cursor: pointer; width: 100%; }
     .quick-panel select option { background: #252525; color: #ddd; }
 
     .cart-sidebar { position: fixed; right: 0; top: 0; height: 100vh; height: 100dvh; width: 380px; background: #252525; box-shadow: -10px 0 30px rgba(0,0,0,0.5); z-index: 200; transform: translateX(100%); transition: transform 0.35s ease; color: #f0f0f0; }
@@ -96,17 +86,23 @@
     .toast.show { opacity: 1; }
 
     .search-box input { width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-full); border: 1px solid rgba(255,255,255,0.15); outline: none; font-size: 0.9rem; background: #252525; color: #fff; }
-    .modal-content input, .modal-content textarea { background: #333; border: 1px solid rgba(255,255,255,0.15); color: #fff; }
+    .modal-content input, .modal-content textarea { background: #333; border: 1px solid rgba(255,255,255,0.15); color: #fff; border-radius: var(--radius-sm); padding: 0.75rem; width: 100%; }
     .input-error { border-color: var(--error) !important; background: #4a2020 !important; }
+    .error-msg { color: var(--error); font-size: 0.72rem; margin-top: 0.2rem; display: none; }
+    .error-msg.show { display: block; }
     .payment-option { background: #2a2a2a; border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1rem; }
     .address-text { word-break: break-all; background: #333; padding: 0.75rem; border-radius: var(--radius-sm); font-family: monospace; font-size: 0.85rem; margin: 0.75rem 0; color: #4dabf7; cursor: pointer; }
-    .upload-area { border: 2px dashed #555; border-radius: var(--radius-md); padding: 1.5rem; text-align: center; cursor: pointer; }
+    .upload-area { border: 2px dashed #555; border-radius: var(--radius-md); padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s; }
     .upload-area:hover { border-color: #fff; background: #2a2a2a; }
     .order-item { border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem; background: #252525; color: #ddd; }
+    .order-item:hover { background: #2a2a2a; }
+    .category-tab { padding: 0.5rem 1.2rem; border-radius: var(--radius-full); font-size: 0.9rem; font-weight: 500; transition: all 0.2s; cursor: pointer; border: 1px solid transparent; }
     .category-tab.active { background: #fff; color: #000; }
-    .category-tab:not(.active) { background: transparent; color: #bbb; border: 1px solid rgba(255,255,255,0.2); }
-    .swipe-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.3); font-size: 0.7rem; pointer-events: none; }
-    .telegram-link { color: #2AABEE; font-weight: 600; }
+    .category-tab:not(.active) { background: transparent; color: #bbb; border-color: rgba(255,255,255,0.2); }
+    .category-tab:not(.active):hover { background: rgba(255,255,255,0.05); color: #fff; }
+    .swipe-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.3); font-size: 0.7rem; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .telegram-link { color: #2AABEE; font-weight: 600; text-decoration: none; }
+    .telegram-link:hover { text-decoration: underline; }
     .small-note { font-size: 0.75rem; color: #888; text-align: center; margin-top: 0.75rem; }
   </style>
 </head>
@@ -131,7 +127,10 @@
     </div>
     <div class="page bg-[#121212]" id="pricePage">
       <div class="max-w-5xl mx-auto page-2-content" id="page2Content">
-        <div class="sticky-nav flex items-center justify-between"><h2 class="text-2xl font-bold" id="priceListTitle">Gift Cards</h2><button id="backToHomeBtn" class="nav-btn"><i class="fas fa-arrow-left mr-1"></i> <span id="backText">Back</span></button></div>
+        <div class="sticky-nav flex items-center justify-between">
+          <h2 class="text-2xl font-bold" id="priceListTitle">Gift Cards</h2>
+          <button id="backToHomeBtn" class="nav-btn"><i class="fas fa-arrow-left mr-1"></i> <span id="backText">Back</span></button>
+        </div>
         <div class="search-box mb-4"><input type="text" id="searchInput" placeholder="Search gift cards..." class="w-full"></div>
         <div class="flex gap-2 mb-4 flex-wrap" id="categoryTabs">
           <button class="category-tab active" data-category="all">All</button>
@@ -145,21 +144,29 @@
     </div>
   </div>
 
-  <!-- 悬浮球（初始位于左边缘） -->
-  <div class="floating-ball" id="floatingBall" style="left: 10px; bottom: 100px;"><i class="fas fa-ellipsis-h"></i></div>
-  <!-- 弹出面板（位置会动态更新） -->
-  <div class="quick-panel" id="quickPanel" style="left: 70px; bottom: 100px;">
-    <div class="quick-panel-item" id="openCartFromPanel"><i class="fas fa-shopping-cart"></i> <span id="panelCartLabel">Cart</span> <span class="ml-auto bg-white/20 rounded-full px-2 text-xs" id="panelCartCount">0</span></div>
-    <div class="quick-panel-item" id="openOrdersFromPanel"><i class="fas fa-box"></i> <span id="panelOrdersLabel">My Orders</span></div>
-    <div class="quick-panel-item">
+  <!-- 悬浮球（可拖拽，吸附边缘） -->
+  <div class="floating-ball" id="floatingBall" style="left:10px;bottom:100px;"><i class="fas fa-ellipsis-h"></i></div>
+  <!-- 悬浮球弹出面板（功能完整） -->
+  <div class="quick-panel" id="quickPanel" style="left:70px;bottom:100px;">
+    <div class="quick-panel-item" id="openCartFromPanel">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="panelCartLabel">Cart</span>
+      <span class="ml-auto bg-white/20 rounded-full px-2 text-xs" id="panelCartCount">0</span>
+    </div>
+    <div class="quick-panel-item" id="openOrdersFromPanel">
+      <i class="fas fa-box"></i>
+      <span id="panelOrdersLabel">My Orders</span>
+    </div>
+    <div class="quick-panel-item" id="langPanelItem">
       <i class="fas fa-globe"></i>
-      <select id="langSelectPanel" class="bg-transparent text-white text-sm">
+      <select id="langSelectPanel" style="background:transparent;border:none;outline:none;color:#ddd;font-size:0.9rem;cursor:pointer;width:100%;">
         <option value="en">🇺🇸 English</option>
         <option value="zh">🇨🇳 中文</option>
       </select>
     </div>
   </div>
 
+  <!-- 购物车侧边栏 -->
   <div class="cart-overlay" id="cartOverlay"></div>
   <div class="cart-sidebar" id="cartSidebar">
     <div class="p-4 h-full flex flex-col">
@@ -170,14 +177,17 @@
     </div>
   </div>
 
+  <!-- 弹窗 -->
   <div class="modal-overlay" id="productModal"><div class="modal-content" id="modalContent"></div></div>
   <div class="modal-overlay" id="addressModal"><div class="modal-content" id="addressModalContent"></div></div>
   <div class="modal-overlay" id="paymentModal"><div class="modal-content" id="paymentModalContent"></div></div>
   <div class="modal-overlay" id="orderConfirmModal"><div class="modal-content" id="orderConfirmContent"></div></div>
   <div class="modal-overlay" id="userCenterModal"><div class="modal-content" id="userCenterContent"></div></div>
   <div class="toast" id="toast"></div>
+  <!-- 第1段结束，请继续拼接第2段 -->
   <script>
     (function() {
+      // ==================== 完整多语言 ====================
       const translations = {
         en: {
           tagline: "Premium Discount Gift Cards",
@@ -261,6 +271,7 @@
         }
       };
 
+      // ==================== 产品数据 ====================
       const productData = [
         { category:'apple', name:'iTunes Gift Card', faceValues:[50,100,200], descKey:'itunesDesc', img:'https://picsum.photos/seed/itunes/400/300' },
         { category:'google', name:'Google Play Gift Card', faceValues:[50,100,200], descKey:'googleplayDesc', img:'https://picsum.photos/seed/googleplay/400/300' },
@@ -369,7 +380,7 @@
           btn.addEventListener('click', function(e) { e.stopPropagation(); cart.splice(parseInt(this.dataset.idx), 1); updateCartUI(); });
         });
       }
-      // 第2段结束，请继续拼接第3段
+
       function openProductModal(p) {
         currentProduct = p; let selIdx = 0;
         const render = () => {
@@ -398,7 +409,7 @@
         };
         render(); productModal.classList.add('active');
       }
-
+      // 第2段结束，请继续拼接第3段
       function openAddressModal(prefill={}) {
         document.getElementById('addressModalContent').innerHTML = `
           <div class="flex justify-between mb-4"><h3 class="text-xl font-bold text-white">${t('shippingTitle')}</h3><button id="closeAddressBtn" class="text-gray-400 hover:text-white text-2xl">&times;</button></div>
@@ -495,7 +506,7 @@
         }
       });
 
-      // 悬浮球拖拽 + 吸附边缘
+      // ==================== 悬浮球拖拽 + 吸附边缘 + 面板功能 ====================
       let isDragging = false, startX, startY, ballX, ballY;
       floatingBall.addEventListener('mousedown', startDrag);
       floatingBall.addEventListener('touchstart', startDrag, {passive: false});
@@ -521,37 +532,44 @@
         isDragging = false;
         window.removeEventListener('mousemove', drag); window.removeEventListener('mouseup', stopDrag);
         window.removeEventListener('touchmove', drag); window.removeEventListener('touchend', stopDrag);
-        // 吸附到最近边缘
         const rect = floatingBall.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const targetLeft = centerX < window.innerWidth / 2 ? 10 : window.innerWidth - 62;
         floatingBall.style.transition = 'left 0.3s ease, top 0.3s ease';
-        floatingBall.style.left = targetLeft + 'px';
-        floatingBall.style.right = 'auto';
-        // 更新面板位置
+        floatingBall.style.left = targetLeft + 'px'; floatingBall.style.right = 'auto';
         updatePanelPosition();
       }
       function updatePanelPosition() {
         const ballRect = floatingBall.getBoundingClientRect();
-        const panelLeft = ballRect.left + 60;
-        const panelRight = window.innerWidth - ballRect.right + 60;
         if (ballRect.left < window.innerWidth / 2) {
-          quickPanel.style.left = panelLeft + 'px';
-          quickPanel.style.right = 'auto';
+          quickPanel.style.left = (ballRect.left + 60) + 'px'; quickPanel.style.right = 'auto';
         } else {
-          quickPanel.style.right = panelRight + 'px';
-          quickPanel.style.left = 'auto';
+          quickPanel.style.right = (window.innerWidth - ballRect.left + 10) + 'px'; quickPanel.style.left = 'auto';
         }
+        quickPanel.style.bottom = 'auto';
         quickPanel.style.top = Math.max(10, ballRect.top - quickPanel.offsetHeight / 2 + 26) + 'px';
       }
       floatingBall.addEventListener('click', (e) => {
-        if(!isDragging) {
-          quickPanel.classList.toggle('open');
-          updatePanelPosition();
-        }
+        if(!isDragging) { quickPanel.classList.toggle('open'); updatePanelPosition(); }
       });
       window.addEventListener('resize', () => { if(!isDragging) updatePanelPosition(); });
 
+      // ==================== 面板功能绑定 ====================
+      document.getElementById('openCartFromPanel').addEventListener('click', () => {
+        document.getElementById('cartSidebar').classList.add('open');
+        document.getElementById('cartOverlay').classList.add('active');
+        quickPanel.classList.remove('open');
+      });
+      document.getElementById('openOrdersFromPanel').addEventListener('click', () => {
+        openUserCenter();
+        quickPanel.classList.remove('open');
+      });
+      document.getElementById('langSelectPanel').addEventListener('change', function(e) {
+        currentLang = e.target.value;
+        updateAllTexts();
+      });
+
+      // ==================== 其他事件绑定 ====================
       document.getElementById('goToPriceBtn').addEventListener('click', () => slideToPage(1));
       document.getElementById('backToHomeBtn').addEventListener('click', () => slideToPage(0));
       document.getElementById('categoryTabs').addEventListener('click', e => {
@@ -562,18 +580,24 @@
         }
       });
       document.getElementById('searchInput').addEventListener('input', renderStore);
-      document.getElementById('langSelectPanel').addEventListener('change', function(e) { currentLang = e.target.value; updateAllTexts(); });
-      document.getElementById('openCartFromPanel').addEventListener('click', () => { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('active'); quickPanel.classList.remove('open'); });
-      document.getElementById('openOrdersFromPanel').addEventListener('click', () => { openUserCenter(); quickPanel.classList.remove('open'); });
-      document.getElementById('closeCartBtn').addEventListener('click', () => { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('active'); });
-      document.getElementById('cartOverlay').addEventListener('click', () => { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('active'); });
-      document.getElementById('selectAllCart').addEventListener('change', function() { cart.forEach(i => i.checked = this.checked); updateCartUI(); });
+      document.getElementById('closeCartBtn').addEventListener('click', () => {
+        document.getElementById('cartSidebar').classList.remove('open');
+        document.getElementById('cartOverlay').classList.remove('active');
+      });
+      document.getElementById('cartOverlay').addEventListener('click', () => {
+        document.getElementById('cartSidebar').classList.remove('open');
+        document.getElementById('cartOverlay').classList.remove('active');
+      });
+      document.getElementById('selectAllCart').addEventListener('change', function() {
+        cart.forEach(i => i.checked = this.checked); updateCartUI();
+      });
       document.getElementById('checkoutCartBtn').addEventListener('click', () => {
         const selected = cart.filter(i => i.checked);
         if(selected.length === 0) return showToast('Please select items');
         currentProduct = selected[0]; currentFaceValue = selected[0].faceValue;
         currentPrice = selected.reduce((s,i) => s + i.price * i.qty, 0);
-        document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('active');
+        document.getElementById('cartSidebar').classList.remove('open');
+        document.getElementById('cartOverlay').classList.remove('active');
         openAddressModal();
       });
 
@@ -581,7 +605,9 @@
         m.addEventListener('click', function(e) { if(e.target === m) m.classList.remove('active'); });
       });
 
+      // 初始化
       updateAllTexts(); updateCartUI(); slider.style.transform = 'translateX(0)';
+      updatePanelPosition();
     })();
   </script>
 </body>
