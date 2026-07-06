@@ -54,14 +54,8 @@
     }
 
     @keyframes bgGlow {
-      0% {
-        opacity: 0.4;
-        transform: scale(1);
-      }
-      100% {
-        opacity: 0.8;
-        transform: scale(1.05);
-      }
+      0% { opacity: 0.4; transform: scale(1); }
+      100% { opacity: 0.8; transform: scale(1.05); }
     }
 
     .container {
@@ -97,19 +91,11 @@
       font-weight: 400;
       letter-spacing: 0.04em;
       margin-top: 0.25rem;
-      -webkit-text-fill-color: #555;
-      background: none;
-      animation: none;
     }
 
     @keyframes logoShine {
-      0%,
-      100% {
-        background-position: 0% center;
-      }
-      50% {
-        background-position: 100% center;
-      }
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
     }
 
     .btn-list {
@@ -122,19 +108,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
       padding: 0.95rem 1.5rem;
       border-radius: 3rem;
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 1.6rem;
       text-decoration: none;
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.15);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
       cursor: pointer;
-      letter-spacing: 0.02em;
       position: relative;
       overflow: hidden;
+      line-height: 1;
     }
 
     .social-btn:hover {
@@ -147,48 +131,30 @@
       transition: transform 0.1s ease;
     }
 
-    .social-btn i {
-      font-size: 1.3rem;
-      width: 28px;
-      text-align: center;
-      filter: drop-shadow(0 0 4px rgba(255,255,255,0.3));
-    }
-
+    /* 各平台专属渐变 */
     .btn-x {
       background: linear-gradient(135deg, #1a1a1a 0%, #444444 100%);
       border-color: rgba(255,255,255,0.1);
     }
-    .btn-x:hover {
-      background: linear-gradient(135deg, #2a2a2a 0%, #555555 100%);
-    }
-
     .btn-ins {
       background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
       border-color: rgba(255,255,255,0.2);
     }
-
     .btn-fb {
       background: linear-gradient(135deg, #1877f2 0%, #0c5dc7 100%);
       border-color: rgba(24,119,242,0.3);
     }
-
     .btn-tg-main {
       background: linear-gradient(135deg, #2AABEE 0%, #229ED9 100%);
       border-color: rgba(42,171,238,0.3);
     }
-
     .btn-tg-ad {
       background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
       border-color: rgba(255,107,53,0.3);
     }
-
     .btn-game {
       background: linear-gradient(135deg, #c471ed 0%, #f64f59 100%);
       border-color: rgba(255,77,109,0.3);
-      justify-content: center;
-    }
-    .btn-game i {
-      color: #fff;
     }
 
     /* 子菜单 */
@@ -213,10 +179,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
       padding: 0.7rem 1.2rem;
       border-radius: 2rem;
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 600;
       text-decoration: none;
       color: #fff;
@@ -226,6 +191,7 @@
       -webkit-backdrop-filter: blur(10px);
       transition: all 0.25s ease;
       cursor: pointer;
+      letter-spacing: 0.03em;
     }
     .sub-btn:hover {
       background: rgba(255, 255, 255, 0.18);
@@ -240,68 +206,48 @@
     }
 
     @media (max-width: 480px) {
-      .container {
-        max-width: 100%;
-      }
-      .logo {
-        font-size: 2.5rem;
-      }
-      .social-btn {
-        padding: 0.85rem 1.2rem;
-        font-size: 0.95rem;
-      }
-      .social-btn i {
-        font-size: 1.15rem;
-        width: 24px;
-      }
+      .container { max-width: 100%; }
+      .logo { font-size: 2.5rem; }
+      .social-btn { padding: 0.85rem 1.2rem; font-size: 1.4rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Logo 同时也是主网页链接 -->
+    <!-- Logo / 主站链接 -->
     <a href="https://binpg.com" class="logo-link" target="_blank" rel="noopener noreferrer">
       <div class="logo">BINPG</div>
       <div class="logo-sub">.com</div>
     </a>
 
-    <!-- 按钮列表 -->
+    <!-- 按钮列表（纯 emoji 图标，无外部依赖） -->
     <div class="btn-list">
-      <!-- X (Twitter) -->
-      <a href="https://x.com/binpg_x" target="_blank" rel="noopener noreferrer" class="social-btn btn-x">
-        <i class="fab fa-x-twitter"></i>
+      <a href="https://x.com/binpg_x" target="_blank" rel="noopener noreferrer" class="social-btn btn-x" title="X (Twitter)">
+        𝕏
       </a>
-
-      <!-- Instagram -->
-      <a href="https://instagram.com/binpg_ins" target="_blank" rel="noopener noreferrer" class="social-btn btn-ins">
-        <i class="fab fa-instagram"></i>
+      <a href="https://instagram.com/binpg_ins" target="_blank" rel="noopener noreferrer" class="social-btn btn-ins" title="Instagram">
+        📷
       </a>
-
-      <!-- Facebook -->
-      <a href="https://facebook.com/binpgfb" target="_blank" rel="noopener noreferrer" class="social-btn btn-fb">
-        <i class="fab fa-facebook-f"></i>
+      <a href="https://facebook.com/binpgfb" target="_blank" rel="noopener noreferrer" class="social-btn btn-fb" title="Facebook">
+        📘
       </a>
-
-      <!-- Telegram 主频道 -->
-      <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-main">
-        <i class="fab fa-telegram-plane"></i>
+      <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-main" title="Telegram 主频道">
+        ✈️
       </a>
-
-      <!-- 广告投放 -->
-      <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-ad">
-        <i class="fas fa-bullhorn"></i>
+      <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-ad" title="广告投放">
+        📢
       </a>
 
       <!-- 娱乐室 -->
-      <div class="social-btn btn-game" id="gameBtn">
-        <i class="fas fa-gamepad"></i>
+      <div class="social-btn btn-game" id="gameBtn" title="娱乐室">
+        🎮
       </div>
       <div class="sub-menu" id="subMenu">
         <a href="https://sef32.top" target="_blank" rel="noopener noreferrer" class="sub-btn">
-          <span>娱乐1</span>
+          娱乐1
         </a>
         <a href="https://xj.cc" target="_blank" rel="noopener noreferrer" class="sub-btn">
-          <span>娱乐2</span>
+          娱乐2
         </a>
       </div>
     </div>
@@ -310,14 +256,10 @@
   </div>
 
   <script>
-    const gameBtn = document.getElementById('gameBtn');
-    const subMenu = document.getElementById('subMenu');
-    gameBtn.addEventListener('click', function(e) {
+    document.getElementById('gameBtn').addEventListener('click', function(e) {
       e.preventDefault();
-      subMenu.classList.toggle('open');
+      document.getElementById('subMenu').classList.toggle('open');
     });
   </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 </html>
