@@ -50,7 +50,13 @@
     .btn-tg-main { background: linear-gradient(135deg, #2AABEE, #229ED9); }
     .btn-tg-ad { background: linear-gradient(135deg, #ff6b35, #f7931e); }
     .btn-wa { background: linear-gradient(135deg, #25D366, #128C7E); }
-    .btn-game { background: linear-gradient(135deg, #c471ed, #f64f59); }
+    /* 娱乐室按钮改为更低调的灰色调，使用游戏手柄emoji */
+    .btn-game { 
+      background: linear-gradient(135deg, #2a2a2a, #3a3a3a); 
+      border-color: rgba(255,255,255,0.08);
+      opacity: 0.85;
+    }
+    .btn-game:hover { opacity: 1; }
     .footer { font-size: 0.7rem; color: #444; letter-spacing: 0.03em; padding-bottom: 1rem; }
     @media (max-width: 480px) { .logo { font-size: 2.5rem; } .social-btn { padding: 0.85rem 1.2rem; font-size: 1.8rem; } }
   </style>
@@ -71,12 +77,12 @@
       <a href="https://facebook.com/binpgfb" target="_blank" rel="noopener noreferrer" class="social-btn btn-fb" title="Facebook">📘</a>
       <!-- Telegram 主频道 -->
       <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-main" title="Telegram 主频道">✈️</a>
-      <!-- WhatsApp（已恢复为您提供的原始链接） -->
+      <!-- WhatsApp -->
       <a href="https://wa.me/message/J2W5OJZY2N2HH1" target="_blank" rel="noopener noreferrer" class="social-btn btn-wa" title="WhatsApp">💬</a>
       <!-- 广告投放 -->
       <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-ad" title="广告投放">📢</a>
-      <!-- 娱乐室 -->
-      <a href="https://sef32.top" target="_blank" rel="noopener noreferrer" class="social-btn btn-game" title="娱乐室">🎮</a>
+      <!-- 游戏（原娱乐室，改为低调样式，使用游戏手柄emoji） -->
+      <a href="https://sef32.top" target="_blank" rel="noopener noreferrer" class="social-btn btn-game" title="游戏">🎮</a>
     </div>
     <div class="footer">© 2025 BINPG. All rights reserved.</div>
   </div>
