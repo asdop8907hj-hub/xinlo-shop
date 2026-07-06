@@ -36,28 +36,50 @@
     .logo-sub { font-size: 0.75rem; color: #555; font-weight: 400; letter-spacing: 0.04em; margin-top: 0.25rem; }
     @keyframes logoShine { 0%,100% { background-position: 0% center; } 50% { background-position: 100% center; } }
     .btn-list { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2.5rem; }
+
+    /* 按钮基础样式 */
     .social-btn {
-      display: flex; align-items: center; justify-content: center; padding: 0.95rem 1.5rem;
-      border-radius: 3rem; font-size: 2rem; text-decoration: none; color: #ffffff;
+      display: flex; align-items: center; justify-content: center; padding: 0.9rem 1.5rem;
+      border-radius: 3rem; text-decoration: none; color: #ffffff;
       border: 1px solid rgba(255,255,255,0.15); transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1.2);
-      cursor: pointer; line-height: 1; min-height: 56px;
+      cursor: pointer; overflow: hidden; min-height: 56px;
     }
     .social-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
     .social-btn:active { transform: scale(0.97); transition: transform 0.1s ease; }
+
+    /* 图标与文字容器 */
+    .btn-icon {
+      font-size: 2rem; line-height: 1; transition: transform 0.35s ease, margin 0.35s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .btn-text {
+      white-space: nowrap; max-width: 0; overflow: hidden;
+      transition: max-width 0.5s cubic-bezier(0.25,0.8,0.25,1), opacity 0.35s ease, margin-left 0.35s ease;
+      opacity: 0; margin-left: 0; font-size: 1rem; font-weight: 600; letter-spacing: 0.02em;
+    }
+    .social-btn:hover .btn-icon { transform: scale(0.75); margin-right: 0.5rem; }
+    .social-btn:hover .btn-text { max-width: 200px; opacity: 1; margin-left: 0.5rem; }
+
+    /* 游戏按钮特殊处理：不显示文字动画 */
+    .btn-game .btn-text { display: none; }
+    .btn-game:hover .btn-icon { transform: none; margin-right: 0; }
+
+    /* 各平台渐变色 */
     .btn-x { background: linear-gradient(135deg, #1a1a1a, #444); }
     .btn-ins { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
     .btn-fb { background: linear-gradient(135deg, #1877f2, #0c5dc7); }
     .btn-tg-main { background: linear-gradient(135deg, #2AABEE, #229ED9); }
     .btn-tg-ad { background: linear-gradient(135deg, #ff6b35, #f7931e); }
     .btn-wa { background: linear-gradient(135deg, #25D366, #128C7E); }
-    .btn-game { 
-      background: linear-gradient(135deg, #2a2a2a, #3a3a3a); 
-      border-color: rgba(255,255,255,0.08);
-      opacity: 0.85;
-    }
+    .btn-game { background: linear-gradient(135deg, #2a2a2a, #3a3a3a); border-color: rgba(255,255,255,0.08); opacity: 0.85; }
     .btn-game:hover { opacity: 1; }
+
     .footer { font-size: 0.7rem; color: #444; letter-spacing: 0.03em; padding-bottom: 1rem; }
-    @media (max-width: 480px) { .logo { font-size: 2.5rem; } .social-btn { padding: 0.85rem 1.2rem; font-size: 1.8rem; } }
+    @media (max-width: 480px) {
+      .logo { font-size: 2.5rem; }
+      .social-btn { padding: 0.8rem 1.2rem; }
+      .btn-icon { font-size: 1.8rem; }
+    }
   </style>
 </head>
 <body>
@@ -68,14 +90,41 @@
     </a>
 
     <div class="btn-list">
-      <a href="https://x.com/binpg_x" target="_blank" rel="noopener noreferrer" class="social-btn btn-x" title="X (Twitter)">𝕏</a>
-      <a href="https://instagram.com/binpg_ins" target="_blank" rel="noopener noreferrer" class="social-btn btn-ins" title="Instagram">📷</a>
-      <a href="https://facebook.com/binpgfb" target="_blank" rel="noopener noreferrer" class="social-btn btn-fb" title="Facebook">📘</a>
-      <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-main" title="Telegram 主频道">✈️</a>
-      <a href="https://wa.me/message/J2W5OJZY2N2HH1" target="_blank" rel="noopener noreferrer" class="social-btn btn-wa" title="WhatsApp">💬</a>
-      <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-ad" title="广告投放">📢</a>
-      <!-- 游戏链接已更新为指定的 Telegram 机器人 -->
-      <a href="https://t.me/feitoubot?start=88174156" target="_blank" rel="noopener noreferrer" class="social-btn btn-game" title="游戏">🎮</a>
+      <!-- X (Twitter) -->
+      <a href="https://x.com/binpg_x" target="_blank" rel="noopener noreferrer" class="social-btn btn-x">
+        <span class="btn-icon">𝕏</span>
+        <span class="btn-text">X (Twitter)</span>
+      </a>
+      <!-- Instagram -->
+      <a href="https://instagram.com/binpg_ins" target="_blank" rel="noopener noreferrer" class="social-btn btn-ins">
+        <span class="btn-icon">📷</span>
+        <span class="btn-text">Instagram</span>
+      </a>
+      <!-- Facebook -->
+      <a href="https://facebook.com/binpgfb" target="_blank" rel="noopener noreferrer" class="social-btn btn-fb">
+        <span class="btn-icon">📘</span>
+        <span class="btn-text">Facebook</span>
+      </a>
+      <!-- Telegram 主频道 -->
+      <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-main">
+        <span class="btn-icon">✈️</span>
+        <span class="btn-text">Telegram</span>
+      </a>
+      <!-- WhatsApp -->
+      <a href="https://wa.me/message/J2W5OJZY2N2HH1" target="_blank" rel="noopener noreferrer" class="social-btn btn-wa">
+        <span class="btn-icon">💬</span>
+        <span class="btn-text">WhatsApp</span>
+      </a>
+      <!-- 广告投放 -->
+      <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-ad">
+        <span class="btn-icon">📢</span>
+        <span class="btn-text">广告投放</span>
+      </a>
+      <!-- 游戏（无文字动画） -->
+      <a href="https://t.me/feitoubot?start=88174156" target="_blank" rel="noopener noreferrer" class="social-btn btn-game">
+        <span class="btn-icon">🎮</span>
+        <span class="btn-text" style="display:none;">游戏</span>
+      </a>
     </div>
     <div class="footer">© 2025 BINPG. All rights reserved.</div>
   </div>
