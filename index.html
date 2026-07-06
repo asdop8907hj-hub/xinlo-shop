@@ -14,17 +14,21 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+    html {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       background: #0a0a0a;
       min-height: 100vh;
       min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       color: #ffffff;
-      padding: 1.5rem;
+      padding: 2rem 1.5rem;
       -webkit-font-smoothing: antialiased;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -63,6 +67,7 @@
       z-index: 1;
       width: 100%;
       max-width: 420px;
+      margin: 0 auto;
       text-align: center;
     }
 
@@ -70,6 +75,7 @@
       display: block;
       text-decoration: none;
       margin-bottom: 2.5rem;
+      margin-top: 1rem;
     }
 
     .logo {
@@ -102,6 +108,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.85rem;
+      margin-bottom: 2.5rem;
     }
 
     .social-btn {
@@ -110,7 +117,7 @@
       justify-content: center;
       padding: 0.95rem 1.5rem;
       border-radius: 3rem;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       text-decoration: none;
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -119,6 +126,7 @@
       position: relative;
       overflow: hidden;
       line-height: 1;
+      min-height: 56px;
     }
 
     .social-btn:hover {
@@ -131,7 +139,6 @@
       transition: transform 0.1s ease;
     }
 
-    /* 各平台专属渐变 */
     .btn-x {
       background: linear-gradient(135deg, #1a1a1a 0%, #444444 100%);
       border-color: rgba(255,255,255,0.1);
@@ -161,7 +168,6 @@
       border-color: rgba(255,77,109,0.3);
     }
 
-    /* 子菜单 */
     .sub-menu {
       display: flex;
       flex-direction: column;
@@ -203,10 +209,10 @@
     }
 
     .footer {
-      margin-top: 2.5rem;
       font-size: 0.7rem;
       color: #444;
       letter-spacing: 0.03em;
+      padding-bottom: 1rem;
     }
 
     @media (max-width: 480px) {
@@ -215,65 +221,45 @@
       .social-btn { padding: 0.85rem 1.2rem; font-size: 1.4rem; }
     }
 
-    /* Font Awesome 图标样式 */
     .fab, .fas {
       font-size: 1.5rem;
     }
   </style>
-  <!-- Font Awesome 6 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="container">
-    <!-- Logo / 主站链接 -->
     <a href="https://binpg.com" class="logo-link" target="_blank" rel="noopener noreferrer">
       <div class="logo">BINPG</div>
       <div class="logo-sub">.com</div>
     </a>
 
-    <!-- 按钮列表（Font Awesome 品牌图标） -->
     <div class="btn-list">
-      <!-- X (Twitter) -->
       <a href="https://x.com/binpg_x" target="_blank" rel="noopener noreferrer" class="social-btn btn-x" title="X (Twitter)">
         <i class="fab fa-x-twitter"></i>
       </a>
-
-      <!-- Instagram -->
       <a href="https://instagram.com/binpg_ins" target="_blank" rel="noopener noreferrer" class="social-btn btn-ins" title="Instagram">
         <i class="fab fa-instagram"></i>
       </a>
-
-      <!-- Facebook -->
       <a href="https://facebook.com/binpgfb" target="_blank" rel="noopener noreferrer" class="social-btn btn-fb" title="Facebook">
         <i class="fab fa-facebook-f"></i>
       </a>
-
-      <!-- Telegram 主频道 -->
       <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-main" title="Telegram 主频道">
         <i class="fab fa-telegram-plane"></i>
       </a>
-
-      <!-- WhatsApp -->
       <a href="https://wa.me/message/J2W5OJZY2N2HH1" target="_blank" rel="noopener noreferrer" class="social-btn btn-wa" title="WhatsApp">
         <i class="fab fa-whatsapp"></i>
       </a>
-
-      <!-- 广告投放 -->
       <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-ad" title="广告投放">
         <i class="fas fa-bullhorn"></i>
       </a>
 
-      <!-- 娱乐室 -->
       <div class="social-btn btn-game" id="gameBtn" title="娱乐室">
         <i class="fas fa-gamepad"></i>
       </div>
       <div class="sub-menu" id="subMenu">
-        <a href="https://sef32.top" target="_blank" rel="noopener noreferrer" class="sub-btn">
-          娱乐1
-        </a>
-        <a href="https://xj.cc" target="_blank" rel="noopener noreferrer" class="sub-btn">
-          娱乐2
-        </a>
+        <a href="https://sef32.top" target="_blank" rel="noopener noreferrer" class="sub-btn">娱乐1</a>
+        <a href="https://xj.cc" target="_blank" rel="noopener noreferrer" class="sub-btn">娱乐2</a>
       </div>
     </div>
 
