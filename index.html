@@ -37,7 +37,6 @@
     @keyframes logoShine { 0%,100% { background-position: 0% center; } 50% { background-position: 100% center; } }
     .btn-list { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2.5rem; }
 
-    /* 按钮基础样式 */
     .social-btn {
       display: flex; align-items: center; justify-content: center; padding: 0.9rem 1.5rem;
       border-radius: 3rem; text-decoration: none; color: #ffffff;
@@ -47,7 +46,6 @@
     .social-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
     .social-btn:active { transform: scale(0.97); transition: transform 0.1s ease; }
 
-    /* 图标与文字容器 */
     .btn-icon {
       font-size: 2rem; line-height: 1; transition: transform 0.35s ease, margin 0.35s ease;
       display: flex; align-items: center; justify-content: center;
@@ -60,19 +58,50 @@
     .social-btn:hover .btn-icon { transform: scale(0.75); margin-right: 0.5rem; }
     .social-btn:hover .btn-text { max-width: 200px; opacity: 1; margin-left: 0.5rem; }
 
-    /* 游戏按钮特殊处理：不显示文字动画 */
-    .btn-game .btn-text { display: none; }
-    .btn-game:hover .btn-icon { transform: none; margin-right: 0; }
+    /* TG子菜单按钮特殊：悬停不显示文字，点击展开子菜单 */
+    .btn-tg-sub { background: linear-gradient(135deg, #2AABEE, #229ED9); }
+    .btn-tg-sub:hover .btn-icon { transform: scale(0.75); margin-right: 0.5rem; }
+    .btn-tg-sub:hover .btn-text { max-width: 200px; opacity: 1; margin-left: 0.5rem; }
+    /* 子菜单展开时箭头旋转 */
+    .btn-tg-sub.open .btn-icon { transform: rotate(45deg); }
 
-    /* 各平台渐变色 */
+    /* 子菜单 */
+    .sub-menu {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.25,0.8,0.25,1), opacity 0.3s ease, margin 0.3s ease;
+      opacity: 0; margin-top: 0; padding: 0 0.5rem;
+    }
+    .sub-menu.open { max-height: 400px; opacity: 1; margin-top: 0.25rem; }
+
+    .sub-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.7rem 1.2rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; color: #fff; border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      transition: all 0.25s ease; cursor: pointer; letter-spacing: 0.03em;
+    }
+    .sub-btn:hover { transform: translateY(-1px); }
+    .sub-btn i { font-size: 1rem; width: 24px; text-align: center; }
+
+    /* 子菜单颜色 */
+    .sub-red { background: linear-gradient(135deg, #e74c3c, #c0392b); border-color: rgba(231,76,60,0.4); }
+    .sub-red:hover { background: linear-gradient(135deg, #f75c4c, #d0443b); }
+    .sub-blue { background: linear-gradient(135deg, #2AABEE, #229ED9); border-color: rgba(42,171,238,0.4); }
+    .sub-blue:hover { background: linear-gradient(135deg, #3cb8f5, #2AABEE); }
+    .sub-green { background: linear-gradient(135deg, #25D366, #128C7E); border-color: rgba(37,211,102,0.4); }
+    .sub-green:hover { background: linear-gradient(135deg, #3ce67a, #18a07a); }
+    .sub-purple { background: linear-gradient(135deg, #8e44ad, #6c3483); border-color: rgba(142,68,173,0.4); }
+    .sub-purple:hover { background: linear-gradient(135deg, #a055c0, #7d3c98); }
+
     .btn-x { background: linear-gradient(135deg, #1a1a1a, #444); }
     .btn-ins { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
     .btn-fb { background: linear-gradient(135deg, #1877f2, #0c5dc7); }
-    .btn-tg-main { background: linear-gradient(135deg, #2AABEE, #229ED9); }
-    .btn-tg-ad { background: linear-gradient(135deg, #ff6b35, #f7931e); }
     .btn-wa { background: linear-gradient(135deg, #25D366, #128C7E); }
     .btn-game { background: linear-gradient(135deg, #2a2a2a, #3a3a3a); border-color: rgba(255,255,255,0.08); opacity: 0.85; }
     .btn-game:hover { opacity: 1; }
+    .btn-game .btn-text { display: none; }
+    .btn-game:hover .btn-icon { transform: none; margin-right: 0; }
 
     .footer { font-size: 0.7rem; color: #444; letter-spacing: 0.03em; padding-bottom: 1rem; }
     @media (max-width: 480px) {
@@ -105,22 +134,31 @@
         <span class="btn-icon">📘</span>
         <span class="btn-text">Facebook</span>
       </a>
-      <!-- Telegram 主频道 -->
-      <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-main">
-        <span class="btn-icon">✈️</span>
-        <span class="btn-text">Telegram</span>
-      </a>
       <!-- WhatsApp -->
       <a href="https://wa.me/message/J2W5OJZY2N2HH1" target="_blank" rel="noopener noreferrer" class="social-btn btn-wa">
         <span class="btn-icon">💬</span>
         <span class="btn-text">WhatsApp</span>
       </a>
-      <!-- 广告投放 -->
-      <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="social-btn btn-tg-ad">
-        <span class="btn-icon">📢</span>
-        <span class="btn-text">广告投放</span>
-      </a>
-      <!-- 游戏（无文字动画） -->
+      <!-- Telegram 子菜单主按钮 -->
+      <div class="social-btn btn-tg-sub" id="tgSubBtn">
+        <span class="btn-icon">✈️</span>
+        <span class="btn-text">Telegram</span>
+      </div>
+      <div class="sub-menu" id="tgSubMenu">
+        <a href="https://t.me/pddh8" target="_blank" rel="noopener noreferrer" class="sub-btn sub-red">
+          <i class="fas fa-compass"></i> 频道导航
+        </a>
+        <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="sub-btn sub-blue">
+          <i class="fas fa-bell"></i> 官方频道
+        </a>
+        <a href="https://t.me/txhzx" target="_blank" rel="noopener noreferrer" class="sub-btn sub-green">
+          <i class="fas fa-comments"></i> 聊天大群
+        </a>
+        <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="sub-btn sub-purple">
+          <i class="fas fa-headset"></i> 入驻客服
+        </a>
+      </div>
+      <!-- 游戏 -->
       <a href="https://t.me/feitoubot?start=88174156" target="_blank" rel="noopener noreferrer" class="social-btn btn-game">
         <span class="btn-icon">🎮</span>
         <span class="btn-text" style="display:none;">游戏</span>
@@ -128,5 +166,15 @@
     </div>
     <div class="footer">© 2025 BINPG. All rights reserved.</div>
   </div>
+
+  <script>
+    // Telegram 子菜单展开/收起
+    const tgBtn = document.getElementById('tgSubBtn');
+    const tgMenu = document.getElementById('tgSubMenu');
+    tgBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      tgMenu.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
