@@ -1,180 +1,730 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>BINPG</title>
-  <meta name="description" content="BINPG 官方渠道导航">
+  <title>BINPG • Official Notice</title>
+  <meta name="description" content="BINPG official global announcement and channel navigation page">
   <meta name="theme-color" content="#0a0a0a">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html { overflow-y: auto; overflow-x: hidden; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    html {
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: #0a0a0a; min-height: 100vh; min-height: 100dvh; color: #ffffff;
-      padding: 2rem 1.5rem; -webkit-font-smoothing: antialiased; overflow-y: auto; overflow-x: hidden;
+      background: #0a0a0a;
+      min-height: 100vh;
+      min-height: 100dvh;
+      color: #e0e0e0;
+      padding: 2rem 1.5rem 3rem;
+      -webkit-font-smoothing: antialiased;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
+
     body::before {
-      content: ''; position: fixed; top: -40%; left: -20%; width: 80%; height: 100%;
-      background: radial-gradient(circle at 50% 40%, rgba(100,120,255,0.06) 0%, transparent 70%);
-      pointer-events: none; z-index: 0; animation: bgGlow 8s ease-in-out infinite alternate;
+      content: '';
+      position: fixed;
+      top: -30%;
+      left: -15%;
+      width: 70%;
+      height: 80%;
+      background: radial-gradient(circle at 40% 35%, rgba(100, 130, 255, 0.05) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      animation: bgGlow1 10s ease-in-out infinite alternate;
     }
     body::after {
-      content: ''; position: fixed; bottom: -30%; right: -15%; width: 70%; height: 90%;
-      background: radial-gradient(circle at 60% 70%, rgba(255,150,80,0.04) 0%, transparent 70%);
-      pointer-events: none; z-index: 0; animation: bgGlow 10s ease-in-out infinite alternate-reverse;
+      content: '';
+      position: fixed;
+      bottom: -25%;
+      right: -10%;
+      width: 65%;
+      height: 75%;
+      background: radial-gradient(circle at 55% 65%, rgba(200, 120, 80, 0.04) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      animation: bgGlow2 12s ease-in-out infinite alternate-reverse;
     }
-    @keyframes bgGlow { 0% { opacity: 0.4; transform: scale(1); } 100% { opacity: 0.8; transform: scale(1.05); } }
-    .container { position: relative; z-index: 1; width: 100%; max-width: 420px; margin: 0 auto; text-align: center; }
-    .logo-link { display: block; text-decoration: none; margin-bottom: 2.5rem; margin-top: 1rem; }
+    @keyframes bgGlow1 {
+      0% { opacity: 0.35; transform: scale(1); }
+      100% { opacity: 0.7; transform: scale(1.06); }
+    }
+    @keyframes bgGlow2 {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.65; transform: scale(1.05); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .logo-wrapper {
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
     .logo {
-      font-size: 3rem; font-weight: 900; letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #6e8efb, #a777e3, #f8a5c2); background-size: 200% auto;
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      animation: logoShine 4s ease-in-out infinite; line-height: 1.1;
+      font-size: 3.2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #6e8efb, #a777e3, #f8a5c2, #6e8efb);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: logoShine 3.5s ease-in-out infinite, logoFloat 5s ease-in-out infinite;
+      line-height: 1.15;
+      display: inline-block;
+      cursor: default;
     }
-    .logo-sub { font-size: 0.75rem; color: #555; font-weight: 400; letter-spacing: 0.04em; margin-top: 0.25rem; }
-    @keyframes logoShine { 0%,100% { background-position: 0% center; } 50% { background-position: 100% center; } }
-    .btn-list { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2.5rem; }
-
-    .social-btn {
-      display: flex; align-items: center; justify-content: center; padding: 0.9rem 1.5rem;
-      border-radius: 3rem; text-decoration: none; color: #ffffff;
-      border: 1px solid rgba(255,255,255,0.15); transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1.2);
-      cursor: pointer; overflow: hidden; min-height: 56px;
+    @keyframes logoShine {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
     }
-    .social-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-    .social-btn:active { transform: scale(0.97); transition: transform 0.1s ease; }
-
-    .btn-icon {
-      font-size: 2rem; line-height: 1; transition: transform 0.35s ease, margin 0.35s ease;
-      display: flex; align-items: center; justify-content: center;
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
     }
-    .btn-text {
-      white-space: nowrap; max-width: 0; overflow: hidden;
-      transition: max-width 0.5s cubic-bezier(0.25,0.8,0.25,1), opacity 0.35s ease, margin-left 0.35s ease;
-      opacity: 0; margin-left: 0; font-size: 1rem; font-weight: 600; letter-spacing: 0.02em;
+    .logo-glow {
+      display: block;
+      width: 80px;
+      height: 2px;
+      margin: 0.2rem auto 0;
+      border-radius: 2px;
+      background: linear-gradient(90deg, transparent, #a777e3, #f8a5c2, transparent);
+      animation: glowBar 2.5s ease-in-out infinite;
     }
-    .social-btn:hover .btn-icon { transform: scale(0.75); margin-right: 0.5rem; }
-    .social-btn:hover .btn-text { max-width: 200px; opacity: 1; margin-left: 0.5rem; }
+    @keyframes glowBar {
+      0%, 100% { opacity: 0.3; width: 60px; }
+      50% { opacity: 1; width: 100px; }
+    }
+    .logo-sub {
+      font-size: 0.75rem;
+      color: #666;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      margin-top: 0.3rem;
+    }
 
-    /* TG子菜单按钮特殊：悬停不显示文字，点击展开子菜单 */
-    .btn-tg-sub { background: linear-gradient(135deg, #2AABEE, #229ED9); }
-    .btn-tg-sub:hover .btn-icon { transform: scale(0.75); margin-right: 0.5rem; }
-    .btn-tg-sub:hover .btn-text { max-width: 200px; opacity: 1; margin-left: 0.5rem; }
-    /* 子菜单展开时箭头旋转 */
-    .btn-tg-sub.open .btn-icon { transform: rotate(45deg); }
+    .lang-select-wrapper {
+      margin-bottom: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .lang-select-wrapper i {
+      color: #777;
+      font-size: 0.9rem;
+    }
+    .lang-select {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 2rem;
+      padding: 0.5rem 2rem 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #ddd;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.6rem center;
+      transition: all 0.25s;
+    }
+    .lang-select:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.1);
+    }
 
-    /* 子菜单 */
+    .announcement-bar {
+      background: linear-gradient(135deg, rgba(100, 130, 255, 0.1), rgba(160, 120, 220, 0.08));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1.25rem;
+      padding: 1.25rem 1.2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+      line-height: 1.6;
+      position: relative;
+      overflow: hidden;
+    }
+    .announcement-bar::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #6e8efb, #a777e3);
+      border-radius: 0 3px 3px 0;
+    }
+    .announcement-bar .announce-icon {
+      font-size: 1.3rem;
+      margin-right: 0.4rem;
+      vertical-align: -2px;
+    }
+    .announcement-bar .announce-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+    .announcement-bar .announce-body {
+      font-size: 0.82rem;
+      color: #999;
+      line-height: 1.55;
+    }
+
+    .section-group {
+      margin-bottom: 1.8rem;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #555;
+      margin-bottom: 0.6rem;
+      text-align: left;
+      padding-left: 0.3rem;
+    }
+
+    .btn-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .main-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.5rem;
+      border-radius: 2.5rem;
+      text-decoration: none;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+      cursor: pointer;
+      overflow: hidden;
+      min-height: 52px;
+      font-size: 1.5rem;
+      position: relative;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .main-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    .main-btn:active {
+      transform: scale(0.97);
+      transition: transform 0.1s ease;
+    }
+
+    .btn-icon-area {
+      font-size: 1.5rem;
+      line-height: 1;
+      transition: transform 0.35s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-label {
+      white-space: nowrap;
+      max-width: 0;
+      overflow: hidden;
+      transition: max-width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.35s ease, margin-left 0.35s ease;
+      opacity: 0;
+      margin-left: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .main-btn:hover .btn-icon-area {
+      transform: scale(0.78);
+      margin-right: 0.3rem;
+    }
+    .main-btn:hover .btn-label {
+      max-width: 220px;
+      opacity: 1;
+      margin-left: 0.5rem;
+    }
+
+    .expand-arrow {
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      transition: transform 0.35s ease;
+      opacity: 0.6;
+    }
+    .main-btn.expanded .expand-arrow {
+      transform: rotate(180deg);
+    }
+
     .sub-menu {
-      display: flex; flex-direction: column; gap: 0.5rem;
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.25,0.8,0.25,1), opacity 0.3s ease, margin 0.3s ease;
-      opacity: 0; margin-top: 0; padding: 0 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease, margin 0.3s ease;
+      opacity: 0;
+      margin-top: 0;
+      padding: 0 0.6rem;
     }
-    .sub-menu.open { max-height: 400px; opacity: 1; margin-top: 0.25rem; }
+    .sub-menu.open {
+      max-height: 500px;
+      opacity: 1;
+      margin-top: 0.3rem;
+    }
 
     .sub-btn {
-      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-      padding: 0.7rem 1.2rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 600;
-      text-decoration: none; color: #fff; border: 1px solid rgba(255,255,255,0.2);
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      transition: all 0.25s ease; cursor: pointer; letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
+      cursor: pointer;
+      letter-spacing: 0.03em;
     }
-    .sub-btn:hover { transform: translateY(-1px); }
-    .sub-btn i { font-size: 1rem; width: 24px; text-align: center; }
+    .sub-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+    .sub-btn i {
+      font-size: 0.9rem;
+      width: 22px;
+      text-align: center;
+    }
 
-    /* 子菜单颜色 */
-    .sub-red { background: linear-gradient(135deg, #e74c3c, #c0392b); border-color: rgba(231,76,60,0.4); }
-    .sub-red:hover { background: linear-gradient(135deg, #f75c4c, #d0443b); }
-    .sub-blue { background: linear-gradient(135deg, #2AABEE, #229ED9); border-color: rgba(42,171,238,0.4); }
-    .sub-blue:hover { background: linear-gradient(135deg, #3cb8f5, #2AABEE); }
-    .sub-green { background: linear-gradient(135deg, #25D366, #128C7E); border-color: rgba(37,211,102,0.4); }
-    .sub-green:hover { background: linear-gradient(135deg, #3ce67a, #18a07a); }
-    .sub-purple { background: linear-gradient(135deg, #8e44ad, #6c3483); border-color: rgba(142,68,173,0.4); }
-    .sub-purple:hover { background: linear-gradient(135deg, #a055c0, #7d3c98); }
+    .sub-official {
+      background: linear-gradient(135deg, #2AABEE, #1a8fcf);
+      border-color: rgba(42, 171, 238, 0.35);
+    }
+    .sub-nav {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      border-color: rgba(231, 76, 60, 0.35);
+    }
+    .sub-alert {
+      background: linear-gradient(135deg, #f39c12, #d68910);
+      border-color: rgba(243, 156, 18, 0.35);
+    }
+    .sub-chat {
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      border-color: rgba(46, 204, 113, 0.35);
+    }
+    .sub-support {
+      background: linear-gradient(135deg, #8e44ad, #6c3483);
+      border-color: rgba(142, 68, 173, 0.35);
+    }
+    .sub-game-global {
+      background: linear-gradient(135deg, #c471ed, #a855f7);
+      border-color: rgba(196, 113, 237, 0.35);
+    }
+    .sub-game-cn {
+      background: linear-gradient(135deg, #f64f59, #d6336c);
+      border-color: rgba(246, 79, 89, 0.35);
+    }
 
-    .btn-x { background: linear-gradient(135deg, #1a1a1a, #444); }
-    .btn-ins { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .btn-fb { background: linear-gradient(135deg, #1877f2, #0c5dc7); }
-    .btn-wa { background: linear-gradient(135deg, #25D366, #128C7E); }
-    .btn-game { background: linear-gradient(135deg, #2a2a2a, #3a3a3a); border-color: rgba(255,255,255,0.08); opacity: 0.85; }
-    .btn-game:hover { opacity: 1; }
-    .btn-game .btn-text { display: none; }
-    .btn-game:hover .btn-icon { transform: none; margin-right: 0; }
+    .footer {
+      margin-top: 2.5rem;
+      font-size: 0.68rem;
+      color: #444;
+      letter-spacing: 0.04em;
+      padding-bottom: 0.5rem;
+    }
 
-    .footer { font-size: 0.7rem; color: #444; letter-spacing: 0.03em; padding-bottom: 1rem; }
     @media (max-width: 480px) {
-      .logo { font-size: 2.5rem; }
-      .social-btn { padding: 0.8rem 1.2rem; }
-      .btn-icon { font-size: 1.8rem; }
+      .container {
+        max-width: 100%;
+      }
+      .logo {
+        font-size: 2.6rem;
+      }
+      .main-btn {
+        padding: 0.75rem 1.2rem;
+        font-size: 1.3rem;
+      }
+      .btn-icon-area {
+        font-size: 1.3rem;
+      }
+      .announcement-bar {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <a href="https://binpg.com" class="logo-link" target="_blank" rel="noopener noreferrer">
+    <div class="logo-wrapper">
       <div class="logo">BINPG</div>
-      <div class="logo-sub">.com</div>
-    </a>
-
-    <div class="btn-list">
-      <!-- X (Twitter) -->
-      <a href="https://x.com/binpg_x" target="_blank" rel="noopener noreferrer" class="social-btn btn-x">
-        <span class="btn-icon">𝕏</span>
-        <span class="btn-text">X (Twitter)</span>
-      </a>
-      <!-- Instagram -->
-      <a href="https://instagram.com/binpg_ins" target="_blank" rel="noopener noreferrer" class="social-btn btn-ins">
-        <span class="btn-icon">📷</span>
-        <span class="btn-text">Instagram</span>
-      </a>
-      <!-- Facebook -->
-      <a href="https://facebook.com/binpgfb" target="_blank" rel="noopener noreferrer" class="social-btn btn-fb">
-        <span class="btn-icon">📘</span>
-        <span class="btn-text">Facebook</span>
-      </a>
-      <!-- WhatsApp -->
-      <a href="https://wa.me/message/J2W5OJZY2N2HH1" target="_blank" rel="noopener noreferrer" class="social-btn btn-wa">
-        <span class="btn-icon">💬</span>
-        <span class="btn-text">WhatsApp</span>
-      </a>
-      <!-- Telegram 子菜单主按钮 -->
-      <div class="social-btn btn-tg-sub" id="tgSubBtn">
-        <span class="btn-icon">✈️</span>
-        <span class="btn-text">Telegram</span>
-      </div>
-      <div class="sub-menu" id="tgSubMenu">
-        <a href="https://t.me/pddh8" target="_blank" rel="noopener noreferrer" class="sub-btn sub-red">
-          <i class="fas fa-compass"></i> 频道导航
-        </a>
-        <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="sub-btn sub-blue">
-          <i class="fas fa-bell"></i> 官方频道
-        </a>
-        <a href="https://t.me/txhzx" target="_blank" rel="noopener noreferrer" class="sub-btn sub-green">
-          <i class="fas fa-comments"></i> 聊天大群
-        </a>
-        <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="sub-btn sub-purple">
-          <i class="fas fa-headset"></i> 入驻客服
-        </a>
-      </div>
-      <!-- 游戏 -->
-      <a href="https://t.me/feitoubot?start=88174156" target="_blank" rel="noopener noreferrer" class="social-btn btn-game">
-        <span class="btn-icon">🎮</span>
-        <span class="btn-text" style="display:none;">游戏</span>
-      </a>
+      <div class="logo-glow"></div>
+      <div class="logo-sub" id="logoSub">Official Global Notice</div>
     </div>
-    <div class="footer">© 2025 BINPG. All rights reserved.</div>
+
+    <div class="lang-select-wrapper">
+      <i>🌐</i>
+      <select class="lang-select" id="langSelect">
+        <option value="en">English</option>
+        <option value="zh">简体中文</option>
+        <option value="es">Español</option>
+        <option value="ar">العربية</option>
+        <option value="th">ไทย</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="id">Bahasa Indonesia</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="ru">Русский</option>
+      </select>
+    </div>
+
+    <div class="announcement-bar" id="announceBar">
+      <div class="announce-title">
+        <span class="announce-icon">📢</span>
+        <span id="announceTitle">Official Notice</span>
+      </div>
+      <div class="announce-body" id="announceBody">
+        Welcome to the official BINPG global announcement page. All channel links below are verified and secure. Please be aware of impersonators and always verify you are using official channels.
+      </div>
+    </div>
+
+    <!-- 官方频道组 -->
+    <div class="section-group">
+      <div class="section-label" id="sectionOfficial">▸ OFFICIAL CHANNELS</div>
+      <div class="btn-list">
+        <div class="main-btn" id="btnOfficial" style="background:linear-gradient(135deg,#2AABEE,#1a8fcf);">
+          <span class="btn-icon-area">📢</span>
+          <span class="btn-label" id="btnLabelOfficial">Official Channels</span>
+          <span class="expand-arrow">▼</span>
+        </div>
+        <div class="sub-menu" id="subOfficial">
+          <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="sub-btn sub-official">
+            <i>🏠</i> <span id="subOfficial1">Official Channel</span>
+          </a>
+          <a href="https://t.me/pddh8" target="_blank" rel="noopener noreferrer" class="sub-btn sub-nav">
+            <i>🧭</i> <span id="subOfficial2">Chinese Navigation</span>
+          </a>
+          <a href="https://t.me/fbifz" target="_blank" rel="noopener noreferrer" class="sub-btn sub-alert">
+            <i>🛡️</i> <span id="subOfficial3">Anti-Fraud Awareness</span>
+          </a>
+          <a href="https://t.me/govlchat" target="_blank" rel="noopener noreferrer" class="sub-btn sub-chat">
+            <i>👥</i> <span id="subOfficial4">Chit Chat Group</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 客服组 -->
+    <div class="section-group">
+      <div class="section-label" id="sectionSupport">▸ CUSTOMER SUPPORT</div>
+      <div class="btn-list">
+        <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="main-btn direct-btn" style="background:linear-gradient(135deg,#8e44ad,#6c3483);">
+          <span class="btn-icon-area">💬</span>
+          <span class="btn-label" id="btnLabelSupport">Advertising & Sales</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- 游戏组 -->
+    <div class="section-group">
+      <div class="section-label" id="sectionGames">▸ GAMES</div>
+      <div class="btn-list">
+        <div class="main-btn" id="btnGames" style="background:linear-gradient(135deg,#c471ed,#a855f7);">
+          <span class="btn-icon-area">🎮</span>
+          <span class="btn-label" id="btnLabelGames">Games</span>
+          <span class="expand-arrow">▼</span>
+        </div>
+        <div class="sub-menu" id="subGames">
+          <a href="https://t.me/txtv0bot" target="_blank" rel="noopener noreferrer" class="sub-btn sub-game-global">
+            <i>🌍</i> <span id="subGame1">Global Entertainment</span>
+          </a>
+          <a href="https://t.me/oixxbot" target="_blank" rel="noopener noreferrer" class="sub-btn sub-game-cn">
+            <i>🐉</i> <span id="subGame2">Chinese Games</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" id="footerText">© 2025 BINPG. All rights reserved.</div>
   </div>
 
   <script>
-    // Telegram 子菜单展开/收起
-    const tgBtn = document.getElementById('tgSubBtn');
-    const tgMenu = document.getElementById('tgSubMenu');
-    tgBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      tgMenu.classList.toggle('open');
-    });
+    (function() {
+      const translations = {
+        en: {
+          logoSub: "Official Global Notice",
+          announceTitle: "Official Notice",
+          announceBody: "Welcome to the official BINPG global announcement page. All channel links below are verified and secure. Please be aware of impersonators and always verify you are using official channels.",
+          sectionOfficial: "▸ OFFICIAL CHANNELS",
+          btnLabelOfficial: "Official Channels",
+          subOfficial1: "Official Channel",
+          subOfficial2: "Chinese Navigation",
+          subOfficial3: "Anti-Fraud Awareness",
+          subOfficial4: "Chit Chat Group",
+          sectionSupport: "▸ CUSTOMER SUPPORT",
+          btnLabelSupport: "Advertising & Sales",
+          sectionGames: "▸ GAMES",
+          btnLabelGames: "Games",
+          subGame1: "Global Entertainment",
+          subGame2: "Chinese Games",
+          footerText: "© 2025 BINPG. All rights reserved."
+        },
+        zh: {
+          logoSub: "官方全球公告",
+          announceTitle: "官方公告",
+          announceBody: "欢迎来到 BINPG 官方全球公告页面。以下所有频道链接均已验证且安全。请警惕冒充者，始终确认您使用的是官方渠道。",
+          sectionOfficial: "▸ 官方频道",
+          btnLabelOfficial: "官方频道",
+          subOfficial1: "官方频道",
+          subOfficial2: "中文导航",
+          subOfficial3: "防诈骗提醒",
+          subOfficial4: "闲聊群组",
+          sectionSupport: "▸ 客服支持",
+          btnLabelSupport: "广告与销售",
+          sectionGames: "▸ 游戏",
+          btnLabelGames: "游戏",
+          subGame1: "全球娱乐",
+          subGame2: "中文游戏",
+          footerText: "© 2025 BINPG. 保留所有权利。"
+        },
+        es: {
+          logoSub: "Aviso Global Oficial",
+          announceTitle: "Aviso Oficial",
+          announceBody: "Bienvenido a la página oficial de anuncios globales de BINPG. Todos los enlaces de canales a continuación están verificados y son seguros. Tenga cuidado con los impostores y verifique siempre que utiliza canales oficiales.",
+          sectionOfficial: "▸ CANALES OFICIALES",
+          btnLabelOfficial: "Canales Oficiales",
+          subOfficial1: "Canal Oficial",
+          subOfficial2: "Navegación China",
+          subOfficial3: "Conciencia Anti-Fraude",
+          subOfficial4: "Grupo de Charla",
+          sectionSupport: "▸ ATENCIÓN AL CLIENTE",
+          btnLabelSupport: "Publicidad y Ventas",
+          sectionGames: "▸ JUEGOS",
+          btnLabelGames: "Juegos",
+          subGame1: "Entretenimiento Global",
+          subGame2: "Juegos Chinos",
+          footerText: "© 2025 BINPG. Todos los derechos reservados."
+        },
+        ar: {
+          logoSub: "الإعلان الرسمي العالمي",
+          announceTitle: "إعلان رسمي",
+          announceBody: "مرحباً بكم في صفحة الإعلانات الرسمية العالمية لـ BINPG. جميع روابط القنوات أدناه موثقة وآمنة. يرجى الانتباه من المنتحلين والتأكد دائماً من استخدام القنوات الرسمية.",
+          sectionOfficial: "▸ القنوات الرسمية",
+          btnLabelOfficial: "القنوات الرسمية",
+          subOfficial1: "القناة الرسمية",
+          subOfficial2: "الملاحة الصينية",
+          subOfficial3: "التوعية ضد الاحتيال",
+          subOfficial4: "مجموعة الدردشة",
+          sectionSupport: "▸ دعم العملاء",
+          btnLabelSupport: "الإعلان والمبيعات",
+          sectionGames: "▸ الألعاب",
+          btnLabelGames: "ألعاب",
+          subGame1: "ترفيه عالمي",
+          subGame2: "ألعاب صينية",
+          footerText: "© 2025 BINPG. جميع الحقوق محفوظة."
+        },
+        th: {
+          logoSub: "ประกาศอย่างเป็นทางการทั่วโลก",
+          announceTitle: "ประกาศอย่างเป็นทางการ",
+          announceBody: "ยินดีต้อนรับสู่หน้าประกาศอย่างเป็นทางการของ BINPG ลิงก์ช่องทั้งหมดด้านล่างได้รับการตรวจสอบและปลอดภัย โปรดระวังผู้แอบอ้างและตรวจสอบว่าคุณใช้ช่องทางที่เป็นทางการเสมอ",
+          sectionOfficial: "▸ ช่องทางการ",
+          btnLabelOfficial: "ช่องทางการ",
+          subOfficial1: "ช่องทางการ",
+          subOfficial2: "นำทางภาษาจีน",
+          subOfficial3: "การรับรู้การฉ้อโกง",
+          subOfficial4: "กลุ่มแชท",
+          sectionSupport: "▸ ฝ่ายสนับสนุน",
+          btnLabelSupport: "โฆษณาและการขาย",
+          sectionGames: "▸ เกม",
+          btnLabelGames: "เกม",
+          subGame1: "ความบันเทิงระดับโลก",
+          subGame2: "เกมจีน",
+          footerText: "© 2025 BINPG. สงวนลิขสิทธิ์"
+        },
+        vi: {
+          logoSub: "Thông Báo Chính Thức Toàn Cầu",
+          announceTitle: "Thông Báo Chính Thức",
+          announceBody: "Chào mừng đến với trang thông báo chính thức toàn cầu của BINPG. Tất cả các liên kết kênh bên dưới đã được xác minh và an toàn. Hãy cảnh giác với những kẻ mạo danh và luôn xác minh bạn đang sử dụng các kênh chính thức.",
+          sectionOfficial: "▸ KÊNH CHÍNH THỨC",
+          btnLabelOfficial: "Kênh Chính Thức",
+          subOfficial1: "Kênh Chính Thức",
+          subOfficial2: "Điều Hướng Tiếng Trung",
+          subOfficial3: "Nhận Thức Chống Lừa Đảo",
+          subOfficial4: "Nhóm Trò Chuyện",
+          sectionSupport: "▸ HỖ TRỢ KHÁCH HÀNG",
+          btnLabelSupport: "Quảng Cáo & Bán Hàng",
+          sectionGames: "▸ TRÒ CHƠI",
+          btnLabelGames: "Trò Chơi",
+          subGame1: "Giải Trí Toàn Cầu",
+          subGame2: "Trò Chơi Trung Quốc",
+          footerText: "© 2025 BINPG. Đã đăng ký bản quyền."
+        },
+        id: {
+          logoSub: "Pengumuman Resmi Global",
+          announceTitle: "Pengumuman Resmi",
+          announceBody: "Selamat datang di halaman pengumuman resmi global BINPG. Semua tautan saluran di bawah ini telah diverifikasi dan aman. Harap waspadai peniru dan selalu verifikasi bahwa Anda menggunakan saluran resmi.",
+          sectionOfficial: "▸ SALURAN RESMI",
+          btnLabelOfficial: "Saluran Resmi",
+          subOfficial1: "Saluran Resmi",
+          subOfficial2: "Navigasi Bahasa Mandarin",
+          subOfficial3: "Kesadaran Anti-Penipuan",
+          subOfficial4: "Grup Obrolan",
+          sectionSupport: "▸ DUKUNGAN PELANGGAN",
+          btnLabelSupport: "Iklan & Penjualan",
+          sectionGames: "▸ PERMAINAN",
+          btnLabelGames: "Permainan",
+          subGame1: "Hiburan Global",
+          subGame2: "Permainan Mandarin",
+          footerText: "© 2025 BINPG. Hak cipta dilindungi."
+        },
+        fr: {
+          logoSub: "Avis Officiel Mondial",
+          announceTitle: "Avis Officiel",
+          announceBody: "Bienvenue sur la page d'annonce officielle mondiale de BINPG. Tous les liens de chaînes ci-dessous sont vérifiés et sécurisés. Méfiez-vous des imposteurs et vérifiez toujours que vous utilisez les chaînes officielles.",
+          sectionOfficial: "▸ CHAÎNES OFFICIELLES",
+          btnLabelOfficial: "Chaînes Officielles",
+          subOfficial1: "Chaîne Officielle",
+          subOfficial2: "Navigation Chinoise",
+          subOfficial3: "Sensibilisation Anti-Fraude",
+          subOfficial4: "Groupe de Discussion",
+          sectionSupport: "▸ SERVICE CLIENT",
+          btnLabelSupport: "Publicité et Ventes",
+          sectionGames: "▸ JEUX",
+          btnLabelGames: "Jeux",
+          subGame1: "Divertissement Mondial",
+          subGame2: "Jeux Chinois",
+          footerText: "© 2025 BINPG. Tous droits réservés."
+        },
+        de: {
+          logoSub: "Offizielle Globale Mitteilung",
+          announceTitle: "Offizielle Mitteilung",
+          announceBody: "Willkommen auf der offiziellen globalen Ankündigungsseite von BINPG. Alle unten aufgeführten Kanallinks sind verifiziert und sicher. Achten Sie auf Betrüger und überprüfen Sie stets, ob Sie offizielle Kanäle nutzen.",
+          sectionOfficial: "▸ OFFIZIELLE KANÄLE",
+          btnLabelOfficial: "Offizielle Kanäle",
+          subOfficial1: "Offizieller Kanal",
+          subOfficial2: "Chinesische Navigation",
+          subOfficial3: "Anti-Betrugs-Bewusstsein",
+          subOfficial4: "Plaudergruppe",
+          sectionSupport: "▸ KUNDENDIENST",
+          btnLabelSupport: "Werbung & Verkauf",
+          sectionGames: "▸ SPIELE",
+          btnLabelGames: "Spiele",
+          subGame1: "Globale Unterhaltung",
+          subGame2: "Chinesische Spiele",
+          footerText: "© 2025 BINPG. Alle Rechte vorbehalten."
+        },
+        ru: {
+          logoSub: "Официальное Глобальное Уведомление",
+          announceTitle: "Официальное Уведомление",
+          announceBody: "Добро пожаловать на официальную страницу глобальных объявлений BINPG. Все ссылки на каналы ниже проверены и безопасны. Остерегайтесь мошенников и всегда проверяйте, что вы используете официальные каналы.",
+          sectionOfficial: "▸ ОФИЦИАЛЬНЫЕ КАНАЛЫ",
+          btnLabelOfficial: "Официальные Каналы",
+          subOfficial1: "Официальный Канал",
+          subOfficial2: "Китайская Навигация",
+          subOfficial3: "Анти-Мошенничество",
+          subOfficial4: "Чат-группа",
+          sectionSupport: "▸ ПОДДЕРЖКА",
+          btnLabelSupport: "Реклама и Продажи",
+          sectionGames: "▸ ИГРЫ",
+          btnLabelGames: "Игры",
+          subGame1: "Глобальные Развлечения",
+          subGame2: "Китайские Игры",
+          footerText: "© 2025 BINPG. Все права защищены."
+        }
+      };
+
+      const langSelect = document.getElementById('langSelect');
+      const elements = {
+        logoSub: document.getElementById('logoSub'),
+        announceTitle: document.getElementById('announceTitle'),
+        announceBody: document.getElementById('announceBody'),
+        sectionOfficial: document.getElementById('sectionOfficial'),
+        btnLabelOfficial: document.getElementById('btnLabelOfficial'),
+        subOfficial1: document.getElementById('subOfficial1'),
+        subOfficial2: document.getElementById('subOfficial2'),
+        subOfficial3: document.getElementById('subOfficial3'),
+        subOfficial4: document.getElementById('subOfficial4'),
+        sectionSupport: document.getElementById('sectionSupport'),
+        btnLabelSupport: document.getElementById('btnLabelSupport'),
+        sectionGames: document.getElementById('sectionGames'),
+        btnLabelGames: document.getElementById('btnLabelGames'),
+        subGame1: document.getElementById('subGame1'),
+        subGame2: document.getElementById('subGame2'),
+        footerText: document.getElementById('footerText'),
+      };
+
+      function switchLanguage(lang) {
+        const t = translations[lang] || translations.en;
+        elements.logoSub.textContent = t.logoSub;
+        elements.announceTitle.textContent = t.announceTitle;
+        elements.announceBody.textContent = t.announceBody;
+        elements.sectionOfficial.textContent = t.sectionOfficial;
+        elements.btnLabelOfficial.textContent = t.btnLabelOfficial;
+        elements.subOfficial1.textContent = t.subOfficial1;
+        elements.subOfficial2.textContent = t.subOfficial2;
+        elements.subOfficial3.textContent = t.subOfficial3;
+        elements.subOfficial4.textContent = t.subOfficial4;
+        elements.sectionSupport.textContent = t.sectionSupport;
+        elements.btnLabelSupport.textContent = t.btnLabelSupport;
+        elements.sectionGames.textContent = t.sectionGames;
+        elements.btnLabelGames.textContent = t.btnLabelGames;
+        elements.subGame1.textContent = t.subGame1;
+        elements.subGame2.textContent = t.subGame2;
+        elements.footerText.textContent = t.footerText;
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'ar' ? 'ar' : lang === 'th' ? 'th' : lang === 'vi' ? 'vi' : lang === 'id' ? 'id' : lang === 'fr' ? 'fr' : lang === 'de' ? 'de' : lang === 'ru' ? 'ru' : 'en';
+      }
+
+      langSelect.addEventListener('change', function() {
+        switchLanguage(this.value);
+      });
+
+      function setupExpandable(btnId, subId) {
+        const btn = document.getElementById(btnId);
+        const sub = document.getElementById(subId);
+        if (!btn || !sub) return;
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          const isOpen = sub.classList.contains('open');
+          document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
+          document.querySelectorAll('.main-btn').forEach(b => b.classList.remove('expanded'));
+          if (!isOpen) {
+            sub.classList.add('open');
+            btn.classList.add('expanded');
+          }
+        });
+      }
+
+      setupExpandable('btnOfficial', 'subOfficial');
+      setupExpandable('btnGames', 'subGames');
+
+      switchLanguage('en');
+    })();
   </script>
 </body>
 </html>
