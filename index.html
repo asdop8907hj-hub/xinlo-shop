@@ -2,13 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
 
-  <title>Currency Club • Official Global</title>
-  <meta name="description" content="Currency Club official global announcement and market navigation page">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"
+  >
+
+  <title>Currency Club</title>
+
+  <meta
+    name="description"
+    content="Currency Club official global announcement and market page"
+  >
+
   <meta name="theme-color" content="#0a0a0a">
 
   <style>
+
+    /* =========================================================
+       GLOBAL
+    ========================================================= */
+
     * {
       margin: 0;
       padding: 0;
@@ -17,8 +31,8 @@
     }
 
     html {
-      overflow-y: auto;
       overflow-x: hidden;
+      overflow-y: auto;
       scroll-behavior: smooth;
     }
 
@@ -32,61 +46,90 @@
         Arial,
         sans-serif;
 
-      background: #08090c;
+      background: #0a0a0a;
+
       min-height: 100vh;
       min-height: 100dvh;
 
       color: #e0e0e0;
 
-      padding: 2rem 1.5rem 3rem;
+      padding:
+        2rem
+        1.5rem
+        3rem;
 
       -webkit-font-smoothing: antialiased;
 
-      overflow-y: auto;
       overflow-x: hidden;
+      overflow-y: auto;
     }
+
+
+    /* =========================================================
+       BACKGROUND GLOW
+    ========================================================= */
 
     body::before {
       content: "";
+
       position: fixed;
+
       top: -30%;
       left: -15%;
+
       width: 70%;
       height: 80%;
 
       background:
         radial-gradient(
           circle at 40% 35%,
-          rgba(100, 130, 255, 0.07) 0%,
+          rgba(100, 130, 255, 0.06) 0%,
           transparent 65%
         );
 
       pointer-events: none;
+
       z-index: 0;
 
-      animation: bgGlow1 10s ease-in-out infinite alternate;
+      animation:
+        bgGlow1
+        10s
+        ease-in-out
+        infinite
+        alternate;
     }
+
 
     body::after {
       content: "";
+
       position: fixed;
+
       bottom: -25%;
       right: -10%;
+
       width: 65%;
       height: 75%;
 
       background:
         radial-gradient(
           circle at 55% 65%,
-          rgba(200, 120, 80, 0.05) 0%,
+          rgba(200, 120, 80, 0.04) 0%,
           transparent 65%
         );
 
       pointer-events: none;
+
       z-index: 0;
 
-      animation: bgGlow2 12s ease-in-out infinite alternate-reverse;
+      animation:
+        bgGlow2
+        12s
+        ease-in-out
+        infinite
+        alternate-reverse;
     }
+
 
     @keyframes bgGlow1 {
       0% {
@@ -100,6 +143,7 @@
       }
     }
 
+
     @keyframes bgGlow2 {
       0% {
         opacity: 0.3;
@@ -112,8 +156,14 @@
       }
     }
 
+
+    /* =========================================================
+       CONTAINER
+    ========================================================= */
+
     .container {
       position: relative;
+
       z-index: 1;
 
       width: 100%;
@@ -124,17 +174,20 @@
       text-align: center;
     }
 
-    /* =========================
+
+    /* =========================================================
        LOGO
-    ========================= */
+    ========================================================= */
 
     .logo-wrapper {
-      margin-bottom: 0.5rem;
       margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
     }
 
+
     .logo {
-      font-size: 3rem;
+      font-size: 3.2rem;
+
       font-weight: 900;
 
       letter-spacing: -0.045em;
@@ -156,8 +209,15 @@
       -webkit-text-fill-color: transparent;
 
       animation:
-        logoShine 3.5s ease-in-out infinite,
-        logoFloat 5s ease-in-out infinite;
+        logoShine
+        3.5s
+        ease-in-out
+        infinite,
+
+        logoFloat
+        5s
+        ease-in-out
+        infinite;
 
       line-height: 1.15;
 
@@ -165,6 +225,7 @@
 
       cursor: default;
     }
+
 
     @keyframes logoShine {
       0%,
@@ -177,6 +238,7 @@
       }
     }
 
+
     @keyframes logoFloat {
       0%,
       100% {
@@ -188,13 +250,17 @@
       }
     }
 
+
     .logo-glow {
       display: block;
 
       width: 80px;
       height: 2px;
 
-      margin: 0.2rem auto 0;
+      margin:
+        0.2rem
+        auto
+        0;
 
       border-radius: 2px;
 
@@ -207,8 +273,13 @@
           transparent
         );
 
-      animation: glowBar 2.5s ease-in-out infinite;
+      animation:
+        glowBar
+        2.5s
+        ease-in-out
+        infinite;
     }
+
 
     @keyframes glowBar {
       0%,
@@ -223,8 +294,10 @@
       }
     }
 
+
     .logo-sub {
       font-size: 0.75rem;
+
       color: #666;
 
       font-weight: 400;
@@ -234,29 +307,37 @@
       margin-top: 0.3rem;
     }
 
-    /* =========================
+
+    /* =========================================================
        LANGUAGE
-    ========================= */
+    ========================================================= */
 
     .lang-select-wrapper {
       margin-bottom: 1.8rem;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       gap: 0.5rem;
     }
 
+
     .lang-select-wrapper i {
       color: #777;
       font-size: 0.9rem;
+      font-style: normal;
     }
+
 
     .lang-select {
       background-color: rgba(255, 255, 255, 0.06);
 
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
 
       border-radius: 2rem;
 
@@ -277,6 +358,7 @@
       cursor: pointer;
 
       appearance: none;
+
       -webkit-appearance: none;
 
       background-image:
@@ -285,20 +367,28 @@
       background-repeat: no-repeat;
 
       background-position:
-        right 0.6rem center;
+        right
+        0.6rem
+        center;
 
-      transition: all 0.25s;
+      transition:
+        all
+        0.25s;
     }
+
 
     .lang-select:hover {
-      border-color: rgba(255, 255, 255, 0.35);
+      border-color:
+        rgba(255, 255, 255, 0.35);
 
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color:
+        rgba(255, 255, 255, 0.1);
     }
 
-    /* =========================
+
+    /* =========================================================
        ANNOUNCEMENT
-    ========================= */
+    ========================================================= */
 
     .announcement-bar {
       background:
@@ -314,7 +404,9 @@
 
       border-radius: 1.25rem;
 
-      padding: 1.25rem 1.2rem;
+      padding:
+        1.25rem
+        1.2rem;
 
       margin-bottom: 2rem;
 
@@ -327,8 +419,10 @@
       overflow: hidden;
 
       box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.12);
+        0 10px 35px
+        rgba(0, 0, 0, 0.18);
     }
+
 
     .announcement-bar::before {
       content: "";
@@ -355,21 +449,24 @@
         0;
     }
 
-    .announcement-bar .announce-body {
-      font-size: 0.84rem;
+
+    .announce-body {
+      font-size: 0.82rem;
 
       color: #999;
 
       line-height: 1.65;
     }
 
-    /* =========================
-       SECTIONS
-    ========================= */
+
+    /* =========================================================
+       SECTION
+    ========================================================= */
 
     .section-group {
       margin-bottom: 1.8rem;
     }
+
 
     .section-label {
       font-size: 0.7rem;
@@ -387,6 +484,7 @@
       padding-left: 0.3rem;
     }
 
+
     .btn-list {
       display: flex;
 
@@ -395,14 +493,16 @@
       gap: 0.75rem;
     }
 
-    /* =========================
+
+    /* =========================================================
        MAIN BUTTON
-    ========================= */
+    ========================================================= */
 
     .main-btn {
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
       padding:
@@ -413,14 +513,15 @@
 
       text-decoration: none;
 
-      color: #fff;
+      color: #ffffff;
 
       border:
         1px solid
         rgba(255, 255, 255, 0.15);
 
       transition:
-        all 0.3s
+        all
+        0.3s
         cubic-bezier(
           0.25,
           0.8,
@@ -441,12 +542,15 @@
       background:
         rgba(255, 255, 255, 0.04);
 
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(8px);
+
+      -webkit-backdrop-filter: blur(8px);
 
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.04);
+        0 8px 25px
+        rgba(0, 0, 0, 0.12);
     }
+
 
     .main-btn:hover {
       transform: translateY(-2px);
@@ -459,12 +563,16 @@
         rgba(255, 255, 255, 0.3);
     }
 
+
     .main-btn:active {
       transform: scale(0.97);
 
       transition:
-        transform 0.1s ease;
+        transform
+        0.1s
+        ease;
     }
+
 
     .btn-icon-area {
       font-size: 1.5rem;
@@ -472,13 +580,17 @@
       line-height: 1;
 
       transition:
-        transform 0.35s ease;
+        transform
+        0.35s
+        ease;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
     }
+
 
     .btn-label {
       white-space: nowrap;
@@ -488,15 +600,22 @@
       overflow: hidden;
 
       transition:
-        max-width 0.5s
-          cubic-bezier(
-            0.25,
-            0.8,
-            0.25,
-            1
-          ),
-        opacity 0.35s ease,
-        margin-left 0.35s ease;
+        max-width
+        0.5s
+        cubic-bezier(
+          0.25,
+          0.8,
+          0.25,
+          1
+        ),
+
+        opacity
+        0.35s
+        ease,
+
+        margin-left
+        0.35s
+        ease;
 
       opacity: 0;
 
@@ -509,11 +628,13 @@
       letter-spacing: 0.02em;
     }
 
+
     .main-btn:hover .btn-icon-area {
       transform: scale(0.78);
 
       margin-right: 0.3rem;
     }
+
 
     .main-btn:hover .btn-label {
       max-width: 220px;
@@ -523,24 +644,30 @@
       margin-left: 0.5rem;
     }
 
+
     .expand-arrow {
       font-size: 0.8rem;
 
       margin-left: 0.5rem;
 
       transition:
-        transform 0.35s ease;
+        transform
+        0.35s
+        ease;
 
       opacity: 0.6;
     }
 
+
     .main-btn.expanded .expand-arrow {
-      transform: rotate(180deg);
+      transform:
+        rotate(180deg);
     }
 
-    /* =========================
+
+    /* =========================================================
        SUB MENU
-    ========================= */
+    ========================================================= */
 
     .sub-menu {
       display: flex;
@@ -554,15 +681,22 @@
       overflow: hidden;
 
       transition:
-        max-height 0.45s
-          cubic-bezier(
-            0.25,
-            0.8,
-            0.25,
-            1
-          ),
-        opacity 0.3s ease,
-        margin 0.3s ease;
+        max-height
+        0.45s
+        cubic-bezier(
+          0.25,
+          0.8,
+          0.25,
+          1
+        ),
+
+        opacity
+        0.3s
+        ease,
+
+        margin
+        0.3s
+        ease;
 
       opacity: 0;
 
@@ -573,18 +707,25 @@
         0.6rem;
     }
 
+
     .sub-menu.open {
-      max-height: 520px;
+      max-height: 900px;
 
       opacity: 1;
 
       margin-top: 0.3rem;
     }
 
+
+    /* =========================================================
+       SUB BUTTON
+    ========================================================= */
+
     .sub-btn {
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
       gap: 0.5rem;
@@ -612,12 +753,17 @@
       -webkit-backdrop-filter: blur(8px);
 
       transition:
-        all 0.25s ease;
+        all
+        0.25s
+        ease;
 
       cursor: pointer;
 
       letter-spacing: 0.03em;
+
+      min-height: 46px;
     }
+
 
     .sub-btn:hover {
       transform: translateY(-1px);
@@ -627,15 +773,28 @@
         rgba(0, 0, 0, 0.3);
     }
 
+
+    .sub-btn:active {
+      transform: scale(0.98);
+    }
+
+
     .sub-btn i {
       font-size: 0.9rem;
 
       width: 22px;
 
       text-align: center;
+
+      font-style: normal;
     }
 
-    .sub-official {
+
+    /* =========================================================
+       BUTTON COLORS
+    ========================================================= */
+
+    .sub-corp {
       background:
         linear-gradient(
           135deg,
@@ -644,7 +803,18 @@
         );
     }
 
-    .sub-nav {
+
+    .sub-club {
+      background:
+        linear-gradient(
+          135deg,
+          #3498db,
+          #2980b9
+        );
+    }
+
+
+    .sub-news {
       background:
         linear-gradient(
           135deg,
@@ -653,7 +823,8 @@
         );
     }
 
-    .sub-alert {
+
+    .sub-event {
       background:
         linear-gradient(
           135deg,
@@ -661,6 +832,7 @@
           #d68910
         );
     }
+
 
     .sub-chat {
       background:
@@ -671,59 +843,64 @@
         );
     }
 
-    /* =========================
+
+    .sub-support {
+      background:
+        linear-gradient(
+          135deg,
+          #8e44ad,
+          #6c3483
+        );
+    }
+
+
+    /* =========================================================
        MARKET
-    ========================= */
+    ========================================================= */
 
-    .market-wrapper {
-      overflow: hidden;
-
+    .market-menu {
       max-height: 0;
+
+      overflow: hidden;
 
       opacity: 0;
 
       margin-top: 0;
 
+      padding:
+        0
+        0.15rem;
+
       transition:
-        max-height 0.5s ease,
-        opacity 0.35s ease,
-        margin 0.35s ease;
+        max-height
+        0.5s
+        cubic-bezier(
+          0.25,
+          0.8,
+          0.25,
+          1
+        ),
+
+        opacity
+        0.35s
+        ease,
+
+        margin
+        0.3s
+        ease;
     }
 
-    .market-wrapper.open {
-      max-height: 1800px;
+
+    .market-menu.open {
+      max-height: 5000px;
 
       opacity: 1;
 
-      margin-top: 0.4rem;
+      margin-top: 0.5rem;
     }
 
-    .market-panel {
-      border:
-        1px solid
-        rgba(255, 255, 255, 0.09);
 
-      border-radius: 1.25rem;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,0.055),
-          rgba(255,255,255,0.025)
-        );
-
-      backdrop-filter: blur(16px);
-
-      -webkit-backdrop-filter: blur(16px);
-
-      overflow: hidden;
-
-      box-shadow:
-        0 16px 50px
-        rgba(0,0,0,0.25);
-    }
-
-    .market-head {
+    .market-header {
       display: flex;
 
       align-items: center;
@@ -731,27 +908,17 @@
       justify-content: space-between;
 
       padding:
-        0.85rem
-        1rem;
+        0.25rem
+        0.4rem
+        0.75rem;
 
-      border-bottom:
-        1px solid
-        rgba(255,255,255,0.06);
+      color: #666;
+
+      font-size: 0.68rem;
+
+      letter-spacing: 0.04em;
     }
 
-    .market-title {
-      display: flex;
-
-      align-items: center;
-
-      gap: 0.5rem;
-
-      font-size: 0.85rem;
-
-      font-weight: 700;
-
-      color: #ddd;
-    }
 
     .market-status {
       display: flex;
@@ -759,167 +926,96 @@
       align-items: center;
 
       gap: 0.35rem;
-
-      font-size: 0.65rem;
-
-      color: #666;
     }
 
-    .status-dot {
+
+    .market-status-dot {
       width: 6px;
       height: 6px;
 
       border-radius: 50%;
 
-      background: #37d67a;
+      background: #2ecc71;
 
       box-shadow:
         0 0 8px
-        rgba(55,214,122,0.7);
-
-      animation:
-        statusPulse 1.8s infinite;
+        rgba(46, 204, 113, 0.6);
     }
 
-    @keyframes statusPulse {
-      0%,
-      100% {
-        opacity: 0.5;
-      }
 
-      50% {
-        opacity: 1;
-      }
-    }
-
-    .market-refresh {
-      border: 0;
-
-      background:
-        rgba(255,255,255,0.07);
-
-      color: #aaa;
-
-      width: 30px;
-      height: 30px;
-
-      border-radius: 50%;
-
-      cursor: pointer;
-
-      transition:
-        all 0.25s ease;
-    }
-
-    .market-refresh:hover {
-      background:
-        rgba(255,255,255,0.14);
-
-      color: #fff;
-
-      transform: rotate(180deg);
-    }
-
-    .market-info {
-      padding:
-        0.65rem
-        1rem;
-
-      font-size: 0.62rem;
-
-      color: #555;
-
-      text-align: left;
-    }
-
-    .market-list {
+    .market-grid {
       display: flex;
 
       flex-direction: column;
+
+      gap: 0.5rem;
     }
 
-    .coin-row {
+
+    .market-card {
       display: grid;
 
       grid-template-columns:
-        minmax(0, 1.5fr)
-        minmax(90px, 1fr)
-        minmax(65px, 0.7fr);
+        minmax(0, 1fr)
+        auto
+        auto;
 
       align-items: center;
 
-      gap: 0.5rem;
+      gap: 0.65rem;
 
       padding:
         0.75rem
-        1rem;
+        0.85rem;
 
-      border-top:
-        1px solid
-        rgba(255,255,255,0.045);
-
-      transition:
-        background 0.2s ease;
-    }
-
-    .coin-row:hover {
-      background:
-        rgba(255,255,255,0.035);
-    }
-
-    .coin-name {
-      display: flex;
-
-      align-items: center;
-
-      gap: 0.6rem;
-
-      min-width: 0;
-    }
-
-    .coin-symbol {
-      width: 30px;
-      height: 30px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      flex-shrink: 0;
-
-      border-radius: 50%;
+      border-radius: 1rem;
 
       background:
         linear-gradient(
           135deg,
-          rgba(110,142,251,0.2),
-          rgba(167,119,227,0.2)
+          rgba(255, 255, 255, 0.055),
+          rgba(255, 255, 255, 0.025)
         );
 
       border:
         1px solid
-        rgba(255,255,255,0.08);
+        rgba(255, 255, 255, 0.08);
 
-      font-size: 0.68rem;
+      backdrop-filter: blur(10px);
 
-      font-weight: 800;
+      -webkit-backdrop-filter: blur(10px);
 
-      color: #ccc;
+      transition:
+        transform
+        0.2s
+        ease,
+        border-color
+        0.2s
+        ease;
     }
 
-    .coin-text {
+
+    .market-card:hover {
+      transform: translateY(-1px);
+
+      border-color:
+        rgba(255, 255, 255, 0.15);
+    }
+
+
+    .coin-info {
       min-width: 0;
 
       text-align: left;
     }
 
-    .coin-title {
+
+    .coin-name {
       font-size: 0.78rem;
 
       font-weight: 700;
 
-      color: #ddd;
+      color: #eee;
 
       white-space: nowrap;
 
@@ -928,94 +1024,103 @@
       text-overflow: ellipsis;
     }
 
+
+    .coin-symbol {
+      font-size: 0.62rem;
+
+      color: #666;
+
+      margin-top: 0.12rem;
+
+      text-transform: uppercase;
+    }
+
+
     .coin-source {
-      font-size: 0.58rem;
+      font-size: 0.55rem;
 
       color: #555;
 
-      margin-top: 2px;
+      margin-top: 0.1rem;
     }
+
 
     .coin-price {
-      text-align: right;
-
       font-size: 0.78rem;
 
-      font-weight: 700;
+      font-weight: 650;
 
-      color: #eee;
+      color: #ddd;
 
-      font-variant-numeric: tabular-nums;
-    }
-
-    .coin-change {
       text-align: right;
 
-      font-size: 0.72rem;
+      white-space: nowrap;
+    }
+
+
+    .coin-change {
+      min-width: 58px;
+
+      text-align: right;
+
+      font-size: 0.7rem;
 
       font-weight: 700;
 
-      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
     }
 
-    .positive {
-      color: #38d996;
+
+    .change-positive {
+      color: #2ecc71;
     }
 
-    .negative {
-      color: #ff647c;
+
+    .change-negative {
+      color: #ff6b6b;
     }
 
-    .neutral {
-      color: #777;
-    }
 
     .market-loading,
-    .market-empty,
     .market-error {
       padding:
         1.5rem
         1rem;
 
-      text-align: center;
+      border-radius: 1rem;
+
+      background:
+        rgba(255, 255, 255, 0.035);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.07);
 
       color: #666;
 
       font-size: 0.75rem;
     }
 
-    .spinner {
-      display: inline-block;
 
-      width: 16px;
-      height: 16px;
-
-      border:
-        2px solid
-        rgba(255,255,255,0.12);
-
-      border-top-color:
-        #8a9cff;
-
-      border-radius: 50%;
-
-      animation:
-        spin 0.8s linear infinite;
-
-      vertical-align: middle;
-
-      margin-right: 0.35rem;
+    .market-error {
+      color: #a77777;
     }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+
+    .market-refresh {
+      margin-top: 0.6rem;
+
+      color: #555;
+
+      font-size: 0.62rem;
+
+      text-align: center;
     }
 
-    /* =========================
+
+    /* =========================================================
        FOOTER
-    ========================= */
+    ========================================================= */
 
     .footer {
       margin-top: 2.5rem;
@@ -1029,18 +1134,36 @@
       padding-bottom: 0.5rem;
     }
 
-    /* =========================
+
+    /* =========================================================
        MOBILE
-    ========================= */
+    ========================================================= */
 
     @media (max-width: 480px) {
+
+      body {
+        padding:
+          1.5rem
+          1rem
+          3rem;
+      }
+
+
       .container {
         max-width: 100%;
       }
 
+
       .logo {
-        font-size: 2.45rem;
+        font-size: 2.65rem;
       }
+
+
+      .announcement-bar {
+        padding:
+          1rem;
+      }
+
 
       .main-btn {
         padding:
@@ -1050,313 +1173,323 @@
         font-size: 1.3rem;
       }
 
+
       .btn-icon-area {
         font-size: 1.3rem;
       }
 
-      .announcement-bar {
-        padding: 1rem;
-      }
 
-      .coin-row {
+      .market-card {
         grid-template-columns:
-          minmax(0, 1.3fr)
-          minmax(80px, 1fr)
-          minmax(60px, 0.7fr);
+          minmax(0, 1fr)
+          auto
+          auto;
 
         padding:
           0.7rem
-          0.8rem;
+          0.7rem;
+      }
+
+
+      .coin-price {
+        font-size: 0.72rem;
+      }
+
+
+      .coin-change {
+        min-width: 52px;
+
+        font-size: 0.65rem;
       }
     }
+
+
+    /* =========================================================
+       SMALL MOBILE
+    ========================================================= */
+
+    @media (max-width: 360px) {
+
+      .logo {
+        font-size: 2.25rem;
+      }
+
+
+      .market-card {
+        gap: 0.4rem;
+      }
+
+
+      .coin-price {
+        font-size: 0.66rem;
+      }
+
+
+      .coin-change {
+        min-width: 48px;
+
+        font-size: 0.6rem;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <!-- LOGO -->
-  <div class="logo-wrapper">
-    <div class="logo">Currency Club</div>
 
-    <div class="logo-glow"></div>
+    <!-- =====================================================
+         LOGO
+    ====================================================== -->
+
+    <div class="logo-wrapper">
+
+      <div class="logo">
+        Currency Club
+      </div>
+
+      <div class="logo-glow"></div>
+
+      <div
+        class="logo-sub"
+        id="logoSub"
+      >
+        Official Global Notice
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         LANGUAGE
+    ====================================================== -->
+
+    <div class="lang-select-wrapper">
+
+      <i>🌐</i>
+
+      <select
+        class="lang-select"
+        id="langSelect"
+      >
+
+        <option value="en">
+          English
+        </option>
+
+        <option value="zh">
+          简体中文
+        </option>
+
+        <option value="es">
+          Español
+        </option>
+
+        <option value="ar">
+          العربية
+        </option>
+
+        <option value="th">
+          ไทย
+        </option>
+
+        <option value="vi">
+          Tiếng Việt
+        </option>
+
+        <option value="id">
+          Bahasa Indonesia
+        </option>
+
+        <option value="fr">
+          Français
+        </option>
+
+        <option value="de">
+          Deutsch
+        </option>
+
+        <option value="ru">
+          Русский
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- =====================================================
+         ANNOUNCEMENT
+         注意：这里故意没有 Official Notice 标题
+    ====================================================== -->
 
     <div
-      class="logo-sub"
-      id="logoSub"
+      class="announcement-bar"
+      id="announceBar"
     >
-      Official Global Notice
-    </div>
-  </div>
 
-
-  <!-- LANGUAGE -->
-  <div class="lang-select-wrapper">
-    <i>🌐</i>
-
-    <select
-      class="lang-select"
-      id="langSelect"
-    >
-      <option value="en">English</option>
-      <option value="zh">简体中文</option>
-      <option value="es">Español</option>
-      <option value="ar">العربية</option>
-      <option value="th">ไทย</option>
-      <option value="vi">Tiếng Việt</option>
-      <option value="id">Bahasa Indonesia</option>
-      <option value="fr">Français</option>
-      <option value="de">Deutsch</option>
-      <option value="ru">Русский</option>
-    </select>
-  </div>
-
-
-  <!-- ANNOUNCEMENT -->
-  <div
-    class="announcement-bar"
-    id="announceBar"
-  >
-    <div class="announce-body">
-      <span id="announceBody">
+      <div
+        class="announce-body"
+        id="announceBody"
+      >
         Welcome to the official Currency Club global announcement page.
         All channel links below are verified and secure.
         Please be aware of impersonators and always verify you are using official channels.
-      </span>
-    </div>
-  </div>
+      </div>
 
-
-  <!-- OFFICIAL -->
-  <div class="section-group">
-
-    <div
-      class="section-label"
-      id="sectionOfficial"
-    >
-      ▸ OFFICIAL CHANNELS
     </div>
 
-    <div class="btn-list">
+
+    <!-- =====================================================
+         OFFICIAL CHANNELS
+    ====================================================== -->
+
+    <div class="section-group">
 
       <div
-        class="main-btn"
-        id="btnOfficial"
-        style="background:linear-gradient(135deg,#2AABEE,#1a8fcf);"
+        class="section-label"
+        id="sectionOfficial"
       >
-        <span class="btn-icon-area">📢</span>
-
-        <span
-          class="btn-label"
-          id="btnLabelOfficial"
-        >
-          Official Channels
-        </span>
-
-        <span class="expand-arrow">
-          ▼
-        </span>
+        ▸ OFFICIAL CHANNELS
       </div>
 
 
-      <div
-        class="sub-menu"
-        id="subOfficial"
-      >
+      <div class="btn-list">
 
-        <a
-          id="linkOfficial"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="sub-btn sub-official"
+
+        <!-- MAIN OFFICIAL BUTTON -->
+
+        <div
+          class="main-btn"
+          id="btnOfficial"
+          style="
+            background:
+            linear-gradient(
+              135deg,
+              #2AABEE,
+              #1a8fcf
+            );
+          "
         >
-          <i>🏠</i>
 
-          <span id="subOfficial1">
-            Official Channel
+          <span class="btn-icon-area">
+            📢
           </span>
-        </a>
 
-
-        <a
-          id="linkNavigation"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="sub-btn sub-nav"
-        >
-          <i>🧭</i>
-
-          <span id="subOfficial2">
-            Chinese Navigation
-          </span>
-        </a>
-
-
-        <a
-          id="linkAntiFraud"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="sub-btn sub-alert"
-        >
-          <i>🛡️</i>
-
-          <span id="subOfficial3">
-            Anti-Fraud Awareness
-          </span>
-        </a>
-
-
-        <a
-          id="linkChat"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="sub-btn sub-chat"
-        >
-          <i>👥</i>
-
-          <span id="subOfficial4">
-            Chit Chat Group
-          </span>
-        </a>
-
-      </div>
-    </div>
-  </div>
-
-
-  <!-- SUPPORT -->
-  <div class="section-group">
-
-    <div
-      class="section-label"
-      id="sectionSupport"
-    >
-      ▸ CUSTOMER SUPPORT
-    </div>
-
-    <div class="btn-list">
-
-      <a
-        id="linkSupport"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="main-btn direct-btn"
-        style="background:linear-gradient(135deg,#8e44ad,#6c3483);"
-      >
-
-        <span class="btn-icon-area">
-          💬
-        </span>
-
-        <span
-          class="btn-label"
-          id="btnLabelSupport"
-        >
-          Advertising & Sales
-        </span>
-
-      </a>
-
-    </div>
-  </div>
-
-
-  <!-- MARKET -->
-  <div class="section-group">
-
-    <div
-      class="section-label"
-      id="sectionMarket"
-    >
-      ▸ MARKET
-    </div>
-
-    <div class="btn-list">
-
-      <div
-        class="main-btn"
-        id="btnMarket"
-        style="background:linear-gradient(135deg,#6e8efb,#5548c8);"
-      >
-
-        <span class="btn-icon-area">
-          📈
-        </span>
-
-        <span
-          class="btn-label"
-          id="btnLabelMarket"
-        >
-          Market
-        </span>
-
-        <span class="expand-arrow">
-          ▼
-        </span>
-
-      </div>
-
-
-      <div
-        class="market-wrapper"
-        id="marketWrapper"
-      >
-
-        <div class="market-panel">
-
-          <div class="market-head">
-
-            <div class="market-title">
-              <span>📊</span>
-
-              <span id="marketTitle">
-                Market Overview
-              </span>
-            </div>
-
-
-            <div
-              class="market-status"
-              id="marketStatus"
-            >
-              <span class="status-dot"></span>
-
-              <span id="marketStatusText">
-                Live
-              </span>
-
-              <button
-                class="market-refresh"
-                id="marketRefresh"
-                title="Refresh"
-              >
-                ↻
-              </button>
-            </div>
-
-          </div>
-
-
-          <div
-            class="market-info"
-            id="marketInfo"
+          <span
+            class="btn-label"
+            id="btnLabelOfficial"
           >
-            Binance • CoinGecko · Updates every 120 seconds
-          </div>
+            Official Channels
+          </span>
+
+          <span class="expand-arrow">
+            ▼
+          </span>
+
+        </div>
 
 
-          <div
-            class="market-list"
-            id="marketList"
+        <!-- SUB CHANNELS -->
+
+        <div
+          class="sub-menu"
+          id="subOfficial"
+        >
+
+
+          <!-- CORP -->
+
+          <a
+            data-link="Corp"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sub-btn sub-corp"
           >
 
-            <div class="market-loading">
-              <span class="spinner"></span>
-              Loading market data...
-            </div>
+            <i>🏠</i>
 
-          </div>
+            <span id="subOfficial1">
+              Corp
+            </span>
+
+          </a>
+
+
+          <!-- CLUB -->
+
+          <a
+            data-link="Club"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sub-btn sub-club"
+          >
+
+            <i>🧭</i>
+
+            <span id="subOfficial2">
+              Club
+            </span>
+
+          </a>
+
+
+          <!-- NEWS -->
+
+          <a
+            data-link="News"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sub-btn sub-news"
+          >
+
+            <i>🛡️</i>
+
+            <span id="subOfficial3">
+              News
+            </span>
+
+          </a>
+
+
+          <!-- EVENT -->
+
+          <a
+            data-link="event"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sub-btn sub-event"
+          >
+
+            <i>🎁</i>
+
+            <span id="subOfficial4">
+              Event
+            </span>
+
+          </a>
+
+
+          <!-- CHAT -->
+
+          <a
+            data-link="chat"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="sub-btn sub-chat"
+          >
+
+            <i>👥</i>
+
+            <span id="subOfficial5">
+              Chat
+            </span>
+
+          </a>
+
 
         </div>
 
@@ -1364,969 +1497,1555 @@
 
     </div>
 
+
+    <!-- =====================================================
+         CUSTOMER SUPPORT
+    ====================================================== -->
+
+    <div class="section-group">
+
+      <div
+        class="section-label"
+        id="sectionSupport"
+      >
+        ▸ CUSTOMER SUPPORT
+      </div>
+
+
+      <div class="btn-list">
+
+        <a
+          data-link="support"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="main-btn direct-btn"
+          style="
+            background:
+            linear-gradient(
+              135deg,
+              #8e44ad,
+              #6c3483
+            );
+          "
+        >
+
+          <span class="btn-icon-area">
+            💬
+          </span>
+
+          <span
+            class="btn-label"
+            id="btnLabelSupport"
+          >
+            Support
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MARKET
+    ====================================================== -->
+
+    <div class="section-group">
+
+      <div
+        class="section-label"
+        id="sectionMarket"
+      >
+        ▸ MARKET
+      </div>
+
+
+      <div class="btn-list">
+
+
+        <!-- MARKET MAIN BUTTON -->
+
+        <div
+          class="main-btn"
+          id="btnMarket"
+          style="
+            background:
+            linear-gradient(
+              135deg,
+              #c471ed,
+              #a855f7
+            );
+          "
+        >
+
+          <span class="btn-icon-area">
+            📈
+          </span>
+
+          <span
+            class="btn-label"
+            id="btnLabelMarket"
+          >
+            Market
+          </span>
+
+          <span class="expand-arrow">
+            ▼
+          </span>
+
+        </div>
+
+
+        <!-- MARKET CONTENT -->
+
+        <div
+          class="market-menu"
+          id="marketMenu"
+        >
+
+
+          <div class="market-header">
+
+            <span id="marketTitle">
+              Market
+            </span>
+
+            <span class="market-status">
+
+              <span class="market-status-dot"></span>
+
+              <span id="marketUpdated">
+                Updated every 120 seconds
+              </span>
+
+            </span>
+
+          </div>
+
+
+          <div
+            class="market-grid"
+            id="marketGrid"
+          >
+
+            <div
+              class="market-loading"
+              id="marketLoading"
+            >
+              Loading market data...
+            </div>
+
+          </div>
+
+
+          <div
+            class="market-refresh"
+            id="marketRefresh"
+          >
+            Binance + CoinGecko
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <div
+      class="footer"
+      id="footerText"
+    >
+      © 2025 Currency Club. All rights reserved.
+    </div>
+
+
   </div>
 
 
-  <!-- FOOTER -->
-  <div
-    class="footer"
-    id="footerText"
-  >
-    © 2025 Currency Club. All rights reserved.
-  </div>
+  <script>
 
-</div>
+    /* =========================================================
+       GLOBAL CONFIG
+    ========================================================= */
 
+    const CONFIG = {
 
-<script>
-(function () {
+      voiceFile:
+        "./voice.json",
 
-  let VOICE = {};
-  let LINKS = {};
+      linkFile:
+        "./link.json",
 
-  let currentLang = "en";
+      marketRefresh:
+        120000
 
-  const REFRESH_INTERVAL = 120000;
+    };
 
 
-  /* =========================
-     ELEMENTS
-  ========================= */
+    let translations = {};
 
-  const langSelect =
-    document.getElementById("langSelect");
+    let links = {};
 
-  const elements = {
-
-    logoSub:
-      document.getElementById("logoSub"),
-
-    announceBody:
-      document.getElementById("announceBody"),
-
-    sectionOfficial:
-      document.getElementById("sectionOfficial"),
-
-    btnLabelOfficial:
-      document.getElementById("btnLabelOfficial"),
-
-    subOfficial1:
-      document.getElementById("subOfficial1"),
-
-    subOfficial2:
-      document.getElementById("subOfficial2"),
-
-    subOfficial3:
-      document.getElementById("subOfficial3"),
-
-    subOfficial4:
-      document.getElementById("subOfficial4"),
-
-    sectionSupport:
-      document.getElementById("sectionSupport"),
-
-    btnLabelSupport:
-      document.getElementById("btnLabelSupport"),
-
-    sectionMarket:
-      document.getElementById("sectionMarket"),
-
-    btnLabelMarket:
-      document.getElementById("btnLabelMarket"),
-
-    marketTitle:
-      document.getElementById("marketTitle"),
-
-    marketStatusText:
-      document.getElementById("marketStatusText"),
-
-    marketInfo:
-      document.getElementById("marketInfo"),
-
-    footerText:
-      document.getElementById("footerText")
-
-  };
+    let currentLang = "en";
 
 
-  /* =========================
-     LOAD JSON
-  ========================= */
+    /* =========================================================
+       DOM
+    ========================================================= */
 
-  async function loadConfig() {
-
-    try {
-
-      const [
-        voiceResponse,
-        linkResponse
-      ] = await Promise.all([
-
-        fetch("./voice.json", {
-          cache: "no-store"
-        }),
-
-        fetch("./link.json", {
-          cache: "no-store"
-        })
-
-      ]);
-
-
-      if (!voiceResponse.ok) {
-        throw new Error("voice.json failed");
-      }
-
-      if (!linkResponse.ok) {
-        throw new Error("link.json failed");
-      }
-
-
-      VOICE =
-        await voiceResponse.json();
-
-      LINKS =
-        await linkResponse.json();
-
-
-      applyLinks();
-
-      switchLanguage(
-        localStorage.getItem(
-          "currencyClubLang"
-        ) || "en"
+    const langSelect =
+      document.getElementById(
+        "langSelect"
       );
 
 
-    } catch (error) {
+    const elements = {
 
-      console.error(error);
+      logoSub:
+        document.getElementById(
+          "logoSub"
+        ),
 
-      switchLanguage("en");
+      announceBody:
+        document.getElementById(
+          "announceBody"
+        ),
+
+      sectionOfficial:
+        document.getElementById(
+          "sectionOfficial"
+        ),
+
+      btnLabelOfficial:
+        document.getElementById(
+          "btnLabelOfficial"
+        ),
+
+      subOfficial1:
+        document.getElementById(
+          "subOfficial1"
+        ),
+
+      subOfficial2:
+        document.getElementById(
+          "subOfficial2"
+        ),
+
+      subOfficial3:
+        document.getElementById(
+          "subOfficial3"
+        ),
+
+      subOfficial4:
+        document.getElementById(
+          "subOfficial4"
+        ),
+
+      subOfficial5:
+        document.getElementById(
+          "subOfficial5"
+        ),
+
+      sectionSupport:
+        document.getElementById(
+          "sectionSupport"
+        ),
+
+      btnLabelSupport:
+        document.getElementById(
+          "btnLabelSupport"
+        ),
+
+      sectionMarket:
+        document.getElementById(
+          "sectionMarket"
+        ),
+
+      btnLabelMarket:
+        document.getElementById(
+          "btnLabelMarket"
+        ),
+
+      marketTitle:
+        document.getElementById(
+          "marketTitle"
+        ),
+
+      marketUpdated:
+        document.getElementById(
+          "marketUpdated"
+        ),
+
+      marketLoading:
+        document.getElementById(
+          "marketLoading"
+        ),
+
+      marketRefresh:
+        document.getElementById(
+          "marketRefresh"
+        ),
+
+      marketGrid:
+        document.getElementById(
+          "marketGrid"
+        ),
+
+      footerText:
+        document.getElementById(
+          "footerText"
+        )
+
+    };
+
+
+    /* =========================================================
+       LOAD JSON
+    ========================================================= */
+
+    async function loadJSON(
+      file
+    ) {
+
+      const response =
+        await fetch(
+          file,
+          {
+            cache: "no-store"
+          }
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Failed to load " +
+          file
+        );
+
+      }
+
+
+      return await response.json();
 
     }
 
-  }
+
+    /* =========================================================
+       LANGUAGE
+    ========================================================= */
+
+    function switchLanguage(
+      lang
+    ) {
+
+      const t =
+        translations[lang] ||
+        translations.en;
 
 
-  /* =========================
-     LANGUAGE
-  ========================= */
-
-  function switchLanguage(lang) {
-
-    currentLang =
-      VOICE[lang]
-        ? lang
-        : "en";
-
-    localStorage.setItem(
-      "currencyClubLang",
-      currentLang
-    );
+      currentLang =
+        translations[lang]
+          ? lang
+          : "en";
 
 
-    const t =
-      VOICE[currentLang];
+      elements.logoSub.textContent =
+        t.logoSub || "";
 
 
-    if (!t) return;
+      elements.announceBody.textContent =
+        t.announceBody || "";
 
 
-    elements.logoSub.textContent =
-      t.logoSub;
-
-    elements.announceBody.textContent =
-      t.announceBody;
-
-    elements.sectionOfficial.textContent =
-      t.sectionOfficial;
-
-    elements.btnLabelOfficial.textContent =
-      t.btnLabelOfficial;
-
-    elements.subOfficial1.textContent =
-      t.subOfficial1;
-
-    elements.subOfficial2.textContent =
-      t.subOfficial2;
-
-    elements.subOfficial3.textContent =
-      t.subOfficial3;
-
-    elements.subOfficial4.textContent =
-      t.subOfficial4;
-
-    elements.sectionSupport.textContent =
-      t.sectionSupport;
-
-    elements.btnLabelSupport.textContent =
-      t.btnLabelSupport;
-
-    elements.sectionMarket.textContent =
-      t.sectionMarket;
-
-    elements.btnLabelMarket.textContent =
-      t.btnLabelMarket;
-
-    elements.marketTitle.textContent =
-      t.marketTitle;
-
-    elements.marketStatusText.textContent =
-      t.marketLive;
-
-    elements.marketInfo.textContent =
-      t.marketInfo;
-
-    elements.footerText.textContent =
-      t.footerText;
+      elements.sectionOfficial.textContent =
+        t.sectionOfficial || "";
 
 
-    document.documentElement.lang =
-      currentLang === "zh"
-        ? "zh-CN"
-        : currentLang;
-
-  }
+      elements.btnLabelOfficial.textContent =
+        t.Corp ||
+        t.Official ||
+        "Official Channels";
 
 
-  langSelect.addEventListener(
-    "change",
-    function () {
+      elements.subOfficial1.textContent =
+        t.Corp ||
+        "Corp";
 
-      switchLanguage(
-        this.value
+
+      elements.subOfficial2.textContent =
+        t.Club ||
+        "Club";
+
+
+      elements.subOfficial3.textContent =
+        t.News ||
+        "News";
+
+
+      elements.subOfficial4.textContent =
+        t.event ||
+        "Event";
+
+
+      elements.subOfficial5.textContent =
+        t.chat ||
+        "Chat";
+
+
+      elements.sectionSupport.textContent =
+        t.sectionSupport || "";
+
+
+      elements.btnLabelSupport.textContent =
+        t.support ||
+        "Support";
+
+
+      elements.sectionMarket.textContent =
+        t.sectionMarket ||
+        "▸ MARKET";
+
+
+      elements.btnLabelMarket.textContent =
+        t.marketTitle ||
+        "Market";
+
+
+      elements.marketTitle.textContent =
+        t.marketTitle ||
+        "Market";
+
+
+      elements.marketUpdated.textContent =
+        t.marketUpdated ||
+        "Updated every 120 seconds";
+
+
+      elements.marketRefresh.textContent =
+        "Binance + CoinGecko";
+
+
+      elements.footerText.textContent =
+        t.footerText ||
+        "© 2025 Currency Club. All rights reserved.";
+
+
+      document.documentElement.lang =
+        getHTMLLang(
+          currentLang
+        );
+
+    }
+
+
+    function getHTMLLang(
+      lang
+    ) {
+
+      const map = {
+
+        en: "en",
+
+        zh: "zh-CN",
+
+        es: "es",
+
+        ar: "ar",
+
+        th: "th",
+
+        vi: "vi",
+
+        id: "id",
+
+        fr: "fr",
+
+        de: "de",
+
+        ru: "ru"
+
+      };
+
+
+      return (
+        map[lang] ||
+        "en"
       );
 
-      renderMarket();
-
-    }
-  );
-
-
-  /* =========================
-     LINKS
-  ========================= */
-
-  function applyLinks() {
-
-    if (!LINKS.telegram) return;
-
-
-    setLink(
-      "linkOfficial",
-      LINKS.telegram.official
-    );
-
-    setLink(
-      "linkNavigation",
-      LINKS.telegram.navigation
-    );
-
-    setLink(
-      "linkAntiFraud",
-      LINKS.telegram.antiFraud
-    );
-
-    setLink(
-      "linkChat",
-      LINKS.telegram.chat
-    );
-
-    setLink(
-      "linkSupport",
-      LINKS.telegram.support
-    );
-
-  }
-
-
-  function setLink(id, url) {
-
-    const el =
-      document.getElementById(id);
-
-    if (el && url) {
-      el.href = url;
     }
 
-  }
+
+    /* =========================================================
+       LINK SYSTEM
+       所有 Telegram 链接从 link.json 获取
+    ========================================================= */
+
+    function applyLinks() {
+
+      const telegram =
+        links.telegram ||
+        {};
 
 
-  /* =========================
-     EXPANDABLE
-  ========================= */
+      document
+        .querySelectorAll(
+          "[data-link]"
+        )
+        .forEach(
+          element => {
 
-  function setupExpandable(
-    btnId,
-    targetId
-  ) {
-
-    const btn =
-      document.getElementById(btnId);
-
-    const target =
-      document.getElementById(targetId);
+            const key =
+              element.dataset.link;
 
 
-    if (!btn || !target) return;
+            const url =
+              telegram[key];
 
 
-    btn.addEventListener(
-      "click",
-      function () {
+            if (
+              typeof url ===
+              "string" &&
+              url.trim()
+            ) {
 
-        const isOpen =
-          target.classList.contains(
-            "open"
-          );
+              element.href =
+                url.trim();
+
+            } else {
+
+              element.removeAttribute(
+                "href"
+              );
+
+              console.warn(
+                "Missing link:",
+                key
+              );
+
+            }
+
+          }
+        );
+
+    }
 
 
-        document
-          .querySelectorAll(
-            ".sub-menu, .market-wrapper"
-          )
-          .forEach(function (el) {
+    /* =========================================================
+       EXPANDABLE MENU
+    ========================================================= */
 
-            el.classList.remove(
+    function setupExpandable(
+      buttonId,
+      menuId
+    ) {
+
+      const button =
+        document.getElementById(
+          buttonId
+        );
+
+
+      const menu =
+        document.getElementById(
+          menuId
+        );
+
+
+      if (
+        !button ||
+        !menu
+      ) {
+
+        return;
+
+      }
+
+
+      button.addEventListener(
+        "click",
+        function(event) {
+
+          event.preventDefault();
+
+
+          const isOpen =
+            menu.classList.contains(
               "open"
             );
 
-          });
 
+          document
+            .querySelectorAll(
+              ".sub-menu.open, .market-menu.open"
+            )
+            .forEach(
+              item => {
 
-        document
-          .querySelectorAll(
-            ".main-btn"
-          )
-          .forEach(function (el) {
+                item.classList.remove(
+                  "open"
+                );
 
-            el.classList.remove(
-              "expanded"
+              }
             );
 
-          });
+
+          document
+            .querySelectorAll(
+              ".main-btn.expanded"
+            )
+            .forEach(
+              item => {
+
+                item.classList.remove(
+                  "expanded"
+                );
+
+              }
+            );
 
 
-        if (!isOpen) {
+          if (!isOpen) {
 
-          target.classList.add(
-            "open"
-          );
+            menu.classList.add(
+              "open"
+            );
 
-          btn.classList.add(
-            "expanded"
-          );
-
-
-          if (
-            targetId ===
-            "marketWrapper"
-          ) {
-
-            loadMarket();
+            button.classList.add(
+              "expanded"
+            );
 
           }
 
         }
-
-      }
-    );
-
-  }
-
-
-  setupExpandable(
-    "btnOfficial",
-    "subOfficial"
-  );
-
-  setupExpandable(
-    "btnMarket",
-    "marketWrapper"
-  );
-
-
-  /* =========================
-     MARKET DATA
-  ========================= */
-
-  let marketData = [];
-
-  let marketLoaded = false;
-
-
-  async function loadMarket() {
-
-    const list =
-      document.getElementById(
-        "marketList"
       );
-
-
-    if (!marketLoaded) {
-
-      list.innerHTML =
-        loadingHTML();
 
     }
 
 
-    try {
+    setupExpandable(
+      "btnOfficial",
+      "subOfficial"
+    );
 
-      const config =
-        LINKS.market;
+
+    setupExpandable(
+      "btnMarket",
+      "marketMenu"
+    );
 
 
-      const [
-        binanceData,
-        coingeckoData
-      ] = await Promise.all([
+    /* =========================================================
+       MARKET
+    ========================================================= */
 
-        fetchBinance(
-          config.binance
-        ),
+    const STABLE_COINS =
+      new Set([
 
-        fetchCoinGecko(
-          config.coingecko
-        )
+        "USDT",
+        "USDC",
+        "FDUSD",
+        "TUSD",
+        "USDE",
+        "DAI",
+        "USDD",
+        "PYUSD",
+        "BUSD",
+        "USDP",
+        "FRAX",
+        "LUSD",
+        "GUSD",
+        "EUR",
+        "EURS",
+        "USD1"
 
       ]);
 
 
-      marketData = [
-        ...binanceData,
-        ...coingeckoData
-      ];
-
-
-      marketLoaded = true;
-
-
-      renderMarket();
-
-
-    } catch (error) {
-
-      console.error(
-        "Market API error:",
-        error
-      );
-
-
-      list.innerHTML =
-        errorHTML();
-
-    }
-
-  }
-
-
-  /* =========================
-     BINANCE
-  ========================= */
-
-  async function fetchBinance(
-    config
-  ) {
-
-    if (!config || !config.url) {
-      return [];
-    }
-
-
-    const response =
-      await fetch(
-        config.url
-      );
-
-
-    if (!response.ok) {
-      throw new Error(
-        "Binance API error"
-      );
-    }
-
-
-    const data =
-      await response.json();
-
-
-    const symbols =
-      Array.isArray(
-        config.symbols
-      )
-        ? config.symbols
-        : [];
-
-
-    const allowed =
-      new Set(
-        symbols.map(
-          s => s.toUpperCase()
-        )
-      );
-
-
-    return data
-
-      .filter(function (coin) {
-
-        return (
-          coin.symbol &&
-          coin.symbol.endsWith("USDT") &&
-          allowed.has(
-            coin.symbol
-          )
-        );
-
-      })
-
-      .map(function (coin) {
-
-        return {
-
-          name:
-            coin.symbol
-              .replace(
-                "USDT",
-                ""
-              ),
-
-          symbol:
-            coin.symbol
-              .replace(
-                "USDT",
-                ""
-              ),
-
-          price:
-            Number(
-              coin.lastPrice
-            ),
-
-          change:
-            Number(
-              coin.priceChangePercent
-            ),
-
-          source:
-            "Binance"
-
-        };
-
-      });
-
-  }
-
-
-  /* =========================
-     COINGECKO
-  ========================= */
-
-  async function fetchCoinGecko(
-    config
-  ) {
-
-    if (!config || !config.url) {
-      return [];
-    }
-
-
-    let url =
-      config.url;
-
-
-    if (
-      config.apiKey &&
-      config.apiKey.trim()
+    function formatPrice(
+      price
     ) {
-
-      const separator =
-        url.includes("?")
-          ? "&"
-          : "?";
-
-      url +=
-        separator +
-        "x_cg_demo_api_key=" +
-        encodeURIComponent(
-          config.apiKey
-        );
-
-    }
-
-
-    const response =
-      await fetch(url);
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        "CoinGecko API error"
-      );
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    const ids =
-      Array.isArray(
-        config.ids
-      )
-        ? config.ids
-        : [];
-
-
-    const allowed =
-      new Set(ids);
-
-
-    return data
-
-      .filter(function (coin) {
-
-        return (
-          coin.id &&
-          allowed.has(
-            coin.id
-          )
-        );
-
-      })
-
-      .map(function (coin) {
-
-        return {
-
-          name:
-            coin.name,
-
-          symbol:
-            String(
-              coin.symbol || ""
-            ).toUpperCase(),
-
-          price:
-            Number(
-              coin.current_price
-            ),
-
-          change:
-            Number(
-              coin.price_change_percentage_24h
-            ),
-
-          source:
-            "CoinGecko"
-
-        };
-
-      });
-
-  }
-
-
-  /* =========================
-     FORMAT PRICE
-  ========================= */
-
-  function formatPrice(price) {
-
-    if (
-      price === null ||
-      Number.isNaN(price)
-    ) {
-
-      return "--";
-
-    }
-
-
-    if (price >= 1000) {
-
-      return price.toLocaleString(
-        undefined,
-        {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }
-      );
-
-    }
-
-
-    if (price >= 1) {
-
-      return price.toLocaleString(
-        undefined,
-        {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 4
-        }
-      );
-
-    }
-
-
-    return price.toLocaleString(
-      undefined,
-      {
-        minimumFractionDigits: 4,
-        maximumFractionDigits: 8
-      }
-    );
-
-  }
-
-
-  /* =========================
-     RENDER MARKET
-  ========================= */
-
-  function renderMarket() {
-
-    const list =
-      document.getElementById(
-        "marketList"
-      );
-
-
-    if (!marketData.length) {
-
-      list.innerHTML =
-        emptyHTML();
-
-      return;
-
-    }
-
-
-    list.innerHTML =
-      marketData
-        .map(function (coin) {
-
-          const change =
-            Number(
-              coin.change
-            );
-
-
-          let changeClass =
-            "neutral";
-
-
-          if (change > 0) {
-            changeClass =
-              "positive";
-          }
-
-          if (change < 0) {
-            changeClass =
-              "negative";
-          }
-
-
-          const changeText =
-            Number.isFinite(change)
-              ? (
-                  change >= 0
-                    ? "+"
-                    : ""
-                ) +
-                change.toFixed(2) +
-                "%"
-              : "--";
-
-
-          return `
-
-            <div class="coin-row">
-
-              <div class="coin-name">
-
-                <div class="coin-symbol">
-                  ${escapeHTML(
-                    coin.symbol
-                  )}
-                </div>
-
-                <div class="coin-text">
-
-                  <div class="coin-title">
-                    ${escapeHTML(
-                      coin.name
-                    )}
-                  </div>
-
-                  <div class="coin-source">
-                    ${escapeHTML(
-                      coin.source
-                    )}
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              <div class="coin-price">
-                $${formatPrice(
-                  coin.price
-                )}
-              </div>
-
-
-              <div
-                class="coin-change ${changeClass}"
-              >
-                ${changeText}
-              </div>
-
-            </div>
-
-          `;
-
-        })
-        .join("");
-
-  }
-
-
-  function escapeHTML(value) {
-
-    return String(value)
-      .replace(
-        /[&<>"']/g,
-        function (char) {
-
-          const map = {
-
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#039;"
-
-          };
-
-          return map[char];
-
-        }
-      );
-
-  }
-
-
-  function loadingHTML() {
-
-    const t =
-      VOICE[currentLang] ||
-      VOICE.en ||
-      { loading: "Loading market data..." };
-
-
-    return `
-      <div class="market-loading">
-        <span class="spinner"></span>
-        ${t.loading}
-      </div>
-    `;
-
-  }
-
-
-  function emptyHTML() {
-
-    const t =
-      VOICE[currentLang] ||
-      VOICE.en;
-
-
-    return `
-      <div class="market-empty">
-        ${t.marketEmpty}
-      </div>
-    `;
-
-  }
-
-
-  function errorHTML() {
-
-    const t =
-      VOICE[currentLang] ||
-      VOICE.en;
-
-
-    return `
-      <div class="market-error">
-        ${t.marketError}
-      </div>
-    `;
-
-  }
-
-
-  /* =========================
-     MANUAL REFRESH
-  ========================= */
-
-  document
-    .getElementById(
-      "marketRefresh"
-    )
-    .addEventListener(
-      "click",
-      function (event) {
-
-        event.stopPropagation();
-
-        marketLoaded = false;
-
-        loadMarket();
-
-      }
-    );
-
-
-  /* =========================
-     AUTO REFRESH
-  ========================= */
-
-  setInterval(
-    function () {
 
       if (
-        document
-          .getElementById(
-            "marketWrapper"
-          )
-          .classList
-          .contains("open")
+        !Number.isFinite(
+          price
+        )
       ) {
+
+        return "--";
+
+      }
+
+
+      if (
+        price >= 1000
+      ) {
+
+        return "$" +
+          price.toLocaleString(
+            "en-US",
+            {
+              maximumFractionDigits: 2
+            }
+          );
+
+      }
+
+
+      if (
+        price >= 1
+      ) {
+
+        return "$" +
+          price.toLocaleString(
+            "en-US",
+            {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 4
+            }
+          );
+
+      }
+
+
+      if (
+        price >= 0.01
+      ) {
+
+        return "$" +
+          price.toLocaleString(
+            "en-US",
+            {
+              minimumFractionDigits: 3,
+              maximumFractionDigits: 6
+            }
+          );
+
+      }
+
+
+      return "$" +
+        price.toLocaleString(
+          "en-US",
+          {
+            minimumFractionDigits: 4,
+            maximumFractionDigits: 8
+          }
+        );
+
+    }
+
+
+    function formatVolume(
+      volume
+    ) {
+
+      if (
+        !Number.isFinite(
+          volume
+        )
+      ) {
+
+        return "--";
+
+      }
+
+
+      if (
+        volume >= 1000000000
+      ) {
+
+        return (
+          "$" +
+          (
+            volume /
+            1000000000
+          ).toFixed(2) +
+          "B"
+        );
+
+      }
+
+
+      if (
+        volume >= 1000000
+      ) {
+
+        return (
+          "$" +
+          (
+            volume /
+            1000000
+          ).toFixed(2) +
+          "M"
+        );
+
+      }
+
+
+      if (
+        volume >= 1000
+      ) {
+
+        return (
+          "$" +
+          (
+            volume /
+            1000
+          ).toFixed(2) +
+          "K"
+        );
+
+      }
+
+
+      return (
+        "$" +
+        volume.toFixed(0)
+      );
+
+    }
+
+
+    function formatChange(
+      change
+    ) {
+
+      if (
+        !Number.isFinite(
+          change
+        )
+      ) {
+
+        return "--";
+
+      }
+
+
+      const value =
+        Number(change);
+
+
+      const sign =
+        value >= 0
+          ? "+"
+          : "";
+
+
+      return (
+        sign +
+        value.toFixed(2) +
+        "%"
+      );
+
+    }
+
+
+    function createMarketCard(
+      coin
+    ) {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "market-card";
+
+
+      const changeClass =
+        coin.change >= 0
+          ? "change-positive"
+          : "change-negative";
+
+
+      card.innerHTML = `
+
+        <div class="coin-info">
+
+          <div class="coin-name">
+            ${escapeHTML(
+              coin.name
+            )}
+          </div>
+
+          <div class="coin-symbol">
+            ${escapeHTML(
+              coin.symbol
+            )}
+          </div>
+
+          <div class="coin-source">
+            ${escapeHTML(
+              coin.source
+            )}
+          </div>
+
+        </div>
+
+
+        <div class="coin-price">
+          ${formatPrice(
+            coin.price
+          )}
+        </div>
+
+
+        <div class="coin-change ${changeClass}">
+          ${formatChange(
+            coin.change
+          )}
+        </div>
+
+      `;
+
+
+      return card;
+
+    }
+
+
+    function escapeHTML(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* =========================================================
+       BINANCE DATA
+    ========================================================= */
+
+    async function loadBinance() {
+
+      const market =
+        links.market ||
+        {};
+
+
+      const binance =
+        market.binance ||
+        {};
+
+
+      const url =
+        binance.url;
+
+
+      const symbols =
+        binance.symbols ||
+        [];
+
+
+      if (
+        !url ||
+        !symbols.length
+      ) {
+
+        return [];
+
+      }
+
+
+      const response =
+        await fetch(
+          url,
+          {
+            cache: "no-store"
+          }
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Binance request failed"
+        );
+
+      }
+
+
+      const data =
+        await response.json();
+
+
+      const symbolSet =
+        new Set(
+          symbols.map(
+            symbol =>
+              symbol.toUpperCase()
+          )
+        );
+
+
+      return data
+        .filter(
+          item =>
+            symbolSet.has(
+              String(
+                item.symbol
+              ).toUpperCase()
+            )
+        )
+        .filter(
+          item => {
+
+            const base =
+              String(
+                item.symbol
+              )
+                .replace(
+                  /USDT$/i,
+                  ""
+                )
+                .toUpperCase();
+
+
+            return !STABLE_COINS.has(
+              base
+            );
+
+          }
+        )
+        .map(
+          item => {
+
+            const symbol =
+              String(
+                item.symbol
+              )
+                .replace(
+                  /USDT$/i,
+                  ""
+                )
+                .toUpperCase();
+
+
+            return {
+
+              name:
+                symbol,
+
+              symbol:
+                symbol,
+
+              price:
+                Number(
+                  item.lastPrice
+                ),
+
+              change:
+                Number(
+                  item.priceChangePercent
+                ),
+
+              volume:
+                Number(
+                  item.quoteVolume
+                ),
+
+              source:
+                "Binance"
+
+            };
+
+          }
+        );
+
+    }
+
+
+    /* =========================================================
+       COINGECKO DATA
+    ========================================================= */
+
+    async function loadCoinGecko() {
+
+      const market =
+        links.market ||
+        {};
+
+
+      const coingecko =
+        market.coingecko ||
+        {};
+
+
+      const url =
+        coingecko.url;
+
+
+      const ids =
+        coingecko.ids ||
+        [];
+
+
+      if (
+        !url ||
+        !ids.length
+      ) {
+
+        return [];
+
+      }
+
+
+      const response =
+        await fetch(
+          url,
+          {
+            cache: "no-store"
+          }
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "CoinGecko request failed"
+        );
+
+      }
+
+
+      const data =
+        await response.json();
+
+
+      const idSet =
+        new Set(
+          ids.map(
+            id =>
+              String(
+                id
+              ).toLowerCase()
+          )
+        );
+
+
+      return data
+        .filter(
+          coin =>
+            idSet.has(
+              String(
+                coin.id
+              ).toLowerCase()
+            )
+        )
+        .filter(
+          coin => {
+
+            const symbol =
+              String(
+                coin.symbol
+              )
+                .toUpperCase();
+
+
+            return !STABLE_COINS.has(
+              symbol
+            );
+
+          }
+        )
+        .map(
+          coin => {
+
+            return {
+
+              name:
+                coin.name,
+
+              symbol:
+                String(
+                  coin.symbol
+                ).toUpperCase(),
+
+              price:
+                Number(
+                  coin.current_price
+                ),
+
+              change:
+                Number(
+                  coin.price_change_percentage_24h
+                ),
+
+              volume:
+                Number(
+                  coin.total_volume
+                ),
+
+              source:
+                "CoinGecko"
+
+            };
+
+          }
+        );
+
+    }
+
+
+    /* =========================================================
+       LOAD MARKET
+    ========================================================= */
+
+    async function loadMarket() {
+
+      const t =
+        translations[
+          currentLang
+        ] ||
+        translations.en ||
+        {};
+
+
+      elements.marketGrid.innerHTML = `
+
+        <div class="market-loading">
+
+          ${
+            t.marketLoading ||
+            "Loading market data..."
+          }
+
+        </div>
+
+      `;
+
+
+      try {
+
+        const [
+          binanceData,
+          coinGeckoData
+        ] =
+          await Promise.allSettled([
+
+            loadBinance(),
+
+            loadCoinGecko()
+
+          ]);
+
+
+        const binance =
+          binanceData.status ===
+          "fulfilled"
+
+            ? binanceData.value
+
+            : [];
+
+
+        const coinGecko =
+          coinGeckoData.status ===
+          "fulfilled"
+
+            ? coinGeckoData.value
+
+            : [];
+
+
+        let allCoins = [
+
+          ...binance,
+
+          ...coinGecko
+
+        ];
+
+
+        /*
+         * Remove duplicate symbols.
+         * Binance takes priority for
+         * duplicated mainstream coins.
+         */
+
+        const seen =
+          new Set();
+
+
+        allCoins =
+          allCoins.filter(
+            coin => {
+
+              const key =
+                coin.symbol
+                  .toUpperCase();
+
+
+              if (
+                seen.has(key)
+              ) {
+
+                return false;
+
+              }
+
+
+              seen.add(key);
+
+              return true;
+
+            }
+          );
+
+
+        /*
+         * Sort by source first,
+         * then keep a reasonable
+         * number for mobile.
+         */
+
+        allCoins.sort(
+          (a, b) => {
+
+            if (
+              a.source ===
+              "Binance" &&
+              b.source !==
+              "Binance"
+            ) {
+
+              return -1;
+
+            }
+
+
+            if (
+              a.source !==
+              "Binance" &&
+              b.source ===
+              "Binance"
+            ) {
+
+              return 1;
+
+            }
+
+
+            return 0;
+
+          }
+        );
+
+
+        if (
+          !allCoins.length
+        ) {
+
+          throw new Error(
+            "No market data"
+          );
+
+        }
+
+
+        elements.marketGrid
+          .innerHTML = "";
+
+
+        allCoins.forEach(
+          coin => {
+
+            elements.marketGrid.appendChild(
+              createMarketCard(
+                coin
+              )
+            );
+
+          }
+        );
+
+
+      } catch (
+        error
+      ) {
+
+        console.error(
+          "Market error:",
+          error
+        );
+
+
+        elements.marketGrid.innerHTML = `
+
+          <div class="market-error">
+
+            ${
+              t.marketError ||
+              "Market data temporarily unavailable"
+            }
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+
+    /* =========================================================
+       INIT
+    ========================================================= */
+
+    async function init() {
+
+      try {
+
+        /*
+         * Load both JSON files
+         */
+
+        const [
+          voiceData,
+          linkData
+        ] =
+          await Promise.all([
+
+            loadJSON(
+              CONFIG.voiceFile
+            ),
+
+            loadJSON(
+              CONFIG.linkFile
+            )
+
+          ]);
+
+
+        translations =
+          voiceData || {};
+
+
+        links =
+          linkData || {};
+
+
+        /*
+         * Apply language
+         */
+
+        switchLanguage(
+          langSelect.value
+        );
+
+
+        /*
+         * Apply Telegram links
+         */
+
+        applyLinks();
+
+
+        /*
+         * Load market
+         */
+
+        await loadMarket();
+
+
+        /*
+         * Refresh every 120 seconds
+         */
+
+        setInterval(
+          loadMarket,
+          CONFIG.marketRefresh
+        );
+
+
+      } catch (
+        error
+      ) {
+
+        console.error(
+          "Initialization error:",
+          error
+        );
+
+
+        /*
+         * Even if JSON loading fails,
+         * keep the page usable.
+         */
+
+        switchLanguage(
+          "en"
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       LANGUAGE EVENT
+    ========================================================= */
+
+    langSelect.addEventListener(
+      "change",
+      function() {
+
+        switchLanguage(
+          this.value
+        );
+
+
+        /*
+         * Re-render market loading/error
+         * text in the selected language.
+         */
 
         loadMarket();
 
       }
-
-    },
-    REFRESH_INTERVAL
-  );
+    );
 
 
-  /* =========================
-     START
-  ========================= */
+    /* =========================================================
+       START
+    ========================================================= */
 
-  loadConfig();
+    init();
 
-})();
-</script>
+  </script>
 
 </body>
 </html>
