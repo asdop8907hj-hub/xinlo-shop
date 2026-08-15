@@ -1,1 +1,53 @@
-.
+{
+  "telegram": {
+    "Corp": "https://t.me/currencycorp",
+    "Club": "https://t.me/currencyclub",
+    "News": "https://t.me/newscorpr",
+    "event": "https://t.me/ supermoneyu",
+    "chat": "https://t.me/moneygamet",
+    "support": "https://t.me/corp_supportbot"
+  },
+
+  "market": {
+    "binance": {
+      "url": "https://api.binance.com/api/v3/ticker/24hr",
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "SOLUSDT",
+        "XRPUSDT",
+        "DOGEUSDT",
+        "ADAUSDT",
+        "AVAXUSDT",
+        "DOTUSDT",
+        "LINKUSDT",
+        "LTCUSDT",
+        "BCHUSDT",
+        "TRXUSDT",
+        "ETCUSDT",
+        "ATOMUSDT",
+        "NEARUSDT",
+        "APTUSDT",
+        "SUIUSDT",
+        "TONUSDT",
+        "FILUSDT"
+      ]
+    },
+
+    "coingecko": {
+      "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h",
+      "apiKey": "",
+      "ids": [
+        "monero",
+        "zcash",
+        "dash",
+        "secret",
+        "horizen",
+        "mobilecoin",
+        "beam",
+        "firo"
+      ]
+    }
+  }
+}
