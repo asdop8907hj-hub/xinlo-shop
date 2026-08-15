@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>BINPG • Official Notice</title>
-  <meta name="description" content="BINPG official global announcement and channel navigation page">
+
+  <title>Currency Club • Official Global</title>
+  <meta name="description" content="Currency Club official global announcement and market navigation page">
   <meta name="theme-color" content="#0a0a0a">
+
   <style>
     * {
       margin: 0;
@@ -13,718 +15,2318 @@
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
+
     html {
       overflow-y: auto;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: #0a0a0a;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      background: #08090c;
       min-height: 100vh;
       min-height: 100dvh;
+
       color: #e0e0e0;
+
       padding: 2rem 1.5rem 3rem;
+
       -webkit-font-smoothing: antialiased;
+
       overflow-y: auto;
       overflow-x: hidden;
     }
 
     body::before {
-      content: '';
+      content: "";
       position: fixed;
       top: -30%;
       left: -15%;
       width: 70%;
       height: 80%;
-      background: radial-gradient(circle at 40% 35%, rgba(100, 130, 255, 0.05) 0%, transparent 65%);
+
+      background:
+        radial-gradient(
+          circle at 40% 35%,
+          rgba(100, 130, 255, 0.07) 0%,
+          transparent 65%
+        );
+
       pointer-events: none;
       z-index: 0;
+
       animation: bgGlow1 10s ease-in-out infinite alternate;
     }
+
     body::after {
-      content: '';
+      content: "";
       position: fixed;
       bottom: -25%;
       right: -10%;
       width: 65%;
       height: 75%;
-      background: radial-gradient(circle at 55% 65%, rgba(200, 120, 80, 0.04) 0%, transparent 65%);
+
+      background:
+        radial-gradient(
+          circle at 55% 65%,
+          rgba(200, 120, 80, 0.05) 0%,
+          transparent 65%
+        );
+
       pointer-events: none;
       z-index: 0;
+
       animation: bgGlow2 12s ease-in-out infinite alternate-reverse;
     }
+
     @keyframes bgGlow1 {
-      0% { opacity: 0.35; transform: scale(1); }
-      100% { opacity: 0.7; transform: scale(1.06); }
+      0% {
+        opacity: 0.35;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0.7;
+        transform: scale(1.06);
+      }
     }
+
     @keyframes bgGlow2 {
-      0% { opacity: 0.3; transform: scale(1); }
-      100% { opacity: 0.65; transform: scale(1.05); }
+      0% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0.65;
+        transform: scale(1.05);
+      }
     }
 
     .container {
       position: relative;
       z-index: 1;
+
       width: 100%;
       max-width: 480px;
+
       margin: 0 auto;
+
       text-align: center;
     }
+
+    /* =========================
+       LOGO
+    ========================= */
 
     .logo-wrapper {
       margin-bottom: 0.5rem;
       margin-top: 0.5rem;
     }
+
     .logo {
-      font-size: 3.2rem;
+      font-size: 3rem;
       font-weight: 900;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #6e8efb, #a777e3, #f8a5c2, #6e8efb);
+
+      letter-spacing: -0.045em;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6e8efb,
+          #a777e3,
+          #f8a5c2,
+          #6e8efb
+        );
+
       background-size: 300% auto;
+
       -webkit-background-clip: text;
       background-clip: text;
+
       -webkit-text-fill-color: transparent;
-      animation: logoShine 3.5s ease-in-out infinite, logoFloat 5s ease-in-out infinite;
+
+      animation:
+        logoShine 3.5s ease-in-out infinite,
+        logoFloat 5s ease-in-out infinite;
+
       line-height: 1.15;
+
       display: inline-block;
+
       cursor: default;
     }
+
     @keyframes logoShine {
-      0%, 100% { background-position: 0% center; }
-      50% { background-position: 100% center; }
+      0%,
+      100% {
+        background-position: 0% center;
+      }
+
+      50% {
+        background-position: 100% center;
+      }
     }
+
     @keyframes logoFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-4px);
+      }
     }
+
     .logo-glow {
       display: block;
+
       width: 80px;
       height: 2px;
+
       margin: 0.2rem auto 0;
+
       border-radius: 2px;
-      background: linear-gradient(90deg, transparent, #a777e3, #f8a5c2, transparent);
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #a777e3,
+          #f8a5c2,
+          transparent
+        );
+
       animation: glowBar 2.5s ease-in-out infinite;
     }
+
     @keyframes glowBar {
-      0%, 100% { opacity: 0.3; width: 60px; }
-      50% { opacity: 1; width: 100px; }
+      0%,
+      100% {
+        opacity: 0.3;
+        width: 60px;
+      }
+
+      50% {
+        opacity: 1;
+        width: 100px;
+      }
     }
+
     .logo-sub {
       font-size: 0.75rem;
       color: #666;
+
       font-weight: 400;
+
       letter-spacing: 0.06em;
+
       margin-top: 0.3rem;
     }
 
+    /* =========================
+       LANGUAGE
+    ========================= */
+
     .lang-select-wrapper {
       margin-bottom: 1.8rem;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       gap: 0.5rem;
     }
+
     .lang-select-wrapper i {
       color: #777;
       font-size: 0.9rem;
     }
+
     .lang-select {
-      background: rgba(255, 255, 255, 0.06);
+      background-color: rgba(255, 255, 255, 0.06);
+
       border: 1px solid rgba(255, 255, 255, 0.15);
+
       border-radius: 2rem;
-      padding: 0.5rem 2rem 0.5rem 1rem;
+
+      padding:
+        0.5rem
+        2rem
+        0.5rem
+        1rem;
+
       font-size: 0.85rem;
+
       font-weight: 500;
+
       color: #ddd;
+
       outline: none;
+
       cursor: pointer;
+
       appearance: none;
       -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+
       background-repeat: no-repeat;
-      background-position: right 0.6rem center;
+
+      background-position:
+        right 0.6rem center;
+
       transition: all 0.25s;
     }
+
     .lang-select:hover {
       border-color: rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.1);
+
+      background-color: rgba(255, 255, 255, 0.1);
     }
 
+    /* =========================
+       ANNOUNCEMENT
+    ========================= */
+
     .announcement-bar {
-      background: linear-gradient(135deg, rgba(100, 130, 255, 0.1), rgba(160, 120, 220, 0.08));
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(100, 130, 255, 0.1),
+          rgba(160, 120, 220, 0.08)
+        );
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
       border-radius: 1.25rem;
+
       padding: 1.25rem 1.2rem;
+
       margin-bottom: 2rem;
+
       text-align: left;
+
       line-height: 1.6;
+
       position: relative;
+
       overflow: hidden;
+
+      box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.12);
     }
+
     .announcement-bar::before {
-      content: '';
+      content: "";
+
       position: absolute;
+
       left: 0;
       top: 0;
       bottom: 0;
+
       width: 3px;
-      background: linear-gradient(180deg, #6e8efb, #a777e3);
-      border-radius: 0 3px 3px 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          #6e8efb,
+          #a777e3
+        );
+
+      border-radius:
+        0
+        3px
+        3px
+        0;
     }
-    .announcement-bar .announce-icon {
-      font-size: 1.3rem;
-      margin-right: 0.4rem;
-      vertical-align: -2px;
-    }
-    .announcement-bar .announce-title {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: #ccc;
-      margin-bottom: 0.35rem;
-      letter-spacing: 0.02em;
-    }
+
     .announcement-bar .announce-body {
-      font-size: 0.82rem;
+      font-size: 0.84rem;
+
       color: #999;
-      line-height: 1.55;
+
+      line-height: 1.65;
     }
+
+    /* =========================
+       SECTIONS
+    ========================= */
 
     .section-group {
       margin-bottom: 1.8rem;
     }
+
     .section-label {
       font-size: 0.7rem;
+
       text-transform: uppercase;
+
       letter-spacing: 0.08em;
+
       color: #555;
+
       margin-bottom: 0.6rem;
+
       text-align: left;
+
       padding-left: 0.3rem;
     }
 
     .btn-list {
       display: flex;
+
       flex-direction: column;
+
       gap: 0.75rem;
     }
 
+    /* =========================
+       MAIN BUTTON
+    ========================= */
+
     .main-btn {
       display: flex;
+
       align-items: center;
       justify-content: center;
-      padding: 0.85rem 1.5rem;
+
+      padding:
+        0.85rem
+        1.5rem;
+
       border-radius: 2.5rem;
+
       text-decoration: none;
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+
+      color: #fff;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+      transition:
+        all 0.3s
+        cubic-bezier(
+          0.25,
+          0.8,
+          0.25,
+          1.2
+        );
+
       cursor: pointer;
+
       overflow: hidden;
+
       min-height: 52px;
+
       font-size: 1.5rem;
+
       position: relative;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+
+      background:
+        rgba(255, 255, 255, 0.04);
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04);
     }
+
     .main-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-      border-color: rgba(255, 255, 255, 0.3);
+
+      box-shadow:
+        0 10px 28px
+        rgba(0, 0, 0, 0.45);
+
+      border-color:
+        rgba(255, 255, 255, 0.3);
     }
+
     .main-btn:active {
       transform: scale(0.97);
-      transition: transform 0.1s ease;
+
+      transition:
+        transform 0.1s ease;
     }
 
     .btn-icon-area {
       font-size: 1.5rem;
+
       line-height: 1;
-      transition: transform 0.35s ease;
+
+      transition:
+        transform 0.35s ease;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
     }
+
     .btn-label {
       white-space: nowrap;
+
       max-width: 0;
+
       overflow: hidden;
-      transition: max-width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.35s ease, margin-left 0.35s ease;
+
+      transition:
+        max-width 0.5s
+          cubic-bezier(
+            0.25,
+            0.8,
+            0.25,
+            1
+          ),
+        opacity 0.35s ease,
+        margin-left 0.35s ease;
+
       opacity: 0;
+
       margin-left: 0;
+
       font-size: 0.95rem;
+
       font-weight: 600;
+
       letter-spacing: 0.02em;
     }
+
     .main-btn:hover .btn-icon-area {
       transform: scale(0.78);
+
       margin-right: 0.3rem;
     }
+
     .main-btn:hover .btn-label {
       max-width: 220px;
+
       opacity: 1;
+
       margin-left: 0.5rem;
     }
 
     .expand-arrow {
       font-size: 0.8rem;
+
       margin-left: 0.5rem;
-      transition: transform 0.35s ease;
+
+      transition:
+        transform 0.35s ease;
+
       opacity: 0.6;
     }
+
     .main-btn.expanded .expand-arrow {
       transform: rotate(180deg);
     }
 
+    /* =========================
+       SUB MENU
+    ========================= */
+
     .sub-menu {
       display: flex;
+
       flex-direction: column;
+
       gap: 0.45rem;
+
       max-height: 0;
+
       overflow: hidden;
-      transition: max-height 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease, margin 0.3s ease;
+
+      transition:
+        max-height 0.45s
+          cubic-bezier(
+            0.25,
+            0.8,
+            0.25,
+            1
+          ),
+        opacity 0.3s ease,
+        margin 0.3s ease;
+
       opacity: 0;
+
       margin-top: 0;
-      padding: 0 0.6rem;
+
+      padding:
+        0
+        0.6rem;
     }
+
     .sub-menu.open {
-      max-height: 500px;
+      max-height: 520px;
+
       opacity: 1;
+
       margin-top: 0.3rem;
     }
 
     .sub-btn {
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       gap: 0.5rem;
-      padding: 0.65rem 1rem;
+
+      padding:
+        0.65rem
+        1rem;
+
       border-radius: 2rem;
+
       font-size: 0.85rem;
+
       font-weight: 600;
+
       text-decoration: none;
+
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
       backdrop-filter: blur(8px);
+
       -webkit-backdrop-filter: blur(8px);
-      transition: all 0.25s ease;
+
+      transition:
+        all 0.25s ease;
+
       cursor: pointer;
+
       letter-spacing: 0.03em;
     }
+
     .sub-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+
+      box-shadow:
+        0 6px 18px
+        rgba(0, 0, 0, 0.3);
     }
+
     .sub-btn i {
       font-size: 0.9rem;
+
       width: 22px;
+
       text-align: center;
     }
 
     .sub-official {
-      background: linear-gradient(135deg, #2AABEE, #1a8fcf);
-      border-color: rgba(42, 171, 238, 0.35);
+      background:
+        linear-gradient(
+          135deg,
+          #2AABEE,
+          #1a8fcf
+        );
     }
+
     .sub-nav {
-      background: linear-gradient(135deg, #e74c3c, #c0392b);
-      border-color: rgba(231, 76, 60, 0.35);
+      background:
+        linear-gradient(
+          135deg,
+          #e74c3c,
+          #c0392b
+        );
     }
+
     .sub-alert {
-      background: linear-gradient(135deg, #f39c12, #d68910);
-      border-color: rgba(243, 156, 18, 0.35);
+      background:
+        linear-gradient(
+          135deg,
+          #f39c12,
+          #d68910
+        );
     }
+
     .sub-chat {
-      background: linear-gradient(135deg, #2ecc71, #27ae60);
-      border-color: rgba(46, 204, 113, 0.35);
+      background:
+        linear-gradient(
+          135deg,
+          #2ecc71,
+          #27ae60
+        );
     }
-    .sub-support {
-      background: linear-gradient(135deg, #8e44ad, #6c3483);
-      border-color: rgba(142, 68, 173, 0.35);
+
+    /* =========================
+       MARKET
+    ========================= */
+
+    .market-wrapper {
+      overflow: hidden;
+
+      max-height: 0;
+
+      opacity: 0;
+
+      margin-top: 0;
+
+      transition:
+        max-height 0.5s ease,
+        opacity 0.35s ease,
+        margin 0.35s ease;
     }
-    .sub-game-global {
-      background: linear-gradient(135deg, #c471ed, #a855f7);
-      border-color: rgba(196, 113, 237, 0.35);
+
+    .market-wrapper.open {
+      max-height: 1800px;
+
+      opacity: 1;
+
+      margin-top: 0.4rem;
     }
-    .sub-game-cn {
-      background: linear-gradient(135deg, #f64f59, #d6336c);
-      border-color: rgba(246, 79, 89, 0.35);
+
+    .market-panel {
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+      border-radius: 1.25rem;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.055),
+          rgba(255,255,255,0.025)
+        );
+
+      backdrop-filter: blur(16px);
+
+      -webkit-backdrop-filter: blur(16px);
+
+      overflow: hidden;
+
+      box-shadow:
+        0 16px 50px
+        rgba(0,0,0,0.25);
     }
+
+    .market-head {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        0.85rem
+        1rem;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,0.06);
+    }
+
+    .market-title {
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.5rem;
+
+      font-size: 0.85rem;
+
+      font-weight: 700;
+
+      color: #ddd;
+    }
+
+    .market-status {
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.35rem;
+
+      font-size: 0.65rem;
+
+      color: #666;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: #37d67a;
+
+      box-shadow:
+        0 0 8px
+        rgba(55,214,122,0.7);
+
+      animation:
+        statusPulse 1.8s infinite;
+    }
+
+    @keyframes statusPulse {
+      0%,
+      100% {
+        opacity: 0.5;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .market-refresh {
+      border: 0;
+
+      background:
+        rgba(255,255,255,0.07);
+
+      color: #aaa;
+
+      width: 30px;
+      height: 30px;
+
+      border-radius: 50%;
+
+      cursor: pointer;
+
+      transition:
+        all 0.25s ease;
+    }
+
+    .market-refresh:hover {
+      background:
+        rgba(255,255,255,0.14);
+
+      color: #fff;
+
+      transform: rotate(180deg);
+    }
+
+    .market-info {
+      padding:
+        0.65rem
+        1rem;
+
+      font-size: 0.62rem;
+
+      color: #555;
+
+      text-align: left;
+    }
+
+    .market-list {
+      display: flex;
+
+      flex-direction: column;
+    }
+
+    .coin-row {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(90px, 1fr)
+        minmax(65px, 0.7fr);
+
+      align-items: center;
+
+      gap: 0.5rem;
+
+      padding:
+        0.75rem
+        1rem;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,0.045);
+
+      transition:
+        background 0.2s ease;
+    }
+
+    .coin-row:hover {
+      background:
+        rgba(255,255,255,0.035);
+    }
+
+    .coin-name {
+      display: flex;
+
+      align-items: center;
+
+      gap: 0.6rem;
+
+      min-width: 0;
+    }
+
+    .coin-symbol {
+      width: 30px;
+      height: 30px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      flex-shrink: 0;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(110,142,251,0.2),
+          rgba(167,119,227,0.2)
+        );
+
+      border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      font-size: 0.68rem;
+
+      font-weight: 800;
+
+      color: #ccc;
+    }
+
+    .coin-text {
+      min-width: 0;
+
+      text-align: left;
+    }
+
+    .coin-title {
+      font-size: 0.78rem;
+
+      font-weight: 700;
+
+      color: #ddd;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+    .coin-source {
+      font-size: 0.58rem;
+
+      color: #555;
+
+      margin-top: 2px;
+    }
+
+    .coin-price {
+      text-align: right;
+
+      font-size: 0.78rem;
+
+      font-weight: 700;
+
+      color: #eee;
+
+      font-variant-numeric: tabular-nums;
+    }
+
+    .coin-change {
+      text-align: right;
+
+      font-size: 0.72rem;
+
+      font-weight: 700;
+
+      font-variant-numeric: tabular-nums;
+    }
+
+    .positive {
+      color: #38d996;
+    }
+
+    .negative {
+      color: #ff647c;
+    }
+
+    .neutral {
+      color: #777;
+    }
+
+    .market-loading,
+    .market-empty,
+    .market-error {
+      padding:
+        1.5rem
+        1rem;
+
+      text-align: center;
+
+      color: #666;
+
+      font-size: 0.75rem;
+    }
+
+    .spinner {
+      display: inline-block;
+
+      width: 16px;
+      height: 16px;
+
+      border:
+        2px solid
+        rgba(255,255,255,0.12);
+
+      border-top-color:
+        #8a9cff;
+
+      border-radius: 50%;
+
+      animation:
+        spin 0.8s linear infinite;
+
+      vertical-align: middle;
+
+      margin-right: 0.35rem;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     .footer {
       margin-top: 2.5rem;
+
       font-size: 0.68rem;
+
       color: #444;
+
       letter-spacing: 0.04em;
+
       padding-bottom: 0.5rem;
     }
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 480px) {
       .container {
         max-width: 100%;
       }
+
       .logo {
-        font-size: 2.6rem;
+        font-size: 2.45rem;
       }
+
       .main-btn {
-        padding: 0.75rem 1.2rem;
+        padding:
+          0.75rem
+          1.2rem;
+
         font-size: 1.3rem;
       }
+
       .btn-icon-area {
         font-size: 1.3rem;
       }
+
       .announcement-bar {
         padding: 1rem;
+      }
+
+      .coin-row {
+        grid-template-columns:
+          minmax(0, 1.3fr)
+          minmax(80px, 1fr)
+          minmax(60px, 0.7fr);
+
+        padding:
+          0.7rem
+          0.8rem;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="logo-wrapper">
-      <div class="logo">BINPG</div>
-      <div class="logo-glow"></div>
-      <div class="logo-sub" id="logoSub">Official Global Notice</div>
-    </div>
 
-    <div class="lang-select-wrapper">
-      <i>🌐</i>
-      <select class="lang-select" id="langSelect">
-        <option value="en">English</option>
-        <option value="zh">简体中文</option>
-        <option value="es">Español</option>
-        <option value="ar">العربية</option>
-        <option value="th">ไทย</option>
-        <option value="vi">Tiếng Việt</option>
-        <option value="id">Bahasa Indonesia</option>
-        <option value="fr">Français</option>
-        <option value="de">Deutsch</option>
-        <option value="ru">Русский</option>
-      </select>
-    </div>
+<div class="container">
 
-    <div class="announcement-bar" id="announceBar">
-      <div class="announce-title">
-        <span class="announce-icon">📢</span>
-        <span id="announceTitle">Official Notice</span>
-      </div>
-      <div class="announce-body" id="announceBody">
-        Welcome to the official BINPG global announcement page. All channel links below are verified and secure. Please be aware of impersonators and always verify you are using official channels.
-      </div>
-    </div>
+  <!-- LOGO -->
+  <div class="logo-wrapper">
+    <div class="logo">Currency Club</div>
 
-    <!-- 官方频道组 -->
-    <div class="section-group">
-      <div class="section-label" id="sectionOfficial">▸ OFFICIAL CHANNELS</div>
-      <div class="btn-list">
-        <div class="main-btn" id="btnOfficial" style="background:linear-gradient(135deg,#2AABEE,#1a8fcf);">
-          <span class="btn-icon-area">📢</span>
-          <span class="btn-label" id="btnLabelOfficial">Official Channels</span>
-          <span class="expand-arrow">▼</span>
-        </div>
-        <div class="sub-menu" id="subOfficial">
-          <a href="https://t.me/binpg" target="_blank" rel="noopener noreferrer" class="sub-btn sub-official">
-            <i>🏠</i> <span id="subOfficial1">Official Channel</span>
-          </a>
-          <a href="https://t.me/pddh8" target="_blank" rel="noopener noreferrer" class="sub-btn sub-nav">
-            <i>🧭</i> <span id="subOfficial2">Chinese Navigation</span>
-          </a>
-          <a href="https://t.me/fbifz" target="_blank" rel="noopener noreferrer" class="sub-btn sub-alert">
-            <i>🛡️</i> <span id="subOfficial3">Anti-Fraud Awareness</span>
-          </a>
-          <a href="https://t.me/govlchat" target="_blank" rel="noopener noreferrer" class="sub-btn sub-chat">
-            <i>👥</i> <span id="subOfficial4">Chit Chat Group</span>
-          </a>
-        </div>
-      </div>
-    </div>
+    <div class="logo-glow"></div>
 
-    <!-- 客服组 -->
-    <div class="section-group">
-      <div class="section-label" id="sectionSupport">▸ CUSTOMER SUPPORT</div>
-      <div class="btn-list">
-        <a href="https://t.me/ooesebot" target="_blank" rel="noopener noreferrer" class="main-btn direct-btn" style="background:linear-gradient(135deg,#8e44ad,#6c3483);">
-          <span class="btn-icon-area">💬</span>
-          <span class="btn-label" id="btnLabelSupport">Advertising & Sales</span>
-        </a>
-      </div>
+    <div
+      class="logo-sub"
+      id="logoSub"
+    >
+      Official Global Notice
     </div>
-
-    <!-- 游戏组 -->
-    <div class="section-group">
-      <div class="section-label" id="sectionGames">▸ GAMES</div>
-      <div class="btn-list">
-        <div class="main-btn" id="btnGames" style="background:linear-gradient(135deg,#c471ed,#a855f7);">
-          <span class="btn-icon-area">🎮</span>
-          <span class="btn-label" id="btnLabelGames">Games</span>
-          <span class="expand-arrow">▼</span>
-        </div>
-        <div class="sub-menu" id="subGames">
-          <a href="https://t.me/txtv0bot" target="_blank" rel="noopener noreferrer" class="sub-btn sub-game-global">
-            <i>🌍</i> <span id="subGame1">Global Entertainment</span>
-          </a>
-          <a href="https://t.me/oixxbot" target="_blank" rel="noopener noreferrer" class="sub-btn sub-game-cn">
-            <i>🐉</i> <span id="subGame2">Chinese Games</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer" id="footerText">© 2025 BINPG. All rights reserved.</div>
   </div>
 
-  <script>
-    (function() {
-      const translations = {
-        en: {
-          logoSub: "Official Global Notice",
-          announceTitle: "Official Notice",
-          announceBody: "Welcome to the official BINPG global announcement page. All channel links below are verified and secure. Please be aware of impersonators and always verify you are using official channels.",
-          sectionOfficial: "▸ OFFICIAL CHANNELS",
-          btnLabelOfficial: "Official Channels",
-          subOfficial1: "Official Channel",
-          subOfficial2: "Chinese Navigation",
-          subOfficial3: "Anti-Fraud Awareness",
-          subOfficial4: "Chit Chat Group",
-          sectionSupport: "▸ CUSTOMER SUPPORT",
-          btnLabelSupport: "Advertising & Sales",
-          sectionGames: "▸ GAMES",
-          btnLabelGames: "Games",
-          subGame1: "Global Entertainment",
-          subGame2: "Chinese Games",
-          footerText: "© 2025 BINPG. All rights reserved."
-        },
-        zh: {
-          logoSub: "官方全球公告",
-          announceTitle: "官方公告",
-          announceBody: "欢迎来到 BINPG 官方全球公告页面。以下所有频道链接均已验证且安全。请警惕冒充者，始终确认您使用的是官方渠道。",
-          sectionOfficial: "▸ 官方频道",
-          btnLabelOfficial: "官方频道",
-          subOfficial1: "官方频道",
-          subOfficial2: "中文导航",
-          subOfficial3: "防诈骗提醒",
-          subOfficial4: "闲聊群组",
-          sectionSupport: "▸ 客服支持",
-          btnLabelSupport: "广告与销售",
-          sectionGames: "▸ 游戏",
-          btnLabelGames: "游戏",
-          subGame1: "全球娱乐",
-          subGame2: "中文游戏",
-          footerText: "© 2025 BINPG. 保留所有权利。"
-        },
-        es: {
-          logoSub: "Aviso Global Oficial",
-          announceTitle: "Aviso Oficial",
-          announceBody: "Bienvenido a la página oficial de anuncios globales de BINPG. Todos los enlaces de canales a continuación están verificados y son seguros. Tenga cuidado con los impostores y verifique siempre que utiliza canales oficiales.",
-          sectionOfficial: "▸ CANALES OFICIALES",
-          btnLabelOfficial: "Canales Oficiales",
-          subOfficial1: "Canal Oficial",
-          subOfficial2: "Navegación China",
-          subOfficial3: "Conciencia Anti-Fraude",
-          subOfficial4: "Grupo de Charla",
-          sectionSupport: "▸ ATENCIÓN AL CLIENTE",
-          btnLabelSupport: "Publicidad y Ventas",
-          sectionGames: "▸ JUEGOS",
-          btnLabelGames: "Juegos",
-          subGame1: "Entretenimiento Global",
-          subGame2: "Juegos Chinos",
-          footerText: "© 2025 BINPG. Todos los derechos reservados."
-        },
-        ar: {
-          logoSub: "الإعلان الرسمي العالمي",
-          announceTitle: "إعلان رسمي",
-          announceBody: "مرحباً بكم في صفحة الإعلانات الرسمية العالمية لـ BINPG. جميع روابط القنوات أدناه موثقة وآمنة. يرجى الانتباه من المنتحلين والتأكد دائماً من استخدام القنوات الرسمية.",
-          sectionOfficial: "▸ القنوات الرسمية",
-          btnLabelOfficial: "القنوات الرسمية",
-          subOfficial1: "القناة الرسمية",
-          subOfficial2: "الملاحة الصينية",
-          subOfficial3: "التوعية ضد الاحتيال",
-          subOfficial4: "مجموعة الدردشة",
-          sectionSupport: "▸ دعم العملاء",
-          btnLabelSupport: "الإعلان والمبيعات",
-          sectionGames: "▸ الألعاب",
-          btnLabelGames: "ألعاب",
-          subGame1: "ترفيه عالمي",
-          subGame2: "ألعاب صينية",
-          footerText: "© 2025 BINPG. جميع الحقوق محفوظة."
-        },
-        th: {
-          logoSub: "ประกาศอย่างเป็นทางการทั่วโลก",
-          announceTitle: "ประกาศอย่างเป็นทางการ",
-          announceBody: "ยินดีต้อนรับสู่หน้าประกาศอย่างเป็นทางการของ BINPG ลิงก์ช่องทั้งหมดด้านล่างได้รับการตรวจสอบและปลอดภัย โปรดระวังผู้แอบอ้างและตรวจสอบว่าคุณใช้ช่องทางที่เป็นทางการเสมอ",
-          sectionOfficial: "▸ ช่องทางการ",
-          btnLabelOfficial: "ช่องทางการ",
-          subOfficial1: "ช่องทางการ",
-          subOfficial2: "นำทางภาษาจีน",
-          subOfficial3: "การรับรู้การฉ้อโกง",
-          subOfficial4: "กลุ่มแชท",
-          sectionSupport: "▸ ฝ่ายสนับสนุน",
-          btnLabelSupport: "โฆษณาและการขาย",
-          sectionGames: "▸ เกม",
-          btnLabelGames: "เกม",
-          subGame1: "ความบันเทิงระดับโลก",
-          subGame2: "เกมจีน",
-          footerText: "© 2025 BINPG. สงวนลิขสิทธิ์"
-        },
-        vi: {
-          logoSub: "Thông Báo Chính Thức Toàn Cầu",
-          announceTitle: "Thông Báo Chính Thức",
-          announceBody: "Chào mừng đến với trang thông báo chính thức toàn cầu của BINPG. Tất cả các liên kết kênh bên dưới đã được xác minh và an toàn. Hãy cảnh giác với những kẻ mạo danh và luôn xác minh bạn đang sử dụng các kênh chính thức.",
-          sectionOfficial: "▸ KÊNH CHÍNH THỨC",
-          btnLabelOfficial: "Kênh Chính Thức",
-          subOfficial1: "Kênh Chính Thức",
-          subOfficial2: "Điều Hướng Tiếng Trung",
-          subOfficial3: "Nhận Thức Chống Lừa Đảo",
-          subOfficial4: "Nhóm Trò Chuyện",
-          sectionSupport: "▸ HỖ TRỢ KHÁCH HÀNG",
-          btnLabelSupport: "Quảng Cáo & Bán Hàng",
-          sectionGames: "▸ TRÒ CHƠI",
-          btnLabelGames: "Trò Chơi",
-          subGame1: "Giải Trí Toàn Cầu",
-          subGame2: "Trò Chơi Trung Quốc",
-          footerText: "© 2025 BINPG. Đã đăng ký bản quyền."
-        },
-        id: {
-          logoSub: "Pengumuman Resmi Global",
-          announceTitle: "Pengumuman Resmi",
-          announceBody: "Selamat datang di halaman pengumuman resmi global BINPG. Semua tautan saluran di bawah ini telah diverifikasi dan aman. Harap waspadai peniru dan selalu verifikasi bahwa Anda menggunakan saluran resmi.",
-          sectionOfficial: "▸ SALURAN RESMI",
-          btnLabelOfficial: "Saluran Resmi",
-          subOfficial1: "Saluran Resmi",
-          subOfficial2: "Navigasi Bahasa Mandarin",
-          subOfficial3: "Kesadaran Anti-Penipuan",
-          subOfficial4: "Grup Obrolan",
-          sectionSupport: "▸ DUKUNGAN PELANGGAN",
-          btnLabelSupport: "Iklan & Penjualan",
-          sectionGames: "▸ PERMAINAN",
-          btnLabelGames: "Permainan",
-          subGame1: "Hiburan Global",
-          subGame2: "Permainan Mandarin",
-          footerText: "© 2025 BINPG. Hak cipta dilindungi."
-        },
-        fr: {
-          logoSub: "Avis Officiel Mondial",
-          announceTitle: "Avis Officiel",
-          announceBody: "Bienvenue sur la page d'annonce officielle mondiale de BINPG. Tous les liens de chaînes ci-dessous sont vérifiés et sécurisés. Méfiez-vous des imposteurs et vérifiez toujours que vous utilisez les chaînes officielles.",
-          sectionOfficial: "▸ CHAÎNES OFFICIELLES",
-          btnLabelOfficial: "Chaînes Officielles",
-          subOfficial1: "Chaîne Officielle",
-          subOfficial2: "Navigation Chinoise",
-          subOfficial3: "Sensibilisation Anti-Fraude",
-          subOfficial4: "Groupe de Discussion",
-          sectionSupport: "▸ SERVICE CLIENT",
-          btnLabelSupport: "Publicité et Ventes",
-          sectionGames: "▸ JEUX",
-          btnLabelGames: "Jeux",
-          subGame1: "Divertissement Mondial",
-          subGame2: "Jeux Chinois",
-          footerText: "© 2025 BINPG. Tous droits réservés."
-        },
-        de: {
-          logoSub: "Offizielle Globale Mitteilung",
-          announceTitle: "Offizielle Mitteilung",
-          announceBody: "Willkommen auf der offiziellen globalen Ankündigungsseite von BINPG. Alle unten aufgeführten Kanallinks sind verifiziert und sicher. Achten Sie auf Betrüger und überprüfen Sie stets, ob Sie offizielle Kanäle nutzen.",
-          sectionOfficial: "▸ OFFIZIELLE KANÄLE",
-          btnLabelOfficial: "Offizielle Kanäle",
-          subOfficial1: "Offizieller Kanal",
-          subOfficial2: "Chinesische Navigation",
-          subOfficial3: "Anti-Betrugs-Bewusstsein",
-          subOfficial4: "Plaudergruppe",
-          sectionSupport: "▸ KUNDENDIENST",
-          btnLabelSupport: "Werbung & Verkauf",
-          sectionGames: "▸ SPIELE",
-          btnLabelGames: "Spiele",
-          subGame1: "Globale Unterhaltung",
-          subGame2: "Chinesische Spiele",
-          footerText: "© 2025 BINPG. Alle Rechte vorbehalten."
-        },
-        ru: {
-          logoSub: "Официальное Глобальное Уведомление",
-          announceTitle: "Официальное Уведомление",
-          announceBody: "Добро пожаловать на официальную страницу глобальных объявлений BINPG. Все ссылки на каналы ниже проверены и безопасны. Остерегайтесь мошенников и всегда проверяйте, что вы используете официальные каналы.",
-          sectionOfficial: "▸ ОФИЦИАЛЬНЫЕ КАНАЛЫ",
-          btnLabelOfficial: "Официальные Каналы",
-          subOfficial1: "Официальный Канал",
-          subOfficial2: "Китайская Навигация",
-          subOfficial3: "Анти-Мошенничество",
-          subOfficial4: "Чат-группа",
-          sectionSupport: "▸ ПОДДЕРЖКА",
-          btnLabelSupport: "Реклама и Продажи",
-          sectionGames: "▸ ИГРЫ",
-          btnLabelGames: "Игры",
-          subGame1: "Глобальные Развлечения",
-          subGame2: "Китайские Игры",
-          footerText: "© 2025 BINPG. Все права защищены."
-        }
-      };
 
-      const langSelect = document.getElementById('langSelect');
-      const elements = {
-        logoSub: document.getElementById('logoSub'),
-        announceTitle: document.getElementById('announceTitle'),
-        announceBody: document.getElementById('announceBody'),
-        sectionOfficial: document.getElementById('sectionOfficial'),
-        btnLabelOfficial: document.getElementById('btnLabelOfficial'),
-        subOfficial1: document.getElementById('subOfficial1'),
-        subOfficial2: document.getElementById('subOfficial2'),
-        subOfficial3: document.getElementById('subOfficial3'),
-        subOfficial4: document.getElementById('subOfficial4'),
-        sectionSupport: document.getElementById('sectionSupport'),
-        btnLabelSupport: document.getElementById('btnLabelSupport'),
-        sectionGames: document.getElementById('sectionGames'),
-        btnLabelGames: document.getElementById('btnLabelGames'),
-        subGame1: document.getElementById('subGame1'),
-        subGame2: document.getElementById('subGame2'),
-        footerText: document.getElementById('footerText'),
-      };
+  <!-- LANGUAGE -->
+  <div class="lang-select-wrapper">
+    <i>🌐</i>
 
-      function switchLanguage(lang) {
-        const t = translations[lang] || translations.en;
-        elements.logoSub.textContent = t.logoSub;
-        elements.announceTitle.textContent = t.announceTitle;
-        elements.announceBody.textContent = t.announceBody;
-        elements.sectionOfficial.textContent = t.sectionOfficial;
-        elements.btnLabelOfficial.textContent = t.btnLabelOfficial;
-        elements.subOfficial1.textContent = t.subOfficial1;
-        elements.subOfficial2.textContent = t.subOfficial2;
-        elements.subOfficial3.textContent = t.subOfficial3;
-        elements.subOfficial4.textContent = t.subOfficial4;
-        elements.sectionSupport.textContent = t.sectionSupport;
-        elements.btnLabelSupport.textContent = t.btnLabelSupport;
-        elements.sectionGames.textContent = t.sectionGames;
-        elements.btnLabelGames.textContent = t.btnLabelGames;
-        elements.subGame1.textContent = t.subGame1;
-        elements.subGame2.textContent = t.subGame2;
-        elements.footerText.textContent = t.footerText;
-        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'ar' ? 'ar' : lang === 'th' ? 'th' : lang === 'vi' ? 'vi' : lang === 'id' ? 'id' : lang === 'fr' ? 'fr' : lang === 'de' ? 'de' : lang === 'ru' ? 'ru' : 'en';
+    <select
+      class="lang-select"
+      id="langSelect"
+    >
+      <option value="en">English</option>
+      <option value="zh">简体中文</option>
+      <option value="es">Español</option>
+      <option value="ar">العربية</option>
+      <option value="th">ไทย</option>
+      <option value="vi">Tiếng Việt</option>
+      <option value="id">Bahasa Indonesia</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+      <option value="ru">Русский</option>
+    </select>
+  </div>
+
+
+  <!-- ANNOUNCEMENT -->
+  <div
+    class="announcement-bar"
+    id="announceBar"
+  >
+    <div class="announce-body">
+      <span id="announceBody">
+        Welcome to the official Currency Club global announcement page.
+        All channel links below are verified and secure.
+        Please be aware of impersonators and always verify you are using official channels.
+      </span>
+    </div>
+  </div>
+
+
+  <!-- OFFICIAL -->
+  <div class="section-group">
+
+    <div
+      class="section-label"
+      id="sectionOfficial"
+    >
+      ▸ OFFICIAL CHANNELS
+    </div>
+
+    <div class="btn-list">
+
+      <div
+        class="main-btn"
+        id="btnOfficial"
+        style="background:linear-gradient(135deg,#2AABEE,#1a8fcf);"
+      >
+        <span class="btn-icon-area">📢</span>
+
+        <span
+          class="btn-label"
+          id="btnLabelOfficial"
+        >
+          Official Channels
+        </span>
+
+        <span class="expand-arrow">
+          ▼
+        </span>
+      </div>
+
+
+      <div
+        class="sub-menu"
+        id="subOfficial"
+      >
+
+        <a
+          id="linkOfficial"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="sub-btn sub-official"
+        >
+          <i>🏠</i>
+
+          <span id="subOfficial1">
+            Official Channel
+          </span>
+        </a>
+
+
+        <a
+          id="linkNavigation"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="sub-btn sub-nav"
+        >
+          <i>🧭</i>
+
+          <span id="subOfficial2">
+            Chinese Navigation
+          </span>
+        </a>
+
+
+        <a
+          id="linkAntiFraud"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="sub-btn sub-alert"
+        >
+          <i>🛡️</i>
+
+          <span id="subOfficial3">
+            Anti-Fraud Awareness
+          </span>
+        </a>
+
+
+        <a
+          id="linkChat"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="sub-btn sub-chat"
+        >
+          <i>👥</i>
+
+          <span id="subOfficial4">
+            Chit Chat Group
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SUPPORT -->
+  <div class="section-group">
+
+    <div
+      class="section-label"
+      id="sectionSupport"
+    >
+      ▸ CUSTOMER SUPPORT
+    </div>
+
+    <div class="btn-list">
+
+      <a
+        id="linkSupport"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="main-btn direct-btn"
+        style="background:linear-gradient(135deg,#8e44ad,#6c3483);"
+      >
+
+        <span class="btn-icon-area">
+          💬
+        </span>
+
+        <span
+          class="btn-label"
+          id="btnLabelSupport"
+        >
+          Advertising & Sales
+        </span>
+
+      </a>
+
+    </div>
+  </div>
+
+
+  <!-- MARKET -->
+  <div class="section-group">
+
+    <div
+      class="section-label"
+      id="sectionMarket"
+    >
+      ▸ MARKET
+    </div>
+
+    <div class="btn-list">
+
+      <div
+        class="main-btn"
+        id="btnMarket"
+        style="background:linear-gradient(135deg,#6e8efb,#5548c8);"
+      >
+
+        <span class="btn-icon-area">
+          📈
+        </span>
+
+        <span
+          class="btn-label"
+          id="btnLabelMarket"
+        >
+          Market
+        </span>
+
+        <span class="expand-arrow">
+          ▼
+        </span>
+
+      </div>
+
+
+      <div
+        class="market-wrapper"
+        id="marketWrapper"
+      >
+
+        <div class="market-panel">
+
+          <div class="market-head">
+
+            <div class="market-title">
+              <span>📊</span>
+
+              <span id="marketTitle">
+                Market Overview
+              </span>
+            </div>
+
+
+            <div
+              class="market-status"
+              id="marketStatus"
+            >
+              <span class="status-dot"></span>
+
+              <span id="marketStatusText">
+                Live
+              </span>
+
+              <button
+                class="market-refresh"
+                id="marketRefresh"
+                title="Refresh"
+              >
+                ↻
+              </button>
+            </div>
+
+          </div>
+
+
+          <div
+            class="market-info"
+            id="marketInfo"
+          >
+            Binance • CoinGecko · Updates every 120 seconds
+          </div>
+
+
+          <div
+            class="market-list"
+            id="marketList"
+          >
+
+            <div class="market-loading">
+              <span class="spinner"></span>
+              Loading market data...
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FOOTER -->
+  <div
+    class="footer"
+    id="footerText"
+  >
+    © 2025 Currency Club. All rights reserved.
+  </div>
+
+</div>
+
+
+<script>
+(function () {
+
+  let VOICE = {};
+  let LINKS = {};
+
+  let currentLang = "en";
+
+  const REFRESH_INTERVAL = 120000;
+
+
+  /* =========================
+     ELEMENTS
+  ========================= */
+
+  const langSelect =
+    document.getElementById("langSelect");
+
+  const elements = {
+
+    logoSub:
+      document.getElementById("logoSub"),
+
+    announceBody:
+      document.getElementById("announceBody"),
+
+    sectionOfficial:
+      document.getElementById("sectionOfficial"),
+
+    btnLabelOfficial:
+      document.getElementById("btnLabelOfficial"),
+
+    subOfficial1:
+      document.getElementById("subOfficial1"),
+
+    subOfficial2:
+      document.getElementById("subOfficial2"),
+
+    subOfficial3:
+      document.getElementById("subOfficial3"),
+
+    subOfficial4:
+      document.getElementById("subOfficial4"),
+
+    sectionSupport:
+      document.getElementById("sectionSupport"),
+
+    btnLabelSupport:
+      document.getElementById("btnLabelSupport"),
+
+    sectionMarket:
+      document.getElementById("sectionMarket"),
+
+    btnLabelMarket:
+      document.getElementById("btnLabelMarket"),
+
+    marketTitle:
+      document.getElementById("marketTitle"),
+
+    marketStatusText:
+      document.getElementById("marketStatusText"),
+
+    marketInfo:
+      document.getElementById("marketInfo"),
+
+    footerText:
+      document.getElementById("footerText")
+
+  };
+
+
+  /* =========================
+     LOAD JSON
+  ========================= */
+
+  async function loadConfig() {
+
+    try {
+
+      const [
+        voiceResponse,
+        linkResponse
+      ] = await Promise.all([
+
+        fetch("./voice.json", {
+          cache: "no-store"
+        }),
+
+        fetch("./link.json", {
+          cache: "no-store"
+        })
+
+      ]);
+
+
+      if (!voiceResponse.ok) {
+        throw new Error("voice.json failed");
       }
 
-      langSelect.addEventListener('change', function() {
-        switchLanguage(this.value);
+      if (!linkResponse.ok) {
+        throw new Error("link.json failed");
+      }
+
+
+      VOICE =
+        await voiceResponse.json();
+
+      LINKS =
+        await linkResponse.json();
+
+
+      applyLinks();
+
+      switchLanguage(
+        localStorage.getItem(
+          "currencyClubLang"
+        ) || "en"
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      switchLanguage("en");
+
+    }
+
+  }
+
+
+  /* =========================
+     LANGUAGE
+  ========================= */
+
+  function switchLanguage(lang) {
+
+    currentLang =
+      VOICE[lang]
+        ? lang
+        : "en";
+
+    localStorage.setItem(
+      "currencyClubLang",
+      currentLang
+    );
+
+
+    const t =
+      VOICE[currentLang];
+
+
+    if (!t) return;
+
+
+    elements.logoSub.textContent =
+      t.logoSub;
+
+    elements.announceBody.textContent =
+      t.announceBody;
+
+    elements.sectionOfficial.textContent =
+      t.sectionOfficial;
+
+    elements.btnLabelOfficial.textContent =
+      t.btnLabelOfficial;
+
+    elements.subOfficial1.textContent =
+      t.subOfficial1;
+
+    elements.subOfficial2.textContent =
+      t.subOfficial2;
+
+    elements.subOfficial3.textContent =
+      t.subOfficial3;
+
+    elements.subOfficial4.textContent =
+      t.subOfficial4;
+
+    elements.sectionSupport.textContent =
+      t.sectionSupport;
+
+    elements.btnLabelSupport.textContent =
+      t.btnLabelSupport;
+
+    elements.sectionMarket.textContent =
+      t.sectionMarket;
+
+    elements.btnLabelMarket.textContent =
+      t.btnLabelMarket;
+
+    elements.marketTitle.textContent =
+      t.marketTitle;
+
+    elements.marketStatusText.textContent =
+      t.marketLive;
+
+    elements.marketInfo.textContent =
+      t.marketInfo;
+
+    elements.footerText.textContent =
+      t.footerText;
+
+
+    document.documentElement.lang =
+      currentLang === "zh"
+        ? "zh-CN"
+        : currentLang;
+
+  }
+
+
+  langSelect.addEventListener(
+    "change",
+    function () {
+
+      switchLanguage(
+        this.value
+      );
+
+      renderMarket();
+
+    }
+  );
+
+
+  /* =========================
+     LINKS
+  ========================= */
+
+  function applyLinks() {
+
+    if (!LINKS.telegram) return;
+
+
+    setLink(
+      "linkOfficial",
+      LINKS.telegram.official
+    );
+
+    setLink(
+      "linkNavigation",
+      LINKS.telegram.navigation
+    );
+
+    setLink(
+      "linkAntiFraud",
+      LINKS.telegram.antiFraud
+    );
+
+    setLink(
+      "linkChat",
+      LINKS.telegram.chat
+    );
+
+    setLink(
+      "linkSupport",
+      LINKS.telegram.support
+    );
+
+  }
+
+
+  function setLink(id, url) {
+
+    const el =
+      document.getElementById(id);
+
+    if (el && url) {
+      el.href = url;
+    }
+
+  }
+
+
+  /* =========================
+     EXPANDABLE
+  ========================= */
+
+  function setupExpandable(
+    btnId,
+    targetId
+  ) {
+
+    const btn =
+      document.getElementById(btnId);
+
+    const target =
+      document.getElementById(targetId);
+
+
+    if (!btn || !target) return;
+
+
+    btn.addEventListener(
+      "click",
+      function () {
+
+        const isOpen =
+          target.classList.contains(
+            "open"
+          );
+
+
+        document
+          .querySelectorAll(
+            ".sub-menu, .market-wrapper"
+          )
+          .forEach(function (el) {
+
+            el.classList.remove(
+              "open"
+            );
+
+          });
+
+
+        document
+          .querySelectorAll(
+            ".main-btn"
+          )
+          .forEach(function (el) {
+
+            el.classList.remove(
+              "expanded"
+            );
+
+          });
+
+
+        if (!isOpen) {
+
+          target.classList.add(
+            "open"
+          );
+
+          btn.classList.add(
+            "expanded"
+          );
+
+
+          if (
+            targetId ===
+            "marketWrapper"
+          ) {
+
+            loadMarket();
+
+          }
+
+        }
+
+      }
+    );
+
+  }
+
+
+  setupExpandable(
+    "btnOfficial",
+    "subOfficial"
+  );
+
+  setupExpandable(
+    "btnMarket",
+    "marketWrapper"
+  );
+
+
+  /* =========================
+     MARKET DATA
+  ========================= */
+
+  let marketData = [];
+
+  let marketLoaded = false;
+
+
+  async function loadMarket() {
+
+    const list =
+      document.getElementById(
+        "marketList"
+      );
+
+
+    if (!marketLoaded) {
+
+      list.innerHTML =
+        loadingHTML();
+
+    }
+
+
+    try {
+
+      const config =
+        LINKS.market;
+
+
+      const [
+        binanceData,
+        coingeckoData
+      ] = await Promise.all([
+
+        fetchBinance(
+          config.binance
+        ),
+
+        fetchCoinGecko(
+          config.coingecko
+        )
+
+      ]);
+
+
+      marketData = [
+        ...binanceData,
+        ...coingeckoData
+      ];
+
+
+      marketLoaded = true;
+
+
+      renderMarket();
+
+
+    } catch (error) {
+
+      console.error(
+        "Market API error:",
+        error
+      );
+
+
+      list.innerHTML =
+        errorHTML();
+
+    }
+
+  }
+
+
+  /* =========================
+     BINANCE
+  ========================= */
+
+  async function fetchBinance(
+    config
+  ) {
+
+    if (!config || !config.url) {
+      return [];
+    }
+
+
+    const response =
+      await fetch(
+        config.url
+      );
+
+
+    if (!response.ok) {
+      throw new Error(
+        "Binance API error"
+      );
+    }
+
+
+    const data =
+      await response.json();
+
+
+    const symbols =
+      Array.isArray(
+        config.symbols
+      )
+        ? config.symbols
+        : [];
+
+
+    const allowed =
+      new Set(
+        symbols.map(
+          s => s.toUpperCase()
+        )
+      );
+
+
+    return data
+
+      .filter(function (coin) {
+
+        return (
+          coin.symbol &&
+          coin.symbol.endsWith("USDT") &&
+          allowed.has(
+            coin.symbol
+          )
+        );
+
+      })
+
+      .map(function (coin) {
+
+        return {
+
+          name:
+            coin.symbol
+              .replace(
+                "USDT",
+                ""
+              ),
+
+          symbol:
+            coin.symbol
+              .replace(
+                "USDT",
+                ""
+              ),
+
+          price:
+            Number(
+              coin.lastPrice
+            ),
+
+          change:
+            Number(
+              coin.priceChangePercent
+            ),
+
+          source:
+            "Binance"
+
+        };
+
       });
 
-      function setupExpandable(btnId, subId) {
-        const btn = document.getElementById(btnId);
-        const sub = document.getElementById(subId);
-        if (!btn || !sub) return;
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          const isOpen = sub.classList.contains('open');
-          document.querySelectorAll('.sub-menu').forEach(m => m.classList.remove('open'));
-          document.querySelectorAll('.main-btn').forEach(b => b.classList.remove('expanded'));
-          if (!isOpen) {
-            sub.classList.add('open');
-            btn.classList.add('expanded');
+  }
+
+
+  /* =========================
+     COINGECKO
+  ========================= */
+
+  async function fetchCoinGecko(
+    config
+  ) {
+
+    if (!config || !config.url) {
+      return [];
+    }
+
+
+    let url =
+      config.url;
+
+
+    if (
+      config.apiKey &&
+      config.apiKey.trim()
+    ) {
+
+      const separator =
+        url.includes("?")
+          ? "&"
+          : "?";
+
+      url +=
+        separator +
+        "x_cg_demo_api_key=" +
+        encodeURIComponent(
+          config.apiKey
+        );
+
+    }
+
+
+    const response =
+      await fetch(url);
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "CoinGecko API error"
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    const ids =
+      Array.isArray(
+        config.ids
+      )
+        ? config.ids
+        : [];
+
+
+    const allowed =
+      new Set(ids);
+
+
+    return data
+
+      .filter(function (coin) {
+
+        return (
+          coin.id &&
+          allowed.has(
+            coin.id
+          )
+        );
+
+      })
+
+      .map(function (coin) {
+
+        return {
+
+          name:
+            coin.name,
+
+          symbol:
+            String(
+              coin.symbol || ""
+            ).toUpperCase(),
+
+          price:
+            Number(
+              coin.current_price
+            ),
+
+          change:
+            Number(
+              coin.price_change_percentage_24h
+            ),
+
+          source:
+            "CoinGecko"
+
+        };
+
+      });
+
+  }
+
+
+  /* =========================
+     FORMAT PRICE
+  ========================= */
+
+  function formatPrice(price) {
+
+    if (
+      price === null ||
+      Number.isNaN(price)
+    ) {
+
+      return "--";
+
+    }
+
+
+    if (price >= 1000) {
+
+      return price.toLocaleString(
+        undefined,
+        {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      );
+
+    }
+
+
+    if (price >= 1) {
+
+      return price.toLocaleString(
+        undefined,
+        {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 4
+        }
+      );
+
+    }
+
+
+    return price.toLocaleString(
+      undefined,
+      {
+        minimumFractionDigits: 4,
+        maximumFractionDigits: 8
+      }
+    );
+
+  }
+
+
+  /* =========================
+     RENDER MARKET
+  ========================= */
+
+  function renderMarket() {
+
+    const list =
+      document.getElementById(
+        "marketList"
+      );
+
+
+    if (!marketData.length) {
+
+      list.innerHTML =
+        emptyHTML();
+
+      return;
+
+    }
+
+
+    list.innerHTML =
+      marketData
+        .map(function (coin) {
+
+          const change =
+            Number(
+              coin.change
+            );
+
+
+          let changeClass =
+            "neutral";
+
+
+          if (change > 0) {
+            changeClass =
+              "positive";
           }
-        });
+
+          if (change < 0) {
+            changeClass =
+              "negative";
+          }
+
+
+          const changeText =
+            Number.isFinite(change)
+              ? (
+                  change >= 0
+                    ? "+"
+                    : ""
+                ) +
+                change.toFixed(2) +
+                "%"
+              : "--";
+
+
+          return `
+
+            <div class="coin-row">
+
+              <div class="coin-name">
+
+                <div class="coin-symbol">
+                  ${escapeHTML(
+                    coin.symbol
+                  )}
+                </div>
+
+                <div class="coin-text">
+
+                  <div class="coin-title">
+                    ${escapeHTML(
+                      coin.name
+                    )}
+                  </div>
+
+                  <div class="coin-source">
+                    ${escapeHTML(
+                      coin.source
+                    )}
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="coin-price">
+                $${formatPrice(
+                  coin.price
+                )}
+              </div>
+
+
+              <div
+                class="coin-change ${changeClass}"
+              >
+                ${changeText}
+              </div>
+
+            </div>
+
+          `;
+
+        })
+        .join("");
+
+  }
+
+
+  function escapeHTML(value) {
+
+    return String(value)
+      .replace(
+        /[&<>"']/g,
+        function (char) {
+
+          const map = {
+
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+
+          };
+
+          return map[char];
+
+        }
+      );
+
+  }
+
+
+  function loadingHTML() {
+
+    const t =
+      VOICE[currentLang] ||
+      VOICE.en ||
+      { loading: "Loading market data..." };
+
+
+    return `
+      <div class="market-loading">
+        <span class="spinner"></span>
+        ${t.loading}
+      </div>
+    `;
+
+  }
+
+
+  function emptyHTML() {
+
+    const t =
+      VOICE[currentLang] ||
+      VOICE.en;
+
+
+    return `
+      <div class="market-empty">
+        ${t.marketEmpty}
+      </div>
+    `;
+
+  }
+
+
+  function errorHTML() {
+
+    const t =
+      VOICE[currentLang] ||
+      VOICE.en;
+
+
+    return `
+      <div class="market-error">
+        ${t.marketError}
+      </div>
+    `;
+
+  }
+
+
+  /* =========================
+     MANUAL REFRESH
+  ========================= */
+
+  document
+    .getElementById(
+      "marketRefresh"
+    )
+    .addEventListener(
+      "click",
+      function (event) {
+
+        event.stopPropagation();
+
+        marketLoaded = false;
+
+        loadMarket();
+
+      }
+    );
+
+
+  /* =========================
+     AUTO REFRESH
+  ========================= */
+
+  setInterval(
+    function () {
+
+      if (
+        document
+          .getElementById(
+            "marketWrapper"
+          )
+          .classList
+          .contains("open")
+      ) {
+
+        loadMarket();
+
       }
 
-      setupExpandable('btnOfficial', 'subOfficial');
-      setupExpandable('btnGames', 'subGames');
+    },
+    REFRESH_INTERVAL
+  );
 
-      switchLanguage('en');
-    })();
-  </script>
+
+  /* =========================
+     START
+  ========================= */
+
+  loadConfig();
+
+})();
+</script>
+
 </body>
 </html>
