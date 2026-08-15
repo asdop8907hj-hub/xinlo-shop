@@ -1,221 +1,261 @@
 {
   "en": {
     "logoSub": "Official Global Notice",
+
+    "announceTitle": "",
     "announceBody": "Welcome to the official Currency Club global announcement page. All channel links below are verified and secure. Please be aware of impersonators and always verify you are using official channels.",
+
     "sectionOfficial": "▸ OFFICIAL CHANNELS",
-    "btnLabelOfficial": "Official Channels",
-    "subOfficial1": "Official Channel",
-    "subOfficial2": "Chinese Navigation",
-    "subOfficial3": "Anti-Fraud Awareness",
-    "subOfficial4": "Chit Chat Group",
     "sectionSupport": "▸ CUSTOMER SUPPORT",
-    "btnLabelSupport": "Advertising & Sales",
     "sectionMarket": "▸ MARKET",
-    "btnLabelMarket": "Market",
-    "marketTitle": "Market Overview",
-    "marketLive": "Live",
-    "marketInfo": "Binance • CoinGecko · Updates every 120 seconds",
-    "loading": "Loading market data...",
-    "marketEmpty": "No market data available.",
-    "marketError": "Unable to load market data. Please try again later.",
-    "footerText": "© 2025 Currency Club. All rights reserved."
+
+    "Corp": "Corp",
+    "Club": "Club",
+    "News": "News",
+    "event": "Event",
+    "chat": "Chat",
+    "support": "Support",
+
+    "marketTitle": "Market",
+    "marketUpdated": "Updated every 120 seconds",
+    "marketLoading": "Loading market data...",
+    "marketError": "Market data temporarily unavailable",
+    "marketPrice": "Price",
+    "marketChange": "24h",
+    "marketVolume": "Volume"
   },
 
   "zh": {
     "logoSub": "官方全球公告",
-    "announceBody": "欢迎来到 Currency Club 官方全球公告页面。以下所有频道链接均已验证且安全。请警惕冒充者，始终确认您使用的是官方渠道。",
+
+    "announceTitle": "",
+    "announceBody": "欢迎来到 Currency Club 官方全球公告页面。以下所有频道链接均已验证且安全。请警惕冒充者，并始终确认您使用的是官方渠道。",
+
     "sectionOfficial": "▸ 官方频道",
-    "btnLabelOfficial": "官方频道",
-    "subOfficial1": "官方频道",
-    "subOfficial2": "中文导航",
-    "subOfficial3": "防诈骗提醒",
-    "subOfficial4": "闲聊群组",
     "sectionSupport": "▸ 客服支持",
-    "btnLabelSupport": "广告与销售",
     "sectionMarket": "▸ 市场行情",
-    "btnLabelMarket": "市场行情",
-    "marketTitle": "市场概览",
-    "marketLive": "实时",
-    "marketInfo": "Binance • CoinGecko · 每 120 秒更新",
-    "loading": "正在加载市场数据...",
-    "marketEmpty": "暂无市场数据。",
-    "marketError": "市场数据加载失败，请稍后再试。",
-    "footerText": "© 2025 Currency Club. 保留所有权利。"
+
+    "Corp": "公司",
+    "Club": "俱乐部",
+    "News": "新闻",
+    "event": "活动",
+    "chat": "聊天",
+    "support": "客服",
+
+    "marketTitle": "市场行情",
+    "marketUpdated": "每 120 秒更新",
+    "marketLoading": "正在加载市场数据...",
+    "marketError": "市场数据暂时不可用",
+    "marketPrice": "价格",
+    "marketChange": "24小时",
+    "marketVolume": "成交量"
   },
 
   "es": {
     "logoSub": "Aviso Global Oficial",
-    "announceBody": "Bienvenido a la página oficial de anuncios globales de Currency Club. Todos los enlaces de canales a continuación están verificados y son seguros. Tenga cuidado con los impostores y verifique siempre que utiliza canales oficiales.",
+
+    "announceTitle": "",
+    "announceBody": "Bienvenido a la página oficial de anuncios globales de Currency Club. Todos los enlaces de los canales están verificados y son seguros. Tenga cuidado con los impostores y verifique siempre que utiliza los canales oficiales.",
+
     "sectionOfficial": "▸ CANALES OFICIALES",
-    "btnLabelOfficial": "Canales Oficiales",
-    "subOfficial1": "Canal Oficial",
-    "subOfficial2": "Navegación China",
-    "subOfficial3": "Conciencia Anti-Fraude",
-    "subOfficial4": "Grupo de Charla",
     "sectionSupport": "▸ ATENCIÓN AL CLIENTE",
-    "btnLabelSupport": "Publicidad y Ventas",
     "sectionMarket": "▸ MERCADO",
-    "btnLabelMarket": "Mercado",
-    "marketTitle": "Resumen del Mercado",
-    "marketLive": "En Vivo",
-    "marketInfo": "Binance • CoinGecko · Actualización cada 120 segundos",
-    "loading": "Cargando datos del mercado...",
-    "marketEmpty": "No hay datos de mercado disponibles.",
-    "marketError": "No se pudieron cargar los datos del mercado.",
-    "footerText": "© 2025 Currency Club. Todos los derechos reservados."
+
+    "Corp": "Corporación",
+    "Club": "Club",
+    "News": "Noticias",
+    "event": "Evento",
+    "chat": "Chat",
+    "support": "Soporte",
+
+    "marketTitle": "Mercado",
+    "marketUpdated": "Actualizado cada 120 segundos",
+    "marketLoading": "Cargando datos del mercado...",
+    "marketError": "Datos del mercado no disponibles temporalmente",
+    "marketPrice": "Precio",
+    "marketChange": "24h",
+    "marketVolume": "Volumen"
   },
 
   "ar": {
     "logoSub": "الإعلان الرسمي العالمي",
-    "announceBody": "مرحباً بكم في صفحة الإعلانات الرسمية العالمية لـ Currency Club. جميع روابط القنوات أدناه موثقة وآمنة. يرجى الانتباه من المنتحلين والتأكد دائماً من استخدام القنوات الرسمية.",
+
+    "announceTitle": "",
+    "announceBody": "مرحباً بكم في صفحة الإعلانات الرسمية العالمية لـ Currency Club. جميع روابط القنوات أدناه موثقة وآمنة. يرجى الحذر من المنتحلين والتأكد دائماً من استخدام القنوات الرسمية.",
+
     "sectionOfficial": "▸ القنوات الرسمية",
-    "btnLabelOfficial": "القنوات الرسمية",
-    "subOfficial1": "القناة الرسمية",
-    "subOfficial2": "الملاحة الصينية",
-    "subOfficial3": "التوعية ضد الاحتيال",
-    "subOfficial4": "مجموعة الدردشة",
     "sectionSupport": "▸ دعم العملاء",
-    "btnLabelSupport": "الإعلان والمبيعات",
     "sectionMarket": "▸ السوق",
-    "btnLabelMarket": "السوق",
-    "marketTitle": "نظرة عامة على السوق",
-    "marketLive": "مباشر",
-    "marketInfo": "Binance • CoinGecko · تحديث كل 120 ثانية",
-    "loading": "جارٍ تحميل بيانات السوق...",
-    "marketEmpty": "لا توجد بيانات سوق متاحة.",
-    "marketError": "تعذر تحميل بيانات السوق.",
-    "footerText": "© 2025 Currency Club. جميع الحقوق محفوظة."
+
+    "Corp": "الشركة",
+    "Club": "النادي",
+    "News": "الأخبار",
+    "event": "الفعالية",
+    "chat": "الدردشة",
+    "support": "الدعم",
+
+    "marketTitle": "السوق",
+    "marketUpdated": "يتم التحديث كل 120 ثانية",
+    "marketLoading": "جارٍ تحميل بيانات السوق...",
+    "marketError": "بيانات السوق غير متاحة مؤقتاً",
+    "marketPrice": "السعر",
+    "marketChange": "24 ساعة",
+    "marketVolume": "الحجم"
   },
 
   "th": {
     "logoSub": "ประกาศอย่างเป็นทางการทั่วโลก",
-    "announceBody": "ยินดีต้อนรับสู่หน้าประกาศอย่างเป็นทางการของ Currency Club ลิงก์ช่องทั้งหมดด้านล่างได้รับการตรวจสอบและปลอดภัย โปรดระวังผู้แอบอ้างและตรวจสอบว่าคุณใช้ช่องทางที่เป็นทางการเสมอ",
+
+    "announceTitle": "",
+    "announceBody": "ยินดีต้อนรับสู่หน้าประกาศอย่างเป็นทางการทั่วโลกของ Currency Club ลิงก์ช่องทั้งหมดด้านล่างได้รับการตรวจสอบและปลอดภัย โปรดระวังผู้แอบอ้างและตรวจสอบช่องทางอย่างเป็นทางการเสมอ",
+
     "sectionOfficial": "▸ ช่องทางการ",
-    "btnLabelOfficial": "ช่องทางการ",
-    "subOfficial1": "ช่องทางการ",
-    "subOfficial2": "นำทางภาษาจีน",
-    "subOfficial3": "การรับรู้การฉ้อโกง",
-    "subOfficial4": "กลุ่มแชท",
     "sectionSupport": "▸ ฝ่ายสนับสนุน",
-    "btnLabelSupport": "โฆษณาและการขาย",
     "sectionMarket": "▸ ตลาด",
-    "btnLabelMarket": "ตลาด",
-    "marketTitle": "ภาพรวมตลาด",
-    "marketLive": "สด",
-    "marketInfo": "Binance • CoinGecko · อัปเดตทุก 120 วินาที",
-    "loading": "กำลังโหลดข้อมูลตลาด...",
-    "marketEmpty": "ไม่มีข้อมูลตลาด",
-    "marketError": "ไม่สามารถโหลดข้อมูลตลาดได้",
-    "footerText": "© 2025 Currency Club. สงวนลิขสิทธิ์"
+
+    "Corp": "บริษัท",
+    "Club": "คลับ",
+    "News": "ข่าว",
+    "event": "กิจกรรม",
+    "chat": "แชท",
+    "support": "ฝ่ายสนับสนุน",
+
+    "marketTitle": "ตลาด",
+    "marketUpdated": "อัปเดตทุก 120 วินาที",
+    "marketLoading": "กำลังโหลดข้อมูลตลาด...",
+    "marketError": "ข้อมูลตลาดไม่พร้อมใช้งานชั่วคราว",
+    "marketPrice": "ราคา",
+    "marketChange": "24 ชม.",
+    "marketVolume": "ปริมาณ"
   },
 
   "vi": {
     "logoSub": "Thông Báo Chính Thức Toàn Cầu",
-    "announceBody": "Chào mừng đến với trang thông báo chính thức toàn cầu của Currency Club. Tất cả các liên kết kênh bên dưới đã được xác minh và an toàn. Hãy cảnh giác với những kẻ mạo danh và luôn xác minh bạn đang sử dụng các kênh chính thức.",
+
+    "announceTitle": "",
+    "announceBody": "Chào mừng đến với trang thông báo chính thức toàn cầu của Currency Club. Tất cả liên kết kênh bên dưới đã được xác minh và an toàn. Hãy cảnh giác với các tài khoản giả mạo và luôn xác minh kênh chính thức.",
+
     "sectionOfficial": "▸ KÊNH CHÍNH THỨC",
-    "btnLabelOfficial": "Kênh Chính Thức",
-    "subOfficial1": "Kênh Chính Thức",
-    "subOfficial2": "Điều Hướng Tiếng Trung",
-    "subOfficial3": "Nhận Thức Chống Lừa Đảo",
-    "subOfficial4": "Nhóm Trò Chuyện",
     "sectionSupport": "▸ HỖ TRỢ KHÁCH HÀNG",
-    "btnLabelSupport": "Quảng Cáo & Bán Hàng",
     "sectionMarket": "▸ THỊ TRƯỜNG",
-    "btnLabelMarket": "Thị Trường",
-    "marketTitle": "Tổng Quan Thị Trường",
-    "marketLive": "Trực Tiếp",
-    "marketInfo": "Binance • CoinGecko · Cập nhật mỗi 120 giây",
-    "loading": "Đang tải dữ liệu thị trường...",
-    "marketEmpty": "Không có dữ liệu thị trường.",
-    "marketError": "Không thể tải dữ liệu thị trường.",
-    "footerText": "© 2025 Currency Club. Đã đăng ký bản quyền."
+
+    "Corp": "Công ty",
+    "Club": "Câu lạc bộ",
+    "News": "Tin tức",
+    "event": "Sự kiện",
+    "chat": "Trò chuyện",
+    "support": "Hỗ trợ",
+
+    "marketTitle": "Thị trường",
+    "marketUpdated": "Cập nhật mỗi 120 giây",
+    "marketLoading": "Đang tải dữ liệu thị trường...",
+    "marketError": "Dữ liệu thị trường tạm thời không khả dụng",
+    "marketPrice": "Giá",
+    "marketChange": "24h",
+    "marketVolume": "Khối lượng"
   },
 
   "id": {
     "logoSub": "Pengumuman Resmi Global",
-    "announceBody": "Selamat datang di halaman pengumuman resmi global Currency Club. Semua tautan saluran di bawah ini telah diverifikasi dan aman. Harap waspadai peniru dan selalu verifikasi bahwa Anda menggunakan saluran resmi.",
+
+    "announceTitle": "",
+    "announceBody": "Selamat datang di halaman pengumuman resmi global Currency Club. Semua tautan saluran di bawah ini telah diverifikasi dan aman. Harap waspadai peniru dan selalu pastikan Anda menggunakan saluran resmi.",
+
     "sectionOfficial": "▸ SALURAN RESMI",
-    "btnLabelOfficial": "Saluran Resmi",
-    "subOfficial1": "Saluran Resmi",
-    "subOfficial2": "Navigasi Bahasa Mandarin",
-    "subOfficial3": "Kesadaran Anti-Penipuan",
-    "subOfficial4": "Grup Obrolan",
     "sectionSupport": "▸ DUKUNGAN PELANGGAN",
-    "btnLabelSupport": "Iklan & Penjualan",
     "sectionMarket": "▸ PASAR",
-    "btnLabelMarket": "Pasar",
-    "marketTitle": "Ikhtisar Pasar",
-    "marketLive": "Langsung",
-    "marketInfo": "Binance • CoinGecko · Diperbarui setiap 120 detik",
-    "loading": "Memuat data pasar...",
-    "marketEmpty": "Tidak ada data pasar.",
-    "marketError": "Gagal memuat data pasar.",
-    "footerText": "© 2025 Currency Club. Hak cipta dilindungi."
+
+    "Corp": "Perusahaan",
+    "Club": "Klub",
+    "News": "Berita",
+    "event": "Acara",
+    "chat": "Obrolan",
+    "support": "Dukungan",
+
+    "marketTitle": "Pasar",
+    "marketUpdated": "Diperbarui setiap 120 detik",
+    "marketLoading": "Memuat data pasar...",
+    "marketError": "Data pasar sementara tidak tersedia",
+    "marketPrice": "Harga",
+    "marketChange": "24j",
+    "marketVolume": "Volume"
   },
 
   "fr": {
     "logoSub": "Avis Officiel Mondial",
-    "announceBody": "Bienvenue sur la page d'annonce officielle mondiale de Currency Club. Tous les liens de chaînes ci-dessous sont vérifiés et sécurisés. Méfiez-vous des imposteurs et vérifiez toujours que vous utilisez les chaînes officielles.",
+
+    "announceTitle": "",
+    "announceBody": "Bienvenue sur la page d'annonce officielle mondiale de Currency Club. Tous les liens des chaînes ci-dessous sont vérifiés et sécurisés. Méfiez-vous des imposteurs et vérifiez toujours que vous utilisez les chaînes officielles.",
+
     "sectionOfficial": "▸ CHAÎNES OFFICIELLES",
-    "btnLabelOfficial": "Chaînes Officielles",
-    "subOfficial1": "Chaîne Officielle",
-    "subOfficial2": "Navigation Chinoise",
-    "subOfficial3": "Sensibilisation Anti-Fraude",
-    "subOfficial4": "Groupe de Discussion",
     "sectionSupport": "▸ SERVICE CLIENT",
-    "btnLabelSupport": "Publicité et Ventes",
     "sectionMarket": "▸ MARCHÉ",
-    "btnLabelMarket": "Marché",
-    "marketTitle": "Aperçu du Marché",
-    "marketLive": "En Direct",
-    "marketInfo": "Binance • CoinGecko · Mise à jour toutes les 120 secondes",
-    "loading": "Chargement des données du marché...",
-    "marketEmpty": "Aucune donnée de marché disponible.",
-    "marketError": "Impossible de charger les données du marché.",
-    "footerText": "© 2025 Currency Club. Tous droits réservés."
+
+    "Corp": "Entreprise",
+    "Club": "Club",
+    "News": "Actualités",
+    "event": "Événement",
+    "chat": "Discussion",
+    "support": "Assistance",
+
+    "marketTitle": "Marché",
+    "marketUpdated": "Mis à jour toutes les 120 secondes",
+    "marketLoading": "Chargement des données du marché...",
+    "marketError": "Données du marché temporairement indisponibles",
+    "marketPrice": "Prix",
+    "marketChange": "24h",
+    "marketVolume": "Volume"
   },
 
   "de": {
     "logoSub": "Offizielle Globale Mitteilung",
+
+    "announceTitle": "",
     "announceBody": "Willkommen auf der offiziellen globalen Ankündigungsseite von Currency Club. Alle unten aufgeführten Kanallinks sind verifiziert und sicher. Achten Sie auf Betrüger und überprüfen Sie stets, ob Sie offizielle Kanäle nutzen.",
+
     "sectionOfficial": "▸ OFFIZIELLE KANÄLE",
-    "btnLabelOfficial": "Offizielle Kanäle",
-    "subOfficial1": "Offizieller Kanal",
-    "subOfficial2": "Chinesische Navigation",
-    "subOfficial3": "Anti-Betrugs-Bewusstsein",
-    "subOfficial4": "Plaudergruppe",
     "sectionSupport": "▸ KUNDENDIENST",
-    "btnLabelSupport": "Werbung & Verkauf",
     "sectionMarket": "▸ MARKT",
-    "btnLabelMarket": "Markt",
-    "marketTitle": "Marktübersicht",
-    "marketLive": "Live",
-    "marketInfo": "Binance • CoinGecko · Aktualisierung alle 120 Sekunden",
-    "loading": "Marktdaten werden geladen...",
-    "marketEmpty": "Keine Marktdaten verfügbar.",
-    "marketError": "Marktdaten konnten nicht geladen werden.",
-    "footerText": "© 2025 Currency Club. Alle Rechte vorbehalten."
+
+    "Corp": "Unternehmen",
+    "Club": "Klub",
+    "News": "Nachrichten",
+    "event": "Veranstaltung",
+    "chat": "Chat",
+    "support": "Support",
+
+    "marketTitle": "Markt",
+    "marketUpdated": "Alle 120 Sekunden aktualisiert",
+    "marketLoading": "Marktdaten werden geladen...",
+    "marketError": "Marktdaten vorübergehend nicht verfügbar",
+    "marketPrice": "Preis",
+    "marketChange": "24h",
+    "marketVolume": "Volumen"
   },
 
   "ru": {
     "logoSub": "Официальное Глобальное Уведомление",
-    "announceBody": "Добро пожаловать на официальную страницу глобальных объявлений Currency Club. Все ссылки на каналы ниже проверены и безопасны. Остерегайтесь мошенников и всегда проверяйте, что вы используете официальные каналы.",
+
+    "announceTitle": "",
+    "announceBody": "Добро пожаловать на официальную страницу глобальных объявлений Currency Club. Все ссылки на каналы ниже проверены и безопасны. Остерегайтесь мошенников и всегда проверяйте, что используете официальные каналы.",
+
     "sectionOfficial": "▸ ОФИЦИАЛЬНЫЕ КАНАЛЫ",
-    "btnLabelOfficial": "Официальные Каналы",
-    "subOfficial1": "Официальный Канал",
-    "subOfficial2": "Китайская Навигация",
-    "subOfficial3": "Анти-Мошенничество",
-    "subOfficial4": "Чат-группа",
     "sectionSupport": "▸ ПОДДЕРЖКА",
-    "btnLabelSupport": "Реклама и Продажи",
     "sectionMarket": "▸ РЫНОК",
-    "btnLabelMarket": "Рынок",
-    "marketTitle": "Обзор Рынка",
-    "marketLive": "В Реальном Времени",
-    "marketInfo": "Binance • CoinGecko · Обновление каждые 120 секунд",
-    "loading": "Загрузка рыночных данных...",
-    "marketEmpty": "Нет доступных рыночных данных.",
-    "marketError": "Не удалось загрузить рыночные данные.",
-    "footerText": "© 2025 Currency Club. Все права защищены."
+
+    "Corp": "Компания",
+    "Club": "Клуб",
+    "News": "Новости",
+    "event": "Событие",
+    "chat": "Чат",
+    "support": "Поддержка",
+
+    "marketTitle": "Рынок",
+    "marketUpdated": "Обновление каждые 120 секунд",
+    "marketLoading": "Загрузка данных рынка...",
+    "marketError": "Данные рынка временно недоступны",
+    "marketPrice": "Цена",
+    "marketChange": "24ч",
+    "marketVolume": "Объём"
   }
 }
